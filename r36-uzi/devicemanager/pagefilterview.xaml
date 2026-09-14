@@ -1,0 +1,46 @@
+<Page x:Class="MackinawCPS.PageFilterView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+      xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+      Title="{x:Static CommonResxNS:AppResources.Page_Filter_View}">
+  <DockPanel>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="250*"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Row="0">
+          <Label HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" Width="60" Height="27"
+                 Content="{x:Static CommonResxNS:AppResources.Filter_By}"/>
+          <Label HorizontalAlignment="Left" Margin="8,39,0,0" VerticalAlignment="Top" Width="75" Height="23"
+                 Content="{x:Static CommonResxNS:AppResources.Connection_Id}"/>
+          <AcpUINS:AcpCheckBox MouseRightButtonDown="OnMouseRightButtonDown" Name="ChBoxDev2" HorizontalAlignment="Left"
+                               Margin="20,82,0,0" VerticalAlignment="Top" Width="48" Height="17"
+                               Content="{x:Static CommonResxNS:AppResources.USB_ID}" IsChecked="True"/>
+          <Label Margin="8,0,98,214" VerticalAlignment="Bottom" Height="26"
+                 Content="{x:Static CommonResxNS:AppResources.Radio_Model}"/>
+          <CheckBox Click="OnMouseRightButtonDown" Name="ChBoxDev7" HorizontalAlignment="Stretch" Margin="98,0,25,212"
+                    VerticalAlignment="Bottom" Width="Auto" Height="23"
+                    Content="{x:Static CommonResxNS:AppResources.Remove_All}" IsChecked="False"/>
+          <CheckBox MouseRightButtonDown="OnMouseRightButtonDown" Name="ChBoxDev8" HorizontalAlignment="Left"
+                    Margin="20,0,0,182" VerticalAlignment="Bottom" Width="63" Height="19"
+                    Content="{x:Static CommonResxNS:AppResources.XTL5000_ID}" IsChecked="True"/>
+          <CheckBox MouseRightButtonDown="OnMouseRightButtonDown" Name="ChBoxDev9" HorizontalAlignment="Left"
+                    Margin="20,0,0,148" VerticalAlignment="Bottom" Width="63" Height="15"
+                    Content="{x:Static CommonResxNS:AppResources.XTL2500_ID}" IsChecked="True"/>
+          <CheckBox MouseRightButtonDown="OnMouseRightButtonDown" Name="ChBoxDev10" Margin="20,0,98,113"
+                    VerticalAlignment="Bottom" Height="17" Content="{x:Static CommonResxNS:AppResources.XTL1500_ID}"
+                    IsChecked="True"/>
+          <Button HorizontalAlignment="Left" Margin="8,0,0,68" VerticalAlignment="Bottom" Width="81" Height="22"
+                  Content="{x:Static CommonResxNS:AppResources.Customize_Id}"/>
+          <Button HorizontalAlignment="Right" Margin="0,0,10,68" VerticalAlignment="Bottom" Width="79" Height="22"
+                  Content="{x:Static CommonResxNS:AppResources.Apply_Id}"/>
+        </Grid>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" ShowsPreview="True"
+                      Height="4"/>
+      </Grid>
+    </ScrollViewer>
+  </DockPanel>
+</Page>

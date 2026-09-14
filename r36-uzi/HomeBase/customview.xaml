@@ -1,0 +1,21 @@
+<Page x:Class="MackinawCPS.HomeBase.CustomView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+      Width="{DynamicResource 386}" Height="{DynamicResource 266}">
+  <Grid Background="Transparent">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="35"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0" Text="{x:Static CommonResxNS:AppResources.Custom_Views}" Margin="0,15,0,0"
+               VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14"
+               FontWeight="Bold" Foreground="{DynamicResource '176-176-139 Text on Screen'}"/>
+    <TextBlock Text="{x:Static CommonResxNS:AppResources.HomeBase_CustomViews}" Grid.Row="1"
+               Background="Transparent" Margin="21.502,28,25.418,0" VerticalAlignment="Top" FontFamily="Arial"
+               FontSize="12" Foreground="{DynamicResource '176-176-139 Text on Screen'}" TextAlignment="Left"
+               TextWrapping="Wrap" HorizontalAlignment="Center"/>
+  </Grid>
+</Page>

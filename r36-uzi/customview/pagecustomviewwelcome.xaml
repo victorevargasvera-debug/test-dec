@@ -1,0 +1,705 @@
+<Page x:Class="MackinawCPS.PageCustomViewWelcome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+      xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
+      Loaded="OnLoaded" Title="{x:Static CommonResxNS:AppResources.Welcome_to_Custom_View_Configuration}"
+      Width="Auto" Height="Auto">
+  <FrameworkElement.Resources>
+    <XmlDataProvider x:Key="customViewHowToDataSource" Source="CustomViewHowTo.xml"/>
+    <Style TargetType="{x:Type Hyperlink}">
+      <Style.Triggers>
+        <Trigger Property="ContentElement.IsMouseOver" Value="True">
+          <Setter Property="TextElement.Foreground" Value="{DynamicResource HyperLinkMouseOverColor}"/>
+        </Trigger>
+      </Style.Triggers>
+      <Setter Property="TextElement.Foreground" Value="#FFC7C7C7"/>
+      <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
+    </Style>
+    <Style TargetType="{x:Type Frame}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Frame}">
+            <Border Background="{DynamicResource 'MonitorColor Unfocused'}"
+                    BorderBrush="{TemplateBinding Control.BorderBrush}"
+                    BorderThickness="{TemplateBinding Control.BorderThickness}"
+                    Padding="{TemplateBinding Control.Padding}">
+              <ContentPresenter x:Name="PART_FrameCP"/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <LinearGradientBrush x:Key="Brush1 Blckblue main" EndPoint="0.640625,1.08108" StartPoint="0.640625,-0.0270241">
+      <GradientStop Color="#FF1C2027" Offset="0"/>
+      <GradientStop Color="#FF5C626B" Offset="0.0859826"/>
+      <GradientStop Color="#FF9CA4B0" Offset="0.0863636"/>
+      <GradientStop Color="#FF5D636C" Offset="0.462964"/>
+      <GradientStop Color="#FF1E2228" Offset="0.463636"/>
+      <GradientStop Color="#FF4C4C4C" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="Text color grey" Color="#FF989898"/>
+    <SolidColorBrush x:Key="200 text" Color="#FFC8C8C8"/>
+    <LinearGradientBrush x:Key="mouseover gradietnt" StartPoint="0.640625,-0.0270241" EndPoint="0.640625,1.08108">
+      <GradientStop Color="#FF1C2027" Offset="0"/>
+      <GradientStop Color="#FF4C4B44" Offset="0.0859826"/>
+      <GradientStop Color="#FF7D7661" Offset="0.0863636"/>
+      <GradientStop Color="#FF41423F" Offset="0.462964"/>
+      <GradientStop Color="#FF050F1D" Offset="0.463636"/>
+      <GradientStop Color="#FF895B11" Offset="0.868182"/>
+      <GradientStop Color="#FF4C4C4C" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="click gdent" StartPoint="0.640625,-0.0270241" EndPoint="0.640625,1.08108">
+      <GradientStop Color="#FF57411E" Offset="0"/>
+      <GradientStop Color="#FF886D42" Offset="0.0859826"/>
+      <GradientStop Color="#FFFFAF2B" Offset="0.0863636"/>
+      <GradientStop Color="#FFAC8142" Offset="0.462964"/>
+      <GradientStop Color="#FFA0681E" Offset="0.463636"/>
+      <GradientStop Color="#FFF7931E" Offset="0.868182"/>
+      <GradientStop Color="#FF474747" Offset="1"/>
+    </LinearGradientBrush>
+    <Style x:Key="ExpanderHeaderFocusVisual">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Border>
+              <Rectangle SnapsToDevicePixels="true" Margin="0" Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1"/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="ExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ToggleButton}">
+            <Border Padding="{TemplateBinding Control.Padding}">
+              <Grid SnapsToDevicePixels="False" Height="31.5"
+                    Background="{DynamicResource WelcomePageToggleButtonBrush}">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="19"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Left" Margin="27.75,5.85,0,8.85"
+                                  VerticalAlignment="Stretch" Width="120" Grid.Column="1" RecognizesAccessKey="True"/>
+              </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+              <Trigger Property="UIElement.IsMouseOver" Value="true"/>
+              <Trigger Property="ButtonBase.IsPressed" Value="true"/>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="ExpanderRightHeaderStyle" TargetType="{x:Type ToggleButton}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ToggleButton}">
+            <Border Padding="{TemplateBinding Control.Padding}">
+              <Grid SnapsToDevicePixels="False" Background="Transparent">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="19"/>
+                  <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Microsoft_Windows_Themes:ClassicBorderDecorator x:Name="Bd" UIElement.SnapsToDevicePixels="true" FrameworkElement.Width="19"
+                                                                 FrameworkElement.Height="19"
+                                                                 Background="{DynamicResource {x:Static JetSystemColors.ControlBrushKey}}"
+                                                                 BorderBrush="{x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}"
+                                                                 BorderStyle="None" BorderThickness="1">
+                  <Path x:Name="arrow" SnapsToDevicePixels="false" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Stroke="{TemplateBinding Control.Foreground}" StrokeThickness="1.5" Data="M 1,1.5 L 4.5,5 8,1.5 ">
+                    <FrameworkElement.LayoutTransform>
+                      <RotateTransform Angle="-90"/>
+                    </FrameworkElement.LayoutTransform>
+                  </Path>
+                </Microsoft_Windows_Themes:ClassicBorderDecorator>
+                <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top"
+                                  Grid.Row="1" RecognizesAccessKey="True"/>
+              </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="ToggleButton.IsChecked" Value="true">
+                <Setter TargetName="arrow" Property="Path.Data" Value="M 1,4.5 L 4.5,1 8,4.5 "/>
+              </Trigger>
+              <Trigger Property="UIElement.IsMouseOver" Value="true">
+                <Setter TargetName="Bd" Property="Microsoft_Windows_Themes:ClassicBorderDecorator.BorderStyle"
+                        Value="ThinRaised"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="true">
+                <Setter TargetName="Bd" Property="Microsoft_Windows_Themes:ClassicBorderDecorator.BorderStyle"
+                        Value="ThinPressed"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="ExpanderUpHeaderStyle" TargetType="{x:Type ToggleButton}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ToggleButton}">
+            <Border Padding="{TemplateBinding Control.Padding}">
+              <Grid SnapsToDevicePixels="False" Background="Transparent">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="19"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Microsoft_Windows_Themes:ClassicBorderDecorator x:Name="Bd" UIElement.SnapsToDevicePixels="true" FrameworkElement.Width="19"
+                                                                 FrameworkElement.Height="19"
+                                                                 Background="{DynamicResource {x:Static JetSystemColors.ControlBrushKey}}"
+                                                                 BorderBrush="{x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}"
+                                                                 BorderStyle="None" BorderThickness="1">
+                  <Path x:Name="arrow" SnapsToDevicePixels="false" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Stroke="{TemplateBinding Control.Foreground}" StrokeThickness="1.5" Data="M 1,1.5 L 4.5,5 8,1.5 ">
+                    <FrameworkElement.LayoutTransform>
+                      <RotateTransform Angle="180"/>
+                    </FrameworkElement.LayoutTransform>
+                  </Path>
+                </Microsoft_Windows_Themes:ClassicBorderDecorator>
+                <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Left" Margin="4,0,0,0" VerticalAlignment="Center"
+                                  Grid.Column="1" RecognizesAccessKey="True"/>
+              </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="ToggleButton.IsChecked" Value="true">
+                <Setter TargetName="arrow" Property="Path.Data" Value="M 1,4.5 L 4.5,1 8,4.5 "/>
+              </Trigger>
+              <Trigger Property="UIElement.IsMouseOver" Value="true">
+                <Setter TargetName="Bd" Property="Microsoft_Windows_Themes:ClassicBorderDecorator.BorderStyle"
+                        Value="ThinRaised"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="true">
+                <Setter TargetName="Bd" Property="Microsoft_Windows_Themes:ClassicBorderDecorator.BorderStyle"
+                        Value="ThinPressed"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="ExpanderLeftHeaderStyle" TargetType="{x:Type ToggleButton}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ToggleButton}">
+            <Border Padding="{TemplateBinding Control.Padding}">
+              <Grid SnapsToDevicePixels="False" Background="Transparent">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="19"/>
+                  <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Microsoft_Windows_Themes:ClassicBorderDecorator x:Name="Bd" UIElement.SnapsToDevicePixels="true" FrameworkElement.Width="19"
+                                                                 FrameworkElement.Height="19"
+                                                                 Background="{DynamicResource {x:Static JetSystemColors.ControlBrushKey}}"
+                                                                 BorderBrush="{x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}"
+                                                                 BorderStyle="None" BorderThickness="1">
+                  <Path x:Name="arrow" SnapsToDevicePixels="false" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Stroke="{TemplateBinding Control.Foreground}" StrokeThickness="1.5" Data="M 1,1.5 L 4.5,5 8,1.5 ">
+                    <FrameworkElement.LayoutTransform>
+                      <RotateTransform Angle="90"/>
+                    </FrameworkElement.LayoutTransform>
+                  </Path>
+                </Microsoft_Windows_Themes:ClassicBorderDecorator>
+                <ContentPresenter SnapsToDevicePixels="True" HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top"
+                                  Grid.Row="1" RecognizesAccessKey="True"/>
+              </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="ToggleButton.IsChecked" Value="true">
+                <Setter TargetName="arrow" Property="Path.Data" Value="M 1,4.5 L 4.5,1 8,4.5 "/>
+              </Trigger>
+              <Trigger Property="UIElement.IsMouseOver" Value="true">
+                <Setter TargetName="Bd" Property="Microsoft_Windows_Themes:ClassicBorderDecorator.BorderStyle"
+                        Value="ThinRaised"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="true">
+                <Setter TargetName="Bd" Property="Microsoft_Windows_Themes:ClassicBorderDecorator.BorderStyle"
+                        Value="ThinPressed"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="ExpanderStyle1301" TargetType="{x:Type Expander}">
+      <Setter Property="Control.Foreground"
+              Value="{DynamicResource {x:Static JetSystemColors.WindowTextBrushKey}}"/>
+      <Setter Property="Control.Background" Value="Transparent"/>
+      <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+      <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+      <Setter Property="Control.BorderBrush" Value="Transparent"/>
+      <Setter Property="Control.BorderThickness" Value="1"/>
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Expander}">
+            <Border SnapsToDevicePixels="true" Background="{TemplateBinding Control.Background}"
+                    BorderBrush="{TemplateBinding Control.BorderBrush}"
+                    BorderThickness="{TemplateBinding Control.BorderThickness}" CornerRadius="3">
+              <DockPanel>
+                <ToggleButton x:Name="HeaderSite" FontFamily="{TemplateBinding Control.FontFamily}"
+                              FontSize="{TemplateBinding Control.FontSize}" FontStretch="{TemplateBinding Control.FontStretch}"
+                              FontStyle="{TemplateBinding Control.FontStyle}" FontWeight="{TemplateBinding Control.FontWeight}"
+                              Foreground="{TemplateBinding Control.Foreground}"
+                              HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                              Padding="{TemplateBinding Control.Padding}"
+                              VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                              FocusVisualStyle="{StaticResource ExpanderHeaderFocusVisual}" Margin="1" MinHeight="0" MinWidth="0"
+                              Style="{StaticResource ExpanderDownHeaderStyle}"
+                              Content="{TemplateBinding HeaderedContentControl.Header}"
+                              ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                              ContentTemplateSelector="{TemplateBinding HeaderedContentControl.HeaderTemplateSelector}"
+                              DockPanel.Dock="Top"
+                              IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                <ContentPresenter x:Name="ExpandSite" Focusable="false" Visibility="Collapsed"
+                                  HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                  Margin="{TemplateBinding Control.Padding}"
+                                  VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" DockPanel.Dock="Bottom"/>
+              </DockPanel>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="Expander.IsExpanded" Value="true">
+                <Setter TargetName="ExpandSite" Property="UIElement.Visibility" Value="Visible"/>
+              </Trigger>
+              <Trigger Property="Expander.ExpandDirection" Value="Right">
+                <Setter TargetName="ExpandSite" Property="DockPanel.Dock" Value="Right"/>
+                <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Left"/>
+                <Setter TargetName="HeaderSite" Value="{StaticResource ExpanderRightHeaderStyle}"
+                        Property="FrameworkElement.Style"/>
+              </Trigger>
+              <Trigger Property="Expander.ExpandDirection" Value="Up">
+                <Setter TargetName="ExpandSite" Property="DockPanel.Dock" Value="Top"/>
+                <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Bottom"/>
+                <Setter TargetName="HeaderSite" Value="{StaticResource ExpanderUpHeaderStyle}"
+                        Property="FrameworkElement.Style"/>
+              </Trigger>
+              <Trigger Property="Expander.ExpandDirection" Value="Left">
+                <Setter TargetName="ExpandSite" Property="DockPanel.Dock" Value="Left"/>
+                <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Right"/>
+                <Setter TargetName="HeaderSite" Value="{StaticResource ExpanderLeftHeaderStyle}"
+                        Property="FrameworkElement.Style"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="false">
+                <Setter Value="{DynamicResource {x:Static JetSystemColors.GrayTextBrushKey}}" Property="Control.Foreground"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </FrameworkElement.Resources>
+  <Viewbox x:Name="LayoutRoot" Stretch="Fill">
+    <Grid Width="628" Height="548"
+          DataContext="{Binding Mode=Default, Source={StaticResource customViewHowToDataSource}, XPath=/HowTo/Items/Item}">
+      <Rectangle x:Name="backgroundImage" Margin="0,82.508,-1.552,-0.001"
+                 Fill="{DynamicResource WelcomePageBackgroundImageBrush}" Stretch="Fill"/>
+      <Rectangle x:Name="image" RenderTransformOrigin="0.5,0.5" Margin="-178,-17.781,-208,0"
+                 Fill="{DynamicResource WelcomePageBannerImageBrush}" VerticalAlignment="Top" Height="101.28"
+                 Stretch="Fill">
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="0.65" ScaleY="0.65"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+      </Rectangle>
+      <Rectangle Stretch="Fill" Fill="{DynamicResource WelcomePageDividerImageBrush}" Margin="0,65.126,0,0"
+                 VerticalAlignment="Top" Height="15.009"/>
+      <Rectangle x:Name="rectangle1" Height="46.209" Opacity="1" Margin="0,80.13,0,0" VerticalAlignment="Top"
+                 Stroke="{x:Null}">
+        <Shape.Fill>
+          <LinearGradientBrush EndPoint="0.507,0.484" StartPoint="0.507,-0.143">
+            <GradientStop Color="#FF000000" Offset="0"/>
+            <GradientStop Color="#00000000" Offset="0.996"/>
+            <GradientStop Color="#40000000" Offset="0.524"/>
+          </LinearGradientBrush>
+        </Shape.Fill>
+      </Rectangle>
+      <Path x:Name="path" HorizontalAlignment="Right" Margin="0,43.65,167.668,0" VerticalAlignment="Top"
+            Width="34.471" Height="21.643" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.2"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="34.3731134585459,0.0970021213521548">
+              <LineSegment Point="26.4694934047458,4.25299732434313"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path1" Width="45.382" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.2"
+            HorizontalAlignment="Right" Margin="0,4.585,163.918,0" VerticalAlignment="Top" Height="22.14"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="45.2835605586249,22.0426414605463">
+              <LineSegment Point="35.5298989448423,17.5366257242122"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path2" Width="30.386" Height="19.532" Stretch="None" Stroke="#FFFFFFFF"
+            StrokeThickness="0.2" HorizontalAlignment="Right" Margin="0,5.788,99.648,0" VerticalAlignment="Top"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="8.00180306609116,15.2787074782772">
+              <LineSegment Point="0.098185990398747,19.434700956805"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path3" Width="97.893" Height="0.219" Stretch="None" Stroke="#FFFFFFFF"
+            StrokeThickness="0.4" HorizontalAlignment="Right" Margin="0,31.9,31.544,0" VerticalAlignment="Top"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="8.04581071534886,0.0997196787333579">
+              <LineSegment Point="0.0982031505092209,0.119280908951978"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path4" Width="56.744" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.2"
+            HorizontalAlignment="Right" Margin="0,39.9,76.249,0" VerticalAlignment="Top" Height="22.843"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="6.85178582285761,2.85293246648764">
+              <LineSegment Point="0.0982038941712062,0.0970680098277938"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path5" Width="74.053" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.2"
+            Height="3.013" HorizontalAlignment="Right" Margin="0,30.53,166.165,0" VerticalAlignment="Top"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="73.9549892458037,2.9152276058712">
+              <LineSegment Point="69.1204162846926,2.6918924601959"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path6" HorizontalAlignment="Right" Margin="0,36.466,65.9,0" VerticalAlignment="Top"
+            Width="61.377" Height="16.856" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.5"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="1.74166940634431,0.250000000186649">
+              <LineSegment Point="6.24166931246706,1.44999990630934"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path6_Copy" HorizontalAlignment="Right" Margin="0,6.298,36.136,0" VerticalAlignment="Top"
+            Width="91.141" Height="47.024" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.5"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="1.7416694,30.4184580743313">
+              <LineSegment Point="6.2416693,31.6184579743313"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path7" HorizontalAlignment="Right" Margin="0,27.5,163.5,0" VerticalAlignment="Top"
+            Width="4.125" Height="1.5" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.5"
+            Data="M 3.625,1 L 0.25,0.25 " RenderTransformOrigin="0.5,0.5" Fill="{x:Null}">
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+      </Path>
+      <Path x:Name="path8" HorizontalAlignment="Right" Margin="0,38.065,75.8,0" VerticalAlignment="Top"
+            Width="50.124" Height="13.468" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.2"
+            RenderTransformOrigin="0.5,0.5" Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="49.9249502599239,13.26782801946">
+              <LineSegment Point="46.5916169265906,11.7681600812276"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0.16700000000000026"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+      </Path>
+      <Path x:Name="path9" HorizontalAlignment="Right" Margin="0,4.817,168.36,0" VerticalAlignment="Top"
+            Width="66.99" Height="22.866" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.2"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="0.1,0.0999999999999929">
+              <LineSegment Point="3.18333333333337,0.766333174387606"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path10" HorizontalAlignment="Right" Margin="0,38.395,164.521,0" VerticalAlignment="Top"
+            Width="72.829" Height="14.805" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.2"
+            Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="0.1,14.6049083471298">
+              <LineSegment Point="2.6,13.9799083471298"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+      <Path x:Name="path11" HorizontalAlignment="Right" Margin="0,10.624,166.265,0" VerticalAlignment="Top"
+            Width="62.46" Height="19.451" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.2"
+            RenderTransformOrigin="0.5,0.5" Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="0.724673521518707,0.375848796963692">
+              <LineSegment Point="3.97467352151871,1.62584879696369"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="-0.625" Y="0.29199999999999982"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+      </Path>
+      <Path x:Name="path12" HorizontalAlignment="Right" Margin="0,51,56.813,0" VerticalAlignment="Top"
+            Width="11.937" Height="5.344" Stretch="None" Stroke="#FFFFFFFF" StrokeThickness="0.2"
+            RenderTransformOrigin="0.5,0.5" Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="8.74999999850988,2.74999999850988">
+              <LineSegment Point="0.749999998509884,0.749999998509884"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="1.6879999999999997" Y="0.40600000000000014"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+      </Path>
+      <Ellipse x:Name="ellipse" HorizontalAlignment="Right" Margin="0,18.625,124,0" VerticalAlignment="Top"
+               Width="1.375" Height="1.875" Fill="#FF000000" StrokeThickness="0.2" RenderTransformOrigin="0.5,0.5"
+               Stroke="{x:Null}">
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+      </Ellipse>
+      <Path x:Name="path13" HorizontalAlignment="Right" Margin="0,25.025,154.238,0" VerticalAlignment="Top"
+            Width="0.3" Height="21.377" Stretch="None" Stroke="#FF000000" StrokeThickness="0.2"
+            RenderTransformOrigin="0.5,0.5" Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="0.1,0.1">
+              <LineSegment Point="0.1,1.94375"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0.1039999999999992"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+      </Path>
+      <Path x:Name="path14" HorizontalAlignment="Right" Margin="0,35.441,137.3,0" VerticalAlignment="Top"
+            Width="0.3" Height="11.978" Stretch="None" Stroke="#FF000000" StrokeThickness="0.2"
+            RenderTransformOrigin="0.5,0.5" Fill="{x:Null}">
+        <Path.Data>
+          <PathGeometry>
+            <PathFigure StartPoint="0.1,11.778250169754">
+              <LineSegment Point="0.1,10.8715000686645"/>
+              <LineSegment Point="0.0999999999999455,0.100000068664555"/>
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="-3.5410000000000004"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+      </Path>
+      <Viewbox x:Name="Main_Monitor_Art" Margin="195.837,178.325,11.233,62.927">
+        <Canvas Width="649.684" Height="473.449">
+          <Viewbox Width="622.22" Height="445.983" Canvas.Left="13.5368" Canvas.Top="14.5109">
+            <Canvas Width="622.22" Height="445.983">
+              <Path Width="618.817" Height="442.58" Canvas.Left="1.70157" Canvas.Top="1.70154" Stretch="Fill"
+                    StrokeThickness="1.1344" StrokeMiterLimit="2.75" Stroke="#FF474747"
+                    Data="F1 M 619.951,19.8509 C 619.951,16.7313 617.399,14.1788 614.279,14.1788 L 575.521,14.1788 C 572.401,14.1788 569.849,11.6265 569.849,8.50684 L 569.849,7.94073 C 569.849,4.82117 567.297,2.26874 564.177,2.26874 L 352.421,2.26874 C 349.302,2.26874 346.749,4.82117 346.749,7.94073 L 346.749,8.50684 C 346.749,11.6265 344.197,14.1788 341.077,14.1788 L 7.9408,14.1788 C 4.82118,14.1788 2.26878,16.7313 2.26878,19.8509 L 2.26892,400.242 C 2.26892,403.362 4.82132,405.914 7.94093,405.914 L 27.938,405.901 C 31.0576,405.901 35.285,407.827 37.3333,410.18 L 62.7859,439.435 C 64.834,441.789 69.0608,443.714 72.1799,443.714 L 349.485,443.71 C 352.605,443.71 356.832,441.785 358.881,439.431 L 384.334,410.175 C 386.382,407.822 390.609,405.897 393.729,405.897 L 614.279,405.914 C 617.399,405.914 619.951,403.362 619.951,400.242 L 619.951,19.8509 Z">
+                <Shape.Fill>
+                  <LinearGradientBrush StartPoint="0.576797,-0.00243742" EndPoint="0.576797,1.00234">
+                    <GradientStop Color="#FF1C2027" Offset="0"/>
+                    <GradientStop Color="#FF515357" Offset="0.0617138"/>
+                    <GradientStop Color="#FF878787" Offset="0.0863636"/>
+                    <GradientStop Color="#FF757575" Offset="0.410574"/>
+                    <GradientStop Color="#FF636363" Offset="0.463636"/>
+                    <GradientStop Color="#FF4C4C4C" Offset="1"/>
+                  </LinearGradientBrush>
+                </Shape.Fill>
+              </Path>
+              <Path Width="618.817" Height="442.58" Canvas.Left="1.70157" Canvas.Top="1.70154" Stretch="Fill"
+                    StrokeThickness="1.1344" StrokeMiterLimit="2.75" Stroke="#FF474747"
+                    Data="F1 M 619.951,19.8509 C 619.951,16.7313 617.399,14.1788 614.279,14.1788 L 575.521,14.1788 C 572.401,14.1788 569.849,11.6265 569.849,8.50684 L 569.849,7.94073 C 569.849,4.82117 567.297,2.26874 564.177,2.26874 L 352.421,2.26874 C 349.302,2.26874 346.749,4.82117 346.749,7.94073 L 346.749,8.50684 C 346.749,11.6265 344.197,14.1788 341.077,14.1788 L 7.9408,14.1788 C 4.82118,14.1788 2.26878,16.7313 2.26878,19.8509 L 2.26892,400.242 C 2.26892,403.362 4.82132,405.914 7.94093,405.914 L 27.938,405.901 C 31.0576,405.901 35.285,407.827 37.3333,410.18 L 62.7859,439.435 C 64.834,441.789 69.0608,443.714 72.1799,443.714 L 349.485,443.71 C 352.605,443.71 356.832,441.785 358.881,439.431 L 384.334,410.175 C 386.382,407.822 390.609,405.897 393.729,405.897 L 614.279,405.914 C 617.399,405.914 619.951,403.362 619.951,400.242 L 619.951,19.8509 Z">
+                <Shape.Fill>
+                  <LinearGradientBrush StartPoint="0.576797,-0.00243742" EndPoint="0.576797,1.00234">
+                    <GradientStop Color="#FF1C2027" Offset="0"/>
+                    <GradientStop Color="#FF515357" Offset="0.0617138"/>
+                    <GradientStop Color="#FF878787" Offset="0.0863636"/>
+                    <GradientStop Color="#FF757575" Offset="0.410574"/>
+                    <GradientStop Color="#FF636363" Offset="0.463636"/>
+                    <GradientStop Color="#FF0F0F0F" Offset="1"/>
+                  </LinearGradientBrush>
+                </Shape.Fill>
+                <UIElement.BitmapEffect>
+                  <DropShadowBitmapEffect Direction="308" Opacity="0.58" ShadowDepth="12"/>
+                </UIElement.BitmapEffect>
+              </Path>
+              <Path Width="601.812" Height="381.057" Canvas.Left="10.2034" Canvas.Top="18.8569" Stretch="Fill"
+                    StrokeThickness="1" StrokeLineJoin="Round" Stroke="#FF000000"
+                    Data="F1 M 15.5368,18.8569 L 606.682,18.8569 C 609.628,18.8569 612.016,21.2446 612.016,24.1902 L 612.016,394.58 C 612.016,397.526 609.628,399.914 606.682,399.914 L 15.5367,399.914 C 12.5912,399.914 10.2034,397.526 10.2034,394.58 L 10.2035,24.1902 C 10.2035,21.2446 12.5913,18.8569 15.5368,18.8569 Z">
+                <Shape.Fill>
+                  <LinearGradientBrush StartPoint="0.0338026,-0.0020342" EndPoint="0.0338026,0.998692">
+                    <GradientStop Color="#FF1C2027" Offset="0"/>
+                    <GradientStop Color="#FF5C626B" Offset="0.0859826"/>
+                    <GradientStop Color="#FF9CA4B0" Offset="0.0863636"/>
+                    <GradientStop Color="#FF5D636C" Offset="0.462964"/>
+                    <GradientStop Color="#FF1E2228" Offset="0.463636"/>
+                    <GradientStop Color="#FF4C4C4C" Offset="1"/>
+                  </LinearGradientBrush>
+                </Shape.Fill>
+              </Path>
+              <Path Width="212.133" Height="9.07495" Canvas.Left="352.609" Canvas.Top="7.27832" Stretch="Fill"
+                    Data="F1 M 357.147,7.27832 L 560.205,7.27832 C 562.711,7.27832 564.742,9.30975 564.742,11.8157 L 564.742,11.8157 C 564.742,14.3218 562.711,16.3533 560.205,16.3533 L 357.147,16.3533 C 354.641,16.3533 352.609,14.3218 352.609,11.8157 L 352.609,11.8157 C 352.609,9.30975 354.641,7.27832 357.147,7.27832 Z"
+                    Fill="{DynamicResource BlackGradient}"/>
+              <Path Width="346.711" Height="37.776" Canvas.Left="37.4306" Canvas.Top="401.908" Stretch="Fill"
+                    Data="F1 M 38.0777,402.56 L 67.9918,436.946 C 69.1285,438.253 72.2769,439.684 74.0061,439.684 L 347.563,439.684 C 349.294,439.684 352.437,438.253 353.575,436.946 L 383.497,402.557 C 383.692,402.333 383.928,402.126 384.141,401.908 L 37.4306,401.908 C 37.6441,402.127 37.8811,402.335 38.0777,402.56 Z">
+                <Shape.Fill>
+                  <LinearGradientBrush StartPoint="0.160151,0.00385186" EndPoint="0.160151,0.998019">
+                    <GradientStop Color="#FF1C2027" Offset="0"/>
+                    <GradientStop Color="#FF4F545B" Offset="0.0764544"/>
+                    <GradientStop Color="#FF838890" Offset="0.110849"/>
+                    <GradientStop Color="#FF43464A" Offset="0.409423"/>
+                    <GradientStop Color="#FF040405" Offset="0.463636"/>
+                    <GradientStop Color="#FF282828" Offset="1"/>
+                  </LinearGradientBrush>
+                </Shape.Fill>
+              </Path>
+            </Canvas>
+          </Viewbox>
+        </Canvas>
+      </Viewbox>
+      <Viewbox x:Name="Monitor1" Margin="216.075,204.827,31.328,104.142">
+        <Canvas Width="588.29" Height="371.603">
+          <Path Width="588.29" Height="371.603" Canvas.Left="1.52588e-005" Canvas.Top="6.10352e-005" Stretch="Fill"
+                Data="F1 M 4.00002,6.10352E-05 L 584.29,6.10352E-05 C 586.499,6.10352E-05 588.29,1.79089 588.29,4 L 588.29,367.603 C 588.29,369.813 586.499,371.603 584.29,371.603 L 4.00005,371.603 C 1.79091,371.603 4.57764E-05,369.813 4.57764E-05,367.603 L 1.52588E-05,4 C 1.52588E-05,1.79089 1.79088,6.10352E-05 4.00002,6.10352E-05 Z"
+                Fill="{DynamicResource 'MonitorColor Unfocused'}"/>
+        </Canvas>
+      </Viewbox>
+      <Frame Name="Monitor1ClientFrame" JournalOwnership="OwnsJournal" NavigationUIVisibility="Hidden"
+             Margin="216.075,204.827,31.328,104.142" Visibility="Collapsed"/>
+      <Viewbox Margin="216.075,204.827,31.328,104.142">
+        <Border x:Name="CustomerLogo" BorderThickness="20" BorderBrush="{x:Null}"/>
+      </Viewbox>
+      <StackPanel x:Name="Expanders" Margin="5.333,194.5,0,74.5" Width="189.5" HorizontalAlignment="Left">
+        <Expander Collapsed="OnExpanderCollapsed" Name="HowToExp"
+                  Foreground="{DynamicResource WelcomePageExpanderForeground}"
+                  Style="{DynamicResource ExpanderStyle1301}" IsExpanded="False"
+                  Header="{x:Static CommonResxNS:AppResources.How_To}">
+          <Grid Height="263">
+            <Rectangle Margin="20.167,0,8,113.333" StrokeThickness="1.5" Stroke="{x:Null}">
+              <Shape.Fill>
+                <LinearGradientBrush EndPoint="0.5,0.869" StartPoint="0.5,-0.131">
+                  <GradientStop Color="#FF000000" Offset="0"/>
+                  <GradientStop Color="#FFB0B0B0" Offset="1"/>
+                  <GradientStop Color="#FF9B9B9B" Offset="0.189"/>
+                </LinearGradientBrush>
+              </Shape.Fill>
+              <UIElement.OpacityMask>
+                <LinearGradientBrush EndPoint="-0.357,-0.418" StartPoint="0.946,1.069">
+                  <GradientStop Color="#82000000" Offset="0"/>
+                  <GradientStop Color="#00FFFFFF" Offset="1"/>
+                </LinearGradientBrush>
+              </UIElement.OpacityMask>
+            </Rectangle>
+            <StackPanel Margin="29.167,17.5,8,46.7">
+              <TextBlock BitmapEffect="{DynamicResource TextDropShadow315-0-78-1-8}" TextWrapping="Wrap" FontSize="11"
+                         Width="137.5" Height="Auto" Margin="0,5,0,0" VerticalAlignment="Center">
+                <Hyperlink Click="OnHowToItemClick" x:Name="HowTo_CreateCustomView">
+                  <TextBlock Foreground="{DynamicResource WelcomePageExpanderForeground}"
+                             Text="{x:Static CommonResxNS:AppResources.Create_a_new_custom_view}" TextWrapping="Wrap"/>
+                </Hyperlink>
+              </TextBlock>
+              <TextBlock BitmapEffect="{DynamicResource TextDropShadow315-0-78-1-8}" FontSize="11" TextWrapping="Wrap"
+                         Width="137.5" Height="Auto" Margin="0,5,0,0" VerticalAlignment="Center">
+                <Hyperlink Click="OnHowToItemClick" x:Name="HowTo_ModifyCustomView">
+                  <TextBlock Foreground="{DynamicResource WelcomePageExpanderForeground}"
+                             Text="{x:Static CommonResxNS:AppResources.Modify_Existing_Custom_View}" TextWrapping="Wrap"/>
+                </Hyperlink>
+              </TextBlock>
+              <TextBlock BitmapEffect="{DynamicResource TextDropShadow315-0-78-1-8}" FontSize="11" TextWrapping="Wrap"
+                         Width="137.5" Height="Auto" Margin="0,5,0,0" VerticalAlignment="Center">
+                <Hyperlink Click="OnHowToItemClick" x:Name="HowTo_ExitCustomView">
+                  <TextBlock Foreground="{DynamicResource WelcomePageExpanderForeground}"
+                             Text="{x:Static CommonResxNS:AppResources.Exit_custom_view_mode}" TextWrapping="Wrap"/>
+                </Hyperlink>
+              </TextBlock>
+            </StackPanel>
+          </Grid>
+        </Expander>
+      </StackPanel>
+      <Label Margin="63.059,92.325,66.571,0" VerticalAlignment="Top" Height="59.67"
+             Content="{x:Static CommonResxNS:AppResources.Custom_View_Configuration}" FontFamily="Impact"
+             FontSize="30" Foreground="{DynamicResource 'med silver gdnt'}"/>
+      <Label FontFamily="Impact" FontSize="30" Foreground="{DynamicResource 'med silver gdnt'}"
+             Margin="63.059,114.325,66.571,0" VerticalAlignment="Top" Height="59.67"
+             Content="{x:Static CommonResxNS:AppResources.Custom_View_Configuration}"
+             RenderTransformOrigin="0.5,0.5">
+        <UIElement.OpacityMask>
+          <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,0.895">
+            <GradientStop Color="#42000000" Offset="0.247"/>
+            <GradientStop Color="#00000000" Offset="0.218"/>
+            <GradientStop Color="#00000000" Offset="0.885"/>
+          </LinearGradientBrush>
+        </UIElement.OpacityMask>
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="-1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+      </Label>
+    </Grid>
+  </Viewbox>
+</Page>

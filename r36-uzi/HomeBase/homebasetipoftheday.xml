@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<TipOfTheDay>
+	<Items>		
+		
+		<Item>
+			<Name>You can view all of the data from a record in any table in a single record view by clicking on the Fly In button in that record.</Name>
+		</Item>
+
+    <Item>
+      <Name>The 'Alternate Table View' allows you to view all of the record values of a 'Multiple Record Window' at one time. The window is reconfigured into a 'Spreadsheet-Style' format with columns and rows. This view allows you to easily compare same field values for each record.</Name>
+    </Item>
+
+    <Item>
+      <Name>Multiple Record and Table Type Windows allow you to 'Add' more window records or more table records one at time, or several at a time. The CPS Productivity Toolbar "+" and "++" buttons provide these functions. The "Default" or "Current" item from droplist determine if new records are created based on predefined field values or new records are copies of the currently highlighted CPS record.</Name>
+    </Item>
+
+    <Item>
+      <Name>Click on the Codeplug menu item to access functions that can be performed on the currently loaded codeplug data such as Undo/Redo and Restore to Default.</Name>
+    </Item>
+
+    <Item>
+      <Name>Click on the Device menu item to access functions that can be performed on the currently connected radio such as Read Device and Flash Radio.
+      </Name>
+    </Item>
+
+    <Item>
+      <Name>Click on the Tools menu item to access CPS application functions such as Load System Keys. </Name>
+    </Item>
+
+    <Item>
+      <Name>Click on the Help menu item to access help functions such as Getting Started.</Name>
+    </Item>
+
+    <Item>
+      <Name>You can use the Find feature to locate fields on various screens.</Name>
+    </Item>
+
+    <Item>
+      <Name>You can switch easily between configuration modes using the navigation buttons at the bottom of the left pane.  For example, click on the Home Mode button to view the home page or click on the Codeplug Configuration Mode button to view your codeplug data.</Name>
+    </Item>
+
+    
+  </Items>	
+</TipOfTheDay>
