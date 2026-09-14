@@ -1,0 +1,46 @@
+<Window x:Class="MackinawCPS.ReportsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+        xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+        Loaded="OnLoad" Height="151" Width="414"
+        Title="{x:Static CommonResxNS:AppResources.Reports_Dialog}" WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=Frame, ResourceId={x:Static AcpUINS:AcpColorKeys.FrameContentAreaPopupDialogueBackground}}}">
+  <FrameworkElement.Resources>
+    <RoutedCommand x:Key="F1Help"/>
+  </FrameworkElement.Resources>
+  <UIElement.CommandBindings>
+    <CommandBinding Executed="buttonHelp_Click" CanExecute="F1HelpCommandCanExcute" Command="{StaticResource F1Help}"/>
+  </UIElement.CommandBindings>
+  <UIElement.InputBindings>
+    <KeyBinding Command="{StaticResource F1Help}" Key="F1"/>
+  </UIElement.InputBindings>
+  <Grid Height="124" Width="401">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="389*"/>
+      <ColumnDefinition Width="12*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="54*"/>
+      <RowDefinition Height="96*"/>
+    </Grid.RowDefinitions>
+    <Label Name="LblReportsLanguage" HorizontalAlignment="Center"
+           Content="{x:Static CommonResxNS:AppResources.Reports_Dialog_Lbl_RepDia}" Margin="0,3,171,17"
+           Width="200"/>
+    <ComboBox Name="reportLangChoice" Height="25" Margin="224,3,12,17" Grid.ColumnSpan="2"/>
+    <Button Click="buttonOK_Click" Name="buttonOK" Content="{x:Static CommonResxNS:AppResources.OK_Id}"
+            Grid.Row="1" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75"
+            IsDefault="true" Margin="10,44,180,12"/>
+    <Button Click="buttonCancel_Click" Name="buttonCancel"
+            Content="{x:Static CommonResxNS:AppResources.Cancel_Id}" Grid.Row="1" Height="23"
+            HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" IsDefault="true"
+            Margin="10,45,95,12"/>
+    <Button Click="buttonHelp_Click" Name="buttonHelp" Content="{x:Static CommonResxNS:AppResources.Help_Id}"
+            Grid.Row="1" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75"
+            IsDefault="true" Margin="10,45,10,12"/>
+    <CheckBox Name="reportDiaChkbox" Content="{x:Static CommonResxNS:AppResources.Reports_Dialog_Chkbox}"
+              Grid.Row="1" Margin="12,8,0,0" VerticalAlignment="Top"/>
+  </Grid>
+</Window>

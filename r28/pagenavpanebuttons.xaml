@@ -1,0 +1,66 @@
+<Page x:Class="MackinawCPS.PageNavPaneButtons"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:dc="clr-namespace:DevComponents.WpfRibbon;assembly=AcpWpfRibbon"
+      xmlns:MackinawCPSNS="clr-namespace:MackinawCPS"
+      xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+      Title="{x:Static CommonResxNS:AppResources.PageNavPaneButtons_Id}">
+  <FrameworkElement.Resources>
+    <MackinawCPSNS:NavigationButtonEnabledConverter x:Key="NavigationButtonEnabledConverter"/>
+  </FrameworkElement.Resources>
+  <DockPanel LastChildFill="true">
+    <dc:NavigationPane Name="AppNavPane" DockPanel.Dock="Left" Background="{DynamicResource SilverGradBrush}"
+                       LargeItemsCount="0">
+      <dc:PaneItem Selector.Selected="OnButtonClick" Name="ButtonHome"
+                   Header="{x:Static CommonResxNS:AcgResources.ID_HOME}"
+                   ImageSmall="{Binding RelativeSource={RelativeSource Self}, Path=Image}">
+        <UIElement.IsEnabled>
+          <MultiBinding Converter="{StaticResource NavigationButtonEnabledConverter}" ConverterParameter="ButtonHome">
+            <Binding Path="CurrentAppMode"/>
+            <Binding Path="CpgOpenFlag"/>
+            <Binding Path="CustomViewOpenFlag"/>
+            <Binding Path="ReadWriteInProgress"/>
+          </MultiBinding>
+        </UIElement.IsEnabled>
+        <dc:PaneItem.Image>
+          <Image Source="{StaticResource HomebaseImage}" Height="24" Width="24"/>
+        </dc:PaneItem.Image>
+        <Frame Name="FrameHome" NavigationUIVisibility="Hidden"/>
+      </dc:PaneItem>
+      <dc:PaneItem Selector.Selected="OnButtonClick" Name="ButtonCpgNav"
+                   Header="{x:Static CommonResxNS:AppResources.Codeplug_Configuration}"
+                   ImageSmall="{Binding RelativeSource={RelativeSource Self}, Path=Image}">
+        <UIElement.IsEnabled>
+          <MultiBinding Converter="{StaticResource NavigationButtonEnabledConverter}" ConverterParameter="ButtonCpgNav">
+            <Binding Path="CurrentAppMode"/>
+            <Binding Path="CpgOpenFlag"/>
+            <Binding Path="CustomViewOpenFlag"/>
+            <Binding Path="ReadWriteInProgress"/>
+          </MultiBinding>
+        </UIElement.IsEnabled>
+        <dc:PaneItem.Image>
+          <Image Source="{StaticResource CodeplugConfigImage}" Height="24" Width="24"/>
+        </dc:PaneItem.Image>
+        <Frame Navigated="ClearFrame_Navigated" Name="FrameCodeplug" NavigationUIVisibility="Hidden"
+               HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+      </dc:PaneItem>
+      <dc:PaneItem Selector.Selected="OnButtonClick" Name="ButtonCustomViewMode"
+                   Header="{x:Static CommonResxNS:AppResources.Custom_View_Configuration}"
+                   ImageSmall="{Binding RelativeSource={RelativeSource Self}, Path=Image}">
+        <UIElement.IsEnabled>
+          <MultiBinding Converter="{StaticResource NavigationButtonEnabledConverter}"
+                        ConverterParameter="ButtonCustomViewMode">
+            <Binding Path="CurrentAppMode"/>
+            <Binding Path="CpgOpenFlag"/>
+            <Binding Path="CustomViewOpenFlag"/>
+            <Binding Path="ReadWriteInProgress"/>
+          </MultiBinding>
+        </UIElement.IsEnabled>
+        <dc:PaneItem.Image>
+          <Image Source="{StaticResource CustomViewImage}" Height="24" Width="24"/>
+        </dc:PaneItem.Image>
+        <Frame Navigated="ClearFrame_Navigated" Name="FrameCustView" NavigationUIVisibility="Hidden"/>
+      </dc:PaneItem>
+    </dc:NavigationPane>
+  </DockPanel>
+</Page>

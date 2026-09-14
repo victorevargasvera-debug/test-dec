@@ -1,0 +1,294 @@
+<PageFunction x:Class="MackinawCPS.Options" x:TypeArguments="sys:String"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+              xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+              xmlns:MackinawCPSNS="clr-namespace:MackinawCPS"
+              xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common;assembly=AcpUI"
+              Loaded="OnLoad" MinHeight="250" MinWidth="500" Margin="5,5,5,5"
+              Title="{x:Static CommonResxNS:AppResources.Options_Id}" ShowsNavigationUI="false"
+              HorizontalAlignment="Left" VerticalAlignment="Top">
+  <FrameworkElement.Resources>
+    <RoutedCommand x:Key="F1Help"/>
+    <MackinawCPSNS:RibbonDVRSXMLVisibleConverter x:Key="RibbonDVRSXMLVisibleConverter"/>
+    <MackinawCPSNS:RibbonDVRSXMLVisibilityConverter x:Key="RibbonDVRSXMLVisibilityConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    <AcpUICommonNS:BooleanToColorConverter x:Key="BooleanToColor"/>
+    <AcpUICommonNS:MultiValueToColorConverter x:Key="MultiValueToColor"/>
+  </FrameworkElement.Resources>
+  <UIElement.CommandBindings>
+    <CommandBinding Executed="onHelpButton_Click" CanExecute="F1HelpCommandCanExcute" Command="{StaticResource F1Help}"/>
+  </UIElement.CommandBindings>
+  <UIElement.InputBindings>
+    <KeyBinding Command="{StaticResource F1Help}" Key="F1"/>
+  </UIElement.InputBindings>
+  <DockPanel>
+    <WrapPanel DockPanel.Dock="Top">
+      <AcpUICommonNS:AcpThemeBase Name="ThemeBaseObj"/>
+      <TextBlock Margin="25 3 0 0">
+        <Hyperlink Click="HLinkOptionsClick" x:Name="HLinkOptionsGeneral" Tag="ExpanderOptionsGeneral">
+          <TextBlock Text="{x:Static CommonResxNS:AppResources.General_Id}" TextDecorations="Underline">
+            <TextBlock.Foreground>
+              <MultiBinding Converter="{StaticResource MultiValueToColor}">
+                <Binding Source="false"/>
+                <Binding Path="ThemeName" ElementName="ThemeBaseObj"/>
+              </MultiBinding>
+            </TextBlock.Foreground>
+          </TextBlock>
+        </Hyperlink>
+      </TextBlock>
+      <TextBlock Margin="25 3 0 0"
+                 Visibility="{Binding ElementName=ExpanderOptionsLanguage, Path=IsAcpVisible, Converter={StaticResource BooleanToVisibility}}">
+        <Hyperlink Click="HLinkOptionsClick" x:Name="HLinkOptionsLanguage" Tag="ExpanderOptionsLanguage">
+          <TextBlock Text="{x:Static CommonResxNS:AppResources.Language_ID}" TextDecorations="Underline">
+            <TextBlock.Foreground>
+              <MultiBinding Converter="{StaticResource MultiValueToColor}">
+                <Binding Source="false"/>
+                <Binding Path="ThemeName" ElementName="ThemeBaseObj"/>
+              </MultiBinding>
+            </TextBlock.Foreground>
+          </TextBlock>
+        </Hyperlink>
+      </TextBlock>
+      <TextBlock Margin="25 3 0 0"
+                 Visibility="{Binding ElementName=ExpanderOptionsAdmin, Path=IsAcpVisible, Converter={StaticResource BooleanToVisibility}}">
+        <Hyperlink Click="HLinkOptionsClick" x:Name="HLinkOptionsAdmin" Tag="ExpanderOptionsAdmin">
+          <TextBlock Text="{x:Static CommonResxNS:AppResources.Admin_Id}" TextDecorations="Underline">
+            <TextBlock.Foreground>
+              <MultiBinding Converter="{StaticResource MultiValueToColor}">
+                <Binding Source="false"/>
+                <Binding Path="ThemeName" ElementName="ThemeBaseObj"/>
+              </MultiBinding>
+            </TextBlock.Foreground>
+          </TextBlock>
+        </Hyperlink>
+      </TextBlock>
+    </WrapPanel>
+    <DockPanel Height="20" Background="Transparent" Dock="Top">
+      <Rectangle Height="2" RadiusX="20" RadiusY="20" Stroke="Black" Fill="Gray" VerticalAlignment="Center"/>
+    </DockPanel>
+    <Grid DockPanel.Dock="Bottom">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Button Click="buttonOK_Click" Name="buttonOK" Content="{x:Static CommonResxNS:AppResources.OK_Id}"
+              Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Width="75" IsDefault="true"
+              Margin="5,10,5,10"/>
+      <Button Click="buttonCancel_Click" Name="buttonCancel"
+              Content="{x:Static CommonResxNS:AppResources.Cancel_Id}" Grid.Column="1" Grid.Row="0"
+              HorizontalAlignment="Center" Width="75" Margin="5,10,5,10"/>
+      <Button Click="onHelpButton_Click" Name="buttonHelp" Content="{x:Static CommonResxNS:AppResources.Help_Id}"
+              Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Width="75" Margin="5,10,5,10"/>
+    </Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+      <StackPanel Name="MyStackPanel" Width="Auto" Height="Auto">
+        <AcpUINS:AcpExpander Name="ExpanderOptionsGeneral" Header="{x:Static CommonResxNS:AppResources.General_Id}"
+                             Visibility="Visible">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Row="0" Column="0" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="100"/>
+              </Grid.ColumnDefinitions>
+              <AcpUINS:AcpLabel Name="LblSystemKeysLocation" Grid.Row="0" Grid.Column="0"
+                                Content="{x:Static CommonResxNS:AppResources.System_Keys_Location}" VerticalAlignment="Center">
+                <FrameworkElement.ToolTip>
+                  <TextBlock TextWrapping="Wrap"
+                             Text="{x:Static CommonResxNS:AppResources.CPS_Auto_Loads_All_Software_System_Key_files}"/>
+                </FrameworkElement.ToolTip>
+              </AcpUINS:AcpLabel>
+              <AcpUINS:AcpTextBox Name="TxtDefKeyFileLocation" Grid.Row="0" Grid.Column="1" Width="250" IsReadOnly="true"/>
+              <Button Click="OnSetDefKeyFileLocation" Name="SysKeyLocationBrowse"
+                      Content="{x:Static CommonResxNS:AppResources.Browse_Suspension}" Grid.Row="0" Grid.Column="2"
+                      Width="100" HorizontalAlignment="Left"/>
+            </Grid>
+            <Grid Row="1" Column="0" Margin="5,5,5,5" DataContext="{Binding Path=MainFrame}">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="100"/>
+              </Grid.ColumnDefinitions>
+              <AcpUINS:AcpLabel Name="LblDVRSExportLocation" Grid.Row="0" Grid.Column="0"
+                                Content="{x:Static CommonResxNS:AppResources.DVRS_Export_Location}" VerticalAlignment="Center"
+                                IsAcpApplicable="{Binding Path=IsDVRSHwEnabled}">
+                <AcpUINS:AcpLabel.IsAcpVisible>
+                  <MultiBinding Converter="{StaticResource RibbonDVRSXMLVisibleConverter}">
+                    <Binding Path="CurrentAppMode"/>
+                    <Binding Path="CpgOpenFlag"/>
+                    <Binding Path="IsDVRSHoptionEnabled"/>
+                  </MultiBinding>
+                </AcpUINS:AcpLabel.IsAcpVisible>
+                <FrameworkElement.ToolTip>
+                  <TextBlock TextWrapping="Wrap" Text="{x:Static CommonResxNS:AppResources.CPS_Export_DVRS_XML_Files}"/>
+                </FrameworkElement.ToolTip>
+              </AcpUINS:AcpLabel>
+              <AcpUINS:AcpTextBox Name="txtDefDVRSExportLocation" Grid.Row="0" Grid.Column="1" Width="250" IsReadOnly="true"
+                                  IsAcpApplicable="{Binding Path=IsDVRSHwEnabled}">
+                <AcpUINS:AcpTextBox.IsAcpVisible>
+                  <MultiBinding Converter="{StaticResource RibbonDVRSXMLVisibleConverter}">
+                    <Binding Path="CurrentAppMode"/>
+                    <Binding Path="CpgOpenFlag"/>
+                    <Binding Path="IsDVRSHoptionEnabled"/>
+                  </MultiBinding>
+                </AcpUINS:AcpTextBox.IsAcpVisible>
+              </AcpUINS:AcpTextBox>
+              <Button Click="OnUpdateDefDVRSExportLocation" Name="DVRSExportLocationBrowse"
+                      Content="{x:Static CommonResxNS:AppResources.Browse_Suspension}" Grid.Row="0" Grid.Column="2"
+                      Width="100" HorizontalAlignment="Left" IsEnabled="{Binding Path=IsDVRSHwEnabled}">
+                <UIElement.Visibility>
+                  <MultiBinding Converter="{StaticResource RibbonDVRSXMLVisibilityConverter}">
+                    <Binding Path="CurrentAppMode"/>
+                    <Binding Path="CpgOpenFlag"/>
+                    <Binding Path="IsDVRSHoptionEnabled"/>
+                  </MultiBinding>
+                </UIElement.Visibility>
+              </Button>
+            </Grid>
+            <Grid Row="2" Column="0" Margin="5,5,5,5">
+              <GroupBox Name="GrpBoxOptionsApplicationLogo" BorderThickness="1">
+                <HeaderedContentControl.Header>
+                  <Label Content="{x:Static CommonResxNS:AppResources.Home_Screen_Logo}"/>
+                </HeaderedContentControl.Header>
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="350"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <Button Click="HomeScreenButton_click" Name="AppLogoChange"
+                          Content="{x:Static CommonResxNS:AppResources.Change_Home_Screen_Logo}" Grid.Row="0" Grid.Column="1"
+                          Width="190" HorizontalAlignment="Left" Margin="0,5,5,5">
+                    <FrameworkElement.ToolTip>
+                      <TextBlock TextWrapping="Wrap"
+                                 Text="{x:Static CommonResxNS:AppResources.Select_An_Image_For_Picture_On_Home_Screen}"/>
+                    </FrameworkElement.ToolTip>
+                  </Button>
+                  <Button Click="HomeScreenRestoreDefault_click" Name="AppLogoRestore"
+                          Content="{x:Static CommonResxNS:AppResources.Restore_To_Default}" Grid.Row="1" Width="190"
+                          Grid.Column="1" HorizontalAlignment="Left" Margin="0,5,5,5">
+                    <FrameworkElement.ToolTip>
+                      <TextBlock TextWrapping="Wrap"
+                                 Text="{x:Static CommonResxNS:AppResources.Restores_Home_Screen_Logo_To_Default_Image}"/>
+                    </FrameworkElement.ToolTip>
+                  </Button>
+                </Grid>
+              </GroupBox>
+            </Grid>
+            <Grid Row="3" Column="0" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition Width="100"/>
+              </Grid.ColumnDefinitions>
+              <Label Name="LblSkipCloneExpressSysTypeCheck" Grid.Column="0"
+                     Content="{x:Static CommonResxNS:AppResources.Block_CloneExpress_newSys_Check}"
+                     VerticalAlignment="Center"/>
+              <CheckBox Name="SkipCloneExpressSysTypeCheck" Grid.Column="1" VerticalAlignment="Center"/>
+            </Grid>
+          </Grid>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander Name="ExpanderOptionsLanguage" Header="{x:Static CommonResxNS:AppResources.Language_ID}"
+                             IsAcpVisible="{Binding Path=IsLauageButtonVisible, Mode=OneWay}">
+          <Grid Margin="5,5,5,10">
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Row="0" Column="0" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <AcpUINS:AcpLabel Name="LblOptionsCPSLanguage" Grid.Row="0" Grid.Column="0"
+                                Content="{x:Static CommonResxNS:AppResources.CPS_Language}" VerticalAlignment="Center"/>
+              <AcpUINS:AcpComboBox SelectionChanged="comboLanguageChoices_SelectionChanged" Name="comboLanguageChoices" Grid.Row="0"
+                                   Grid.Column="1" Width="200" HorizontalAlignment="Left"/>
+            </Grid>
+            <Grid Row="1" Column="0" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <AcpUINS:AcpLabel Name="LblOptionsReportsLanguage" Grid.Row="0" Grid.Column="0"
+                                Content="{x:Static CommonResxNS:AppResources.Reports_Dialog_Lbl_OptDia}" VerticalAlignment="Center"/>
+              <AcpUINS:AcpComboBox Name="reportLanguageChoices" Grid.Row="0" Grid.Column="1" Width="200" HorizontalAlignment="Left">
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.Prompt_Id}"
+                              Visibility="{Binding Path=IsAdditionalLanguageCountGTEOne}"/>
+              </AcpUINS:AcpComboBox>
+            </Grid>
+            <Grid Row="2" Column="0" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <AcpUINS:AcpLabel Name="LblOptionsUpgradeRadioLanguage" Grid.Row="0" Grid.Column="0"
+                                Content="{x:Static CommonResxNS:AppResources.LP_Upgrade_Radio_Language}" VerticalAlignment="Center"/>
+              <AcpUINS:AcpComboBox Name="comboUpgradeRadioLanguageChoices" Grid.Row="0" Grid.Column="1" Width="200"
+                                   HorizontalAlignment="Left">
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.LP_Upgrade_Radio_Language_When_Newer_Version_In_CPS}"/>
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.LP_Upgrade_Radio_Language_Only_When_Required}"/>
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.LP_Upgrade_Radio_Language_Always_Overwrite}"/>
+              </AcpUINS:AcpComboBox>
+            </Grid>
+          </Grid>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander Name="ExpanderOptionsAdmin" Header="{x:Static CommonResxNS:AppResources.Admin_Id}"
+                             DataContext="{Binding}" IsAcpVisible="{Binding Path=IsAdminButtonVisible, Mode=OneWay}">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Row="1" Column="0">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="150"/>
+                  <ColumnDefinition Width="350"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Click="ButtonLaunchAKA_Click" Name="ButtonLaunchAKA" Grid.Row="0" Grid.Column="1" Width="200"
+                        HorizontalAlignment="Left" Margin="0,5,5,5"
+                        Content="{x:Static CommonResxNS:AppResources.Advanced_Keys_Administrator_ID}" IsCancel="false"
+                        IsEnabled="{Binding Path=IsAKAAdminLauncherVisible}"/>
+                <Button Click="ButtonLaunchARSDataAdminApp_click" Name="ButtonLaunchARSDataAdminApp" Grid.Row="1"
+                        Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,5,5,5"
+                        Content="{x:Static CommonResxNS:AppResources.ARS_Data_Administrator}" IsCancel="false"
+                        IsEnabled="{Binding Path=IsARSAdminLauncherVisible}"/>
+              </Grid>
+            </Grid>
+          </Grid>
+        </AcpUINS:AcpExpander>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</PageFunction>
