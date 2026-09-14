@@ -1,0 +1,41 @@
+<Window x:Class="DevComponents.WpfRibbon.NavigationPaneCustomizeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="220" Width="320" ShowInTaskbar="False" ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource {x:Static JetSystemColors.ControlBrushKey}}"
+        Title="{Binding Path=NavigationPane.SystemText.CustomizeDialogTitle, RelativeSource={RelativeSource self}}"
+        Icon="{x:Null}">
+  <DockPanel LastChildFill="True" Margin="4,2,9,9">
+    <Label DockPanel.Dock="Top"
+           Content="{Binding Path=NavigationPane.SystemText.CustomizeDialogLabel, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button Click="OkButtonClick" MinWidth="73" IsDefault="True"
+              Content="{Binding Path=NavigationPane.SystemText.CustomizeDialogButtonOk, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+      <Button MinWidth="73" Margin="11,0,0,0" IsCancel="True"
+              Content="{Binding Path=NavigationPane.SystemText.CustomizeDialogButtonCancel, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+    </StackPanel>
+    <DockPanel LastChildFill="True" Margin="15,0,0,9">
+      <StackPanel DockPanel.Dock="Right">
+        <Button Click="MoveItemUp" Name="ButtonMoveUp" Margin="10,0,0,8" MinWidth="73"
+                Content="{Binding Path=NavigationPane.SystemText.CustomizeDialogButtonMoveUp, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+        <Button Click="MoveItemDown" Name="ButtonMoveDown" Margin="10,0,0,8" MinWidth="73"
+                Content="{Binding Path=NavigationPane.SystemText.CustomizeDialogButtonMoveDown, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+        <Button Click="ResetItems" Margin="10,9,0,8" MinWidth="73"
+                Content="{Binding Path=NavigationPane.SystemText.CustomizeDialogButtonReset, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+      </StackPanel>
+      <ListBox ToggleButton.Checked="CheckedChanged" ToggleButton.Unchecked="CheckedChanged" Name="PaneItems">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <StackPanel Orientation="Horizontal">
+              <CheckBox Margin="0,0,4,0" VerticalAlignment="Center" IsChecked="{Binding Path=IsVisible}"/>
+              <TextBlock>
+                <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Path=Header}"/>
+              </TextBlock>
+            </StackPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ListBox>
+    </DockPanel>
+  </DockPanel>
+</Window>
