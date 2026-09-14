@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<Data PageTitle="XTS 5000 Model III">
+   <Table TableName="">
+      <TableHeader>
+         <ColTitle>General</ColTitle>
+      </TableHeader>
+      <RecSet RecTitle="" RecNo="0">
+         <Field FieldDes="Model Number">
+            <Name>ModelNumber</Name>
+            <Values>
+               <Value>123ABC1234</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="1">
+         <Field FieldDes="Serial Number">
+            <Name>SerialNumber</Name>
+            <Values>
+               <Value>589088-101687-3</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="2">
+         <Field FieldDes="FLASHCode">
+            <Name>FLASHCode</Name>
+            <Values>
+               <Value>589088-101687-3</Value>
+            </Values>
+         </Field>
+      </RecSet>
+   </Table>
+   <Table TableName="Buttons and Controls">
+      <TableHeader>
+         <ColTitle>Index</ColTitle>
+         <ColTitle>Description</ColTitle>
+         <ColTitle>Conventional</ColTitle>
+         <ColTitle>Trunking</ColTitle>
+      </TableHeader>
+      <RecSet RecTitle="" RecNo="1">
+         <Field FieldDes="">
+            <Name>PowVol</Name>
+            <Values>
+               <Value>Power/Volume</Value>
+               <Value>Power/Volume</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="Two Position Concentric" RecNo="2">
+         <Field FieldDes="Position A">
+            <Name>PositionA</Name>
+            <Values>
+               <Value>Secure TX Select</Value>
+               <Value>Secure TX Select</Value>
+            </Values>
+         </Field>
+         <Field FieldDes="Position B">
+            <Name>PositionB</Name>
+            <Values>
+               <Value>Clear Tx Select</Value>
+               <Value>Clear Tx Select</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="Three Position Toggle" RecNo="3">
+         <Field FieldDes="Position A">
+            <Name>PositionA</Name>
+            <Values>
+               <Value>Blank</Value>
+               <Value>Blank</Value>
+            </Values>
+         </Field>
+         <Field FieldDes="Position B">
+            <Name>PositionB</Name>
+            <Values>
+               <Value>Scan</Value>
+               <Value>Scan</Value>
+            </Values>
+         </Field>
+         <Field FieldDes="Position C">
+            <Name>PositionC</Name>
+            <Values>
+               <Value>Scan List Prgm</Value>
+               <Value>Scan List Prgm</Value>
+            </Values>
+         </Field>
+      </RecSet>
+   </Table>
+   <Table TableName="Zones and Channels">
+      <TableHeader>
+         <ColTitle>Channels</ColTitle>
+         <ColTitle>Zone1</ColTitle>
+         <ColTitle>Zon2</ColTitle>
+         <ColTitle>Zon3</ColTitle>
+      </TableHeader>
+   </Table>
+</Data>

@@ -1,0 +1,27 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI">
+  <Style TargetType="{x:Type GroupBox}">
+    <Setter Property="Control.BorderBrush"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpLabel, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpLabelForeground}}}"/>
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpLabel, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpLabelForeground}}}"/>
+  </Style>
+  <Style TargetType="{x:Type AcpUINS:AcpGroupBox}" BasedOn="{StaticResource {x:Type GroupBox}}">
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpValid}" Value="false">
+        <Setter Property="Control.Foreground"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpLabel, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpLabelInValidForeground}}}"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpApplicable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="False"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpEditable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="False"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false">
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+</ResourceDictionary>

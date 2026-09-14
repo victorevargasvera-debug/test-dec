@@ -1,0 +1,96 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:igcontrols="http://infragistics.com/DataPresenter"
+                    xmlns:DevCo="clr-namespace:DevComponents.WpfRibbon;assembly=AcpWpfRibbon"
+                    xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI">
+  <Style TargetType="{x:Type igcontrols:LabelPresenter}">
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpXamDataPresenter, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpXamDataPresenterColHeaderForeground}}}"/>
+    <Setter Property="Control.FontWeight" Value="Bold"/>
+    <Setter Property="Control.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type Grid}, ResourceId=XamDataPresenterColHeaderBackground}}"/>
+    <Setter Property="igcontrols:LabelPresenter.LabelHighlight"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type Grid}, ResourceId=XamDataPresenterColHeaderHighlightBackground}}"/>
+    <Setter Property="Control.FontFamily" Value="Arial"/>
+    <Setter Property="FrameworkElement.Height" Value="25"/>
+  </Style>
+  <LinearGradientBrush x:Key="CellValuePresenterBackgroundActive" StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStopCollection>
+        <GradientStop Color="#FFA3DCF8" Offset="0"/>
+        <GradientStop Color="#FFFAFDFE" Offset="1"/>
+      </GradientStopCollection>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <Style x:Key="MyCellValuePresenter" TargetType="{x:Type igcontrols:CellValuePresenter}">
+    <Setter Property="Control.BorderBrush"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type Border}, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpTableCellValueRightGridLinePresenterBackground}}}"/>
+    <Setter Property="Control.BorderThickness" Value="0,0,1,0"/>
+    <Setter Property="igcontrols:CellValuePresenter.BackgroundActive"
+            Value="{StaticResource CellValuePresenterBackgroundActive}"/>
+  </Style>
+  <Style TargetType="{x:Type igcontrols:DataRecordCellArea}">
+    <Setter Property="igcontrols:DataRecordCellArea.BackgroundAlternate"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=igcontrols:DataRecordCellArea, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpXamDataPresenterBackgroundAlternateEven}}}"/>
+    <Setter Property="igcontrols:DataRecordCellArea.BackgroundHover" Value="Transparent"/>
+    <Setter Property="Control.BorderBrush" Value="LightGray"/>
+    <Setter Property="Control.BorderThickness" Value="1,0,0,0"/>
+    <Setter Property="Control.FontFamily" Value="Arial"/>
+    <Setter Property="FrameworkElement.Height" Value="25"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding Path=IsSelected}" Value="False">
+        <Setter Property="igcontrols:DataRecordCellArea.BackgroundActive" Value="Transparent"/>
+        <Setter Property="igcontrols:DataRecordCellArea.BorderActiveBrush" Value="Transparent"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
+        <Setter Property="igcontrols:DataRecordCellArea.BackgroundSelected" Value="LightBlue"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Record.DataItem.Valid}" Value="False">
+        <Setter Property="Control.Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type igcontrols:DataRecordCellArea}">
+              <Border BorderBrush="Red" BorderThickness="1,1,1,1">
+                <ContentPresenter/>
+              </Border>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="myCustomHeaderLabelArea" TargetType="{x:Type igcontrols:HeaderLabelArea}">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type igcontrols:HeaderLabelArea}">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ContentPresenter Grid.Column="0" Grid.Row="1" Content="{TemplateBinding ContentControl.Content}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Control.Background" Value="{x:Static JetSystemColors.ControlBrush}"/>
+  </Style>
+  <Style TargetType="{x:Type AcpUINS:AcpXamDataPresenter}">
+    <Setter Property="igcontrols:DataPresenterBase.ScrollingMode" Value="Deferred"/>
+    <Setter Property="igcontrols:DataPresenterBase.FieldLayoutSettings">
+      <Setter.Value>
+        <igcontrols:FieldLayoutSettings AutoGenerateFields="false" AllowFieldMoving="No" ExpansionIndicatorDisplayMode="Never"
+                                        RecordSelectorLocation="LeftOfCellArea" AllowDelete="false"
+                                        HeaderLabelAreaStyle="{StaticResource myCustomHeaderLabelArea}"/>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false">
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style TargetType="{x:Type igcontrols:DataRecordPresenter}">
+    <Setter Property="igcontrols:DataRecordPresenter.HeaderAreaBackground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpXamDataPresenter, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpXamDataPresenterColHeaderBackground}}}"/>
+  </Style>
+</ResourceDictionary>

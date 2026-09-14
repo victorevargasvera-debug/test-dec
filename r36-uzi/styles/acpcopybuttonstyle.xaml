@@ -1,0 +1,72 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+                    xmlns:AcpCommonLibNS="clr-namespace:AcpCommonLib;assembly=AcpCommonLib"
+                    xmlns:AcpBLConverterNS="clr-namespace:AcpBusinessLayer.ValueConverters;assembly=AcpBusinessLayer">
+  <Style TargetType="{x:Type AcpUINS:AcpCopyButton}">
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpValid}" Value="false">
+        <Setter Property="Control.Foreground"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpCopyButton, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpCopyButtonInValidForeground}}}"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpApplicable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="False"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpEditable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="False"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=AreValuesEqual}" Value="false">
+        <Setter Property="ContentControl.Content" Value="&lt;&lt;"/>
+        <Setter Property="UIElement.IsEnabled" Value="True"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=AreValuesEqual}" Value="true">
+        <Setter Property="Control.Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type AcpUINS:AcpCopyButton}">
+              <Border x:Name="Border" CornerRadius="0" Background="{StaticResource NormalBrush}" BorderThickness="1"
+                      BorderBrush="{StaticResource NormalBorderBrush}">
+                <Image x:Name="CopyCheckMark" Source="../../icons/GreenCheckIcon.png"/>
+              </Border>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+        <Setter Property="UIElement.IsEnabled" Value="False"/>
+      </DataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false"/>
+          <Condition Value="{x:Static AcpCommonLibNS:ApplicationMode.CodeplugConfigurationMode}"
+                     Binding="{Binding Source={x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}, Path=AppMode}"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false"/>
+          <Condition Value="{x:Static AcpCommonLibNS:ApplicationMode.CustomViewConfigurationMode}"
+                     Binding="{Binding Source={x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}, Path=AppMode}"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false"/>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=MyCompCtrl.IsAcpVisible}"
+                     Value="false"/>
+          <Condition Value="{x:Static AcpCommonLibNS:ApplicationMode.CodeplugComparisonMode}"
+                     Binding="{Binding Source={x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}, Path=AppMode}"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false"/>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=MyCompCtrl.IsAcpVisible}" Value="true"/>
+          <Condition Value="{x:Static AcpCommonLibNS:ApplicationMode.CodeplugComparisonMode}"
+                     Binding="{Binding Source={x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}, Path=AppMode}"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="UIElement.Visibility" Value="Hidden"/>
+      </MultiDataTrigger>
+    </Style.Triggers>
+  </Style>
+</ResourceDictionary>

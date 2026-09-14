@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Data>
+  <Feature FeatureID="1001" FeatureName="Radio Wide">
+    <Instance IID="1">
+      <Section SectionID="4001" SectionName="General">
+        <Fields>
+          <Name>radio Id</Name>
+          <Value>12344</Value>
+        </Fields>
+      </Section>
+    </Instance>
+  </Feature>
+</Data>  

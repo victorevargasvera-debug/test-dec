@@ -1,0 +1,52 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI">
+  <Style TargetType="{x:Type AcpUINS:AcpCheckBox}">
+    <Setter Property="FrameworkElement.Width" Value="Auto"/>
+    <Setter Property="FrameworkElement.Height" Value="Auto"/>
+    <Setter Property="Control.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpCheckBox, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpCheckBoxBackground}}}"/>
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpCheckBox, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpCheckBoxForeground}}}"/>
+    <Setter Property="FrameworkElement.FocusVisualStyle" Value="{StaticResource AcpFocusVisual}"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpValid}" Value="false">
+        <Setter Property="Control.Background"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpCheckBox, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpCheckBoxInValidForeground}}}"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpApplicable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="False"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpEditable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="False"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false">
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style TargetType="{x:Type AcpUINS:AcpTableCheckBox}">
+    <Setter Property="FrameworkElement.Width" Value="Auto"/>
+    <Setter Property="FrameworkElement.Height" Value="Auto"/>
+    <Setter Property="Control.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpCheckBox, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpCheckBoxBackground}}}"/>
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpCheckBox, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpCheckBoxForeground}}}"/>
+    <Setter Property="FrameworkElement.FocusVisualStyle" Value="{StaticResource AcpFocusVisual}"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpValid}" Value="false">
+        <Setter Property="Control.Background"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpCheckBox, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpCheckBoxInValidForeground}}}"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpApplicable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="False"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpEditable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="False"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false">
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+</ResourceDictionary>

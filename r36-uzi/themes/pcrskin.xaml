@@ -1,0 +1,58 @@
+<ResourceDictionary x:Class="MackinawCPS.themes.PCRSkin"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  <SolidColorBrush x:Key="NormalBrush" Color="#C8C8C8"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Frame}, ResourceId=FrameNormalFrameContentAreaBackgroundBackground}"
+                   Color="#828282"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Frame}, ResourceId=RMCFrameBackground}"
+                   Color="#C8C8C8"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ListViewItem}, ResourceId=ListViewItemNormalBackground}"
+                   Color="Transparent"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ListBox}, ResourceId=ListViewBoxNormalBackground}"
+                   Color="Transparent"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ListViewItem}, ResourceId=ListViewItemNormalForeground}"
+                   Opacity="0.8" Color="White"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ListViewItem}, ResourceId=ListViewItemDisabledForeground}"
+                   Opacity="0.8" Color="LightGray"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ListViewItem}, ResourceId=ListViewItemIsSelectedBackground}"
+                   Color="#FF64BBFF"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ListViewItem}, ResourceId=ListViewItemIsSelectedForeground}"
+                   Opacity="0.8" Color="White"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Label}, ResourceId=RMCLabelForeground}"
+                   Opacity="0.8" Color="White"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Label}, ResourceId=RMCLabelDisabledForeground}"
+                   Opacity="0.8" Color="LightGray"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Grid}, ResourceId=XamDataPresenterColHeaderBackground}"
+                       EndPoint="0.640625,1.08108" StartPoint="0.640625,-0.0270241">
+    <GradientStop Color="#FFE3F5FD" Offset="0.07"/>
+    <GradientStop Color="#FFC1D9F3" Offset="0.096"/>
+    <GradientStop Color="#FF85AAC4" Offset="0.448"/>
+    <GradientStop Color="#FF648DAE" Offset="0.468"/>
+    <GradientStop Color="#FF07090B" Offset="0.984"/>
+    <GradientStop Color="#FFB2D4F0" Offset="0.004"/>
+    <GradientStop Color="#FF4288BA" Offset="0.828"/>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Grid}, ResourceId=XamDataPresenterColHeaderHighlightBackground}"
+                       EndPoint="0.640625,1.08108" StartPoint="0.640625,-0.0270241">
+    <GradientStop Color="#FF4288BA" Offset="0.07"/>
+    <GradientStop Color="#FF648DAE" Offset="0.096"/>
+    <GradientStop Color="#FF85AAC4" Offset="0.448"/>
+    <GradientStop Color="#FFC1D9F3" Offset="0.468"/>
+    <GradientStop Color="#FFB2D4F0" Offset="0.984"/>
+    <GradientStop Color="#FF07090B" Offset="0.004"/>
+    <GradientStop Color="#FF4288BA" Offset="0.828"/>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Thumb}, ResourceId=SCBHoverbrush}"
+                   Color="#fefefe"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Thumb}, ResourceId=SCBPressedbrush}"
+                   Color="Gray"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Thumb}, ResourceId=SCBStandardBorderbrush}"
+                   Color="LightGray"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Thumb}, ResourceId=SCBStandardbrush}"
+                   Color="LightGray"/>
+</ResourceDictionary>
