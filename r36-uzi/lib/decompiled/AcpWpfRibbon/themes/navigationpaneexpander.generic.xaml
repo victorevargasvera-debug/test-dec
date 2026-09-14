@@ -1,0 +1,91 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dc="clr-namespace:DevComponents.WpfRibbon">
+  <Style x:Key="{ComponentResourceKey {x:Type dc:NavigationPane}, Expander}" TargetType="{x:Type Expander}">
+    <Setter Property="Control.Foreground" Value="{DynamicResource {x:Static JetSystemColors.ControlTextBrush}}"/>
+    <Setter Property="Control.Background" Value="White"/>
+    <Setter Property="Control.BorderThickness" Value="0"/>
+    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Expander}">
+          <Border BorderBrush="{TemplateBinding Control.BorderBrush}"
+                  BorderThickness="{TemplateBinding Control.BorderThickness}"
+                  Background="{TemplateBinding Control.Background}" SnapsToDevicePixels="true">
+            <DockPanel>
+              <ToggleButton Name="HeaderSite" DockPanel.Dock="Top" MinWidth="0" MinHeight="0"
+                            Content="{TemplateBinding HeaderedContentControl.Header}"
+                            ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                            ContentTemplateSelector="{TemplateBinding HeaderedContentControl.HeaderTemplateSelector}"
+                            HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                            Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:NavigationPane, ResourceId=ExpanderTitleTop}}"
+                            IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <ContentPresenter Name="ExpandSite" DockPanel.Dock="Bottom" Visibility="Collapsed" Focusable="false"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                Margin="{TemplateBinding Control.Padding}"/>
+            </DockPanel>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="Expander.IsExpanded" Value="true">
+              <Setter TargetName="ExpandSite" Property="UIElement.Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="UIElement.IsEnabled" Value="false">
+              <Setter Value="{DynamicResource {x:Static JetSystemColors.GrayTextBrush}}" Property="Control.Foreground"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="{ComponentResourceKey {x:Type dc:NavigationPane}, ExpanderTitleTop}"
+         TargetType="{x:Type ToggleButton}">
+    <Setter Property="Control.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:NavigationPane, ResourceId={x:Static dc:NavigationPaneColors.ExpanderNormalBackground}}}"/>
+    <Setter Property="Control.BorderBrush"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:NavigationPane, ResourceId={x:Static dc:NavigationPaneColors.ExpanderNormalBorder}}}"/>
+    <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:NavigationPane, ResourceId={x:Static dc:NavigationPaneColors.ExpanderNormalForeground}}}"/>
+    <Setter Property="Control.FontWeight" Value="Bold"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Border BorderThickness="0,0,0,1" Background="{TemplateBinding Control.Background}"
+                  BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:NavigationPane, ResourceId={x:Static dc:NavigationPaneColors.ExpanderNormalBorderContent}}}">
+            <Border BorderThickness="1,1,0,0" BorderBrush="{TemplateBinding Control.BorderBrush}">
+              <DockPanel LastChildFill="True">
+                <Border DockPanel.Dock="Right" Margin="0,0,9,0">
+                  <Canvas Width="8" Height="7">
+                    <Path Name="Arr1" Data="M 0,0 L 3.5,3 7,0 "
+                          Stroke="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:NavigationPane, ResourceId={x:Static dc:NavigationPaneColors.ExpanderNormalExpandForeground}}}"/>
+                    <Path Name="Arr2" Data="M 0,4 L 3.5,7 7,4 "
+                          Stroke="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:NavigationPane, ResourceId={x:Static dc:NavigationPaneColors.ExpanderNormalExpandForeground}}}"/>
+                    <UIElement.Effect>
+                      <DropShadowEffect Color="White" ShadowDepth="0" BlurRadius="5" Opacity=".7"/>
+                    </UIElement.Effect>
+                  </Canvas>
+                </Border>
+                <ContentPresenter Margin="8,0,0,0" Focusable="False"
+                                  HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"/>
+              </DockPanel>
+            </Border>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="UIElement.IsMouseOver" Value="True">
+              <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:NavigationPane, ResourceId={x:Static dc:NavigationPaneColors.ExpanderMouseOverBackground}}}"
+                      Property="Control.Background"/>
+            </Trigger>
+            <Trigger Property="ToggleButton.IsChecked" Value="True">
+              <Setter TargetName="Arr1" Property="Path.Data" Value="M 0,3 L 3.5,0 7,3 "/>
+              <Setter TargetName="Arr2" Property="Path.Data" Value="M 0,7 L 3.5,4 7,7 "/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

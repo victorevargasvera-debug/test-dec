@@ -1,0 +1,108 @@
+<ResourceDictionary x:Class="DevComponents.WpfRibbon.themes.CrumbBarOffice2007SilverScheme"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:dc="clr-namespace:DevComponents.WpfRibbon"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ControlBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFACAFB7" Offset="0"/>
+      <GradientStop Color="#FFACAFB7" Offset="0.7"/>
+      <GradientStop Color="#FF5A5B5C" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ControlBackground}}"
+                   Color="#FFFFFFFF"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ControlBorderOuter}}"
+                   Color="#A0FFFFFF"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ActionItemsSeparator}}"
+                   Color="#D0ACAFB7"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:RibbonColors.MenuBorder}}"
+                   Color="#FF868686"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:RibbonColors.MenuBackground}}"
+                   Color="#FFFAFAFA"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:RibbonColors.MenuSideBackground}}"
+                   Color="#FFEFEFEF"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:RibbonColors.MenuSideLineDark}}"
+                   Color="#FFC5C5C5"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:RibbonColors.MenuSideLineLight}}"
+                   Color="#FFF5F5F5"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemNormalBackground}}"
+                   Color="Transparent"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemNormalTopHighlight}}"
+                   Color="Transparent"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemNormalBottomHighlight}}"
+                   Color="Transparent"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemNormalBorder}}"
+                   Color="Transparent"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemNormalBorderLight}}"
+                   Color="Transparent"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemHoverTopHighlight}}"
+                   Color="Transparent"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemHoverBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFDBCE99" Offset="0"/>
+      <GradientStop Color="#FFC1A877" Offset=".5"/>
+      <GradientStop Color="#FFCAB88A" Offset=".8"/>
+      <GradientStop Color="#FFD7D0B3" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemHoverBorderLight}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFFFFFFB" Offset="0"/>
+      <GradientStop Color="#FFFFF9E3" Offset="0.5"/>
+      <GradientStop Color="#FFFFF2C9" Offset="0.5"/>
+      <GradientStop Color="#FFFFF8B5" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemHoverBackground}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFFFFCE5" Offset="0"/>
+      <GradientStop Color="#FFFFEB9D" Offset=".5"/>
+      <GradientStop Color="#FFFFD639" Offset=".5"/>
+      <GradientStop Color="#FFFFE289" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:CrumbBarColors.MenuItemHoverBottomHighlight}}"
+                   Color="Transparent"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ButtonHoverBackground}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFFFFCE4" Offset="0"/>
+      <GradientStop Color="#FFFFECA1" Offset=".4"/>
+      <GradientStop Color="#FFFFD842" Offset=".4"/>
+      <GradientStop Color="#FFFFE47B" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ButtonHoverBorderLight}}"
+                   Color="#90FFFFFF"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ButtonHoverBorder}}"
+                   Color="#FFDBCE99"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ButtonHoverInactiveBackground}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFFFFDEC" Offset="0"/>
+      <GradientStop Color="#FFFFF4CA" Offset="0.5"/>
+      <GradientStop Color="#FFFFEBA6" Offset="0.5"/>
+      <GradientStop Color="#FFFFF2C5" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ButtonHoverInactiveBorder}}"
+                   Color="#FF8E8F8F"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ButtonPressedBackground}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFDCA36F" Offset="0"/>
+      <GradientStop Color="#FFF2B077" Offset=".1"/>
+      <GradientStop Color="#FFE57840" Offset=".6"/>
+      <GradientStop Color="#FFDE550A" Offset=".6"/>
+      <GradientStop Color="#FFEF7D31" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ButtonPressedBorderLight}}"
+                   Color="#407B6645"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, {x:Static dc:CrumbBarColors.ButtonPressedBorder}}"
+                   Color="#FF7B6645"/>
+</ResourceDictionary>

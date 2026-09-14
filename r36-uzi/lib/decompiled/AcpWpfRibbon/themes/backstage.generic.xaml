@@ -1,0 +1,61 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:dc="clr-namespace:DevComponents.WpfRibbon"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Style TargetType="{x:Type dc:Backstage}">
+    <Setter Property="dc:Backstage.ContentBorderThickness" Value="0"/>
+    <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+    <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type dc:Backstage}">
+          <Border Name="PART_ControlBorder">
+            <Grid>
+              <DockPanel LastChildFill="True">
+                <Grid DockPanel.Dock="Left">
+                  <Border Name="PART_TabStripBorder" BorderThickness="0,0,1,0" HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.BackstageTabStripBorder}}}"
+                          Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.BackstageTabStripBackground}}}"/>
+                  <Border Name="PART_TabStripBorderShadow" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="5"
+                          Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.BackstageTabStripBorderShadow}}}"/>
+                  <StackPanel Margin="0,4,0,4" MinWidth="{TemplateBinding dc:Backstage.TabStripMinWidth}"
+                              SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Orientation="Vertical"
+                              IsItemsHost="True"/>
+                </Grid>
+                <Border Name="Part_ContentPanel" Background="{TemplateBinding dc:Backstage.ContentBackground}"
+                        BorderThickness="{TemplateBinding dc:Backstage.ContentBorderThickness}"
+                        BorderBrush="{TemplateBinding dc:Backstage.ContentBorderBrush}"
+                        KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.DirectionalNavigation="Contained"
+                        KeyboardNavigation.TabIndex="2">
+                  <Border Name="ContentPanelInner" BorderThickness="{TemplateBinding dc:Backstage.ContentBorderThickness}"
+                          BorderBrush="{TemplateBinding dc:Backstage.ContentInnerBorderBrush}"
+                          Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.BackstageTabPanelBackground}}}">
+                    <Grid>
+                      <ContentPresenter ContentSource="SelectedPanelEffectiveBackgroundImage" HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"/>
+                      <ContentPresenter Name="PART_SelectedContentHost"
+                                        SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                        Margin="{TemplateBinding Control.Padding}" ContentSource="SelectedContent"/>
+                    </Grid>
+                  </Border>
+                </Border>
+              </DockPanel>
+              <Border Height="4" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                      Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.BackstageTabStripTopBorder}}}"/>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="{ComponentResourceKey {x:Type dc:Backstage}, ButtonDropDown}"
+         TargetType="{x:Type dc:ButtonDropDown}">
+    <Setter Property="dc:ButtonDropDown.ColorClass" Value="BackstageButton"/>
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.ButtonBackstageNormalForeground}}}"/>
+    <Setter Property="dc:ButtonDropDown.StaysOpenOnClick" Value="True"/>
+    <Setter Property="FrameworkElement.Margin" Value="6,1,6,1"/>
+    <Setter Property="Control.Padding" Value="4,2,4,2"/>
+    <Setter Property="dc:ButtonDropDown.UseSmallImage" Value="True"/>
+  </Style>
+</ResourceDictionary>

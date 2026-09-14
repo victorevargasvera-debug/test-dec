@@ -1,0 +1,40 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:DevCo="clr-namespace:DevComponents.WpfRibbon">
+  <Style TargetType="{x:Type DevCo:RibbonTab}">
+    <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+    <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="DevCo:Ribbon.IsCustomizable" Value="True"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <DevCo:RibbonTabBorder Name="PART_RibbonTabBorder" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}">
+            <ContentPresenter ClipToBounds="True" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                              SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                              ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                              RecognizesAccessKey="True" Content="{TemplateBinding HeaderedContentControl.Header}"/>
+          </DevCo:RibbonTabBorder>
+          <ControlTemplate.Triggers>
+            <Trigger SourceName="PART_RibbonTabBorder" Property="DevCo:RibbonTabBorder.TabState" Value="Selected">
+              <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonTabSelectedForeground}}}"
+                      Property="Control.Foreground"/>
+            </Trigger>
+            <Trigger SourceName="PART_RibbonTabBorder" Property="DevCo:RibbonTabBorder.TabState" Value="Hover">
+              <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonTabHoverForeground}}}"
+                      Property="Control.Foreground"/>
+            </Trigger>
+            <Trigger SourceName="PART_RibbonTabBorder" Property="DevCo:RibbonTabBorder.TabState" Value="HoverSelected">
+              <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonTabHoverSelectedForeground}}}"
+                      Property="Control.Foreground"/>
+            </Trigger>
+            <Trigger SourceName="PART_RibbonTabBorder" Property="DevCo:RibbonTabBorder.TabState" Value="Focused">
+              <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonTabFocusedForeground}}}"
+                      Property="Control.Foreground"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

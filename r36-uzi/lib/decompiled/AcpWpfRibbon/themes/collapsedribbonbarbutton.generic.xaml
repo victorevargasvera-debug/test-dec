@@ -1,0 +1,125 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:DevCo="clr-namespace:DevComponents.WpfRibbon"
+                    xmlns:dcc="clr-namespace:DevComponents.WpfRibbon.Converters">
+  <dcc:PopupPlacementConverter x:Key="PopupPlacementConverter"/>
+  <Style TargetType="{x:Type DevCo:CollapsedRibbonBarControl}">
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ButtonNormalForeground}}}"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <ContentPresenter HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                            VerticalAlignment="Stretch" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                            RecognizesAccessKey="False" Content="{TemplateBinding HeaderedContentControl.Header}"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="{x:Type DevCo:CollapsedRibbonBarButton}">
+    <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <DevCo:RibbonBorder Name="PART_CollapsedRibbonBarBorder" BorderThickness="1" LightBorderThickness="1"
+                              AutoAnimation="False" InnerBorder="True"
+                              SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" CornerRadius="3"
+                              Padding="1,4,1,1"
+                              BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedNormalBorder}}}"
+                              LightBorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedNormalBorderLight}}}"
+                              Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedNormalBackground}}}"
+                              TopHighlight="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedNormalTopHighlight}}}">
+            <StackPanel>
+              <Border Name="PART_CollapsedRibbonBarImage" CornerRadius="3" BorderThickness="1"
+                      HorizontalAlignment="Center"
+                      Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedNormalImageBackground}}}"
+                      BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedNormalImageBorder}}}">
+                <Grid MinWidth="31" MinHeight="31">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="7"/>
+                  </Grid.RowDefinitions>
+                  <ContentPresenter ContentSource="Image" VerticalAlignment="Center"
+                                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                    Content="{TemplateBinding DevCo:ButtonDropDown.Image}" Grid.Row="0" Grid.Column="0" Width="16"
+                                    Height="16"/>
+                  <Border Name="PART_CollapsedRibbonBarImageBottom" Grid.Row="1" Grid.Column="0"
+                          Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedNormalImageBottomBackground}}}"/>
+                </Grid>
+              </Border>
+              <ContentPresenter Name="PART_ButtonContent"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                                RecognizesAccessKey="True" Content="{TemplateBinding HeaderedItemsControl.Header}" Margin="3,1,3,1"/>
+              <Path Margin="3,3,3,3" Data="M 0,0 L 7,0 3.5,4 Z" Fill="{TemplateBinding TextElement.Foreground}"
+                    VerticalAlignment="Top" HorizontalAlignment="Center"/>
+              <Popup Name="PART_Popup" VerticalOffset="-1" Focusable="False"
+                     AllowsTransparency="{x:Static DevCo:Ribbon.PopupAllowsTransparency}"
+                     PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                     Placement="{Binding Path=PopupPlacement, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource PopupPlacementConverter}}"
+                     IsOpen="{Binding Path=IsPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                <DevCo:CollapsedRibbonBarPanel Name="PART_CollapsedRibbonBarPanel" Focusable="True"
+                                               SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                               KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle"
+                                               FocusVisualStyle="{x:Null}"/>
+              </Popup>
+            </StackPanel>
+          </DevCo:RibbonBorder>
+          <ControlTemplate.Triggers>
+            <Trigger Property="UIElement.IsMouseOver" Value="True">
+              <Setter TargetName="PART_CollapsedRibbonBarBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedHoverBorder}}}"
+                      Property="DevCo:RibbonBorder.BorderBrush"/>
+              <Setter TargetName="PART_CollapsedRibbonBarBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedHoverBorderLight}}}"
+                      Property="DevCo:RibbonBorder.LightBorderBrush"/>
+              <Setter TargetName="PART_CollapsedRibbonBarBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedHoverBackground}}}"
+                      Property="DevCo:RibbonBorder.Background"/>
+              <Setter TargetName="PART_CollapsedRibbonBarBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedHoverTopHighlight}}}"
+                      Property="DevCo:RibbonBorder.TopHighlight"/>
+              <Setter TargetName="PART_CollapsedRibbonBarImage"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedHoverImageBackground}}}"
+                      Property="Border.Background"/>
+              <Setter TargetName="PART_CollapsedRibbonBarImage"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedHoverImageBorder}}}"
+                      Property="Border.BorderBrush"/>
+              <Setter TargetName="PART_CollapsedRibbonBarImageBottom"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedHoverImageBottomBackground}}}"
+                      Property="Border.Background"/>
+            </Trigger>
+            <Trigger Property="DevCo:ButtonDropDown.IsPopupOpen" Value="True">
+              <Setter TargetName="PART_CollapsedRibbonBarBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedExpandedBorder}}}"
+                      Property="DevCo:RibbonBorder.BorderBrush"/>
+              <Setter TargetName="PART_CollapsedRibbonBarBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedExpandedBorderLight}}}"
+                      Property="DevCo:RibbonBorder.LightBorderBrush"/>
+              <Setter TargetName="PART_CollapsedRibbonBarBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedExpandedBackground}}}"
+                      Property="DevCo:RibbonBorder.Background"/>
+              <Setter TargetName="PART_CollapsedRibbonBarBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedExpandedTopHighlight}}}"
+                      Property="DevCo:RibbonBorder.TopHighlight"/>
+              <Setter TargetName="PART_CollapsedRibbonBarImage"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedExpandedImageBackground}}}"
+                      Property="Border.Background"/>
+              <Setter TargetName="PART_CollapsedRibbonBarImage"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedExpandedImageBorder}}}"
+                      Property="Border.BorderBrush"/>
+              <Setter TargetName="PART_CollapsedRibbonBarImageBottom"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.RibbonBarCollapsedExpandedImageBottomBackground}}}"
+                      Property="Border.Background"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

@@ -1,0 +1,466 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dc="clr-namespace:DevComponents.WpfRibbon"
+                    xmlns:WinTheme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Luna"
+                    xmlns:dcc="clr-namespace:DevComponents.WpfRibbon.Converters">
+  <dcc:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+  <Style TargetType="{x:Type dc:ApplicationMenu}">
+    <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="dc:ButtonDropDown.Role" Value="DropDown"/>
+    <Setter Property="Control.Template"
+            Value="{DynamicResource {ComponentResourceKey ResourceId=Office2007, TypeInTargetAssembly=dc:ApplicationMenu}}"/>
+    <Style.Triggers>
+      <Trigger Property="dc:ApplicationMenu.EffectiveStyle" Value="Office2010">
+        <Setter Property="FrameworkElement.MinWidth" Value="56"/>
+        <Setter Property="FrameworkElement.MinHeight" Value="23"/>
+        <Setter Property="Control.Template"
+                Value="{DynamicResource {ComponentResourceKey ResourceId=Office2010, TypeInTargetAssembly=dc:ApplicationMenu}}"/>
+      </Trigger>
+      <Trigger Property="dc:ApplicationMenu.IsBackstageActive" Value="true">
+        <Setter Property="FrameworkElement.MinWidth" Value="56"/>
+        <Setter Property="FrameworkElement.MinHeight" Value="23"/>
+        <Setter Property="Control.Template"
+                Value="{DynamicResource {ComponentResourceKey ResourceId=Backstage2010, TypeInTargetAssembly=dc:ApplicationMenu}}"/>
+      </Trigger>
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="dc:ApplicationMenu.IsBackstageActive" Value="true"/>
+          <Condition Property="dc:ApplicationMenu.BackstageUsesPopup" Value="true"/>
+        </MultiTrigger.Conditions>
+        <Setter Property="Control.Template"
+                Value="{DynamicResource {ComponentResourceKey ResourceId=Backstage2010WithPopup, TypeInTargetAssembly=dc:ApplicationMenu}}"/>
+      </MultiTrigger>
+    </Style.Triggers>
+  </Style>
+  <ControlTemplate x:Key="{ComponentResourceKey {x:Type dc:ApplicationMenu}, Backstage2010}"
+                   TargetType="{x:Type dc:ApplicationMenu}">
+    <Grid Name="AppButton" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}">
+      <Border Name="OB" BorderThickness="1,1,1,0" CornerRadius="2,2,0,0"
+              Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonOutterBorderFill}}}"
+              BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonOutterBorder}}}">
+        <Border Name="IB" BorderThickness="1,1,1,0" CornerRadius="1,1,0,0"
+                BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonInnerBorder}}}"
+                Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonBottomHighlight}}}">
+          <Grid>
+            <DockPanel LastChildFill="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+              <ContentPresenter Name="PART_ButtonImage" ContentSource="Image" Margin="1,1,1,1" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                Content="{TemplateBinding dc:ButtonDropDown.Image}" DockPanel.Dock="Left"/>
+              <ContentPresenter Name="PART_ButtonContent"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                                RecognizesAccessKey="True" Content="{TemplateBinding HeaderedItemsControl.Header}" Margin="3,0,3,2"
+                                TextElement.Foreground="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonForeground}}}"/>
+            </DockPanel>
+          </Grid>
+        </Border>
+      </Border>
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{ComponentResourceKey {x:Type dc:ApplicationMenu}, Backstage2010WithPopup}"
+                   TargetType="{x:Type dc:ApplicationMenu}">
+    <Grid Name="AppButton" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}">
+      <Border Name="OB" BorderThickness="1,1,1,0" CornerRadius="2,2,0,0"
+              Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonOutterBorderFill}}}"
+              BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonOutterBorder}}}">
+        <Border Name="IB" BorderThickness="1,1,1,0" CornerRadius="1,1,0,0"
+                BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonInnerBorder}}}"
+                Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonBottomHighlight}}}">
+          <Grid>
+            <DockPanel LastChildFill="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+              <ContentPresenter Name="PART_ButtonImage" ContentSource="Image" Margin="1,1,1,1" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                Content="{TemplateBinding dc:ButtonDropDown.Image}" DockPanel.Dock="Left"/>
+              <ContentPresenter Name="PART_ButtonContent"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                                RecognizesAccessKey="True" Content="{TemplateBinding HeaderedItemsControl.Header}" Margin="3,0,3,2"
+                                TextElement.Foreground="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonForeground}}}"/>
+            </DockPanel>
+            <Popup Name="PART_Popup" Placement="Bottom" VerticalOffset="0" Focusable="False"
+                   AllowsTransparency="{x:Static dc:Ribbon.PopupAllowsTransparency}" PopupAnimation="None"
+                   IsOpen="{Binding Path=IsPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
+              <ContentPresenter Name="PART_BackstagePresenter" ContentSource="BackstageTab" VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                Content="{TemplateBinding dc:ApplicationMenu.BackstageTab}"/>
+            </Popup>
+          </Grid>
+        </Border>
+      </Border>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="UIElement.IsMouseOver" Value="True">
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorderFill}}}"
+                Property="Border.Background"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverInnerBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverBottomHighlight}}}"
+                Property="Border.Background"/>
+      </Trigger>
+      <Trigger Property="UIElement.IsKeyboardFocused" Value="True">
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorderFill}}}"
+                Property="Border.Background"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverInnerBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverBottomHighlight}}}"
+                Property="Border.Background"/>
+      </Trigger>
+      <Trigger Property="dc:ButtonDropDown.IsPopupOpen" Value="True">
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedOutterBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedOutterBorderFill}}}"
+                Property="Border.Background"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedInnerBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedBottomHighlight}}}"
+                Property="Border.Background"/>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{ComponentResourceKey {x:Type dc:ApplicationMenu}, Office2010}"
+                   TargetType="{x:Type dc:ApplicationMenu}">
+    <Grid Name="AppButton" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}">
+      <Border Name="OB" BorderThickness="1,1,1,0" CornerRadius="2,2,0,0"
+              Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonOutterBorderFill}}}"
+              BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonOutterBorder}}}">
+        <Border Name="IB" BorderThickness="1,1,1,0" CornerRadius="1,1,0,0"
+                BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonInnerBorder}}}"
+                Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonBottomHighlight}}}">
+          <Grid>
+            <DockPanel LastChildFill="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+              <ContentPresenter Name="PART_ButtonImage" ContentSource="Image" Margin="1,1,1,1" VerticalAlignment="Center"
+                                HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                Content="{TemplateBinding dc:ButtonDropDown.Image}" DockPanel.Dock="Left"/>
+              <ContentPresenter Name="PART_ButtonContent"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                                RecognizesAccessKey="True" Content="{TemplateBinding HeaderedItemsControl.Header}" Margin="3,0,3,2"
+                                TextElement.Foreground="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonForeground}}}"/>
+            </DockPanel>
+            <Popup Name="PART_Popup" Placement="Bottom" VerticalOffset="0" Focusable="False"
+                   AllowsTransparency="{x:Static dc:Ribbon.PopupAllowsTransparency}"
+                   PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                   IsOpen="{Binding Path=IsPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
+              <WinTheme:SystemDropShadowChrome FrameworkElement.Name="Shdw">
+                <Grid>
+                  <Border BorderThickness="1,1,1,1" CornerRadius="3"
+                          BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBorder}}}">
+                    <Border BorderThickness="1,1,1,1" CornerRadius="2"
+                            BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBorderInner}}}"
+                            Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBackground}}}">
+                      <Grid>
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                          <RowDefinition MinHeight="14"/>
+                          <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border Height="14" CornerRadius="2" Grid.Row="0"
+                                Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBackgroundTop}}}"/>
+                        <Border CornerRadius="0,0,2,2" Grid.Row="2" VerticalAlignment="Bottom" Height="24"
+                                Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBackgroundBottom}}}"/>
+                        <DockPanel LastChildFill="True" Grid.Row="1">
+                          <ItemsControl Margin="0,0,2,0" Padding="1,1,1,1" KeyboardNavigation.TabNavigation="Continue"
+                                        KeyboardNavigation.DirectionalNavigation="Continue" DockPanel.Dock="Bottom"
+                                        HorizontalAlignment="Right"
+                                        ItemsSource="{Binding Path=AppItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                        ItemTemplate="{Binding Path=AppItemTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                                        ItemTemplateSelector="{Binding Path=AppItemTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Visibility="{Binding Path=HasAppItems, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                            <ItemsControl.ItemsPanel>
+                              <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                              </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                          </ItemsControl>
+                          <Border Grid.Row="1" Margin="2,0,2,2" BorderThickness="1"
+                                  BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuContentBorder}}}">
+                            <Border BorderThickness="1"
+                                    BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuContentBorderInner}}}"
+                                    Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuContentBackground}}}">
+                              <DockPanel LastChildFill="True">
+                                <Border Name="MruBorder" BorderThickness="1,0,0,0" DockPanel.Dock="Right"
+                                        Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuMruBackground}}}"
+                                        BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuMruBorder}}}"
+                                        Visibility="{Binding Path=HasMruItems, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                  <Border Padding="2" BorderThickness="1,0,0,0"
+                                          BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuMruBorderLight}}}">
+                                    <ItemsControl KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                  Foreground="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.ButtonNormalForeground}}}"
+                                                  ItemsSource="{Binding Path=MruItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ItemTemplate="{Binding Path=MruItemTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ItemTemplateSelector="{Binding Path=MruItemTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                  </Border>
+                                </Border>
+                                <ItemsPresenter Margin="2,2,2,2" KeyboardNavigation.TabNavigation="Cycle"
+                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+                              </DockPanel>
+                            </Border>
+                          </Border>
+                        </DockPanel>
+                      </Grid>
+                    </Border>
+                  </Border>
+                  <Rectangle Name="AppButtonPopupPart" HorizontalAlignment="Left" VerticalAlignment="Top"
+                             Height="{Binding Path=ActualHeight, ElementName=AppButton}"
+                             Width="{Binding Path=ActualWidth, ElementName=AppButton}">
+                    <Shape.Fill>
+                      <VisualBrush Stretch="None" AlignmentY="Bottom" Visual="{Binding ElementName=AppButton}"/>
+                    </Shape.Fill>
+                    <UIElement.RenderTransform>
+                      <TranslateTransform Y="-26" X="5"/>
+                    </UIElement.RenderTransform>
+                  </Rectangle>
+                </Grid>
+              </WinTheme:SystemDropShadowChrome>
+            </Popup>
+          </Grid>
+        </Border>
+      </Border>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="UIElement.IsMouseOver" Value="True">
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorderFill}}}"
+                Property="Border.Background"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverInnerBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverBottomHighlight}}}"
+                Property="Border.Background"/>
+      </Trigger>
+      <Trigger Property="UIElement.IsKeyboardFocused" Value="True">
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorderFill}}}"
+                Property="Border.Background"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverInnerBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverBottomHighlight}}}"
+                Property="Border.Background"/>
+      </Trigger>
+      <Trigger Property="dc:ButtonDropDown.IsPopupOpen" Value="True">
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedOutterBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedOutterBorderFill}}}"
+                Property="Border.Background"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedInnerBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedBottomHighlight}}}"
+                Property="Border.Background"/>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{ComponentResourceKey {x:Type dc:ApplicationMenu}, Office2007}"
+                   TargetType="{x:Type dc:ApplicationMenu}">
+    <Border Background="Transparent" Padding="4">
+      <Grid Name="AppButton" Width="38" Height="38"
+            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}">
+        <Ellipse Name="OB" StrokeThickness="1" Width="37" Height="37"
+                 Stroke="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonOutterBorder}}}"
+                 Fill="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonOutterBorderFill}}}"/>
+        <Ellipse StrokeThickness="1" Opacity=".6" Width="37" Height="37"
+                 Stroke="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonOutterBorder}}}">
+          <UIElement.RenderTransform>
+            <TranslateTransform X="1" Y=".5"/>
+          </UIElement.RenderTransform>
+        </Ellipse>
+        <Ellipse Name="IB" Width="35" Height="35"
+                 Stroke="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonInnerBorder}}}"
+                 Fill="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonInnerBorderFill}}}"/>
+        <Ellipse Name="TH" Width="33" Height="33"
+                 Fill="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonTopHighlight}}}"/>
+        <Ellipse Name="BH" Width="33" Height="33"
+                 Fill="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonBottomHighlight}}}"/>
+        <ContentPresenter Name="PART_ButtonImage" ContentSource="Image" Margin="1,1,1,1" VerticalAlignment="Center"
+                          HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                          Content="{TemplateBinding dc:ButtonDropDown.Image}"/>
+        <Popup Name="PART_Popup" Placement="Bottom" VerticalOffset="-16" Focusable="False"
+               AllowsTransparency="{x:Static dc:Ribbon.PopupAllowsTransparency}"
+               PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+               IsOpen="{Binding Path=IsPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
+          <WinTheme:SystemDropShadowChrome FrameworkElement.Name="Shdw">
+            <Grid>
+              <Border BorderThickness="1,1,1,1" CornerRadius="3"
+                      BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBorder}}}">
+                <Border BorderThickness="1,1,1,1" CornerRadius="2"
+                        BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBorderInner}}}"
+                        Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBackground}}}">
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                      <RowDefinition MinHeight="14"/>
+                      <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Height="14" CornerRadius="2" Grid.Row="0"
+                            Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBackgroundTop}}}"/>
+                    <Border CornerRadius="0,0,2,2" Grid.Row="2" VerticalAlignment="Bottom" Height="24"
+                            Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuBackgroundBottom}}}"/>
+                    <DockPanel LastChildFill="True" Grid.Row="1">
+                      <ItemsControl Margin="0,0,2,0" Padding="1,1,1,1" KeyboardNavigation.TabNavigation="Continue"
+                                    KeyboardNavigation.DirectionalNavigation="Continue" DockPanel.Dock="Bottom"
+                                    HorizontalAlignment="Right"
+                                    ItemsSource="{Binding Path=AppItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                    ItemTemplate="{Binding Path=AppItemTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                                    ItemTemplateSelector="{Binding Path=AppItemTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Visibility="{Binding Path=HasAppItems, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                        <ItemsControl.ItemsPanel>
+                          <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                          </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                      <Border Grid.Row="1" Margin="2,0,2,2" BorderThickness="1"
+                              BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuContentBorder}}}">
+                        <Border BorderThickness="1"
+                                BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuContentBorderInner}}}"
+                                Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuContentBackground}}}">
+                          <DockPanel LastChildFill="True">
+                            <Border Name="MruBorder" BorderThickness="1,0,0,0" DockPanel.Dock="Right"
+                                    Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuMruBackground}}}"
+                                    BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuMruBorder}}}"
+                                    Visibility="{Binding Path=HasMruItems, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                              <Border Padding="2" BorderThickness="1,0,0,0"
+                                      BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.AppMenuMruBorderLight}}}">
+                                <ItemsControl KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle"
+                                              Foreground="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.ButtonNormalForeground}}}"
+                                              ItemsSource="{Binding Path=MruItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                              ItemTemplate="{Binding Path=MruItemTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                                              ItemTemplateSelector="{Binding Path=MruItemTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"/>
+                              </Border>
+                            </Border>
+                            <ItemsPresenter Margin="2,2,2,2" KeyboardNavigation.TabNavigation="Cycle"
+                                            KeyboardNavigation.DirectionalNavigation="Cycle"
+                                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+                          </DockPanel>
+                        </Border>
+                      </Border>
+                    </DockPanel>
+                  </Grid>
+                </Border>
+              </Border>
+              <Rectangle Name="AppButtonPopupPart" HorizontalAlignment="Left" VerticalAlignment="Top"
+                         Height="{Binding Path=ActualHeight, ElementName=AppButton}"
+                         Width="{Binding Path=ActualWidth, ElementName=AppButton}">
+                <Shape.Fill>
+                  <VisualBrush Stretch="None" AlignmentY="Bottom" Visual="{Binding ElementName=AppButton}"/>
+                </Shape.Fill>
+                <UIElement.RenderTransform>
+                  <TranslateTransform Y="-26" X="5"/>
+                </UIElement.RenderTransform>
+              </Rectangle>
+            </Grid>
+          </WinTheme:SystemDropShadowChrome>
+        </Popup>
+      </Grid>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Property="UIElement.IsMouseOver" Value="True">
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorder}}}"
+                Property="Shape.Stroke"/>
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorderFill}}}"
+                Property="Shape.Fill"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverInnerBorder}}}"
+                Property="Shape.Stroke"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverInnerBorderFill}}}"
+                Property="Shape.Fill"/>
+        <Setter TargetName="TH"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverTopHighlight}}}"
+                Property="Shape.Fill"/>
+        <Setter TargetName="BH"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverBottomHighlight}}}"
+                Property="Shape.Fill"/>
+      </Trigger>
+      <Trigger Property="UIElement.IsKeyboardFocused" Value="True">
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorder}}}"
+                Property="Shape.Stroke"/>
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverOutterBorderFill}}}"
+                Property="Shape.Fill"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverInnerBorder}}}"
+                Property="Shape.Stroke"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverInnerBorderFill}}}"
+                Property="Shape.Fill"/>
+        <Setter TargetName="TH"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverTopHighlight}}}"
+                Property="Shape.Fill"/>
+        <Setter TargetName="BH"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonHoverBottomHighlight}}}"
+                Property="Shape.Fill"/>
+      </Trigger>
+      <Trigger Property="dc:ButtonDropDown.IsPopupOpen" Value="True">
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedOutterBorder}}}"
+                Property="Shape.Stroke"/>
+        <Setter TargetName="OB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedOutterBorderFill}}}"
+                Property="Shape.Fill"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedInnerBorder}}}"
+                Property="Shape.Stroke"/>
+        <Setter TargetName="IB"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedInnerBorderFill}}}"
+                Property="Shape.Fill"/>
+        <Setter TargetName="TH"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedTopHighlight}}}"
+                Property="Shape.Fill"/>
+        <Setter TargetName="BH"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.StartButtonExpandedBottomHighlight}}}"
+                Property="Shape.Fill"/>
+      </Trigger>
+      <Trigger SourceName="PART_Popup" Property="Popup.HasDropShadow" Value="True">
+        <Setter TargetName="Shdw" Property="FrameworkElement.Margin" Value="0,0,5,5"/>
+        <Setter TargetName="Shdw" Property="WinTheme:SystemDropShadowChrome.Color">
+          <Setter.Value>
+            <Color>#71000000</Color>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+</ResourceDictionary>

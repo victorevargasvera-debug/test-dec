@@ -1,0 +1,47 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:DevCo="clr-namespace:DevComponents.WpfRibbon">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/BlueSkin.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/ApplicationMenuColors.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/CrumbBarVistaScheme.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/ExpandDecorator.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/ButtonDropDown.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/RibbonBar.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/CollapsedRibbonBarButton.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/RibbonTab.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/Ribbon.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/RibbonBackgroundChrome.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/ContextGroup.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/RibbonWindow.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/Qat.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/ApplicationMenu.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/GroupPanel.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/GalleryScrollBar.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/Gallery.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/ToolTip.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/SuperToolTip.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/ContextMenu.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/MenuItem.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/AdvWindow.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/NavigationPane.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/PaneItem.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/NavigationPaneCustomizeButton.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/NavigationPaneSplitter.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/FlatMenuItem.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/FlatContextMenu.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/NavigationPaneExpander.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/HeaderLabel.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/CrumbBar.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/CrumbBarItem.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/CrumbBarItemView.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/ColorPickerButton.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/Backstage.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfRibbon;component/Themes/BackstageTab.generic.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
+  <sys:String x:Key="{ComponentResourceKey {x:Type DevCo:Ribbon}, MinimizeButtonTooltip}">Minimize</sys:String>
+  <sys:String x:Key="{ComponentResourceKey {x:Type DevCo:Ribbon}, MaximizeButtonTooltip}">Maximize</sys:String>
+  <sys:String x:Key="{ComponentResourceKey {x:Type DevCo:Ribbon}, RestoreButtonTooltip}">Restore</sys:String>
+  <sys:String x:Key="{ComponentResourceKey {x:Type DevCo:Ribbon}, CloseButtonTooltip}">Close</sys:String>
+</ResourceDictionary>

@@ -1,0 +1,14 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:dc="clr-namespace:DevComponents.WpfRibbon"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Style x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, HeaderLabel}" TargetType="{x:Type Label}">
+    <Setter Property="Control.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.MenuHeaderLabelBackground}}}"/>
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.MenuHeaderLabelForeground}}}"/>
+    <Setter Property="Control.BorderBrush"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.MenuHeaderLabelBorder}}}"/>
+    <Setter Property="Control.BorderThickness" Value="0,0,0,1"/>
+    <Setter Property="Control.Padding" Value="6,1,1,1"/>
+  </Style>
+</ResourceDictionary>

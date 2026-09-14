@@ -1,0 +1,209 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dcc="clr-namespace:DevComponents.WpfRibbon.Converters"
+                    xmlns:WinTheme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Luna"
+                    xmlns:dc="clr-namespace:DevComponents.WpfRibbon">
+  <dcc:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+  <Style TargetType="{x:Type dc:CrumbBar}">
+    <Setter Property="UIElement.SnapsToDevicePixels" Value="true"/>
+    <Setter Property="Control.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ControlBackground}}}"/>
+    <Setter Property="Control.BorderThickness" Value="1"/>
+    <Setter Property="Control.BorderBrush"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ControlBorder}}}"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type dc:CrumbBar}">
+          <Border BorderThickness="1" CornerRadius="1"
+                  BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ControlBorderOuter}}}">
+            <Border Background="{TemplateBinding Control.Background}"
+                    BorderBrush="{TemplateBinding Control.BorderBrush}"
+                    BorderThickness="{TemplateBinding Control.BorderThickness}" CornerRadius="1">
+              <DockPanel LastChildFill="True">
+                <dc:PixelSnap Margin="1,1,1,1" DockPanel.Dock="Left">
+                  <ContentPresenter Name="PART_SelectedImage" ContentSource="SelectedImage" VerticalAlignment="Center"
+                                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                    Content="{TemplateBinding dc:CrumbBar.SelectedImage}"/>
+                </dc:PixelSnap>
+                <dc:CrumbBarOverflowToggleButton Name="PART_OverflowButton" ClickMode="Press" MinWidth="14" VerticalAlignment="Stretch"
+                                                 IsChecked="{Binding Path=IsOverflowOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                                 FocusVisualStyle="{x:Null}"
+                                                 Visibility="{TemplateBinding dc:CrumbBar.HasOverflowItems, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                 Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId=OverflowExpandButton}}"/>
+                <Popup Name="OverflowPopup" Placement="Bottom" StaysOpen="False" Focusable="False"
+                       AllowsTransparency="{x:Static dc:Ribbon.PopupAllowsTransparency}"
+                       PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                       IsOpen="{Binding Path=IsOverflowOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                  <WinTheme:SystemDropShadowChrome FrameworkElement.Name="Shdw" Color="#71000000" FrameworkElement.Margin="0,0,5,5">
+                    <ContentControl Name="PART_PopupContent" IsTabStop="False"
+                                    Template="{DynamicResource {ComponentResourceKey ResourceId=PopupMenuContent, TypeInTargetAssembly=dc:CrumbBarItemView}}">
+                      <ScrollViewer CanContentScroll="True" Grid.ColumnSpan="2"
+                                    Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly=FrameworkElement}}">
+                        <dc:CrumbBarViewOverflowPanel Name="PART_OverflowPanel" Margin="2,2,2,2" Focusable="True"
+                                                      SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Orientation="Vertical"
+                                                      KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                      FocusVisualStyle="{x:Null}"/>
+                      </ScrollViewer>
+                    </ContentControl>
+                  </WinTheme:SystemDropShadowChrome>
+                </Popup>
+                <DockPanel LastChildFill="True">
+                  <Border BorderThickness="1,0,0,0" DockPanel.Dock="Right" VerticalAlignment="Stretch"
+                          BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ActionItemsSeparator}}}"
+                          Visibility="{Binding Path=HasActionItems, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                    <ItemsControl Margin="-1,0,-1,0" KeyboardNavigation.TabNavigation="Continue"
+                                  KeyboardNavigation.DirectionalNavigation="Continue" VerticalAlignment="Stretch"
+                                  HorizontalAlignment="Right"
+                                  ItemsSource="{Binding Path=ActionItems, RelativeSource={RelativeSource TemplatedParent}}"
+                                  ItemTemplate="{Binding Path=ActionItemTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                                  ItemTemplateSelector="{Binding Path=ActionItemTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}">
+                      <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                          <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                      </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                  </Border>
+                  <dc:CrumbBarViewPanel Name="PART_ViewPanel"/>
+                </DockPanel>
+              </DockPanel>
+            </Border>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger SourceName="OverflowPopup" Property="Popup.HasDropShadow" Value="True">
+              <Setter TargetName="Shdw" Property="FrameworkElement.Margin" Value="0,0,5,5"/>
+              <Setter TargetName="Shdw" Property="WinTheme:SystemDropShadowChrome.Color" Value="#71000000"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, OverflowExpandButton}"
+         TargetType="{x:Type dc:CrumbBarOverflowToggleButton}">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type dc:CrumbBarOverflowToggleButton}">
+          <Grid>
+            <Border Name="MouseOverContent" Opacity="0" Grid.Column="1" BorderThickness="1,0,1,0"
+                    Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonHoverBackground}}}"
+                    BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonHoverBorder}}}">
+              <Border Name="MouseOverBorder" BorderThickness="1"
+                      BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonHoverBorderLight}}}">
+                <Border Name="MouseOverBorder2" BorderThickness="1,1,0,0"/>
+              </Border>
+            </Border>
+            <Canvas Name="PART_ButtonExpand" Width="7" Height="5" VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+              <Path Data="M 3,0 L 0,2.5 3,5 " Stroke="{TemplateBinding TextElement.Foreground}" StrokeThickness="1"/>
+              <Path Canvas.Left="4" Data="M 3,0 L 0,2.5 3,5 " Stroke="{TemplateBinding TextElement.Foreground}"
+                    StrokeThickness="1"/>
+            </Canvas>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="dc:CrumbBarOverflowToggleButton.IsMouseOverState" Value="True">
+              <TriggerBase.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="MouseOverContent" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0"
+                                     Duration="0:0:0.3"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </TriggerBase.EnterActions>
+              <TriggerBase.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="MouseOverContent" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0"
+                                     Duration="0:0:0.3"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </TriggerBase.ExitActions>
+            </Trigger>
+            <Trigger Property="dc:CrumbBarOverflowToggleButton.IsPressedState" Value="True">
+              <Setter TargetName="MouseOverContent"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonPressedBackground}}}"
+                      Property="Border.Background"/>
+              <Setter TargetName="MouseOverBorder" Property="Border.BorderThickness" Value="1,1,0,0"/>
+              <Setter TargetName="MouseOverBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonPressedBorder}}}"
+                      Property="Border.BorderBrush"/>
+              <Setter TargetName="MouseOverBorder2"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonPressedBorderLight}}}"
+                      Property="Border.BorderBrush"/>
+              <Setter TargetName="PART_ButtonExpand" Property="UIElement.RenderTransform">
+                <Setter.Value>
+                  <TranslateTransform X="1" Y="1"/>
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="{ComponentResourceKey {x:Type dc:CrumbBar}, ActionButton}" TargetType="{x:Type Button}">
+    <Setter Property="Control.Padding" Value="2"/>
+    <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Grid>
+            <Border Name="MouseOverContent" Opacity="0" Grid.Column="1" BorderThickness="1,0,1,0"
+                    Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonHoverBackground}}}"
+                    BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonHoverBorder}}}">
+              <Border Name="MouseOverBorder" BorderThickness="1"
+                      BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonHoverBorderLight}}}">
+                <Border Name="MouseOverBorder2" BorderThickness="1,1,0,0"/>
+              </Border>
+            </Border>
+            <dc:PixelSnap VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                          HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}">
+              <ContentPresenter Name="PART_Content" ContentSource="Content"
+                                ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                Content="{TemplateBinding ContentControl.Content}" Margin="{TemplateBinding Control.Padding}"
+                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+            </dc:PixelSnap>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="UIElement.IsMouseOver" Value="True">
+              <TriggerBase.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="MouseOverContent" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0"
+                                     Duration="0:0:0.3"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </TriggerBase.EnterActions>
+              <TriggerBase.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="MouseOverContent" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0"
+                                     Duration="0:0:0.3"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </TriggerBase.ExitActions>
+            </Trigger>
+            <Trigger Property="ButtonBase.IsPressed" Value="True">
+              <Setter TargetName="MouseOverContent"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonPressedBackground}}}"
+                      Property="Border.Background"/>
+              <Setter TargetName="MouseOverBorder" Property="Border.BorderThickness" Value="1,1,0,0"/>
+              <Setter TargetName="MouseOverBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonPressedBorder}}}"
+                      Property="Border.BorderBrush"/>
+              <Setter TargetName="MouseOverBorder2"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:CrumbBar, ResourceId={x:Static dc:CrumbBarColors.ButtonPressedBorderLight}}}"
+                      Property="Border.BorderBrush"/>
+              <Setter TargetName="PART_Content" Property="UIElement.RenderTransform">
+                <Setter.Value>
+                  <TranslateTransform X="1" Y="1"/>
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

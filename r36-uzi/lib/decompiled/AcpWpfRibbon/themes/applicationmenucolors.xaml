@@ -1,0 +1,316 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:dc="clr-namespace:DevComponents.WpfRibbon"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeForeground}}"
+                   Color="White"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeOutterBorder}}"
+                   Color="#FFE07110"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeOutterBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFFABB0C" Offset="0"/>
+      <GradientStop Color="#FFF6960D" Offset=".5"/>
+      <GradientStop Color="#FFFFCF24" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeInnerBorder}}"
+                   Color="#FFFBCA24"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeInnerBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFFABB0C" Offset="0"/>
+      <GradientStop Color="#FFF6960D" Offset=".5"/>
+      <GradientStop Color="#FFFFCF24" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeTopHighlight}}"
+                   Color="Transparent"/>
+  <RadialGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeBottomHighlight}}"
+                       Center="0.5,1" GradientOrigin=".5,1.8" RadiusX=".5" RadiusY=".8">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#40FDD62B" Offset="0"/>
+      <GradientStop Color="Transparent" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </RadialGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeHoverOutterBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFE07110" Offset="0"/>
+      <GradientStop Color="#FFE27B1B" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeHoverOutterBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFFCC948" Offset="0"/>
+      <GradientStop Color="#FFF79914" Offset=".5"/>
+      <GradientStop Color="#FFFFD647" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeHoverInnerBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFFEE282" Offset="0"/>
+      <GradientStop Color="#FFFFE985" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeHoverInnerBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFFCC948" Offset="0"/>
+      <GradientStop Color="#FFF79914" Offset=".5"/>
+      <GradientStop Color="#FFFFD647" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeHoverTopHighlight}}"
+                   Color="Transparent"/>
+  <RadialGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeHoverBottomHighlight}}"
+                       Center="0.5,1" GradientOrigin=".5,1.4" RadiusX=".6" RadiusY=".8">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#80FEE479" Offset="0"/>
+      <GradientStop Color="Transparent" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </RadialGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeExpandedOutterBorder}}"
+                   Color="#FFE07110"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeExpandedOutterBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFF7960F" Offset="0"/>
+      <GradientStop Color="#FFF8970E" Offset=".6"/>
+      <GradientStop Color="#FFFEC507" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeExpandedInnerBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFF9AB18" Offset="0"/>
+      <GradientStop Color="#FFFEC813" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeExpandedInnerBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFF7960F" Offset="0"/>
+      <GradientStop Color="#FFF8970E" Offset=".6"/>
+      <GradientStop Color="#FFFEC507" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeExpandedTopHighlight}}"
+                   Color="Transparent"/>
+  <RadialGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonOrangeExpandedBottomHighlight}}"
+                       Center="0.5,1" GradientOrigin=".5,1.5" RadiusX=".4" RadiusY=".4">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#A0FEC90B" Offset="0"/>
+      <GradientStop Color="Transparent" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </RadialGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenForeground}}"
+                   Color="White"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenOutterBorder}}"
+                   Color="#FF186337"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenOutterBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF449731" Offset="0"/>
+      <GradientStop Color="#FF277C2B" Offset=".5"/>
+      <GradientStop Color="#FF4AA636" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenInnerBorder}}"
+                   Color="#FF4BA231"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenInnerBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF449731" Offset="0"/>
+      <GradientStop Color="#FF277C2B" Offset=".5"/>
+      <GradientStop Color="#FF4AA636" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenTopHighlight}}"
+                   Color="Transparent"/>
+  <RadialGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenBottomHighlight}}"
+                       Center="0.5,1" GradientOrigin=".5,1.8" RadiusX=".5" RadiusY=".8">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#906BCA45" Offset="0"/>
+      <GradientStop Color="Transparent" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </RadialGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenHoverOutterBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF186337" Offset="0"/>
+      <GradientStop Color="#FF226C3D" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenHoverOutterBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF459733" Offset="0"/>
+      <GradientStop Color="#FF287C2B" Offset=".5"/>
+      <GradientStop Color="#FF55AF42" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenHoverInnerBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF64B943" Offset="0"/>
+      <GradientStop Color="#FF6BC64A" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenHoverInnerBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF459733" Offset="0"/>
+      <GradientStop Color="#FF287C2B" Offset=".5"/>
+      <GradientStop Color="#FF55AF42" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenHoverTopHighlight}}"
+                   Color="Transparent"/>
+  <RadialGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenHoverBottomHighlight}}"
+                       Center="0.5,1" GradientOrigin=".5,1.4" RadiusX=".6" RadiusY=".8">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#808AD669" Offset="0"/>
+      <GradientStop Color="Transparent" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </RadialGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenExpandedOutterBorder}}"
+                   Color="#FF196236"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenExpandedOutterBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF297D2C" Offset="0"/>
+      <GradientStop Color="#FF2C7E2B" Offset=".6"/>
+      <GradientStop Color="#FF5AC029" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenExpandedInnerBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF368F2B" Offset="0"/>
+      <GradientStop Color="#FF4FB22D" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenExpandedInnerBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF297D2C" Offset="0"/>
+      <GradientStop Color="#FF2C7E2B" Offset=".6"/>
+      <GradientStop Color="#FF5AC029" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenExpandedTopHighlight}}"
+                   Color="Transparent"/>
+  <RadialGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonGreenExpandedBottomHighlight}}"
+                       Center="0.5,1" GradientOrigin=".5,1.5" RadiusX=".4" RadiusY=".4">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#A058BC27" Offset="0"/>
+      <GradientStop Color="Transparent" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </RadialGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaForeground}}"
+                   Color="White"/>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaOutterBorder}}"
+                   Color="#FF8F013C"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaOutterBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFCC256B" Offset="0"/>
+      <GradientStop Color="#FFB10852" Offset=".5"/>
+      <GradientStop Color="#FFE1427E" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaInnerBorder}}"
+                   Color="#FFD73B7D"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaInnerBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFCC256B" Offset="0"/>
+      <GradientStop Color="#FFB10852" Offset=".5"/>
+      <GradientStop Color="#FFE1427E" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaTopHighlight}}"
+                   Color="Transparent"/>
+  <RadialGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaBottomHighlight}}"
+                       Center="0.5,1" GradientOrigin=".5,1.8" RadiusX=".5" RadiusY=".8">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#80E85E96" Offset="0"/>
+      <GradientStop Color="Transparent" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </RadialGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaHoverOutterBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FF8F003B" Offset="0"/>
+      <GradientStop Color="#FF960A43" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaHoverOutterBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFD93474" Offset="0"/>
+      <GradientStop Color="#FFB10B52" Offset=".5"/>
+      <GradientStop Color="#FFE84D88" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaHoverInnerBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFEB5C93" Offset="0"/>
+      <GradientStop Color="#FFF2679C" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaHoverInnerBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFD93474" Offset="0"/>
+      <GradientStop Color="#FFB10B52" Offset=".5"/>
+      <GradientStop Color="#FFE84D88" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaHoverTopHighlight}}"
+                   Color="Transparent"/>
+  <RadialGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaHoverBottomHighlight}}"
+                       Center="0.5,1" GradientOrigin=".5,1.4" RadiusX=".6" RadiusY=".8">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#80F075A0" Offset="0"/>
+      <GradientStop Color="Transparent" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </RadialGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaExpandedOutterBorder}}"
+                   Color="#FF8F003B"/>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaExpandedOutterBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFAF064D" Offset="0"/>
+      <GradientStop Color="#FFB20A4F" Offset=".6"/>
+      <GradientStop Color="#FFEC4986" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaExpandedInnerBorder}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFC0185F" Offset="0"/>
+      <GradientStop Color="#FFE03C7A" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaExpandedInnerBorderFill}}"
+                       StartPoint="0,0" EndPoint="0,1">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#FFAF064D" Offset="0"/>
+      <GradientStop Color="#FFB20A4F" Offset=".6"/>
+      <GradientStop Color="#FFEC4986" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaExpandedTopHighlight}}"
+                   Color="Transparent"/>
+  <RadialGradientBrush x:Key="{ComponentResourceKey {x:Type dc:Ribbon}, {x:Static dc:RibbonColors.StartButtonMagentaExpandedBottomHighlight}}"
+                       Center="0.5,1" GradientOrigin=".5,1.5" RadiusX=".4" RadiusY=".4">
+    <GradientBrush.GradientStops>
+      <GradientStop Color="#A0E84783" Offset="0"/>
+      <GradientStop Color="Transparent" Offset="1"/>
+    </GradientBrush.GradientStops>
+  </RadialGradientBrush>
+</ResourceDictionary>

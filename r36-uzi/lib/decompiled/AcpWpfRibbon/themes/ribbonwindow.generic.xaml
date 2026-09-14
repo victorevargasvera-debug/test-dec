@@ -1,0 +1,48 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:DevCo="clr-namespace:DevComponents.WpfRibbon">
+  <Style TargetType="{x:Type DevCo:RibbonWindow}">
+    <Setter Property="Window.SizeToContent" Value="Manual"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <DevCo:WindowBorder Name="PART_WindowBorder" CornerRadius="5" BorderThickness="1,1,1,1"
+                              SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                              BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.WindowActiveBorder}}}"
+                              Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.WindowBackground}}}">
+            <Grid>
+              <AdornerDecorator>
+                <ContentPresenter ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                  Content="{TemplateBinding ContentControl.Content}"/>
+              </AdornerDecorator>
+              <ResizeGrip Name="WindowResizeGrip" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                          Visibility="Collapsed" IsTabStop="false"/>
+            </Grid>
+          </DevCo:WindowBorder>
+          <ControlTemplate.Triggers>
+            <Trigger Property="DevCo:RibbonWindow.IsUsingGlass" Value="True">
+              <Setter TargetName="PART_WindowBorder" Property="Border.CornerRadius" Value="0"/>
+            </Trigger>
+            <Trigger Property="Window.IsActive" Value="False">
+              <Setter TargetName="PART_WindowBorder"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.WindowInactiveBorder}}}"
+                      Property="Border.BorderBrush"/>
+            </Trigger>
+            <Trigger Property="DevCo:RibbonWindow.IsUsingGlass" Value="True">
+              <Setter TargetName="PART_WindowBorder" Property="Border.CornerRadius" Value="0"/>
+              <Setter TargetName="PART_WindowBorder" Value="{x:Null}" Property="Border.BorderBrush"/>
+              <Setter TargetName="PART_WindowBorder" Property="Border.BorderThickness" Value="0"/>
+            </Trigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="Window.ResizeMode" Value="CanResizeWithGrip"/>
+                <Condition Property="Window.WindowState" Value="Normal"/>
+              </MultiTrigger.Conditions>
+              <Setter TargetName="WindowResizeGrip" Property="UIElement.Visibility" Value="Visible"/>
+            </MultiTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

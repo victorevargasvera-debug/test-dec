@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: F:\DECOMP\36-UZI\APXFamilyCPS1\lib_org\AcpWpfRibbon.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{742539A6-CAFC-4816-B315-425782B56462}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>AcpWpfRibbon</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ApplicationVersion>23.0.0.26</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>DevComponents.WpfRibbon</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AcpCommonResources">
+      <HintPath>lib\AcpCommonResources.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdvWindow.cs" />
+    <Compile Include="ApplicationMenu.cs" />
+    <Compile Include="ElementAutoSizeBag.cs" />
+    <Compile Include="ButtonDropDownAutoSizeBag.cs" />
+    <Compile Include="AutoSizeBagFactory.cs" />
+    <Compile Include="Backstage.cs" />
+    <Compile Include="BackstageContentAdorner.cs" />
+    <Compile Include="BackstageTab.cs" />
+    <Compile Include="BasePopupControl.cs" />
+    <Compile Include="IPopupParentControl.cs" />
+    <Compile Include="ButtonBorder.cs" />
+    <Compile Include="ButtonCommandParameter.cs" />
+    <Compile Include="ButtonDropDown.cs" />
+    <Compile Include="ButtonDropDownAutomationPeer.cs" />
+    <Compile Include="ButtonDropDownCommand.cs" />
+    <Compile Include="ButtonDropDownCommandExtender.cs" />
+    <Compile Include="ButtonEx.cs" />
+    <Compile Include="ButtonPanel.cs" />
+    <Compile Include="CloningMachine.cs" />
+    <Compile Include="CollapsedRibbonBarButton.cs" />
+    <Compile Include="CollapsedRibbonBarControl.cs" />
+    <Compile Include="CollapsedRibbonBarPanel.cs" />
+    <Compile Include="ColorFactory.cs" />
+    <Compile Include="ColorBlendFactory.cs" />
+    <Compile Include="ColorPickerButton.cs" />
+    <Compile Include="CommandHelpers.cs" />
+    <Compile Include="ContextGroup.cs" />
+    <Compile Include="ContextGroupCollection.cs" />
+    <Compile Include="CrumbBar.cs" />
+    <Compile Include="eCrumbBarVisualStyle.cs" />
+    <Compile Include="CrumbBarColors.cs" />
+    <Compile Include="CrumbBarItem.cs" />
+    <Compile Include="CrumbBarItemsControl.cs" />
+    <Compile Include="CrumbBarItemView.cs" />
+    <Compile Include="CrumbBarOverflowToggleButton.cs" />
+    <Compile Include="CrumbBarSelectionChangedEventArgs.cs" />
+    <Compile Include="CrumbBarSelectionChangedEventHandler.cs" />
+    <Compile Include="CrumbBarViewOverflowPanel.cs" />
+    <Compile Include="CrumbBarViewPanel.cs" />
+    <Compile Include="DrawingHelpers.cs" />
+    <Compile Include="eButtonRole.cs" />
+    <Compile Include="eDropDownType.cs" />
+    <Compile Include="eButtonImagePosition.cs" />
+    <Compile Include="eExpandPosition.cs" />
+    <Compile Include="eExpandVisibility.cs" />
+    <Compile Include="eButtonRenderingState.cs" />
+    <Compile Include="ePopupPlacement.cs" />
+    <Compile Include="eButtonPanelOrientation.cs" />
+    <Compile Include="eButtonPartVisibility.cs" />
+    <Compile Include="eRibbonBarRenderingState.cs" />
+    <Compile Include="eRibbonContentPart.cs" />
+    <Compile Include="eRibbonTabRenderingState.cs" />
+    <Compile Include="eTabElementAlignment.cs" />
+    <Compile Include="eAutoSizeHint.cs" />
+    <Compile Include="eContextGroupColor.cs" />
+    <Compile Include="eRibbonTabColor.cs" />
+    <Compile Include="eRibbonVisualStyle.cs" />
+    <Compile Include="eEffectiveStyle.cs" />
+    <Compile Include="eElementRole.cs" />
+    <Compile Include="eBackstagePanelBackgroundImage.cs" />
+    <Compile Include="eApplicationMenuColor.cs" />
+    <Compile Include="QatDialogEventHandler.cs" />
+    <Compile Include="QatDialogEventArgs.cs" />
+    <Compile Include="QatOperationAddEventHandler.cs" />
+    <Compile Include="QatOperationAddEventArgs.cs" />
+    <Compile Include="QatOperationEventHandler.cs" />
+    <Compile Include="QatOperationEventArgs.cs" />
+    <Compile Include="ExpandDecorator.cs" />
+    <Compile Include="FocusHelpers.cs" />
+    <Compile Include="Gallery.cs" />
+    <Compile Include="GalleryScrollViewer.cs" />
+    <Compile Include="GalleryWrapPanel.cs" />
+    <Compile Include="GroupPanel.cs" />
+    <Compile Include="HeaderedPopupControl.cs" />
+    <Compile Include="IButtonCommandParameter.cs" />
+    <Compile Include="IButtonDropDownCommandExtender.cs" />
+    <Compile Include="KeyTipsAdorner.cs" />
+    <Compile Include="KeyTipRenderInfo.cs" />
+    <Compile Include="KeyTipColors.cs" />
+    <Compile Include="LayoutHelpers.cs" />
+    <Compile Include="MenuItemColors.cs" />
+    <Compile Include="MenuItemStates.cs" />
+    <Compile Include="NavigationPane.cs" />
+    <Compile Include="NavigationPaneColors.cs" />
+    <Compile Include="PaneItemParts.cs" />
+    <Compile Include="ExpanderParts.cs" />
+    <Compile Include="ExpanderStates.cs" />
+    <Compile Include="PaneItemStates.cs" />
+    <Compile Include="NavigationPaneCustomizeButton.cs" />
+    <Compile Include="NavigationPaneCustomizeDialog.cs" />
+    <Compile Include="PaneItemDescription.cs" />
+    <Compile Include="PaneItemDescriptionList.cs" />
+    <Compile Include="NavigationPaneLocalization.cs" />
+    <Compile Include="NavigationPanePanel.cs" />
+    <Compile Include="NavigationPaneSplitter.cs" />
+    <Compile Include="PaneItem.cs" />
+    <Compile Include="ParentPopupControlImpl.cs" />
+    <Compile Include="PixelSnap.cs" />
+    <Compile Include="Qat.cs" />
+    <Compile Include="QatBorder.cs" />
+    <Compile Include="QatCustomizeButton.cs" />
+    <Compile Include="QatOverflowPanel.cs" />
+    <Compile Include="QatPanel.cs" />
+    <Compile Include="Ribbon.cs" />
+    <Compile Include="RibbonBackgroundChrome.cs" />
+    <Compile Include="RibbonBar.cs" />
+    <Compile Include="RibbonBarPanel.cs" />
+    <Compile Include="RibbonBorder.cs" />
+    <Compile Include="RibbonColors.cs" />
+    <Compile Include="ButtonPartColorKeys.cs" />
+    <Compile Include="ButtonStateColorKeys.cs" />
+    <Compile Include="RibbonBarStateColorKeys.cs" />
+    <Compile Include="RibbonBarTitlePartKeys.cs" />
+    <Compile Include="RibbonBarPartColorKeys.cs" />
+    <Compile Include="RibbonTabPartColorKeys.cs" />
+    <Compile Include="RibbonTabStateColorKeys.cs" />
+    <Compile Include="RibbonBarCollapsedStateColorKeys.cs" />
+    <Compile Include="RibbonBarCollapsedPartColorKeys.cs" />
+    <Compile Include="WindowPartColorKeys.cs" />
+    <Compile Include="WindowStateColorKeys.cs" />
+    <Compile Include="WindowTitlePartColorKeys.cs" />
+    <Compile Include="WindowSystemButtonsPartColorKeys.cs" />
+    <Compile Include="ContextGroupPartColorKeys.cs" />
+    <Compile Include="ContextGroupColors.cs" />
+    <Compile Include="AppMenuPartColorKeys.cs" />
+    <Compile Include="GroupPanelPartColorKeys.cs" />
+    <Compile Include="ComboBoxStateColorKeys.cs" />
+    <Compile Include="ComboBoxPartColorKeys.cs" />
+    <Compile Include="SeparatorPartColorKeys.cs" />
+    <Compile Include="ToolTipPartColorKeys.cs" />
+    <Compile Include="KeyTipsPartColorKeys.cs" />
+    <Compile Include="KeyTipsStateColorKeys.cs" />
+    <Compile Include="StatusBarPartColorKeys.cs" />
+    <Compile Include="ResizeGripPartColorKeys.cs" />
+    <Compile Include="GalleryStateColorKeys.cs" />
+    <Compile Include="GalleryPartColorKeys.cs" />
+    <Compile Include="GalleryScrollButtonStateColorKeys.cs" />
+    <Compile Include="GalleryScrollButtonPartColorKeys.cs" />
+    <Compile Include="GalleryCategoryPartColorKeys.cs" />
+    <Compile Include="GalleryResizePartColorKeys.cs" />
+    <Compile Include="ScrollBarStateColorKeys.cs" />
+    <Compile Include="ScrollBarPartColorKeys.cs" />
+    <Compile Include="RibbonCommandManager.cs" />
+    <Compile Include="RibbonContentPanel.cs" />
+    <Compile Include="RibbonLocalization.cs" />
+    <Compile Include="RibbonTab.cs" />
+    <Compile Include="RibbonTabBorder.cs" />
+    <Compile Include="RibbonTabPanel.cs" />
+    <Compile Include="RibbonWindow.cs" />
+    <Compile Include="RoutedEventHandlerCloner.cs" />
+    <Compile Include="SuperToolTip.cs" />
+    <Compile Include="TitlePanel.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="WinApi.cs" />
+    <Compile Include="WindowBorder.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="KeyTips\AppMenuKeyTipRenderer.cs" />
+    <Compile Include="KeyTips\ButtonPopupKeyRenderer.cs" />
+    <Compile Include="KeyTips\KeyTipRenderer.cs" />
+    <Compile Include="KeyTips\KeyTipRenderFactory.cs" />
+    <Compile Include="KeyTips\RibbonBarKeyTipRenderer.cs" />
+    <Compile Include="KeyTips\RibbonKeyTipRenderer.cs" />
+    <Compile Include="KeyTips\RibbonTabKeyTipRenderer.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\ExpandPositionToDockConverter.cs" />
+    <Compile Include="Converters\ImagePositionToDockConverter.cs" />
+    <Compile Include="Converters\IsStringTypeConverter.cs" />
+    <Compile Include="Converters\LessThanConverter.cs" />
+    <Compile Include="Converters\PopupPlacementConverter.cs" />
+    <Compile Include="themesCrumbBarVistaScheme.xaml.cs">
+      <DependentUpon>themescrumbbarvistascheme.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesBlackSkin.xaml.cs">
+      <DependentUpon>themesblackskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesFullColorSkin.xaml.cs">
+      <DependentUpon>themesfullcolorskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesCrumbBarOffice2007BlackScheme.xaml.cs">
+      <DependentUpon>themescrumbbaroffice2007blackscheme.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2010BlueColorScheme.xaml.cs">
+      <DependentUpon>themesoffice2010bluecolorscheme.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesGraySkin.xaml.cs">
+      <DependentUpon>themesgrayskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2010SilverColorScheme.xaml.cs">
+      <DependentUpon>themesoffice2010silvercolorscheme.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesClassicSkin.xaml.cs">
+      <DependentUpon>themesclassicskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesCommonStyles.xaml.cs">
+      <DependentUpon>themescommonstyles.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesCrumbBarOffice2007SilverScheme.xaml.cs">
+      <DependentUpon>themescrumbbaroffice2007silverscheme.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesMilitarySkin.xaml.cs">
+      <DependentUpon>themesmilitaryskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesCrumbBarOffice2007BlueScheme.xaml.cs">
+      <DependentUpon>themescrumbbaroffice2007bluescheme.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2010BlackColorScheme.xaml.cs">
+      <DependentUpon>themesoffice2010blackcolorscheme.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesFiremanSkin.xaml.cs">
+      <DependentUpon>themesfiremanskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesBlueSkin.xaml.cs">
+      <DependentUpon>themesblueskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesPoliceSkin.xaml.cs">
+      <DependentUpon>themespoliceskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="themes\images\bluebackstage.png" />
+    <Resource Include="themes\images\greenbackstage.png" />
+    <Resource Include="themes\images\magentabackstage.png" />
+    <Resource Include="themes\images\navpaneshowless.png" />
+    <Resource Include="themes\images\navpaneshowmore.png" />
+    <Resource Include="themes\images\orangebackstage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ColorPickerButton\Icon.png" />
+    <EmbeddedResource Include="CrumbBar\Icon.png" />
+    <EmbeddedResource Include="NavigationPane\Icon.png" />
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="Ribbon\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="navigationpane\navigationpanecustomizedialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\advwindow.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\applicationmenu.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\applicationmenucolors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\backstage.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\backstagetab.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\blackskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\blueskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\buttondropdown.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\classicskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\collapsedribbonbarbutton.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\colorpickerbutton.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\combobox.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\commonstyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\contextgroup.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\contextmenu.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\crumbbar.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\crumbbaritem.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\crumbbaritemview.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\crumbbaroffice2007blackscheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\crumbbaroffice2007bluescheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\crumbbaroffice2007silverscheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\crumbbarvistascheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\expanddecorator.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\firemanskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\flatcontextmenu.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\flatmenuitem.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\fullcolorskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\gallery.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\galleryscrollbar.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\grayskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\grouppanel.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\headerlabel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\menuitem.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\militaryskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\navigationpane.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\navigationpanecustomizebutton.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\navigationpaneexpander.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\navigationpanesplitter.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2010blackcolorscheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2010bluecolorscheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2010silvercolorscheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\paneitem.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\policeskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\qat.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\resizegrip.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\ribbon.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\ribbonbackgroundchrome.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\ribbonbar.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\ribbontab.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\ribbonwindow.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\separator.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\statusbar.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\supertooltip.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\tooltip.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

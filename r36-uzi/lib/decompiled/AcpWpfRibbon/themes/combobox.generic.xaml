@@ -1,0 +1,403 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mwt="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib"
+                    xmlns:DevCo="clr-namespace:DevComponents.WpfRibbon">
+  <Style x:Key="{ComponentResourceKey {x:Type DevCo:Ribbon}, ComboBox}" TargetType="{x:Type ComboBox}">
+    <Style.Triggers>
+      <Trigger Property="ComboBox.IsEditable" Value="True">
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+        <Setter Property="Control.Template">
+          <Setter.Value>
+            <ControlTemplate>
+              <Grid Name="Placement" SnapsToDevicePixels="True">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Popup Name="PART_Popup" Placement="Bottom" AllowsTransparency="True"
+                       PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                       Grid.ColumnSpan="2"
+                       IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                       MinWidth="{Binding Path=ActualWidth, RelativeSource={RelativeSource TemplatedParent}}">
+                  <mwt:SystemDropShadowChrome FrameworkElement.Name="Shdw" FrameworkElement.MinWidth="0"
+                                              FrameworkElement.MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}" Color="#00FFFFFF">
+                    <Border Name="DropDownBorder"
+                            BorderBrush="{DynamicResource {x:Static JetSystemColors.WindowFrameBrushKey}}"
+                            BorderThickness="1,1,1,1" Background="{DynamicResource {x:Static JetSystemColors.WindowBrushKey}}">
+                      <ScrollViewer>
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                        KeyboardNavigation.DirectionalNavigation="Contained"/>
+                      </ScrollViewer>
+                    </Border>
+                  </mwt:SystemDropShadowChrome>
+                </Popup>
+                <Border Name="Chrome" Background="{TemplateBinding Panel.Background}"
+                        BorderBrush="{TemplateBinding Border.BorderBrush}"
+                        BorderThickness="{TemplateBinding Border.BorderThickness}" SnapsToDevicePixels="True"
+                        Grid.ColumnSpan="2"/>
+                <TextBox xml:space="preserve" Name="PART_EditableTextBox" Margin="{TemplateBinding Control.Padding}"
+                         HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                         VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}" IsReadOnly="False"
+                         Grid.Column="0">
+                
+                  <FrameworkElement.Style>
+                    <Style TargetType="{x:Type TextBox}"><Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/><Setter Property="UIElement.AllowDrop" Value="True"/><Setter Property="FrameworkElement.MinWidth" Value="0"/><Setter Property="FrameworkElement.MinHeight" Value="0"/><Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/><Setter Property="Control.Template">
+                        <Setter.Value>
+                          <ControlTemplate TargetType="{x:Type TextBox}"><ScrollViewer Name="PART_ContentHost" Background="#00FFFFFF" HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden" Focusable="False"/></ControlTemplate>
+                        </Setter.Value>
+                      </Setter></Style>
+                  </FrameworkElement.Style></TextBox>
+                <ToggleButton Name="ComboToggleButton"
+                              MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Grid.Column="1"
+                              IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                  <FrameworkElement.Style>
+                    <Style TargetType="{x:Type ToggleButton}">
+                      <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
+                      <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                      <Setter Property="UIElement.Focusable" Value="False"/>
+                      <Setter Property="ButtonBase.ClickMode" Value="{x:Static Member=ClickMode.Press}"/>
+                      <Setter Property="Control.Template">
+                        <Setter.Value>
+                          <ControlTemplate>
+                            <Border Name="PART_ComboThumb" BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                    Background="{TemplateBinding Panel.Background}"
+                                    BorderThickness="{TemplateBinding Border.BorderThickness}">
+                              <Border Name="PART_ComboThumbInner">
+                                <Path Name="Arrow" Data="M 0,0 L 3.5,4 7,0 Z" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Fill="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxNormalExpandForeground}}}"/>
+                              </Border>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                <Setter TargetName="PART_ComboThumb"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBorder}}}"
+                                        Property="Border.BorderBrush"/>
+                                <Setter TargetName="PART_ComboThumb"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBackground}}}"
+                                        Property="Border.Background"/>
+                                <Setter TargetName="PART_ComboThumb" Property="Border.BorderThickness" Value="1"/>
+                              </Trigger>
+                              <Trigger SourceName="PART_ComboThumb" Property="UIElement.IsMouseOver" Value="True">
+                                <Setter TargetName="PART_ComboThumb" Property="Border.BorderThickness" Value="1"/>
+                                <Setter TargetName="PART_ComboThumb"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandHoverBorder}}}"
+                                        Property="Border.BorderBrush"/>
+                                <Setter TargetName="PART_ComboThumb"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandHoverBackground}}}"
+                                        Property="Border.Background"/>
+                                <Setter TargetName="PART_ComboThumb"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandHoverForeground}}}"
+                                        Property="TextElement.Foreground"/>
+                                <Setter TargetName="PART_ComboThumbInner" Property="Border.BorderThickness" Value="1"/>
+                                <Setter TargetName="PART_ComboThumbInner"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandHoverBorderInner}}}"
+                                        Property="Border.BorderBrush"/>
+                              </Trigger>
+                              <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                <Setter TargetName="PART_ComboThumb" Property="Border.BorderThickness" Value="1"/>
+                                <Setter TargetName="PART_ComboThumb"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandedExpandBorder}}}"
+                                        Property="Border.BorderBrush"/>
+                                <Setter TargetName="PART_ComboThumb"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandedExpandBackground}}}"
+                                        Property="Border.Background"/>
+                                <Setter TargetName="PART_ComboThumb"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandedExpandForeground}}}"
+                                        Property="TextElement.Foreground"/>
+                                <Setter TargetName="PART_ComboThumbInner" Property="Border.BorderThickness" Value="1"/>
+                                <Setter TargetName="PART_ComboThumbInner"
+                                        Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandedExpandBorderInner}}}"
+                                        Property="Border.BorderBrush"/>
+                              </Trigger>
+                              <Trigger Property="UIElement.IsEnabled" Value="False">
+                                <Setter TargetName="Arrow" Property="Shape.Fill">
+                                  <Setter.Value>
+                                    <SolidColorBrush>#FFAFAFAF</SolidColorBrush>
+                                  </Setter.Value>
+                                </Setter>
+                              </Trigger>
+                            </ControlTemplate.Triggers>
+                          </ControlTemplate>
+                        </Setter.Value>
+                      </Setter>
+                    </Style>
+                  </FrameworkElement.Style>
+                </ToggleButton>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                  <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverBackground}}}"
+                          Property="Panel.Background"/>
+                  <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverForeground}}}"
+                          Property="TextElement.Foreground"/>
+                  <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverBorder}}}"
+                          Property="Control.BorderBrush"/>
+                  <Setter TargetName="ComboToggleButton"
+                          Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBorder}}}"
+                          Property="Control.BorderBrush"/>
+                  <Setter TargetName="ComboToggleButton"
+                          Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBackground}}}"
+                          Property="Control.Background"/>
+                  <Setter TargetName="ComboToggleButton" Property="Control.BorderThickness" Value="1"/>
+                </Trigger>
+                <Trigger Property="UIElement.IsKeyboardFocusWithin" Value="True">
+                  <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverBackground}}}"
+                          Property="Panel.Background"/>
+                  <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverForeground}}}"
+                          Property="TextElement.Foreground"/>
+                  <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverBorder}}}"
+                          Property="Control.BorderBrush"/>
+                  <Setter TargetName="ComboToggleButton"
+                          Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBorder}}}"
+                          Property="Control.BorderBrush"/>
+                  <Setter TargetName="ComboToggleButton"
+                          Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBackground}}}"
+                          Property="Control.Background"/>
+                  <Setter TargetName="ComboToggleButton" Property="Control.BorderThickness" Value="1"/>
+                </Trigger>
+                <Trigger Property="ItemsControl.HasItems" Value="False">
+                  <Setter TargetName="DropDownBorder" Property="FrameworkElement.Height" Value="95"/>
+                </Trigger>
+                <Trigger Property="UIElement.IsEnabled" Value="False">
+                  <Setter Value="{DynamicResource {x:Static JetSystemColors.GrayTextBrushKey}}"
+                          Property="TextElement.Foreground"/>
+                  <Setter Property="Panel.Background" Value="#FFF4F4F4"/>
+                </Trigger>
+                <Trigger Property="ItemsControl.IsGrouping" Value="True">
+                  <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                </Trigger>
+                <Trigger SourceName="PART_Popup" Property="Popup.HasDropShadow" Value="True">
+                  <Setter TargetName="Shdw" Property="FrameworkElement.Margin" Value="0,0,5,5"/>
+                  <Setter TargetName="Shdw" Property="mwt:SystemDropShadowChrome.Color">
+                    <Setter.Value>
+                      <Color>#71000000</Color>
+                    </Setter.Value>
+                  </Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </Style.Triggers>
+    <Setter Property="FrameworkElement.FocusVisualStyle">
+      <Setter.Value>
+        <Style TargetType="{x:Type IFrameworkInputElement}">
+          <Style.Resources>
+            <ResourceDictionary/>
+          </Style.Resources>
+          <Setter Property="Control.Template">
+            <Setter.Value>
+              <ControlTemplate>
+                <Rectangle Margin="4,4,21,4" SnapsToDevicePixels="True" Stroke="#FF000000" StrokeDashArray="1 2"
+                           StrokeThickness="1"/>
+              </ControlTemplate>
+            </Setter.Value>
+          </Setter>
+        </Style>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="TextElement.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxNormalForeground}}}"/>
+    <Setter Property="Panel.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxNormalBackground}}}"/>
+    <Setter Property="Border.BorderBrush"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxNormalBorder}}}"/>
+    <Setter Property="Border.BorderThickness" Value="1"/>
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+            Value="{x:Static Member=ScrollBarVisibility.Auto}"/>
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+            Value="{x:Static Member=ScrollBarVisibility.Auto}"/>
+    <Setter Property="Control.Padding">
+      <Setter.Value>
+        <Thickness>2,2,2,2</Thickness>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ComboBox}">
+          <Grid Name="MainGrid" SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+            </Grid.ColumnDefinitions>
+            <Popup Name="PART_Popup" Margin="1,1,1,1" Placement="Bottom" AllowsTransparency="True"
+                   PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                   Grid.ColumnSpan="2"
+                   IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                   MinWidth="{Binding Path=ActualWidth, RelativeSource={RelativeSource TemplatedParent}}">
+              <mwt:SystemDropShadowChrome FrameworkElement.Name="Shdw" FrameworkElement.MinWidth="0"
+                                          FrameworkElement.MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}" Color="#00FFFFFF">
+                <Border Name="DropDownBorder"
+                        BorderBrush="{DynamicResource {x:Static JetSystemColors.WindowFrameBrushKey}}"
+                        BorderThickness="1,1,1,1" Background="{DynamicResource {x:Static JetSystemColors.WindowBrushKey}}">
+                  <ScrollViewer CanContentScroll="True">
+                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                    KeyboardNavigation.DirectionalNavigation="Contained"/>
+                  </ScrollViewer>
+                </Border>
+              </mwt:SystemDropShadowChrome>
+            </Popup>
+            <Border Name="Chrome" BorderBrush="{TemplateBinding Border.BorderBrush}"
+                    BorderThickness="{TemplateBinding Border.BorderThickness}"
+                    Background="{TemplateBinding Panel.Background}" SnapsToDevicePixels="True" Grid.ColumnSpan="2"/>
+            <ToggleButton Name="ComboToggleButton" Grid.ColumnSpan="2"
+                          IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}">
+              <FrameworkElement.Style>
+                <Style TargetType="{x:Type ToggleButton}">
+                  <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
+                  <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                  <Setter Property="UIElement.Focusable" Value="False"/>
+                  <Setter Property="ButtonBase.ClickMode" Value="{x:Static Member=ClickMode.Press}"/>
+                  <Setter Property="Control.Template">
+                    <Setter.Value>
+                      <ControlTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0" MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+                          </Grid.ColumnDefinitions>
+                          <Border Background="Transparent" Grid.Column="0"/>
+                          <Border Name="PART_ComboThumb" BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                  Background="{TemplateBinding Panel.Background}"
+                                  BorderThickness="{TemplateBinding Border.BorderThickness}" Grid.Column="1">
+                            <Border Name="PART_ComboThumbInner">
+                              <Path Name="Arrow" Data="M 0,0 L 3.5,4 7,0 Z" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Fill="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxNormalExpandForeground}}}"/>
+                            </Border>
+                          </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                          <Trigger Property="UIElement.IsMouseOver" Value="True">
+                            <Setter TargetName="PART_ComboThumb"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBorder}}}"
+                                    Property="Border.BorderBrush"/>
+                            <Setter TargetName="PART_ComboThumb"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBackground}}}"
+                                    Property="Border.Background"/>
+                            <Setter TargetName="PART_ComboThumb" Property="Border.BorderThickness" Value="1"/>
+                          </Trigger>
+                          <Trigger SourceName="PART_ComboThumb" Property="UIElement.IsMouseOver" Value="True">
+                            <Setter TargetName="PART_ComboThumb" Property="Border.BorderThickness" Value="1"/>
+                            <Setter TargetName="PART_ComboThumb"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandHoverBorder}}}"
+                                    Property="Border.BorderBrush"/>
+                            <Setter TargetName="PART_ComboThumb"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandHoverBackground}}}"
+                                    Property="Border.Background"/>
+                            <Setter TargetName="PART_ComboThumb"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandHoverForeground}}}"
+                                    Property="TextElement.Foreground"/>
+                            <Setter TargetName="PART_ComboThumbInner" Property="Border.BorderThickness" Value="1"/>
+                            <Setter TargetName="PART_ComboThumbInner"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandHoverBorderInner}}}"
+                                    Property="Border.BorderBrush"/>
+                          </Trigger>
+                          <Trigger Property="ToggleButton.IsChecked" Value="True">
+                            <Setter TargetName="PART_ComboThumb" Property="Border.BorderThickness" Value="1"/>
+                            <Setter TargetName="PART_ComboThumb"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandedExpandBorder}}}"
+                                    Property="Border.BorderBrush"/>
+                            <Setter TargetName="PART_ComboThumb"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandedExpandBackground}}}"
+                                    Property="Border.Background"/>
+                            <Setter TargetName="PART_ComboThumb"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandedExpandForeground}}}"
+                                    Property="TextElement.Foreground"/>
+                            <Setter TargetName="PART_ComboThumbInner" Property="Border.BorderThickness" Value="1"/>
+                            <Setter TargetName="PART_ComboThumbInner"
+                                    Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxExpandedExpandBorderInner}}}"
+                                    Property="Border.BorderBrush"/>
+                          </Trigger>
+                          <Trigger Property="UIElement.IsEnabled">
+                            <Setter TargetName="Arrow" Property="Shape.Fill">
+                              <Setter.Value>
+                                <SolidColorBrush>#FFAFAFAF</SolidColorBrush>
+                              </Setter.Value>
+                            </Setter>
+                            <Trigger.Value>
+                              <s:Boolean>False</s:Boolean>
+                            </Trigger.Value>
+                          </Trigger>
+                        </ControlTemplate.Triggers>
+                      </ControlTemplate>
+                    </Setter.Value>
+                  </Setter>
+                </Style>
+              </FrameworkElement.Style>
+            </ToggleButton>
+            <ContentPresenter Margin="{TemplateBinding Control.Padding}"
+                              HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                              SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                              ContentTemplateSelector="{TemplateBinding ItemsControl.ItemTemplateSelector}"
+                              ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                              Content="{TemplateBinding ComboBox.SelectionBoxItem}" IsHitTestVisible="False" Grid.Column="0"/>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="UIElement.IsMouseOver" Value="True">
+              <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverBackground}}}"
+                      Property="Control.Background"/>
+              <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverForeground}}}"
+                      Property="TextElement.Foreground"/>
+              <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverBorder}}}"
+                      Property="Control.BorderBrush"/>
+              <Setter TargetName="ComboToggleButton"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBorder}}}"
+                      Property="Control.BorderBrush"/>
+              <Setter TargetName="ComboToggleButton"
+                      Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=DevCo:Ribbon, ResourceId={x:Static DevCo:RibbonColors.ComboBoxHoverExpandBackground}}}"
+                      Property="Control.Background"/>
+              <Setter TargetName="ComboToggleButton" Property="Control.BorderThickness" Value="1"/>
+            </Trigger>
+            <Trigger SourceName="PART_Popup" Property="Popup.HasDropShadow">
+              <Trigger.Value>
+                <s:Boolean>True</s:Boolean>
+              </Trigger.Value>
+              <Setter TargetName="Shdw" Property="FrameworkElement.Margin">
+                <Setter.Value>
+                  <Thickness>0,0,5,5</Thickness>
+                </Setter.Value>
+              </Setter>
+              <Setter TargetName="Shdw" Property="mwt:SystemDropShadowChrome.Color" Value="#71000000"/>
+            </Trigger>
+            <Trigger Property="ItemsControl.HasItems">
+              <Setter TargetName="DropDownBorder" Property="FrameworkElement.Height">
+                <Setter.Value>
+                  <s:Double>95</s:Double>
+                </Setter.Value>
+              </Setter>
+              <Trigger.Value>
+                <s:Boolean>False</s:Boolean>
+              </Trigger.Value>
+            </Trigger>
+            <Trigger Property="UIElement.IsEnabled">
+              <Setter Property="TextElement.Foreground"
+                      Value="{DynamicResource ResourceKey={x:Static JetSystemColors.GrayTextBrushKey}}"/>
+              <Setter Property="Panel.Background">
+                <Setter.Value>
+                  <SolidColorBrush>#FFF4F4F4</SolidColorBrush>
+                </Setter.Value>
+              </Setter>
+              <Trigger.Value>
+                <s:Boolean>False</s:Boolean>
+              </Trigger.Value>
+            </Trigger>
+            <Trigger Property="ItemsControl.IsGrouping">
+              <Setter Property="ScrollViewer.CanContentScroll">
+                <Setter.Value>
+                  <s:Boolean>False</s:Boolean>
+                </Setter.Value>
+              </Setter>
+              <Trigger.Value>
+                <s:Boolean>True</s:Boolean>
+              </Trigger.Value>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

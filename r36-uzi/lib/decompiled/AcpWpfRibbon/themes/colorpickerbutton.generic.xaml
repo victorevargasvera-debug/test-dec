@@ -1,0 +1,121 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dc="clr-namespace:DevComponents.WpfRibbon"
+                    xmlns:dcc="clr-namespace:DevComponents.WpfRibbon.Converters"
+                    xmlns:WinTheme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Luna">
+  <dcc:ImagePositionToDockConverter x:Key="ImagePositionToDockConverter"/>
+  <dcc:ExpandPositionToDockConverter x:Key="ExpandPositionToDockConverter"/>
+  <dcc:PopupPlacementConverter x:Key="PopupPlacementConverter"/>
+  <Style TargetType="{x:Type dc:ColorPickerButton}">
+    <Setter Property="UIElement.SnapsToDevicePixels" Value="true"/>
+    <Setter Property="dc:ButtonDropDown.Role" Value="DropDown"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type dc:ColorPickerButton}">
+          <dc:ButtonBorder Name="PART_ButtonDropDownBorder" BorderThickness="1,1,1,1"
+                           SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" CornerRadius="2"
+                           Padding="{TemplateBinding Control.Padding}"
+                           ColorClass="{TemplateBinding dc:ButtonDropDown.ColorClass}">
+            <DockPanel LastChildFill="True">
+              <Popup Name="PART_Popup" VerticalOffset="-1" Focusable="False"
+                     AllowsTransparency="{x:Static dc:Ribbon.PopupAllowsTransparency}"
+                     PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                     Placement="{Binding Path=PopupPlacement, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource PopupPlacementConverter}}"
+                     PlacementTarget="{Binding Path=PopupPlacementTarget, RelativeSource={RelativeSource TemplatedParent}}"
+                     IsOpen="{Binding Path=IsPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                <WinTheme:SystemDropShadowChrome FrameworkElement.Name="Shdw" Color="#00FFFFFF">
+                  <ContentControl Name="PART_PopupContent" IsTabStop="False"
+                                  Template="{DynamicResource {ComponentResourceKey ResourceId=PopupTypeMenuContent, TypeInTargetAssembly=dc:ButtonDropDown}}">
+                    <ScrollViewer CanContentScroll="True"
+                                  Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly=FrameworkElement}}">
+                      <ItemsPresenter Margin="1" KeyboardNavigation.TabNavigation="Cycle"
+                                      KeyboardNavigation.DirectionalNavigation="Cycle"
+                                      SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Grid.IsSharedSizeScope="True"/>
+                    </ScrollViewer>
+                  </ContentControl>
+                </WinTheme:SystemDropShadowChrome>
+              </Popup>
+              <DockPanel Margin="1,1,1,1" LastChildFill="True"
+                         Dock="{TemplateBinding dc:ButtonDropDown.ImagePosition, Converter={StaticResource ImagePositionToDockConverter}}">
+                <Border Name="PART_ColorSwatch" BorderThickness="1"
+                        Width="{TemplateBinding dc:ColorPickerButton.ColorSwatchWidth}"
+                        Height="{TemplateBinding dc:ColorPickerButton.ColorSwatchHeight}"
+                        Background="{TemplateBinding dc:ColorPickerButton.SelectedColorBrush}" VerticalAlignment="Center"
+                        BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.ColorPickerButtonColorBorder}}}"
+                        DockPanel.Dock="{TemplateBinding dc:ColorPickerButton.ColorSwatchPosition, Converter={StaticResource ImagePositionToDockConverter}}">
+                  <Path Name="NoColorSelected" Data="M 0,0 L 1,1 M 0,1 L 1,0 " Stretch="Fill" StrokeThickness="0.5"
+                        Visibility="Hidden"
+                        Stroke="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.ColorPickerButtonColorBorder}}}"/>
+                </Border>
+                <ContentPresenter Name="PART_ButtonImage" ContentSource="RenderImage" VerticalAlignment="Center"
+                                  SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                  Content="{TemplateBinding dc:ButtonDropDown.RenderImage}"
+                                  DockPanel.Dock="{TemplateBinding dc:ButtonDropDown.ImagePosition, Converter={StaticResource ImagePositionToDockConverter}}"/>
+              </DockPanel>
+              <dc:ExpandDecorator Name="PART_ButtonExpand" Margin="2,2,2,2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                  Visibility="{TemplateBinding dc:ButtonDropDown.IsExpandVisible}"
+                                  DockPanel.Dock="{TemplateBinding dc:ButtonDropDown.ExpandPosition, Converter={StaticResource ExpandPositionToDockConverter}}"/>
+              <TextBlock Name="PART_ButtonContent" TextWrapping="Wrap" Padding="0" Margin="0"
+                         HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                         VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" TextAlignment="Center"
+                         SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}">
+                <AccessText Name="HeaderAccessText" TextWrapping="Wrap" Text="{TemplateBinding HeaderedItemsControl.Header}"
+                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+                <Path Name="PART_ButtonExpandInline" Margin="3,0,0,2.5" Data="M 0,0 L 2.5,3 5,0 Z"
+                      Fill="{TemplateBinding TextElement.Foreground}" HorizontalAlignment="Left"
+                      VerticalAlignment="Center" Visibility="Collapsed"/>
+              </TextBlock>
+            </DockPanel>
+          </dc:ButtonBorder>
+          <ControlTemplate.Triggers>
+            <Trigger Property="dc:Ribbon.ElementRole" Value="AppMenuDocumentCommand">
+              <Setter TargetName="PART_ButtonExpand" Property="FrameworkElement.Margin" Value="9,2,4,2"/>
+            </Trigger>
+            <Trigger Property="dc:ButtonDropDown.ImagePosition" Value="Right">
+              <Setter Property="Control.HorizontalContentAlignment" Value="Right"/>
+              <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+            </Trigger>
+            <Trigger Property="dc:ButtonDropDown.ImagePosition" Value="Top">
+              <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+              <Setter Property="Control.VerticalContentAlignment" Value="Top"/>
+            </Trigger>
+            <Trigger Property="dc:ButtonDropDown.ImagePosition" Value="Bottom">
+              <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+              <Setter Property="Control.VerticalContentAlignment" Value="Bottom"/>
+            </Trigger>
+            <Trigger Property="dc:ButtonDropDown.PartVisibility" Value="ImageOnly">
+              <Setter TargetName="PART_ButtonImage" Value="{x:Static Visibility.Visible}" Property="UIElement.Visibility"/>
+              <Setter TargetName="PART_ButtonContent" Value="{x:Static Visibility.Collapsed}"
+                      Property="UIElement.Visibility"/>
+            </Trigger>
+            <Trigger Property="dc:ButtonDropDown.PartVisibility" Value="HeaderOnly">
+              <Setter TargetName="PART_ButtonImage" Value="{x:Static Visibility.Collapsed}"
+                      Property="UIElement.Visibility"/>
+              <Setter TargetName="PART_ButtonContent" Value="{x:Static Visibility.Visible}"
+                      Property="UIElement.Visibility"/>
+            </Trigger>
+            <Trigger Property="dc:ButtonDropDown.RenderImage" Value="{x:Null}">
+              <Setter TargetName="PART_ButtonImage" Value="{x:Static Visibility.Collapsed}"
+                      Property="UIElement.Visibility"/>
+            </Trigger>
+            <Trigger SourceName="PART_Popup" Property="Popup.HasDropShadow" Value="True">
+              <Setter TargetName="Shdw" Property="FrameworkElement.Margin" Value="0,0,5,5"/>
+              <Setter TargetName="Shdw" Property="WinTheme:SystemDropShadowChrome.Color" Value="#71000000"/>
+            </Trigger>
+            <Trigger Property="UIElement.IsEnabled" Value="False">
+              <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:Ribbon, ResourceId={x:Static dc:RibbonColors.ButtonDisabledForeground}}}"
+                      Property="TextElement.Foreground"/>
+            </Trigger>
+            <Trigger Value="{x:Null}" Property="dc:ColorPickerButton.SelectedColorBrush">
+              <Setter TargetName="NoColorSelected" Property="UIElement.Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="dc:ColorPickerButton.ColorSwatchBorder" Value="False">
+              <Setter TargetName="PART_ColorSwatch" Property="Border.BorderThickness" Value="0"/>
+              <Setter TargetName="NoColorSelected" Property="UIElement.Visibility" Value="Hidden"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>
