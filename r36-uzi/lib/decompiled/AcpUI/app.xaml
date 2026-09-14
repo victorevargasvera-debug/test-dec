@@ -1,0 +1,135 @@
+<Page x:Class="AcpUI.AcpIuiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+      xmlns:ui="clr-namespace:System.Windows.Documents;assembly=PresentationUI"
+      xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+      xmlns:dd="clr-namespace:DevComponents.WpfDock;assembly=AcpWpfDock"
+      xmlns:AcpCommonLibNS="clr-namespace:AcpCommonLib;assembly=AcpCommonLib"
+      xmlns:AcpCommonResources="clr-namespace:AcpCommonResources;assembly=AcpCommonResources"
+      xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common"
+      xmlns:AcpUINS="clr-namespace:AcpUI"
+      xmlns:browser="clr-namespace:ACPBrowser;assembly=ACPBrowser"
+      Title="AcpIuiPage">
+  <FrameworkElement.Resources>
+    <AcpUICommonNS:InvalidFieldsDockWndHeaderConverter x:Key="InvalidFieldsHeaderConverter"/>
+    <Style x:Key="Image16x16Style" TargetType="{x:Type Image}">
+      <Setter Property="FrameworkElement.Height" Value="16"/>
+      <Setter Property="FrameworkElement.Width" Value="16"/>
+    </Style>
+  </FrameworkElement.Resources>
+  <DockPanel Background="{DynamicResource LightSilverGradBrush}">
+    <Frame Name="StatusBarFrame" DockPanel.Dock="Bottom" MinHeight="25"/>
+    <dd:DockSite dd:DockWindow.Activated="DockWindowActivated" dd:DockWindow.Deactivated="DockWindowDeactivated"
+                 dd:DockWindow.AutoHideOpenChanged="DockWindowActivated"
+                 dd:DockWindow.AutoHideChanged="AutoHideChanged" dd:DockWindow.Closing="DockWindowClosing"
+                 dd:DockWindow.Closed="DockWindowClosed" Name="AppDock" LicenseKey="DAD80300DA22">
+      <dd:DockSite.SplitPanels>
+        <dd:SplitPanel Name="NavPanel" dd:DockSite.Dock="Left" dd:DockSite.DockSize="300">
+          <dd:DockWindowGroup Name="NavPanelGrp">
+            <AcpUINS:AcpDockWindow x:Name="NavWindowDockWnd" Header="{x:Static AcpCommonResources:AcpResources.Navigation_Id}"
+                                   ImageSource="images/AppWindow.bmp" CanDockBottom="False" CanDockTop="False"
+                                   CanDockAsDocument="False" IsAutoHide="False">
+              <Frame Name="FrameLeft" NavigationUIVisibility="Hidden" MinWidth="50"/>
+            </AcpUINS:AcpDockWindow>
+          </dd:DockWindowGroup>
+        </dd:SplitPanel>
+        <dd:SplitPanel Name="TaskPanel" dd:DockSite.Dock="Right" dd:DockSite.DockSize="200">
+          <dd:DockWindowGroup Name="TaskPanelGrp">
+            <AcpUINS:AcpDockWindow x:Name="TaskWindowDockWnd" Header="{x:Static AcpCommonResources:AcpResources.Field_Information}"
+                                   ImageSource="images/Help.png" CanDockBottom="False" CanDockAsDocument="False" IsAutoHide="True">
+              <Frame Name="FrameRight">
+                <ContentControl.Content>
+                  <browser:ContextHelp x:Name="browser"/>
+                </ContentControl.Content>
+              </Frame>
+            </AcpUINS:AcpDockWindow>
+          </dd:DockWindowGroup>
+        </dd:SplitPanel>
+      </dd:DockSite.SplitPanels>
+      <dd:SplitPanel>
+        <DockPanel>
+          <dd:DockSite dd:DockWindow.Activated="DockWindowActivated" dd:DockWindow.Deactivated="DockWindowDeactivated"
+                       dd:DockWindow.AutoHideOpenChanged="DockWindowActivated"
+                       dd:DockWindow.AutoHideChanged="AutoHideChanged" dd:DockWindow.Closing="DockWindowClosing"
+                       dd:DockWindow.Closed="DockWindowClosed" Name="CenterDock" LicenseKey="DAD80300DA22">
+            <dd:DockSite.SplitPanels>
+              <dd:SplitPanel Name="EventPanel" dd:DockSite.Dock="Bottom" dd:DockSite.DockSize="150">
+                <dd:DockWindowGroup Name="EventPanelGrp">
+                  <AcpUINS:AcpDockWindow x:Name="OutputDockWnd" Header="{x:Static AcpCommonResources:AcpResources.Output_Id}"
+                                         CanAutoHide="True" CanDockAsDocument="False" IsAutoHide="True">
+                    <Frame Name="FrameOutput"/>
+                    <dd:DockWindow.Image>
+                      <Image Style="{StaticResource Image16x16Style}" Source="images/RedXClipboard.png"/>
+                    </dd:DockWindow.Image>
+                  </AcpUINS:AcpDockWindow>
+                  <AcpUINS:AcpDockWindow x:Name="InvalidFieldsDockWnd" CanAutoHide="True" CanDockAsDocument="False" IsAutoHide="True"
+                                         Header="{Binding Path=UiCount, Converter={StaticResource InvalidFieldsHeaderConverter}, Mode=OneWay}">
+                    <Frame LoadCompleted="FrameInvalidFields_LoadCompleted" Name="FrameInvalidFields"
+                           JournalOwnership="OwnsJournal" NavigationUIVisibility="Hidden"/>
+                    <dd:DockWindow.Image>
+                      <Image Style="{StaticResource Image16x16Style}" Source="images/invalid.ico"/>
+                    </dd:DockWindow.Image>
+                  </AcpUINS:AcpDockWindow>
+                  <AcpUINS:AcpDockWindow x:Name="DnDDockWnd" Header="{x:Static AcpCommonResources:AcpResources.Drag_and_Drop_Report}"
+                                         CanAutoHide="True" CanDockAsDocument="False" IsAutoHide="True">
+                    <Frame LoadCompleted="FrameDnD_LoadCompleted" Name="FrameDnD" JournalOwnership="OwnsJournal"
+                           NavigationUIVisibility="Hidden"/>
+                    <dd:DockWindow.Image>
+                      <Image Style="{StaticResource Image16x16Style}" Source="images/CopyIcon.png"/>
+                    </dd:DockWindow.Image>
+                  </AcpUINS:AcpDockWindow>
+                  <AcpUINS:AcpDockWindow x:Name="ImpExpDockWnd" Header="{x:Static AcpCommonResources:AcpResources.Import_Export_Report}"
+                                         CanAutoHide="True" CanDockAsDocument="False" IsAutoHide="True">
+                    <Frame LoadCompleted="FrameImpExp_LoadCompleted" Name="FrameImpExp" JournalOwnership="OwnsJournal"
+                           NavigationUIVisibility="Hidden"/>
+                    <dd:DockWindow.Image>
+                      <Image Style="{StaticResource Image16x16Style}" Source="images/NewReport.png"/>
+                    </dd:DockWindow.Image>
+                  </AcpUINS:AcpDockWindow>
+                  <AcpUINS:AcpDockWindow x:Name="ComparatorDockWnd" Header="{x:Static AcpCommonResources:AcpResources.Comparator_Report}"
+                                         CanAutoHide="True" CanDockAsDocument="False" IsAutoHide="True">
+                    <Frame LoadCompleted="FrameComparator_LoadCompleted" Name="FrameComparator" JournalOwnership="OwnsJournal"
+                           NavigationUIVisibility="Hidden"/>
+                    <dd:DockWindow.Image>
+                      <Image Style="{StaticResource Image16x16Style}" Source="images/GreenCheckClipboard.png"/>
+                    </dd:DockWindow.Image>
+                  </AcpUINS:AcpDockWindow>
+                  <AcpUINS:AcpDockWindow x:Name="FillUpFillDownDockWnd"
+                                         Header="{x:Static AcpCommonResources:AcpResources.Fill_Up_Fill_Down_Report}" CanAutoHide="True"
+                                         CanDockAsDocument="False" IsAutoHide="True">
+                    <Frame LoadCompleted="FrameFillUpFillDown_LoadCompleted" Name="FrameFillUpFillDown"
+                           JournalOwnership="OwnsJournal" NavigationUIVisibility="Hidden"/>
+                    <dd:DockWindow.Image>
+                      <Image Style="{StaticResource Image16x16Style}" Source="images/SychronizeListHSRotated.png"/>
+                    </dd:DockWindow.Image>
+                  </AcpUINS:AcpDockWindow>
+                  <AcpUINS:AcpDockWindow x:Name="FindResultsDockWnd" Header="{x:Static AcpCommonResources:AcpResources.Find_Results}"
+                                         CanAutoHide="True" CanDockAsDocument="False" IsAutoHide="True">
+                    <Frame LoadCompleted="FrameFindResults_LoadCompleted" Name="FrameFindResults"
+                           JournalOwnership="OwnsJournal" NavigationUIVisibility="Hidden"/>
+                    <dd:DockWindow.Image>
+                      <Image Style="{StaticResource Image16x16Style}" Source="images/Find.png"/>
+                    </dd:DockWindow.Image>
+                  </AcpUINS:AcpDockWindow>
+                  <AcpUINS:AcpDockWindow x:Name="SysKeyReportWnd" Header="{x:Static AcpCommonResources:AcpResources.System_Key_Report}"
+                                         CanAutoHide="True" CanDockAsDocument="False" IsAutoHide="True">
+                    <Frame LoadCompleted="FrameSysKeyReport_LoadCompleted" Name="FrameSysKeyReport"
+                           JournalOwnership="OwnsJournal" NavigationUIVisibility="Hidden"/>
+                    <dd:DockWindow.Image>
+                      <Image Style="{StaticResource Image16x16Style}" Source="images/ReportLoadedSystemKeys.png"/>
+                    </dd:DockWindow.Image>
+                  </AcpUINS:AcpDockWindow>
+                </dd:DockWindowGroup>
+              </dd:SplitPanel>
+            </dd:DockSite.SplitPanels>
+            <dd:SplitPanel>
+              <Frame Navigated="FrameCenterTop_Navigated" Name="FrameCenterTop" JournalOwnership="OwnsJournal"
+                     NavigationUIVisibility="Visible" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+            </dd:SplitPanel>
+          </dd:DockSite>
+        </DockPanel>
+      </dd:SplitPanel>
+    </dd:DockSite>
+  </DockPanel>
+</Page>

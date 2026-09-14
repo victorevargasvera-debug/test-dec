@@ -1,0 +1,56 @@
+<UserControl x:Class="AcpUI.AcpMenuItems"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:AcpUINS="clr-namespace:AcpUI"
+             xmlns:AcpCommonResources="clr-namespace:AcpCommonResources;assembly=AcpCommonResources"
+             xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common"
+             Height="210" Width="300">
+  <FrameworkElement.Resources>
+    <AcpUICommonNS:MenuItemsRemoveBtnConverter x:Key="menuItemsRemoveBtnConverter"/>
+    <AcpUICommonNS:MenuItemsAddBtnConverter x:Key="menuItemsAddBtnConverter"/>
+  </FrameworkElement.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition x:Name="MenuItemsLabelRowHeight"/>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="100"/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+    <AcpUINS:AcpLabel Grid.Row="0" Grid.Column="0" Content="{x:Static AcpCommonResources:AcpResources.Available_Items}"/>
+    <AcpUINS:AcpListBox x:Name="ListBoxAvailableMenuItems" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
+                        DisplayMemberPath="ItemName" SelectedValuePath="ItemName"
+                        ItemsSource="{Binding Path=AvailableItemsItemsSource, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpMenuItems}}}"/>
+    <AcpUINS:AcpButton x:Name="BtnAddMenuItem" Click="BtnAddMenuItem_Click" Margin="10,0,10,0" Grid.Row="1"
+                       Grid.Column="1" Height="27" VerticalAlignment="Bottom"
+                       Content="{x:Static AcpCommonResources:AcpResources.Add_Id}"
+                       Width="{Binding ElementName=BtnRemoveMenuItem, Path=Width}">
+      <UIElement.IsEnabled>
+        <MultiBinding Converter="{StaticResource menuItemsAddBtnConverter}">
+          <Binding ElementName="ListBoxSelectedMenuItems" Path="ItemsSource.Count" Mode="OneWay"/>
+          <Binding Path="MaximumItemsAllowed" Mode="OneWay"
+                   RelativeSource="{RelativeSource AncestorType={x:Type AcpUINS:AcpMenuItems}}"/>
+          <Binding ElementName="ListBoxAvailableMenuItems" Path="SelectedIndex" Mode="OneWay"/>
+        </MultiBinding>
+      </UIElement.IsEnabled>
+    </AcpUINS:AcpButton>
+    <AcpUINS:AcpButton x:Name="BtnRemoveMenuItem" Click="BtnRemoveMenuItem_Click" Margin="10,0,10,0" Grid.Row="2"
+                       Grid.Column="1" Height="27" VerticalAlignment="Top"
+                       Content="{x:Static AcpCommonResources:AcpResources.Remove_Id}">
+      <UIElement.IsEnabled>
+        <MultiBinding Converter="{StaticResource menuItemsRemoveBtnConverter}">
+          <Binding ElementName="ListBoxSelectedMenuItems" Path="ItemsSource.Count" Mode="OneWay"/>
+          <Binding ElementName="ListBoxSelectedMenuItems" Path="SelectedIndex" Mode="OneWay"/>
+        </MultiBinding>
+      </UIElement.IsEnabled>
+    </AcpUINS:AcpButton>
+    <AcpUINS:AcpLabel Grid.Row="0" Grid.Column="2" Content="{x:Static AcpCommonResources:AcpResources.Selected_Items}"/>
+    <AcpUINS:AcpListBox x:Name="ListBoxSelectedMenuItems" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2"
+                        DisplayMemberPath="ItemName" SelectedValuePath="ItemName"
+                        MyBLObject="{Binding Path=MyBLObject, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpMenuItems}}}"
+                        ItemsSource="{Binding Path=SelectedItemsItemsSource, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpMenuItems}}}"/>
+  </Grid>
+</UserControl>

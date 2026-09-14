@@ -1,0 +1,31 @@
+<UserControl x:Class="AcpUI.AcpTextBoxDecHex"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:AcpUINS="clr-namespace:AcpUI"
+             xmlns:AcpCommonResources="clr-namespace:AcpCommonResources;assembly=AcpCommonResources"
+             xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common"
+             xmlns:igEditors="http://infragistics.com/Editors">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="5*"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="5*"/>
+    </Grid.ColumnDefinitions>
+    <AcpUINS:AcpTextBox x:Name="AcpTextBoxMemberDec" PreviewKeyDown="OnKeyPressUpDownNoAction" Grid.Row="0" Grid.Column="0"
+                        MaskType="{number:0-268435455}" ToolTip="{x:Static AcpCommonResources:AcpResources.Decimal_Value}"
+                        Text="{Binding Path=Text, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxDecHex}}}"
+                        IsAcpEditable="{Binding Path=IsAcpEditable, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxDecHex}}}"
+                        IsAcpValid="{Binding Path=IsAcpValid, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxDecHex}}}"
+                        IsAcpApplicable="{Binding Path=IsAcpApplicable, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxDecHex}}}"/>
+    <AcpUINS:AcpLabel Grid.Row="0" Grid.Column="1" ContextMenu="{x:Null}">-</AcpUINS:AcpLabel>
+    <AcpUINS:AcpTextBox x:Name="AcpTextBoxMemberHex" Grid.Row="0" Grid.Column="2" MaskType="{char:7:0-9a-fA-F}"
+                        ToolTip="{x:Static AcpCommonResources:AcpResources.Hexadecimal_Value}"
+                        Text="{Binding Path=HexText, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxDecHex}}}"
+                        IsAcpEditable="{Binding Path=IsAcpEditable, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxDecHex}}}"
+                        IsAcpValid="{Binding Path=IsAcpValid, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxDecHex}}}"
+                        IsAcpApplicable="{Binding Path=IsAcpApplicable, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxDecHex}}}"/>
+  </Grid>
+</UserControl>

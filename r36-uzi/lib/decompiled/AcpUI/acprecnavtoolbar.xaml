@@ -1,0 +1,669 @@
+<UserControl x:Class="AcpUI.AcpRecNavToolbar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:AcpUINS="clr-namespace:AcpUI"
+             xmlns:AcpCommonResources="clr-namespace:AcpCommonResources;assembly=AcpCommonResources"
+             xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:igEditors="http://infragistics.com/Editors"
+             Loaded="OnLoaded" Unloaded="OnUnloaded" HorizontalContentAlignment="Left" Height="23"
+             Background="{x:Null}">
+  <FrameworkElement.Resources>
+    <LinearGradientBrush x:Key="LightBrush" StartPoint="0,0" EndPoint="0,1">
+      <GradientBrush.GradientStops>
+        <GradientStopCollection>
+          <GradientStop Color="#FFF" Offset="0.0"/>
+          <GradientStop Color="#EEE" Offset="1.0"/>
+        </GradientStopCollection>
+      </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    <Style x:Key="ModeButtonTemplate" TargetType="{x:Type AcpUINS:AcpButton}">
+      <Style.Triggers>
+        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpRecNavToolbar}}, Path=TableMode}"
+                     Value="True">
+          <Setter Property="Control.Template">
+            <Setter.Value>
+              <ControlTemplate TargetType="{x:Type Button}">
+                <Grid>
+                  <Canvas>
+                    <Path x:Name="path" Width="32.1314" Height="30.9528" Canvas.Left="4.5197" Canvas.Top="5.97685"
+                          Stretch="Fill" StrokeThickness="0.786047" StrokeMiterLimit="2.75" Stroke="#FF135791"
+                          Data="F1 M 23.1682,10.5449 C 22.8357,10.5449 22.3898,10.2622 22.1765,9.9165 L 20.3795,6.99756 C 20.1694,6.65112 19.7228,6.36987 19.3909,6.36987 L 8.27307,6.36987 C 7.94055,6.36987 7.49524,6.65112 7.28333,6.99756 L 4.91272,10.6978 C 4.91272,10.781 4.91272,11.2563 4.91272,35.7231 4.91272,36.1699 5.18457,36.5366 5.51709,36.5366 L 35.655,36.5366 C 35.9875,36.5366 36.2581,36.1699 36.2581,35.7231 L 36.2581,11.3584 C 36.2581,10.9106 35.9875,10.5449 35.655,10.5449 L 23.1682,10.5449 Z">
+                      <Shape.Fill>
+                        <LinearGradientBrush StartPoint="0.496404,1.00995" EndPoint="0.496404,0.470796">
+                          <Brush.RelativeTransform>
+                            <TransformGroup>
+                              <ScaleTransform ScaleX="1" ScaleY="1"/>
+                              <SkewTransform AngleX="0" AngleY="0"/>
+                              <RotateTransform Angle="0"/>
+                              <TranslateTransform X="0" Y="0"/>
+                            </TransformGroup>
+                          </Brush.RelativeTransform>
+                          <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                          <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                        </LinearGradientBrush>
+                      </Shape.Fill>
+                    </Path>
+                  </Canvas>
+                  <ContentPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                    HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" RecognizesAccessKey="True"/>
+                </Grid>
+                <ControlTemplate.Triggers>
+                  <Trigger Property="UIElement.IsFocused" Value="True"/>
+                  <Trigger Property="Button.IsDefaulted" Value="True"/>
+                  <Trigger Property="UIElement.IsMouseOver" Value="True">
+                    <Setter TargetName="path" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+                  </Trigger>
+                  <Trigger Property="ButtonBase.IsPressed" Value="True">
+                    <Setter TargetName="path" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+                  </Trigger>
+                  <Trigger Property="UIElement.IsEnabled" Value="False"/>
+                </ControlTemplate.Triggers>
+              </ControlTemplate>
+            </Setter.Value>
+          </Setter>
+        </DataTrigger>
+        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpRecNavToolbar}}, Path=TableMode}"
+                     Value="False">
+          <Setter Property="Control.Template">
+            <Setter.Value>
+              <ControlTemplate TargetType="{x:Type Button}">
+                <Grid>
+                  <Canvas>
+                    <Rectangle x:Name="rectangle" Width="41.595" Height="41.595" Canvas.Left="0.000244141"
+                               Canvas.Top="0.000488281" Stretch="Fill"/>
+                    <Viewbox Width="32.8008" Height="31.8333" Canvas.Left="4.80566" Canvas.Top="5.53613">
+                      <Canvas Width="32.8008" Height="31.8333">
+                        <Rectangle x:Name="rectangle1" Width="8.19922" Height="3.56787" Canvas.Left="0.75" Canvas.Top="0.75"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="0.216499,0.388907" EndPoint="4.04806,0.388907">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle2" Width="8.19922" Height="3.56787" Canvas.Left="0.75" Canvas.Top="5.21094"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="3.91817,1.18486" EndPoint="-0.043268,1.18486">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle3" Width="8.20056" Height="3.56787" Canvas.Left="8.44922" Canvas.Top="0.75"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-0.783365,0.388907" EndPoint="3.04752,0.388907">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle4" Width="8.20056" Height="3.56787" Canvas.Left="8.44922" Canvas.Top="5.21094"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="2.91766,1.18486" EndPoint="-1.04309,1.18486">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle5" Width="8.20056" Height="3.56787" Canvas.Left="16.1498" Canvas.Top="0.75"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-1.78336,0.388907" EndPoint="2.04752,0.388907">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle6" Width="8.20056" Height="3.56787" Canvas.Left="16.1498" Canvas.Top="5.21094"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="1.91766,1.18486" EndPoint="-2.04309,1.18486">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle7" Width="8.20044" Height="3.56787" Canvas.Left="23.8503" Canvas.Top="0.75"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-2.78341,0.388907" EndPoint="1.04754,0.388907">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle8" Width="8.20044" Height="3.56787" Canvas.Left="23.8503" Canvas.Top="5.21094"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="0.917679,1.18486" EndPoint="-3.04313,1.18486">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle9" Width="8.19922" Height="3.56763" Canvas.Left="0.75" Canvas.Top="9.67188"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="0.0541445,2.06439" EndPoint="3.98311,2.06439">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle10" Width="8.20056" Height="3.56763" Canvas.Left="8.44922" Canvas.Top="9.67188"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-0.945691,2.06439" EndPoint="2.98259,2.06439">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle11" Width="8.20056" Height="3.56763" Canvas.Left="16.1498" Canvas.Top="9.67188"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-1.94569,2.06439" EndPoint="1.98259,2.06439">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle12" Width="8.20044" Height="3.56763" Canvas.Left="23.8503" Canvas.Top="9.67188"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-2.94574,2.06439" EndPoint="0.98261,2.06439">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle13" Width="8.19922" Height="3.56787" Canvas.Left="0.75" Canvas.Top="14.1326"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="3.91817,-1.72322" EndPoint="-0.043268,-1.72322">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle14" Width="8.20056" Height="3.56787" Canvas.Left="8.44922" Canvas.Top="14.1326"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="2.91766,-1.72322" EndPoint="-1.04309,-1.72322">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle15" Width="8.20056" Height="3.56787" Canvas.Left="16.1498" Canvas.Top="14.1326"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="1.91766,-1.72322" EndPoint="-2.04309,-1.72322">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle16" Width="8.20044" Height="3.56787" Canvas.Left="23.8503" Canvas.Top="14.1326"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="0.917679,-1.72322" EndPoint="-3.04313,-1.72322">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle17" Width="8.19922" Height="3.56787" Canvas.Left="0.75" Canvas.Top="18.5935"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="0.0541445,-0.843864" EndPoint="3.98311,-0.843864">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle18" Width="8.20056" Height="3.56787" Canvas.Left="8.44922" Canvas.Top="18.5935"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-0.945691,-0.843864" EndPoint="2.98259,-0.843864">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle19" Width="8.20056" Height="3.56787" Canvas.Left="16.1498" Canvas.Top="18.5935"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-1.94569,-0.843864" EndPoint="1.98259,-0.843864">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle20" Width="8.20044" Height="3.56787" Canvas.Left="23.8503" Canvas.Top="18.5935"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-2.94574,-0.843864" EndPoint="0.98261,-0.843864">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle21" Width="8.19922" Height="3.56787" Canvas.Left="0.75" Canvas.Top="23.0544"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="3.91817,-4.63139" EndPoint="-0.043268,-4.63139">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle22" Width="8.20056" Height="3.56787" Canvas.Left="8.44922" Canvas.Top="23.0544"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="2.91766,-4.63139" EndPoint="-1.04309,-4.63139">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle23" Width="8.20056" Height="3.56787" Canvas.Left="16.1498" Canvas.Top="23.0544"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="1.91766,-4.63139" EndPoint="-2.04309,-4.63139">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle24" Width="8.20044" Height="3.56787" Canvas.Left="23.8503" Canvas.Top="23.0544"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="0.917679,-4.63139" EndPoint="-3.04313,-4.63139">
+                              <GradientStop Color="#FF818181" Offset="0"/>
+                              <GradientStop Color="#FFFDFDFD" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle25" Width="8.19922" Height="3.56787" Canvas.Left="0.75" Canvas.Top="27.5154"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="0.0541445,-3.75203" EndPoint="3.98311,-3.75203">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle26" Width="8.20056" Height="3.56787" Canvas.Left="8.44922" Canvas.Top="27.5154"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-0.945691,-3.75203" EndPoint="2.98259,-3.75203">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle27" Width="8.20056" Height="3.56787" Canvas.Left="16.1498" Canvas.Top="27.5154"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-1.94569,-3.75203" EndPoint="1.98259,-3.75203">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="rectangle28" Width="8.20044" Height="3.56787" Canvas.Left="23.8503" Canvas.Top="27.5154"
+                                   Stretch="Fill" StrokeThickness="0.5" StrokeMiterLimit="2.75" Stroke="#FF135791">
+                          <Shape.Fill>
+                            <LinearGradientBrush StartPoint="-2.94574,-3.75203" EndPoint="0.98261,-3.75203">
+                              <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                              <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                            </LinearGradientBrush>
+                          </Shape.Fill>
+                        </Rectangle>
+                      </Canvas>
+                    </Viewbox>
+                  </Canvas>
+                  <ContentPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                    HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" RecognizesAccessKey="True"/>
+                </Grid>
+                <ControlTemplate.Triggers>
+                  <Trigger Property="UIElement.IsFocused" Value="True"/>
+                  <Trigger Property="Button.IsDefaulted" Value="True"/>
+                  <Trigger Property="UIElement.IsMouseOver" Value="True">
+                    <Setter TargetName="rectangle" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+                  </Trigger>
+                  <Trigger Property="ButtonBase.IsPressed" Value="True">
+                    <Setter TargetName="rectangle" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+                  </Trigger>
+                  <Trigger Property="UIElement.IsEnabled" Value="False"/>
+                </ControlTemplate.Triggers>
+              </ControlTemplate>
+            </Setter.Value>
+          </Setter>
+        </DataTrigger>
+      </Style.Triggers>
+    </Style>
+    <Style x:Key="FirstButtonStyle" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid>
+              <Canvas>
+                <Viewbox Width="16.9678" Height="26.958" Canvas.Left="12.498" Canvas.Top="9.076">
+                  <Canvas Width="16.9678" Height="26.958">
+                    <Rectangle x:Name="rectangle1" Width="3.05774" Height="26.5415" Canvas.Left="0" Canvas.Top="0.208252"
+                               Stretch="Fill" Fill="#FF000000"/>
+                    <Path x:Name="path" Width="13.4792" Height="26.958" Canvas.Left="3.48853" Canvas.Top="0" Stretch="Fill"
+                          Fill="#FF000000" Data="F1 M 3.48853,13.479 L 16.9678,0 16.9678,26.958 3.48853,13.479 Z"/>
+                  </Canvas>
+                </Viewbox>
+              </Canvas>
+              <ContentPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" RecognizesAccessKey="True"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="UIElement.IsFocused" Value="True"/>
+              <Trigger Property="Button.IsDefaulted" Value="True"/>
+              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+                <Setter TargetName="rectangle1" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+                <Setter TargetName="rectangle1" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonDisabledColor}" Property="Shape.Fill"/>
+                <Setter TargetName="rectangle1" Value="{DynamicResource NavButtonDisabledColor}" Property="Shape.Fill"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="PreviousButtonStyle" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid>
+              <Canvas>
+                <Path x:Name="path" Width="13.4791" Height="26.958" Canvas.Left="11.5178" Canvas.Top="7.31934"
+                      Stretch="Fill" Fill="#FF000000"
+                      Data="F1 M 11.5178,20.7983 L 24.9969,7.31934 24.9969,34.2773 11.5178,20.7983 Z"/>
+              </Canvas>
+              <ContentPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" RecognizesAccessKey="True"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="UIElement.IsFocused" Value="True"/>
+              <Trigger Property="Button.IsDefaulted" Value="True"/>
+              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonDisabledColor}" Property="Shape.Fill"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="NextButtonStyle" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid>
+              <Canvas>
+                <Path x:Name="path" Width="13.479" Height="26.958" Canvas.Left="16.0985" Canvas.Top="7.3186"
+                      Stretch="Fill" Fill="#FF000000"
+                      Data="F1 M 29.5775,20.7976 L 16.0985,34.2766 16.0985,7.3186 29.5775,20.7976 Z"/>
+              </Canvas>
+              <ContentPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" RecognizesAccessKey="True"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="UIElement.IsFocused" Value="True"/>
+              <Trigger Property="Button.IsDefaulted" Value="True"/>
+              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonDisabledColor}" Property="Shape.Fill"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="LastButtonStyle" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid>
+              <Canvas>
+                <Viewbox Width="16.968" Height="26.9583" Canvas.Left="12.3135" Canvas.Top="7.31836">
+                  <Canvas Width="16.968" Height="26.9583">
+                    <Rectangle x:Name="rectangle1" Width="3.05762" Height="26.5413" Canvas.Left="13.9104" Canvas.Top="0.208496"
+                               Stretch="Fill" Fill="#FF000000"/>
+                    <Path x:Name="path" Width="13.4792" Height="26.958" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"
+                          Fill="#FF000000" Data="F1 M 13.4792,13.479 L 0,26.958 0,0 13.4792,13.479 Z"/>
+                  </Canvas>
+                </Viewbox>
+              </Canvas>
+              <ContentPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" RecognizesAccessKey="True"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="UIElement.IsFocused" Value="True"/>
+              <Trigger Property="Button.IsDefaulted" Value="True"/>
+              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+                <Setter TargetName="rectangle1" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+                <Setter TargetName="rectangle1" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter TargetName="path" Value="{DynamicResource NavButtonDisabledColor}" Property="Shape.Fill"/>
+                <Setter TargetName="rectangle1" Value="{DynamicResource NavButtonDisabledColor}" Property="Shape.Fill"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="DeleteButtonStyle" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid>
+              <Canvas/>
+              <ContentPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" RecognizesAccessKey="True"/>
+              <Image Name="TrashCanImage" Source="icons/IconEnabled.ico"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter TargetName="TrashCanImage" Property="Image.Source" Value="icons/IconRollover.ico"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter TargetName="TrashCanImage" Property="Image.Source" Value="icons/IconClick.ico"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter TargetName="TrashCanImage" Property="Image.Source" Value="icons/trash.gif"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="GoToRecStyle" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid>
+              <Canvas x:Name="Add_into_button_Copy">
+                <Path x:Name="path1" Stretch="Fill"
+                      Data="F1 M 2191.24,2299.18 L 2177.09,2285.03 2177.09,2293.69 2162.62,2293.69 2162.62,2304.67 2177.09,2304.67 2177.09,2313.33 2191.24,2299.18 Z"
+                      Width="23.688" Height="23.423" Canvas.Left="5.041" Canvas.Top="8.297">
+                  <Shape.Fill>
+                    <LinearGradientBrush StartPoint="0.496404,1.00995" EndPoint="0.496404,0.470796">
+                      <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                      <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                    </LinearGradientBrush>
+                  </Shape.Fill>
+                </Path>
+                <Path x:Name="path2" Stretch="Fill" StrokeThickness="3.55629" StrokeLineJoin="Round" Stroke="#FF000000"
+                      Data="F1 M 2186.14,2280.14 L 2186.14,2285.09 2193.77,2292.72 2206.87,2292.72 " Width="20.103"
+                      Height="13.358" Canvas.Left="23.038" Canvas.Top="2.438"/>
+                <Path x:Name="path3" Stretch="Fill" StrokeThickness="3.55629" StrokeLineJoin="Round" Stroke="#FF000000"
+                      Data="F1 M 2186.14,2318.22 L 2186.14,2313.27 2193.77,2305.64 2206.87,2305.64 " Width="20.103"
+                      Height="13.359" Canvas.Left="23.038" Canvas.Top="23.94"/>
+                <AcpUINS:AcpTextBox x:Name="TxtGoTo" TextChanged="TxtGoToTxtNumToAdd_TextChanged" LostFocus="OnLostFocus" Width="50"
+                                    Height="Auto" TextWrapping="NoWrap" MaskType="nnnn" MaxLength="4" Canvas.Left="37.236"
+                                    Canvas.Top="8.963"
+                                    Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpRecNavToolbar}}, Path=GoToRecNum, UpdateSourceTrigger=PropertyChanged}">
+                </AcpUINS:AcpTextBox>
+              </Canvas>
+              <ContentPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" RecognizesAccessKey="True"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="UIElement.IsFocused" Value="True"/>
+              <Trigger Property="Button.IsDefaulted" Value="True"/>
+              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter TargetName="path1" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter TargetName="path1" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter TargetName="path1" Value="{DynamicResource NavButtonDisabledColor}" Property="Shape.Fill"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="AddMultiple" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid Width="86.907">
+              <Path x:Name="path1" Stretch="Fill"
+                    Data="F1 M 335.189,142.045 L 340.159,142.045 340.159,137.075 349.27,137.075 349.27,142.045 354.241,142.045 354.241,151.156 349.27,151.156 349.27,156.126 340.159,156.126 340.159,151.156 335.189,151.156 335.189,142.045 Z"
+                    Margin="0,7.801,7.063,8.423" HorizontalAlignment="Right" Width="19.052">
+                <Shape.Fill>
+                  <LinearGradientBrush StartPoint="0.496404,1.00995" EndPoint="0.496404,0.470796">
+                    <GradientStop Color="#FF78D3EF" Offset="0.0120968"/>
+                    <GradientStop Color="#FF2C8AE7" Offset="1"/>
+                  </LinearGradientBrush>
+                </Shape.Fill>
+              </Path>
+              <AcpUINS:AcpTextBox x:Name="TxtNumToAdd" TextChanged="TxtGoToTxtNumToAdd_TextChanged" MouseMove="TxtNumToAdd_MouseMove"
+                                  LostFocus="OnLostFocus" Margin="4.361,8.584,31.54,8.757" TextWrapping="NoWrap"
+                                  MaskType="{Binding RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpRecNavToolbar}}, Path=DefaultMaskType, UpdateSourceTrigger=PropertyChanged}"
+                                  MaxLength="{Binding RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpRecNavToolbar}}, Path=MaskMaxLength, UpdateSourceTrigger=PropertyChanged}"
+                                  Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpRecNavToolbar}}, Path=AddMultQty, UpdateSourceTrigger=PropertyChanged}"
+                                  Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpRecNavToolbar}}, Path=IsAddMultQtyEn, Converter={StaticResource BooleanToVisibility}}"
+                                  ToolTip="{Binding RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpRecNavToolbar}}, Path=SMaxVal, UpdateSourceTrigger=PropertyChanged}">
+              </AcpUINS:AcpTextBox>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="UIElement.IsFocused" Value="True"/>
+              <Trigger Property="Button.IsDefaulted" Value="True"/>
+              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter TargetName="path1" Value="{DynamicResource NavButtonMouseOverColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter TargetName="path1" Value="{DynamicResource NavButtonClickColor}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter TargetName="path1" Value="{DynamicResource NavButtonDisabledColor}" Property="Shape.Fill"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="NavComboStyle" TargetType="{x:Type ContentControl}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ContentControl}">
+            <Grid x:Name="LayoutRoot">
+              <Grid x:Name="NavComboBox">
+                <AcpUINS:AcpComboBox SelectionChanged="OnAddModeSelectionChanged" IsSynchronizedWithCurrentItem="True"
+                                     Margin="10.958,9.059,12.5,9"
+                                     SelectedIndex="{Binding RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpRecNavToolbar}}, Path=RecordTypeToAdd}">
+                  <ComboBoxItem Content="{x:Static AcpCommonResources:AcpResources.Default_Id}"/>
+                  <ComboBoxItem Content="{x:Static AcpCommonResources:AcpResources.Current_Id}"/>
+                </AcpUINS:AcpComboBox>
+              </Grid>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </FrameworkElement.Resources>
+  <Viewbox Height="28" Width="Auto">
+    <StackPanel Height="42" Orientation="Horizontal" Background="Transparent">
+      <StackPanel Name="GrpNavigationToolBar" Orientation="Horizontal">
+        <AcpUINS:AcpLabel x:Name="RecNavLbl" Grid.Column="0" Foreground="Black" Background="Transparent" FontSize="16"
+                          FontWeight="Bold"/>
+        <AcpUINS:AcpButton x:Name="RecNavBtnFirst" Click="OnClick" Height="Auto" Width="42.611"
+                           Style="{StaticResource FirstButtonStyle}"
+                           ToolTip="{x:Static AcpCommonResources:AcpResources.First_Id}"/>
+        <AcpUINS:AcpButton x:Name="RecNavBtnPrevious" Click="OnClick" Height="Auto" Width="42.611"
+                           Style="{StaticResource PreviousButtonStyle}"
+                           ToolTip="{x:Static AcpCommonResources:AcpResources.Previous_Id}"/>
+        <AcpUINS:AcpButton x:Name="RecNavBtnNext" Click="OnClick" Height="Auto" Width="42"
+                           Style="{StaticResource NextButtonStyle}"
+                           ToolTip="{x:Static AcpCommonResources:AcpResources.Next_Id}"/>
+        <AcpUINS:AcpButton x:Name="RecNavBtnLast" Click="OnClick" Height="Auto" Width="42"
+                           Style="{StaticResource LastButtonStyle}"
+                           ToolTip="{x:Static AcpCommonResources:AcpResources.Last_Id}"/>
+        <AcpUINS:AcpButton x:Name="RecNavBtnGoTo" Click="OnClick" Height="Auto" Width="88"
+                           Style="{StaticResource GoToRecStyle}" ToolTip="{x:Static AcpCommonResources:AcpResources.GoTo_Id}"
+                           FontSize="16"/>
+      </StackPanel>
+      <StackPanel Name="GrpOperationToolBar" Orientation="Horizontal">
+        <ContentControl x:Name="DefCurrentRec" Style="{StaticResource NavComboStyle}"
+                        ToolTip="{x:Static AcpCommonResources:AcpResources.Copy_Type}" Width="Auto" FontSize="16"/>
+        <AcpUINS:AcpButton x:Name="RecNavAddMultiple" Click="OnClick" Height="Auto" Width="Auto"
+                           Style="{StaticResource AddMultiple}"
+                           ToolTip="{x:Static AcpCommonResources:AcpResources.Add_Multiple_Records}" FontSize="16"/>
+        <AcpUINS:AcpButton x:Name="RecNavBtnDelete" Click="OnClick" Height="Auto" Width="42"
+                           Style="{StaticResource DeleteButtonStyle}"
+                           ToolTip="{x:Static AcpCommonResources:AcpResources.Delete_Id}"/>
+      </StackPanel>
+      <StackPanel Name="GrpModeSelection" Orientation="Horizontal" Background="Transparent">
+        <AcpUINS:AcpLabel Height="Auto" Width="20" Background="Transparent"/>
+        <AcpUINS:AcpButton x:Name="RecNavChangeMode" Click="OnRecNavChangeModeClick"
+                           Style="{StaticResource ModeButtonTemplate}" Height="Auto" Width="42"
+                           ToolTip="{x:Static AcpCommonResources:AcpResources.Alternate_Mode}"/>
+      </StackPanel>
+    </StackPanel>
+  </Viewbox>
+</UserControl>

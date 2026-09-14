@@ -1,0 +1,23 @@
+<UserControl x:Class="AcpUI.AcpTextBoxFileBrowser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:AcpUINS="clr-namespace:AcpUI"
+             xmlns:igEditors="http://infragistics.com/Editors">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="5*"/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+    <AcpUINS:AcpTextBox x:Name="AcpTextBoxMember" Grid.Row="0" Grid.Column="0"
+                        Text="{Binding Path=Text, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxFileBrowser}}}"
+                        IsAcpValid="{Binding Path=IsAcpValid, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxFileBrowser}}}"
+                        IsAcpApplicable="{Binding Path=IsAcpApplicable, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxFileBrowser}}}"
+                        IsAcpEditable="{Binding Path=IsAcpEditable, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxFileBrowser}}}">
+    </AcpUINS:AcpTextBox>
+    <Button x:Name="FileBrowser" Grid.Row="0" Grid.Column="1" Height="23"
+            IsEnabled="{Binding Path=IsAcpEditable, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type AcpUINS:AcpTextBoxFileBrowser}}}">...</Button>
+  </Grid>
+</UserControl>

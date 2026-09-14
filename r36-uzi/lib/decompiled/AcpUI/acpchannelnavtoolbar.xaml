@@ -1,0 +1,33 @@
+<UserControl x:Class="AcpUI.AcpChannelNavToolBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:AcpUINS="clr-namespace:AcpUI"
+             xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+    <AcpUINS:AcpLabel x:Name="RecNavLbl" Grid.Row="0" Grid.Column="0"/>
+    <AcpUINS:AcpButton x:Name="RecNavBtnFirst" Click="OnClick" ToolTip="First" Grid.Row="0" Grid.Column="1">
+      <Image x:Name="RecNavBtnFirstImage" Opacity="1.0" Source="../../icons/RecFirst.bmp" ClipToBounds="True"
+             Stretch="None"/>
+    </AcpUINS:AcpButton>
+    <AcpUINS:AcpButton x:Name="RecNavBtnPrevious" Click="OnClick" ToolTip="Previous" Grid.Row="0" Grid.Column="2">
+      <Image x:Name="RecNavBtnPreviousImage" Opacity="1.0" Source="../../icons/RecPrev.bmp" ClipToBounds="True"
+             Stretch="None"/>
+    </AcpUINS:AcpButton>
+    <AcpUINS:AcpButton x:Name="RecNavBtnNext" Click="OnClick" ToolTip="Next" Grid.Row="0" Grid.Column="3">
+      <Image x:Name="RecNavBtnNextImage" Opacity="1.0" Source="../../icons/RecNext.bmp" ClipToBounds="True"
+             Stretch="None"/>
+    </AcpUINS:AcpButton>
+    <AcpUINS:AcpButton x:Name="RecNavBtnLast" Click="OnClick" ToolTip="Last" Grid.Row="0" Grid.Column="4">
+      <Image x:Name="RecNavBtnLastImage" Opacity="1.0" Source="../../icons/RecLast.bmp" ClipToBounds="True"
+             Stretch="None"/>
+    </AcpUINS:AcpButton>
+  </Grid>
+</UserControl>
