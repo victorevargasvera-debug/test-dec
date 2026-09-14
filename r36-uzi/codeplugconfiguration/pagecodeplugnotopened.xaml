@@ -1,0 +1,61 @@
+<Page x:Class="MackinawCPS.CodeplugConfiguration.PageCodeplugNotOpened"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+      Title="{x:Static CommonResxNS:AppResources.Page_Codeplug_Not_Opened}">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="55"/>
+      <RowDefinition Height="15"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <Label Grid.Row="0" Foreground="#003399" FontSize="20" FontStyle="Italic" FontFamily="Verdana"
+           FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+           Content="{x:Static CommonResxNS:AppResources.Codeplug_Configuration}"/>
+    <Rectangle Fill="#FFFFFFFF" Stroke="#FF000000" Margin="5,10,5,0" VerticalAlignment="Top" Height="2.31"
+               Grid.Row="1"/>
+    <Viewbox Grid.Row="2" Margin="32,43.81,32,80">
+      <ContentControl x:Name="HowTo" Style="{DynamicResource PanelTemplate}" Margin="10,0,10,10" Height="Auto"
+                      Width="650" RenderTransformOrigin="0.5,0.5">
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+        <StackPanel>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Height="35" Source="../../icons/information.png" Margin="20,10,0,10" Grid.Row="0" Grid.Column="0"
+                   HorizontalAlignment="Left"/>
+            <Label Margin="20,10,0,10" FontSize="20" Grid.Row="0" Grid.Column="1" Foreground="#003399"
+                   HorizontalAlignment="Center" Content="{x:Static CommonResxNS:AppResources.Codeplug_Not_Opened}"/>
+          </Grid>
+          <Line Margin="0,0,0,15" Stroke="#003399" StrokeThickness="2" X1="20" X2="630"/>
+          <BulletDecorator>
+            <BulletDecorator.Bullet>
+              <Image Source="../../icons/bluebullet1.png" Height="11" Width="11" Margin="10"/>
+            </BulletDecorator.Bullet>
+            <TextBlock Style="{DynamicResource WelcomeScreenTextBlockStyle}" Margin="20,10,0,0" FontSize="18"
+                       Foreground="#003399" FontFamily="Verdana" TextWrapping="Wrap"
+                       Text="{x:Static CommonResxNS:AppResources.Codeplug_Archive_mush_first_be_opened_in_order_to_continue_in_this_mode}"/>
+          </BulletDecorator>
+          <BulletDecorator>
+            <BulletDecorator.Bullet>
+              <Image Source="../../icons/bluebullet1.png" Height="11" Width="11" Margin="10"/>
+            </BulletDecorator.Bullet>
+            <TextBlock Style="{DynamicResource WelcomeScreenTextBlockStyle}" Margin="50,10,0,30" FontSize="16"
+                       Foreground="#003399" FontFamily="Verdana" TextWrapping="Wrap"
+                       Text="{x:Static CommonResxNS:AppResources.Open_Codeplug_Using_Application_Menu}"/>
+          </BulletDecorator>
+        </StackPanel>
+      </ContentControl>
+    </Viewbox>
+  </Grid>
+</Page>
