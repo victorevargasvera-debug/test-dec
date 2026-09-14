@@ -1,0 +1,30 @@
+<Page x:Class="MackinawCPS.PageTreeView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+      xmlns:AcpUIDragDropNS="clr-namespace:AcpUI.DragDrop;assembly=AcpUI"
+      xmlns:MackinawCPSNS="clr-namespace:MackinawCPS"
+      xmlns:ACPCommonLibNS="clr-namespace:AcpCommonLib;assembly=AcpCommonLib"
+      xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      Loaded="PageTreeView_Loaded" Unloaded="PageTreeView_Unloaded"
+      Title="{x:Static CommonResxNS:AppResources.PageTreeView_Id}">
+  <FrameworkElement.Resources>
+    <AcpUIDragDropNS:DragDropAdvisor x:Key="dragDropAdvisor"/>
+    <MackinawCPSNS:TreeRootHeaderConverter x:Key="TreeRootHeaderConverter"/>
+  </FrameworkElement.Resources>
+  <MackinawCPSNS:AppTreeView x:Name="MyTreeView" KeyDown="PageTreeView_KeyDown" Margin="0,0,0,0" BorderThickness="0"
+                             HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                             AcpUIDragDropNS:DragDropManager.DragSourceAdvisor="{StaticResource dragDropAdvisor}"
+                             AcpUIDragDropNS:DragDropManager.DropTargetAdvisor="{StaticResource dragDropAdvisor}"
+                             Background="{x:Null}">
+    <AcpUINS:AcpTreeViewItem Name="myTreeViewItemRoot">
+      <HeaderedItemsControl.Header>
+        <MultiBinding Converter="{StaticResource TreeRootHeaderConverter}">
+          <Binding Path="RadInfoGeneralCodeplugAlias_A7684Value" Mode="OneWay"/>
+          <Binding Path="RadInfoGeneralSerialNumber_A9122Value" Mode="OneWay"/>
+        </MultiBinding>
+      </HeaderedItemsControl.Header>
+    </AcpUINS:AcpTreeViewItem>
+  </MackinawCPSNS:AppTreeView>
+</Page>
