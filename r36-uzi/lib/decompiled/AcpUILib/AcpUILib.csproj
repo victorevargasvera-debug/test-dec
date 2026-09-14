@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: F:\DECOMP\36-UZI\APXFamilyCPS1\lib_org\AcpUILib.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5194FBD1-8314-406D-AD8D-9FFA3EE0B213}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>AcpUILib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ApplicationVersion>23.1.0.23</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>AcpUILib</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AcpBusinessLayer">
+      <HintPath>lib\AcpBusinessLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpCommonLib">
+      <HintPath>lib\AcpCommonLib.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IAcpPageFeature.cs" />
+    <Compile Include="IAcpUICtrlBase.cs" />
+    <Compile Include="IAcpUIValueCtrlBase`1.cs" />
+    <Compile Include="IAcpUIParentCtrlBase.cs" />
+    <Compile Include="IAcpUICommon.cs" />
+    <Compile Include="IAcpUIChildCtrlBase.cs" />
+    <Compile Include="IAcpRecNavToolbar.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
