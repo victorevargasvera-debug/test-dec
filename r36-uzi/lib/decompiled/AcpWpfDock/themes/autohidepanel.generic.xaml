@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dc="clr-namespace:DevComponents.WpfDock"
+                    xmlns:dcp="clr-namespace:DevComponents.WpfDock.Primitives">
+  <Style TargetType="{x:Type dc:AutoHidePanel}">
+    <Style.Triggers>
+      <Trigger Property="dc:DockSite.Dock" Value="Left">
+        <Setter Property="FrameworkElement.LayoutTransform">
+          <Setter.Value>
+            <RotateTransform Angle="90"/>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+      <Trigger Property="dc:DockSite.Dock" Value="Right">
+        <Setter Property="FrameworkElement.LayoutTransform">
+          <Setter.Value>
+            <RotateTransform Angle="90"/>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </Style.Triggers>
+    <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+    <Setter Property="UIElement.Focusable" Value="False"/>
+    <Setter Property="Control.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.AutoHidePanelBackground}}}"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Name="PART_PanelBorder" Padding="2" Background="{TemplateBinding Control.Background}">
+            <StackPanel Orientation="Horizontal" IsItemsHost="True" Margin="1,0,1,0"/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

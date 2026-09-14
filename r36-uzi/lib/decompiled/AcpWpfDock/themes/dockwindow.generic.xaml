@@ -1,0 +1,201 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dcc="clr-namespace:DevComponents.WpfDock.Converters"
+                    xmlns:dc="clr-namespace:DevComponents.WpfDock"
+                    xmlns:dcp="clr-namespace:DevComponents.WpfDock.Primitives">
+  <dcc:IsStringTypeConverter x:Key="IsStringTypeConverter"/>
+  <ControlTemplate x:Key="{ComponentResourceKey {x:Type dc:DockWindow}, DefaultState}">
+    <Border Name="TabBorder" CornerRadius="0,0,3,3" BorderThickness="1,0,1,1"
+            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+            ToolTip="{TemplateBinding dc:DockWindow.TabToolTip}">
+      <Border Name="TabBorderInner" CornerRadius="0,0,2,2" BorderThickness="1,0,1,1"
+              SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+              Padding="{TemplateBinding Control.Padding}">
+        <DockPanel LastChildFill="True">
+          <ContentPresenter Name="TabImage" ContentSource="Image" Margin="1" DockPanel.Dock="Left" VerticalAlignment="Center"
+                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                            Content="{TemplateBinding dc:DockWindow.Image}"/>
+          <dc:DockTabCloseButton Margin="3,0,2,0" DockPanel.Dock="Right" VerticalAlignment="Center"
+                                 Command="dc:DockWindow.CloseWindow"
+                                 Visibility="{TemplateBinding dc:DockWindow.CloseButtonVisibility}"
+                                 IsActive="{TemplateBinding dc:DockWindow.IsSelected}"
+                                 IsEnabled="{TemplateBinding dc:DockWindow.CanClose}"/>
+          <ContentPresenter Name="PART_HeaderContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                            VerticalAlignment="Center"
+                            ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}"
+                            Content="{TemplateBinding HeaderedItemsControl.Header}"/>
+        </DockPanel>
+      </Border>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Value="{x:Null}" Property="dc:DockWindow.Image">
+        <Setter TargetName="TabImage" Property="UIElement.Visibility" Value="Collapsed"/>
+      </Trigger>
+      <DataTrigger Value="true"
+                   Binding="{Binding RelativeSource={RelativeSource self}, Path=(HeaderedContentControl.Header), Converter={StaticResource IsStringTypeConverter}}">
+        <Setter TargetName="PART_HeaderContentHost" Property="ContentPresenter.ContentTemplate">
+          <Setter.Value>
+            <DataTemplate>
+              <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding}"/>
+            </DataTemplate>
+          </Setter.Value>
+        </Setter>
+      </DataTrigger>
+      <Trigger Property="dc:DockWindow.IsSelected" Value="True">
+        <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabSelectedForeground}}}"
+                Property="Control.Foreground"/>
+        <Setter TargetName="TabBorder"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabSelectedBackground}}}"
+                Property="Border.Background"/>
+        <Setter TargetName="TabBorder"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabSelectedBorder}}}"
+                Property="Border.BorderBrush"/>
+        <Setter TargetName="TabBorderInner"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabSelectedBorderInner}}}"
+                Property="Border.BorderBrush"/>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{ComponentResourceKey {x:Type dc:DockWindow}, DocumentState}">
+    <dcp:DocumentTabBorder Name="TabBorder" ToolTip="{TemplateBinding dc:DockWindow.TabToolTip}"
+                           Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DocumentTabNormalBackground}}}"
+                           BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DocumentTabNormalBorder}}}"
+                           BottomBorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DocumentTabSelectedBorder}}}"
+                           BorderInnerBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DocumentTabNormalBorderInner}}}">
+      <DockPanel LastChildFill="True">
+        <ContentPresenter Name="TabImage" ContentSource="Image" Margin="1" DockPanel.Dock="Left" VerticalAlignment="Center"
+                          SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                          Content="{TemplateBinding dc:DockWindow.Image}"/>
+        <dc:DockTabCloseButton Margin="3,1,2,1" DockPanel.Dock="Right" VerticalAlignment="Center"
+                               Command="dc:DockWindow.CloseWindow"
+                               Visibility="{TemplateBinding dc:DockWindow.CloseButtonVisibility}"
+                               IsActive="{TemplateBinding dc:DockWindow.IsSelected}"
+                               IsEnabled="{TemplateBinding dc:DockWindow.CanClose}"/>
+        <ContentPresenter Name="PART_HeaderContentHost" Margin="0,0,3,0"
+                          SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" VerticalAlignment="Center"
+                          Content="{TemplateBinding HeaderedContentControl.Header}"/>
+      </DockPanel>
+    </dcp:DocumentTabBorder>
+    <ControlTemplate.Triggers>
+      <Trigger Property="UIElement.IsKeyboardFocusWithin" Value="True">
+        <Setter TargetName="PART_HeaderContentHost" Property="TextBlock.FontWeight" Value="Bold"/>
+      </Trigger>
+      <Trigger Property="Panel.ZIndex" Value="9999">
+        <Setter Property="FrameworkElement.Margin" Value="0"/>
+      </Trigger>
+      <Trigger Value="{x:Null}" Property="dc:DockWindow.Image">
+        <Setter TargetName="TabImage" Property="UIElement.Visibility" Value="Collapsed"/>
+      </Trigger>
+      <Trigger Property="dc:DockWindow.IsSelected" Value="True">
+        <Setter TargetName="TabBorder"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DocumentTabSelectedBackground}}}"
+                Property="dcp:DocumentTabBorder.Background"/>
+        <Setter TargetName="TabBorder"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DocumentTabSelectedBorder}}}"
+                Property="dcp:DocumentTabBorder.BorderBrush"/>
+        <Setter TargetName="TabBorder" Value="{x:Null}" Property="dcp:DocumentTabBorder.BottomBorderBrush"/>
+        <Setter Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DocumentTabSelectedForeground}}}"
+                Property="Control.Foreground"/>
+      </Trigger>
+      <DataTrigger Value="true"
+                   Binding="{Binding RelativeSource={RelativeSource self}, Path=(HeaderedContentControl.Header), Converter={StaticResource IsStringTypeConverter}}">
+        <Setter TargetName="PART_HeaderContentHost" Property="ContentPresenter.ContentTemplate">
+          <Setter.Value>
+            <DataTemplate>
+              <Grid>
+                <TextBlock FontWeight="Bold" Visibility="Hidden" Text="{Binding}"/>
+                <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding}"/>
+              </Grid>
+            </DataTemplate>
+          </Setter.Value>
+        </Setter>
+      </DataTrigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{ComponentResourceKey {x:Type dc:DockWindow}, AutoHideState}">
+    <Border Name="TabBorder" BorderThickness="1,1,1,0" CornerRadius="3,3,0,0" Margin="0,0,-1,0" MinHeight="20"
+            ToolTip="{TemplateBinding dc:DockWindow.TabToolTip}" Padding="0"
+            Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabAutoHideBackground}}}"
+            BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabAutoHideBorder}}}">
+      <Border BorderThickness="1,1,1,0" CornerRadius="2,2,0,0"
+              BorderBrush="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabAutoHideBorderInner}}}">
+        <DockPanel LastChildFill="True">
+          <ContentPresenter Name="TabImage" ContentSource="Image" Margin="1" DockPanel.Dock="Left" VerticalAlignment="Center"
+                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                            Content="{TemplateBinding dc:DockWindow.Image}"/>
+          <ContentPresenter Name="TabHeaderContentHost" VerticalAlignment="Center"
+                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+                            Content="{TemplateBinding HeaderedContentControl.Header}" Margin="0,0,1,0"/>
+        </DockPanel>
+      </Border>
+    </Border>
+    <ControlTemplate.Triggers>
+      <Trigger Property="dc:AutoHidePanel.IsBeginGroup" Value="True">
+        <Setter TargetName="TabBorder" Property="FrameworkElement.Margin" Value="6,0,0,0"/>
+      </Trigger>
+      <Trigger Value="{x:Null}" Property="dc:DockWindow.Image">
+        <Setter TargetName="TabImage" Property="UIElement.Visibility" Value="Collapsed"/>
+      </Trigger>
+      <Trigger Property="dc:DockSite.Dock" Value="Right">
+        <Setter TargetName="TabBorder" Property="Border.BorderThickness" Value="1,0,1,1"/>
+        <Setter TargetName="TabBorder" Property="Border.CornerRadius" Value="0,0,3,3"/>
+      </Trigger>
+      <DataTrigger Value="true"
+                   Binding="{Binding RelativeSource={RelativeSource self}, Path=(HeaderedContentControl.Header), Converter={StaticResource IsStringTypeConverter}}">
+        <Setter TargetName="TabHeaderContentHost" Property="ContentPresenter.ContentTemplate">
+          <Setter.Value>
+            <DataTemplate>
+              <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding}"/>
+            </DataTemplate>
+          </Setter.Value>
+        </Setter>
+      </DataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource self}, Path=(HeaderedContentControl.Header), Converter={StaticResource IsStringTypeConverter}}"
+                     Value="true"/>
+          <Condition Binding="{Binding RelativeSource={RelativeSource self}, Path=AttentionRequired}" Value="true"/>
+        </MultiDataTrigger.Conditions>
+        <Setter TargetName="TabHeaderContentHost" Property="ContentPresenter.ContentTemplate">
+          <Setter.Value>
+            <DataTemplate>
+              <TextBlock TextTrimming="CharacterEllipsis" FontWeight="Bold" FontStyle="Italic" Text="{Binding}"/>
+            </DataTemplate>
+          </Setter.Value>
+        </Setter>
+      </MultiDataTrigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <Style TargetType="{x:Type dc:DockWindow}">
+    <Style.Triggers>
+      <Trigger Property="dc:DockSite.IsDocument" Value="False">
+        <Setter Property="Control.Template"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockWindow, ResourceId=DefaultState}}"/>
+        <Setter Property="Control.Padding" Value="0,0,2,0"/>
+      </Trigger>
+      <Trigger Property="dc:DockWindow.IsAutoHide" Value="True">
+        <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Control.Foreground"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabAutoHideForeground}}}"/>
+        <Setter Property="Control.Template"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockWindow, ResourceId=AutoHideState}}"/>
+      </Trigger>
+      <Trigger Property="dc:DockSite.IsDocument" Value="True">
+        <Setter Property="FrameworkElement.Margin" Value="-15,0,0,0"/>
+        <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Control.Foreground"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DocumentTabNormalForeground}}}"/>
+        <Setter Property="Control.Template"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockWindow, ResourceId=DocumentState}}"/>
+      </Trigger>
+      <Trigger Property="UIElement.IsMouseOver" Value="True">
+        <Setter Property="Control.Foreground"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabSelectedForeground}}}"/>
+      </Trigger>
+    </Style.Triggers>
+    <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+    <Setter Property="UIElement.Focusable" Value="False"/>
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=dc:DockSite, ResourceId={x:Static dc:DockColors.DockTabNormalForeground}}}"/>
+  </Style>
+</ResourceDictionary>

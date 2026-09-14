@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: F:\DECOMP\36-UZI\APXFamilyCPS1\lib_org\AcpWpfDock.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E3A59D64-E5AF-4257-9369-5F3FDC7FE79D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>AcpWpfDock</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ApplicationVersion>23.0.0.26</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>DevComponents.WpfDock</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AcpCommonResources">
+      <HintPath>lib\AcpCommonResources.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoHidePanel.cs" />
+    <Compile Include="ColorFactory.cs" />
+    <Compile Include="ColorBlendFactory.cs" />
+    <Compile Include="DockColors.cs" />
+    <Compile Include="DockSplitterPartKeys.cs" />
+    <Compile Include="DockSplitterStateKeys.cs" />
+    <Compile Include="DockTabStateKeys.cs" />
+    <Compile Include="DockTabPartKeys.cs" />
+    <Compile Include="DockTabPanelPartKeys.cs" />
+    <Compile Include="DockGroupPartKeys.cs" />
+    <Compile Include="DockCaptionPartKeys.cs" />
+    <Compile Include="DockCaptionStateKeys.cs" />
+    <Compile Include="AutoHidePanelPartKeys.cs" />
+    <Compile Include="DockButtonStateKeys.cs" />
+    <Compile Include="DockButtonPartKeys.cs" />
+    <Compile Include="DockSelectorPartKeys.cs" />
+    <Compile Include="DockTabCloseButtonPartKeys.cs" />
+    <Compile Include="DockTabCloseButtonStateKeys.cs" />
+    <Compile Include="DockHint.cs" />
+    <Compile Include="DockHintWindow.cs" />
+    <Compile Include="DockLocalization.cs" />
+    <Compile Include="DockSite.cs" />
+    <Compile Include="DockSiteDesignExtension.cs" />
+    <Compile Include="DockSiteLayoutSerializer.cs" />
+    <Compile Include="DockXmlElements.cs" />
+    <Compile Include="DockSiteOverlayWindow.cs" />
+    <Compile Include="DockSplitter.cs" />
+    <Compile Include="DockTabCloseButton.cs" />
+    <Compile Include="DockWindow.cs" />
+    <Compile Include="DockWindowGroup.cs" />
+    <Compile Include="DockWindowInfo.cs" />
+    <Compile Include="DockWindowSelector.cs" />
+    <Compile Include="DragWindow.cs" />
+    <Compile Include="eDockTabElementAlignment.cs" />
+    <Compile Include="eDockHintSide.cs" />
+    <Compile Include="eDockInfo.cs" />
+    <Compile Include="eDockHintHitTest.cs" />
+    <Compile Include="eDockSide.cs" />
+    <Compile Include="eEventActionSource.cs" />
+    <Compile Include="eEffectiveDockVisualStyle.cs" />
+    <Compile Include="eDockVisualStyle.cs" />
+    <Compile Include="eDockList.cs" />
+    <Compile Include="BeforeDockedRoutedEventHandler.cs" />
+    <Compile Include="BeforeDockedRoutedEventArgs.cs" />
+    <Compile Include="CancelSourceRoutedEventHandler.cs" />
+    <Compile Include="CancelSourceRoutedEventArgs.cs" />
+    <Compile Include="DockRoutedEventHandler.cs" />
+    <Compile Include="DockRoutedEventArgs.cs" />
+    <Compile Include="SourceRoutedEventArgs.cs" />
+    <Compile Include="FloatingWindow.cs" />
+    <Compile Include="IDockOperations.cs" />
+    <Compile Include="IDockSiteLayoutSerializer.cs" />
+    <Compile Include="LayoutHelpers.cs" />
+    <Compile Include="SplitPanel.cs" />
+    <Compile Include="SplitPanelChildrenCollection.cs" />
+    <Compile Include="SplitPanelCollection.cs" />
+    <Compile Include="WinApi.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="Primitives\AutoHideAdorner.cs" />
+    <Compile Include="Primitives\AutoHidePopup.cs" />
+    <Compile Include="Primitives\DockSelectorAdorner.cs" />
+    <Compile Include="Primitives\DockSiteAdorner.cs" />
+    <Compile Include="Primitives\DockSplitterAdorner.cs" />
+    <Compile Include="Primitives\DockTabPanel.cs" />
+    <Compile Include="Primitives\DocumentTabBorder.cs" />
+    <Compile Include="Primitives\EmptyWindow.cs" />
+    <Compile Include="Primitives\SnapshotImage.cs" />
+    <Compile Include="Converters\IsStringTypeConverter.cs" />
+    <Compile Include="XamlGeneratedNamespace\GeneratedInternalTypeHelper.cs" />
+    <Compile Include="themesOffice2007BlueSkin.xaml.cs">
+      <DependentUpon>themesoffice2007blueskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2007FiremanSkin.xaml.cs">
+      <DependentUpon>themesoffice2007firemanskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2007BlackSkin.xaml.cs">
+      <DependentUpon>themesoffice2007blackskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2010BlackSkin.xaml.cs">
+      <DependentUpon>themesoffice2010blackskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2007ClassicSkin.xaml.cs">
+      <DependentUpon>themesoffice2007classicskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2010BlueSkin.xaml.cs">
+      <DependentUpon>themesoffice2010blueskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2007PoliceSkin.xaml.cs">
+      <DependentUpon>themesoffice2007policeskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2007SilverSkin.xaml.cs">
+      <DependentUpon>themesoffice2007silverskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2007MilitarySkin.xaml.cs">
+      <DependentUpon>themesoffice2007militaryskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2010SilverSkin.xaml.cs">
+      <DependentUpon>themesoffice2010silverskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesOffice2007FullColorSkin.xaml.cs">
+      <DependentUpon>themesoffice2007fullcolorskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\documentimage16.png" />
+    <Resource Include="images\toolwindowimage16.png" />
+    <Resource Include="themes\sysimages\dockhintallsides.png" />
+    <Resource Include="themes\sysimages\dockhintbottom.png" />
+    <Resource Include="themes\sysimages\dockhintleft.png" />
+    <Resource Include="themes\sysimages\dockhintright.png" />
+    <Resource Include="themes\sysimages\dockhinttab.png" />
+    <Resource Include="themes\sysimages\dockhinttop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DockSite\Icon.png" />
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="themes\autohidepanel.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\dockbuttons.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\dockhint.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\dockhintwindow.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\docksplitter.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\docktabclosebutton.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\dockwindow.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\dockwindowgroup.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\dockwindowinfo.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\dockwindowselector.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\dragwindow.generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2007blackskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2007blueskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2007classicskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2007firemanskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2007fullcolorskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2007militaryskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2007policeskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2007silverskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2010blackskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2010blueskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\office2010silverskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

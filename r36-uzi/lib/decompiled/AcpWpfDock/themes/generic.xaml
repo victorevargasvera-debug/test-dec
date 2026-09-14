@@ -1,0 +1,18 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dc="clr-namespace:DevComponents.WpfDock">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/Office2007BlueSkin.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DockButtons.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DockSplitter.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DockWindowGroup.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DockWindow.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DragWindow.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DockHint.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/AutoHidePanel.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DockWindowInfo.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DockWindowSelector.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DockHintWindow.generic.xaml"/>
+    <ResourceDictionary Source="/AcpWpfDock;component/themes/DockTabCloseButton.generic.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
