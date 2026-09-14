@@ -1,0 +1,151 @@
+<PageFunction x:Class="MackinawCPS.WriteProtect" x:TypeArguments="sys:String"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+              xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+              xmlns:WriteProtectRecSetNS="clr-namespace:MackinawCPS"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+              xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common;assembly=AcpUI"
+              Loaded="OnLoad" MinHeight="250" MinWidth="500" Margin="5,5,5,5"
+              Title="{x:Static CommonResxNS:AppResources.Query_Set_Radio}" ShowsNavigationUI="False"
+              HorizontalAlignment="Left" VerticalAlignment="Top">
+  <FrameworkElement.Resources>
+    <RoutedCommand x:Key="F1Help"/>
+    <WriteProtectRecSetNS:KeyTypeConverter x:Key="KeyTypeConverter"/>
+    <WriteProtectRecSetNS:KeyIDConverter x:Key="KeyIDConverter"/>
+    <AcpUICommonNS:MultiValueToColorConverter x:Key="MultiValueToColor"/>
+  </FrameworkElement.Resources>
+  <UIElement.CommandBindings>
+    <CommandBinding Executed="onHelpButton_Click" CanExecute="F1HelpCommandCanExcute" Command="{StaticResource F1Help}"/>
+  </UIElement.CommandBindings>
+  <UIElement.InputBindings>
+    <KeyBinding Command="{StaticResource F1Help}" Key="F1"/>
+  </UIElement.InputBindings>
+  <DockPanel LastChildFill="False">
+    <WrapPanel DockPanel.Dock="Top">
+      <AcpUICommonNS:AcpThemeBase Name="ThemeBaseObj"/>
+      <TextBlock Margin="25 3 0 0">
+        <Hyperlink Click="HLinkGeneralClick" x:Name="HLinkGeneral" Tag="ExpanderGeneral">
+          <TextBlock Text="{x:Static CommonResxNS:AppResources.General_Id}" TextDecorations="Underline">
+            <TextBlock.Foreground>
+              <MultiBinding Converter="{StaticResource MultiValueToColor}">
+                <Binding Source="false"/>
+                <Binding Path="ThemeName" ElementName="ThemeBaseObj"/>
+              </MultiBinding>
+            </TextBlock.Foreground>
+          </TextBlock>
+        </Hyperlink>
+      </TextBlock>
+    </WrapPanel>
+    <DockPanel Height="20" Background="Transparent" Dock="Top">
+      <Rectangle Height="2" RadiusX="20" RadiusY="20" Stroke="Black" Fill="Gray" VerticalAlignment="Center"/>
+    </DockPanel>
+    <Grid Name="MyGrid" DockPanel.Dock="Bottom">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Button Click="buttonQuery_Click" Name="ribbonBarQueryRadio"
+              Content="{x:Static CommonResxNS:AppResources.Query_Radio}" Grid.Column="0" Grid.Row="0"
+              HorizontalAlignment="Center" VerticalAlignment="Center" Width="125" IsDefault="True"
+              Margin="5,10,5,10"/>
+      <Button Click="buttonUpdate_Click" Name="ribbonBarUpdateRadio"
+              Content="{x:Static CommonResxNS:AppResources.Set_Radio}" Grid.Column="1" Grid.Row="0"
+              HorizontalAlignment="Center" VerticalAlignment="Center" Width="125" IsDefault="True"
+              Margin="5,10,5,10"/>
+      <Button Click="buttonExit_Click" Name="buttonExit" Content="{x:Static CommonResxNS:AppResources.Exit_Id}"
+              Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75"
+              Margin="5,10,5,10"/>
+      <Button Click="onHelpButton_Click" Name="buttonHelp" Content="{x:Static CommonResxNS:AppResources.Help_Id}"
+              Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75"
+              Margin="5,10,5,10"/>
+    </Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+      <StackPanel Name="MyStackPanel" Width="Auto" Height="Auto">
+        <AcpUINS:AcpExpander Name="ExpanderGeneral" IsExpanded="True" Visibility="Visible"
+                             Header="{x:Static CommonResxNS:AppResources.General_Id}">
+          <Grid Margin="5,5,5,10">
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <AcpUINS:AcpLabel Name="label1" Grid.Row="0" Grid.Column="0"
+                              Content="{x:Static CommonResxNS:AppResources.Note_Radio_Attached_and_turned_on}"/>
+            <AcpUINS:AcpLabel Grid.Row="1" Grid.Column="0"
+                              Content="{x:Static CommonResxNS:AppResources.At_least_one_key_loaded_and_attached}"/>
+            <AcpUINS:AcpLabel Name="label3" Grid.Row="2" Grid.Column="0"
+                              Content="{x:Static CommonResxNS:AppResources.Write_protec_value_copies_over}"/>
+            <AcpUINS:AcpLabel Grid.Row="3"/>
+            <Grid Row="4" Column="0" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <AcpUINS:AcpLabel Name="LblGeneralKeyType" Grid.Row="4" Grid.Column="0"
+                                Content="{x:Static CommonResxNS:AppResources.Dlg_Key_Type}" VerticalAlignment="Center"/>
+              <ComboBox SelectionChanged="SelectedKeyType_SelectionChanged" x:Name="SelectedKeyType" Grid.Row="4"
+                        Grid.Column="1" Width="200" HorizontalAlignment="Left"
+                        ItemsSource="{Binding Path=DataContext.AttachedSystemKeys, Converter={StaticResource KeyTypeConverter}}"
+                        SelectedItem="{Binding KeyType}"/>
+            </Grid>
+            <Grid Row="5" Column="0" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <AcpUINS:AcpLabel Name="LblDlgOwnerSystemID" Grid.Row="5" Grid.Column="0"
+                                Content="{x:Static CommonResxNS:AppResources.Dlg_Owner_System_ID}" VerticalAlignment="Center"/>
+              <ComboBox SelectionChanged="OwnerSystemID_SelectionChanged" Name="comboDlgOwnerSystemIDChoices" Grid.Row="5"
+                        Grid.Column="1" Width="200" FlowDirection="LeftToRight" HorizontalAlignment="Left"
+                        DisplayMemberPath="SystemIDHex">
+                <ItemsControl.ItemsSource>
+                  <MultiBinding Converter="{StaticResource KeyIDConverter}">
+                    <Binding Path="DataContext.AttachedSystemKeys"/>
+                    <Binding ElementName="SelectedKeyType" Path="SelectedItem"/>
+                  </MultiBinding>
+                </ItemsControl.ItemsSource>
+              </ComboBox>
+            </Grid>
+            <Grid Row="6" Column="0" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <AcpUINS:AcpLabel Name="LblDlgWriteProtect" Grid.Row="6" Grid.Column="0"
+                                Content="{x:Static CommonResxNS:AppResources.Dlg_Write_Protect}" VerticalAlignment="Center"/>
+              <AcpUINS:AcpCheckBox Name="boolDlgWriteProtect" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left"/>
+            </Grid>
+            <AcpUINS:AcpLabel Name="acplblWarning" Grid.Row="7" HorizontalAlignment="Center"/>
+            <TextBlock Name="TxtBlkOutput" Grid.Row="8" Grid.Column="0" Text="" FontSize="11" FontStyle="Italic"
+                       FontWeight="Bold" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          </Grid>
+        </AcpUINS:AcpExpander>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</PageFunction>
