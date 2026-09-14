@@ -1,0 +1,22 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: AcpUI.DragDrop.MouseUtilities
+// Assembly: AcpUI, Version=23.1.0.32, Culture=neutral, PublicKeyToken=d124d6ba4931c72b
+// MVID: DC7F6A15-37A6-4183-BF9F-09213F636FB6
+// Assembly location: F:\DECOMP\36-UZI\APXFamilyCPS1\lib_org\AcpUI.dll
+
+using AcpUI.Common;
+using System.Windows;
+using System.Windows.Media;
+
+#nullable disable
+namespace AcpUI.DragDrop;
+
+public class MouseUtilities
+{
+  public static Point GetMousePosition(Visual relativeTo)
+  {
+    NativeMethods.Win32Point pt = new NativeMethods.Win32Point();
+    NativeMethods.GetCursorPos(ref pt);
+    return relativeTo.PointFromScreen(new Point((double) pt.X, (double) pt.Y));
+  }
+}

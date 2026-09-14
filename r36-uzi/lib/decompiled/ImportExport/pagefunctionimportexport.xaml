@@ -1,0 +1,29 @@
+<z:PageFunctionImportExportBase x:Class="AcpUI.ImportExport.PageFunctionImportExport"
+                                xmlns:z="clr-namespace:AcpUI.ImportExport"
+                                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                                xmlns:AcpCommonResources="clr-namespace:AcpCommonResources;assembly=AcpCommonResources"
+                                Title="PageFunctionImportExport" ShowsNavigationUI="False" Height="360" Width="490">
+  <Grid>
+    <ListBox SelectionChanged="ListBoxImportExport_SelectionChanged" Name="ListBoxImportExport"
+             SelectionMode="Multiple" Margin="14,10,152,70" DisplayMemberPath="RecsetName"/>
+    <Button Click="BtnSelectAll_Click" Name="BtnSelectAll" Height="23" HorizontalAlignment="Right"
+            Margin="0,10,12,0" VerticalAlignment="Top" Width="125"
+            Content="{x:Static AcpCommonResources:AcpResources.Select_All}"/>
+    <Button Name="BtnCancel" Height="23" HorizontalAlignment="Right" Margin="0,0,10,70"
+            VerticalAlignment="Bottom" Width="125" IsCancel="True"
+            Content="{x:Static AcpCommonResources:AcpResources.Cancel_Id}"/>
+    <Button Click="BtnImportExport_Click" Name="BtnImportExport" Height="22" HorizontalAlignment="Right"
+            Margin="0,0,10,96" VerticalAlignment="Bottom" Width="125" IsEnabled="False"
+            Content="{x:Static AcpCommonResources:AcpResources.Import_Export}"/>
+    <Button Click="BtnUnselectAll_Click" Name="BtnUnselectAll" Height="23" HorizontalAlignment="Right"
+            Margin="0,36,12,0" VerticalAlignment="Top" Width="125"
+            Content="{x:Static AcpCommonResources:AcpResources.Unselect_All}"/>
+    <Button Click="BtnCopy_Click" Name="BtnCopy" Height="23" HorizontalAlignment="Right" Margin="0,0,10,120"
+            VerticalAlignment="Bottom" Width="125" Visibility="Hidden"
+            Content="{x:Static AcpCommonResources:AcpResources.Copy_Id}"/>
+    <TextBlock Name="WarningMessage" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center"
+               Margin="14,295,12,0" Visibility="Hidden" TextWrapping="Wrap" Foreground="Red"/>
+  </Grid>
+</z:PageFunctionImportExportBase>

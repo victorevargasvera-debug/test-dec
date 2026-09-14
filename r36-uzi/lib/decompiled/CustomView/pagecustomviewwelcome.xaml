@@ -1,0 +1,68 @@
+<Page x:Class="AcpUI.CustomView.PageCustomViewWelcome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="55"/>
+      <RowDefinition Height="15"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <Label Grid.Row="0" Foreground="#003399" FontSize="20" FontStyle="Italic" FontFamily="Verdana"
+           FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+           Content="Custom View Configuration Mode"/>
+    <Rectangle Fill="#FFFFFFFF" Stroke="#FF000000" Margin="5,10,5,0" VerticalAlignment="Top" Height="2.31"
+               Grid.Row="1"/>
+    <Viewbox Grid.Row="2" Margin="32,43.81,32,80">
+      <ContentControl Style="{DynamicResource PanelTemplate}" Margin="10,0,10,10" Height="Auto" Width="650"
+                      RenderTransformOrigin="0.5,0.5">
+        <UIElement.RenderTransform>
+          <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0"/>
+          </TransformGroup>
+        </UIElement.RenderTransform>
+        <StackPanel>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Height="35" Source="../../icons/help.ico" Margin="20,10,0,10" Grid.Row="0" Grid.Column="0"
+                   HorizontalAlignment="Left"/>
+            <Label Margin="20,10,0,10" FontSize="20" Grid.Row="0" Grid.Column="1" Foreground="#003399"
+                   HorizontalAlignment="Center">
+              Defining a Custom View
+            </Label>
+          </Grid>
+          <Line Margin="0,0,0,15" Stroke="#003399" StrokeThickness="2" X1="20" X2="630"/>
+          <BulletDecorator>
+            <BulletDecorator.Bullet>
+              <Image Source="../../icons/bluebullet1.png" Height="11" Width="11" Margin="10"/>
+            </BulletDecorator.Bullet>
+            <TextBlock Style="{DynamicResource WelcomeScreenTextBlockStyle}" Margin="20,10,0,0" FontSize="18"
+                       Foreground="#003399" FontFamily="Verdana" TextWrapping="Wrap"
+                       Text="To create a new custom view:..."/>
+          </BulletDecorator>
+          <BulletDecorator>
+            <BulletDecorator.Bullet>
+              <Image Source="../../icons/bluebullet1.png" Height="11" Width="11" Margin="10"/>
+            </BulletDecorator.Bullet>
+            <TextBlock Style="{DynamicResource WelcomeScreenTextBlockStyle}" Margin="20,10,0,0" FontSize="18"
+                       Foreground="#003399" FontFamily="Verdana" TextWrapping="Wrap"
+                       Text="To modify an existing custom view:..."/>
+          </BulletDecorator>
+          <BulletDecorator>
+            <BulletDecorator.Bullet>
+              <Image Source="../../icons/bluebullet1.png" Height="11" Width="11" Margin="10"/>
+            </BulletDecorator.Bullet>
+            <TextBlock Style="{DynamicResource WelcomeScreenTextBlockStyle}" Margin="20,10,0,0" FontSize="18"
+                       Foreground="#003399" FontFamily="Verdana" TextWrapping="Wrap" Text="To save the custom view:..."/>
+          </BulletDecorator>
+        </StackPanel>
+      </ContentControl>
+    </Viewbox>
+  </Grid>
+</Page>
