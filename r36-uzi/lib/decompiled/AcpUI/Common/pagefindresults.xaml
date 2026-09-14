@@ -1,0 +1,28 @@
+<Page x:Class="AcpUI.Common.PageFindResults"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:AcpCommonResources="clr-namespace:AcpCommonResources;assembly=AcpCommonResources"
+      Title="Find Results">
+  <DockPanel LastChildFill="True">
+    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Height="16">
+      <TextBlock Name="TxtBlkCounter" Text="{Binding Path=Count}"/>
+      <TextBlock Text="{x:Static AcpCommonResources:AcpResources.Items_Found}"/>
+    </StackPanel>
+    <ListView Name="FindResultsList" DockPanel.Dock="Top" ScrollViewer.CanContentScroll="True"
+              ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+              IsSynchronizedWithCurrentItem="true" Width="Auto" Background="Transparent" ItemsSource="{Binding}">
+      <ListView.View>
+        <GridView x:Name="FindResultsGrid">
+          <GridView.Columns>
+            <GridViewColumn x:Name="Num" Header="{x:Static AcpCommonResources:AcpResources.Number_Short_Id}" Width="Auto"
+                            DisplayMemberBinding="{Binding Index}"/>
+            <GridViewColumn x:Name="FieldName" Header="{x:Static AcpCommonResources:AcpResources.Field_Name}" Width="Auto"
+                            DisplayMemberBinding="{Binding Name}"/>
+            <GridViewColumn x:Name="Path" Header="{x:Static AcpCommonResources:AcpResources.Path_Id}" Width="Auto"
+                            DisplayMemberBinding="{Binding Path}"/>
+          </GridView.Columns>
+        </GridView>
+      </ListView.View>
+    </ListView>
+  </DockPanel>
+</Page>

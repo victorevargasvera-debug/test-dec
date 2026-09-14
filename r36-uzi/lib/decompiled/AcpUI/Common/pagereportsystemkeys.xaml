@@ -1,0 +1,66 @@
+<Page x:Class="AcpUI.Common.PageReportSystemKeys"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:AcpUIStylesNS="clr-namespace:AcpUI.Styles"
+      xmlns:AcpCommonResources="clr-namespace:AcpCommonResources;assembly=AcpCommonResources"
+      xmlns:AcpSecurityLibNS="clr-namespace:AcpSecurityLib;assembly=AcpSecurityLib"
+      Height="Auto" Width="Auto" Title="System Key Report">
+  <FrameworkElement.Resources>
+    <AcpUIStylesNS:ListViewItemStyleSelector x:Key="ListViewItemStyleSelector"/>
+    <AcpSecurityLibNS:KeyIconConverter x:Key="KeyIconConverter"/>
+    <AcpSecurityLibNS:KeySrcKeyTypeConverter x:Key="KeySrcKeyTypeConverter"/>
+    <AcpSecurityLibNS:DecToHexConverter x:Key="decToHexConverter"/>
+    <AcpSecurityLibNS:KeyACLTypeConverter x:Key="KeyACLTypeConverter"/>
+    <AcpSecurityLibNS:KeyWriteProtectEnabledConverter x:Key="KeyWriteProtectEnabledConverter"/>
+    <DataTemplate x:Key="CellTemplateIcon">
+      <DockPanel>
+        <Image Width="16" Height="16"
+               Source="{Binding Source, Mode=OneWay, Converter={StaticResource KeyIconConverter}}"/>
+      </DockPanel>
+    </DataTemplate>
+  </FrameworkElement.Resources>
+  <DockPanel LastChildFill="True" DataContext="{x:Static AcpSecurityLibNS:SecurityManager.LoadedUserSystemKeys}">
+    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Height="16">
+      <TextBlock Name="TxtBlkCounter" Text="{Binding Path=Count}"/>
+      <TextBlock Text="{x:Static AcpCommonResources:AcpResources.Keys_Loaded}"/>
+    </StackPanel>
+    <ListView Loaded="myListView_Loaded" Unloaded="myListView_UnLoaded" Name="myListView" DockPanel.Dock="Top"
+              ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+              ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="1" IsSynchronizedWithCurrentItem="true"
+              Width="Auto" Background="Transparent" ItemsSource="{Binding}">
+      <ListView.View>
+        <GridView x:Name="SysKeyReport">
+          <GridView.Columns>
+            <GridViewColumn x:Name="KeyIcon" Header="{x:Static AcpCommonResources:AcpResources.Icon_Id}" Width="Auto"
+                            CellTemplate="{StaticResource CellTemplateIcon}"/>
+            <GridViewColumn x:Name="SysID" Header="{x:Static AcpCommonResources:AcpResources.System_ID_Id}" Width="100"
+                            DisplayMemberBinding="{Binding SystemID, Mode=OneWay, Converter={StaticResource decToHexConverter}}"/>
+            <GridViewColumn x:Name="SysKeyType" Header="{x:Static AcpCommonResources:AcpResources.Type_Id}" Width="200">
+              <GridViewColumn.DisplayMemberBinding>
+                <MultiBinding Converter="{StaticResource KeySrcKeyTypeConverter}" Mode="OneWay">
+                  <Binding Path="Source"/>
+                  <Binding Path="Type"/>
+                </MultiBinding>
+              </GridViewColumn.DisplayMemberBinding>
+            </GridViewColumn>
+            <GridViewColumn x:Name="SerialNum" Header="{x:Static AcpCommonResources:AcpResources.IButton_Serial_Number}"
+                            Width="150" DisplayMemberBinding="{Binding iBtnSerialNum, Mode=OneWay}"/>
+            <GridViewColumn x:Name="KeyAccessLevel" Header="{x:Static AcpCommonResources:AcpResources.Access_Level}"
+                            Width="150"
+                            DisplayMemberBinding="{Binding AccessLevelType, Mode=OneWay, Converter={StaticResource KeyACLTypeConverter}}"/>
+            <GridViewColumn x:Name="KeyWPEnabled" Header="{x:Static AcpCommonResources:AcpResources.WriteProtect_Enabled}"
+                            Width="150">
+              <GridViewColumn.DisplayMemberBinding>
+                <MultiBinding Converter="{StaticResource KeyWriteProtectEnabledConverter}" Mode="OneWay">
+                  <Binding Path="Source"/>
+                  <Binding Path="WriteProtectEnabled"/>
+                </MultiBinding>
+              </GridViewColumn.DisplayMemberBinding>
+            </GridViewColumn>
+          </GridView.Columns>
+        </GridView>
+      </ListView.View>
+    </ListView>
+  </DockPanel>
+</Page>

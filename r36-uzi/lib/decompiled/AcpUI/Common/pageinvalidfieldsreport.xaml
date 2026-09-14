@@ -1,0 +1,65 @@
+<Page x:Class="AcpUI.Common.PageInvalidFieldsReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:AcpUIStylesNS="clr-namespace:AcpUI.Styles"
+      xmlns:AcpUINS="clr-namespace:AcpUI"
+      xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common"
+      xmlns:AcpCommonLibNS="clr-namespace:AcpCommonLib;assembly=AcpCommonLib"
+      xmlns:AcpCommonResources="clr-namespace:AcpCommonResources;assembly=AcpCommonResources"
+      Height="Auto" Width="Auto">
+  <FrameworkElement.Resources>
+    <AcpUIStylesNS:ListViewItemStyleSelector x:Key="ListViewItemStyleSelector"/>
+    <AcpUICommonNS:AcpRtdInvalidsButtonVisibilityConverter x:Key="acpRtdButtonVisibilityConverter"/>
+    <AcpUICommonNS:FieldValueBase64ToStringConverter x:Key="FieldValueBase64ToStringConverter"/>
+  </FrameworkElement.Resources>
+  <DockPanel>
+    <ListView Name="myListView" DockPanel.Dock="Top" ScrollViewer.CanContentScroll="True"
+              ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+              Grid.Row="1" IsSynchronizedWithCurrentItem="true" Width="Auto" Background="Transparent"
+              ItemsSource="{Binding}">
+      <ListView.View>
+        <GridView x:Name="FieldsReportGV">
+          <GridView.Columns>
+            <GridViewColumn x:Name="FieldsReportGVC1" Header="{x:Static AcpCommonResources:AcpResources.Location_Id}"
+                            Width="Auto" DisplayMemberBinding="{Binding Path}"/>
+            <GridViewColumn x:Name="FieldsReportGVC2" Header="{x:Static AcpCommonResources:AcpResources.Field_Id}" Width="Auto"
+                            DisplayMemberBinding="{Binding Name}"/>
+            <GridViewColumn x:Name="FieldsReportGVC3" Header="{x:Static AcpCommonResources:AcpResources.Field_Value}"
+                            Width="Auto">
+              <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                  <TextBlock>
+                    <TextBlock.Text>
+                      <MultiBinding Converter="{StaticResource FieldValueBase64ToStringConverter}">
+                        <Binding Path="FieldValue"/>
+                        <Binding Path="Name"/>
+                      </MultiBinding>
+                    </TextBlock.Text>
+                  </TextBlock>
+                </DataTemplate>
+              </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn x:Name="FieldsReportGVC4"
+                            Header="{x:Static AcpCommonResources:AcpResources.Comparison_Field_Value}" Width="Auto"
+                            DisplayMemberBinding="{Binding Message}"/>
+            <GridViewColumn x:Name="FieldsReportGVC5" Header="{x:Static AcpCommonResources:AcpResources.Restore_To_Default}"
+                            Width="Auto">
+              <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                  <AcpUINS:AcpRtdButton>
+                    <AcpUINS:AcpRtdButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpRtdButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Path="Field"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpRtdButton.IsAcpVisible>
+                  </AcpUINS:AcpRtdButton>
+                </DataTemplate>
+              </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+          </GridView.Columns>
+        </GridView>
+      </ListView.View>
+    </ListView>
+  </DockPanel>
+</Page>
