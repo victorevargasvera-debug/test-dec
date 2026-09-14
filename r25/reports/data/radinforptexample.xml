@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<Data PageTitle="Radio Information">
+   <Table TableName="AAA">
+      <TableHeader>
+         <ColTitle>General</ColTitle>
+      </TableHeader>
+      <RecSet RecTitle="A" RecNo="0">
+         <Field FieldDes="Model Number">
+            <Name>ModelNumber</Name>
+            <Values>
+               <Value>123ABC1234</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="B" RecNo="1">
+         <Field FieldDes="Serial Number">
+            <Name>SerialNumber</Name>
+            <Values>
+               <Value>589088-101687-3</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="C" RecNo="2">
+         <Field FieldDes="System Package">
+            <Name>SystemPackage</Name>
+            <Values>
+               <Value>H18UCH9PW7AN</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="D" RecNo="3">
+         <Field FieldDes="FLASHCode">
+            <Name>FLASHCode</Name>
+            <Values>
+               <Value>589088-101687-3</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="E" RecNo="4">
+         <Field FieldDes="Codeplug Alias">
+            <Name>CodeplugAlias</Name>
+            <Values>
+               <Value />
+            </Values>
+         </Field>
+      </RecSet>
+   </Table>
+   <Table TableName="">
+      <TableHeader>
+         <ColTitle>Tracking</ColTitle>
+      </TableHeader>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Last Programming Information Date">
+            <Name>LastProgrammedDate</Name>
+            <Values>
+               <Value>20-6-2007</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Last Prograamed Time">
+            <Name>LastProgrammedTime</Name>
+            <Values>
+               <Value>11:45</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Last Programmed Source">
+            <Name>LastProgrammedSource</Name>
+            <Values>
+               <Value>Beta CPS</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Orginal Programmed Date">
+            <Name>OrginalProgrammedDate</Name>
+            <Values>
+               <Value>20 - 6 - 2007</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Orginal Programmed Codeplug">
+            <Name>OrginalProgrammedCodeplug</Name>
+            <Values>
+               <Value>MACK001</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Orginal Programmed Source">
+            <Name>OrginalProgrammedSource</Name>
+            <Values>
+               <Value>Alpha Factory</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="FLASHPort Times-Flashed">
+            <Name>FLASHPortTimes-Flashed</Name>
+            <Values>
+               <Value>0</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="FLASHPort I-Button">
+            <Name>FLASHPortI-Button</Name>
+            <Values>
+               <Value>0000000000000</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="FLASHPort Last Source">
+            <Name>FLASHPortLastSource</Name>
+            <Values />
+         </Field>
+      </RecSet>
+   </Table>
+   <Table TableName="N/A">
+      <TableHeader>
+         <ColTitle>Version Information</ColTitle>
+      </TableHeader>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Codeplug">
+            <Name>Codeplug</Name>
+            <Values>
+               <Value>MACK001</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="DSP">
+            <Name>DSP</Name>
+            <Values>
+               <Value>N/A</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Firmware">
+            <Name>Firmware</Name>
+            <Values>
+               <Value>N/A</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="UCM">
+            <Name>UCM</Name>
+            <Values>
+               <Value>N/A</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Tuning">
+            <Name>Tuning</Name>
+            <Values>
+               <Value>N/A</Value>
+            </Values>
+         </Field>
+      </RecSet>
+   </Table>
+   <Table TableName="">
+      <TableHeader>
+         <ColTitle>Features</ColTitle>
+      </TableHeader>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="H35">
+            <Name>H35</Name>
+            <Values>
+               <Value>SMARTZONE Systems Operation</Value>
+            </Values>
+         </Field>
+      </RecSet>
+      <RecSet RecTitle="" RecNo="">
+         <Field FieldDes="Q806">
+            <Name>Q806</Name>
+            <Values>
+               <Value>Astro Digital Operation</Value>
+            </Values>
+         </Field>
+      </RecSet>
+   </Table>
+</Data>

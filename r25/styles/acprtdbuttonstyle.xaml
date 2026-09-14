@@ -1,0 +1,93 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI">
+  <DrawingImage x:Key="RtdDrawingImage" PresentationOptions:Freeze="True">
+    <DrawingImage.Drawing>
+      <DrawingGroup>
+        <DrawingGroup.Children>
+          <GeometryDrawing Geometry="F1 M 269.347,181.463 L 262.051,175.252 C 259.772,176.95 258.073,179.231 256.211,181.347 L 262.486,188.319 C 263.019,190.986 265.372,192.996 268.196,192.996 271.413,192.996 274.02,190.388 274.02,187.172 274.02,184.349 272.013,181.998 269.347,181.463 M 268.196,189.763 C 266.765,189.763 265.605,188.603 265.605,187.172 265.605,185.74 266.765,184.581 268.196,184.581 269.627,184.581 270.786,185.74 270.786,187.172 270.786,188.603 269.627,189.763 268.196,189.763 Z">
+            <GeometryDrawing.Brush>
+              <LinearGradientBrush StartPoint="0.705921,0.872667" EndPoint="2.68174,0.872667">
+                <Brush.RelativeTransform>
+                  <TransformGroup>
+                    <SkewTransform CenterX="0.705921" CenterY="0.872667" AngleX="0.170629" AngleY="0"/>
+                    <RotateTransform CenterX="0.705921" CenterY="0.872667" Angle="242.546"/>
+                  </TransformGroup>
+                </Brush.RelativeTransform>
+                <GradientBrush.GradientStops>
+                  <GradientStop Color="#FF000000" Offset="0"/>
+                  <GradientStop Color="#FF6C6C6C" Offset="1"/>
+                </GradientBrush.GradientStops>
+              </LinearGradientBrush>
+            </GeometryDrawing.Brush>
+          </GeometryDrawing>
+          <GeometryDrawing Brush="#FFF7931E"
+                           Geometry="F1 M 267.539,165.194 C 261.117,160.383 251.969,161.102 246.391,167.115 240.432,173.545 240.814,183.587 247.242,189.547 252.559,194.476 260.344,195.066 266.254,191.487 268.01,192.298 270.163,191.937 271.552,190.439 273.278,188.577 273.167,185.666 271.307,183.941 269.442,182.213 266.533,182.324 264.806,184.187 263.754,185.322 263.388,186.844 263.681,188.252 259.352,190.61 253.834,190.088 250.013,186.558 245.245,182.122 244.961,174.671 249.381,169.887 253.41,165.558 259.917,164.941 264.663,168.169 L 261.234,169.937 C 264.774,170.045 269.429,171.362 272.852,172.779 271.18,169.473 269.515,164.931 269.141,161.408 L 267.539,165.194 Z"/>
+          <GeometryDrawing Geometry="F1 M 262.051,175.252 L 258.983,172.639 C 259.307,171.724 259.493,170.742 259.493,169.715 259.493,164.879 255.573,160.959 250.737,160.959 248.75,160.959 246.923,161.629 245.453,162.745 L 252.372,166.045 249.248,172.571 242.01,169.118 C 241.998,169.316 241.98,169.513 241.98,169.715 241.98,174.551 245.901,178.47 250.737,178.47 251.623,178.47 252.476,178.336 253.281,178.092 L 256.211,181.347 C 258.269,179.375 261.144,177.75 262.051,175.252 Z">
+            <GeometryDrawing.Brush>
+              <LinearGradientBrush StartPoint="1.3354,1.46055" EndPoint="3.06221,1.46055">
+                <Brush.RelativeTransform>
+                  <TransformGroup>
+                    <SkewTransform CenterX="1.3354" CenterY="1.46055" AngleX="-0.737576" AngleY="0"/>
+                    <RotateTransform CenterX="1.3354" CenterY="1.46055" Angle="242.091"/>
+                  </TransformGroup>
+                </Brush.RelativeTransform>
+                <GradientBrush.GradientStops>
+                  <GradientStop Color="#FF000000" Offset="0"/>
+                  <GradientStop Color="#FF6C6C6C" Offset="1"/>
+                </GradientBrush.GradientStops>
+              </LinearGradientBrush>
+            </GeometryDrawing.Brush>
+          </GeometryDrawing>
+        </DrawingGroup.Children>
+      </DrawingGroup>
+    </DrawingImage.Drawing>
+  </DrawingImage>
+  <Style TargetType="{x:Type AcpUINS:AcpRtdButton}">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type AcpUINS:AcpRtdButton}">
+          <Grid>
+            <Border x:Name="Border" Width="16" Height="16" CornerRadius="0" BorderThickness="0"
+                    Background="Transparent">
+              <Image Source="{StaticResource RtdDrawingImage}" Width="16" Height="16"/>
+            </Border>
+            <ContentPresenter/>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="UIElement.IsMouseOver" Value="true">
+              <Setter TargetName="Border" Property="UIElement.Effect">
+                <Setter.Value>
+                  <DropShadowEffect Color="#FFF7931E" ShadowDepth="2"/>
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+            <Trigger Property="ButtonBase.IsPressed" Value="true">
+              <Setter TargetName="Border" Property="UIElement.Effect">
+                <Setter.Value>
+                  <DropShadowEffect Color="#FFFFFFFF" ShadowDepth="2"/>
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpValid}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="false"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpApplicable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="false"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpEditable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="false"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false">
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+</ResourceDictionary>

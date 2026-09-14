@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Program Files (x86)\Motorola\APX Dpt 25\APXFamilyCPS.exe-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{10FBCDA3-0A65-4BCA-889A-6825059ACBD6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>APXFamilyCPS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <ApplicationVersion>15.0.1.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>MackinawCPS</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ASK.Interface">
+      <HintPath>lib\ASK.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpASKLib">
+      <HintPath>lib\AcpASKLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpBusinessLayer">
+      <HintPath>lib\AcpBusinessLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpCommonLib">
+      <HintPath>lib\AcpCommonLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpCommonResources">
+      <HintPath>lib\AcpCommonResources.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpFileHandlerLib">
+      <HintPath>lib\AcpFileHandlerLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpKeyValidatorLib">
+      <HintPath>lib\AcpKeyValidatorLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpSecurityLib">
+      <HintPath>lib\AcpSecurityLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpUI">
+      <HintPath>lib\AcpUI.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpUILib">
+      <HintPath>lib\AcpUILib.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpUtility">
+      <HintPath>lib\AcpUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpWpfDock">
+      <HintPath>lib\AcpWpfDock.dll</HintPath>
+    </Reference>
+    <Reference Include="AcpWpfRibbon">
+      <HintPath>lib\AcpWpfRibbon.dll</HintPath>
+    </Reference>
+    <Reference Include="AllFeatures">
+      <HintPath>lib\AllFeatures.dll</HintPath>
+    </Reference>
+    <Reference Include="Common">
+      <HintPath>lib\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonASK">
+      <HintPath>lib\CommonASK.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonBase">
+      <HintPath>lib\CommonBase.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonError">
+      <HintPath>lib\CommonError.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonLib">
+      <HintPath>lib\CommonLib.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonResources">
+      <HintPath>lib\CommonResources.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonUtility">
+      <HintPath>lib\CommonUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlHeadGraphicView">
+      <HintPath>lib\ControlHeadGraphicView.dll</HintPath>
+    </Reference>
+    <Reference Include="DataStoreDecryptionHandler">
+      <HintPath>lib\DataStoreDecryptionHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityModel">
+      <HintPath>lib\EntityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataPresenter.v12.1">
+      <HintPath>lib\InfragisticsWPF4.DataPresenter.v12.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.MULTIINTPBT6Lib">
+      <HintPath>lib\Interop.MULTIINTPBT6Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Motorola.CommonCPS.RadioManagement.Core">
+      <HintPath>lib\Motorola.CommonCPS.RadioManagement.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Motorola.CommonCPS.RadioManagement.Global">
+      <HintPath>lib\Motorola.CommonCPS.RadioManagement.Global.dll</HintPath>
+    </Reference>
+    <Reference Include="Motorola.CommonCPS.RadioManagement.SharedService">
+      <HintPath>lib\Motorola.CommonCPS.RadioManagement.SharedService.dll</HintPath>
+    </Reference>
+    <Reference Include="Motorola.CommonCPS.RadioManagement.UIModels">
+      <HintPath>lib\Motorola.CommonCPS.RadioManagement.UIModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Motorola.CommonCPS.ResourceRepository">
+      <HintPath>lib\Motorola.CommonCPS.ResourceRepository.dll</HintPath>
+    </Reference>
+    <Reference Include="PackUnpackExec">
+      <HintPath>lib\PackUnpackExec.dll</HintPath>
+    </Reference>
+    <Reference Include="PackUnpackLib">
+      <HintPath>lib\PackUnpackLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Pba">
+      <HintPath>lib\Pba.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RMCLI">
+      <HintPath>lib\RMCLI.dll</HintPath>
+    </Reference>
+    <Reference Include="SpecialFeatures">
+      <HintPath>lib\SpecialFeatures.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="XamlGeneratedNamespace\GeneratedInternalTypeHelper.cs" />
+    <Compile Include="SQLHelper.cs" />
+    <Compile Include="TestCaseLauncher2.cs" />
+    <Compile Include="TestCaseLauncher.cs" />
+    <Compile Include="KeyTypeConverter.cs" />
+    <Compile Include="KeyIDConverter.cs" />
+    <Compile Include="MackCPSDocument.cs" />
+    <Compile Include="DotfDetect.cs" />
+    <Compile Include="AppTreeView.cs" />
+    <Compile Include="PopulateOpeartion.cs" />
+    <Compile Include="CommonUtility.cs" />
+    <Compile Include="APXWiFiNetwork.cs" />
+    <Compile Include="CPS_Languages.cs" />
+    <Compile Include="CodeplugCfgMenuVisibilityConverter.cs" />
+    <Compile Include="CustomViewMenuVisibilityConverter.cs" />
+    <Compile Include="NavigationButtonEnabledConverter.cs" />
+    <Compile Include="MainMenuEnabledConverter.cs" />
+    <Compile Include="RTDMenuEnabledConverter.cs" />
+    <Compile Include="ReportsMenuItemsEnabledConverter.cs" />
+    <Compile Include="RibbonDVRSXMLVisibleConverter.cs" />
+    <Compile Include="RibbonDVRSXMLVisibilityConverter.cs" />
+    <Compile Include="RibbonDVRSXMLEnabledConverter.cs" />
+    <Compile Include="RibbonUpdataCallListVisibilityConverter.cs" />
+    <Compile Include="RibbonUpdataCallListEnabledConverter.cs" />
+    <Compile Include="RibbonRadioHandOutO9EnabledConverter.cs" />
+    <Compile Include="RadioHandOutEnabledConverter.cs" />
+    <Compile Include="RibbonRadioUserDefinedEnabledConverter.cs" />
+    <Compile Include="ComparatorMenuItemsEnabledConverter.cs" />
+    <Compile Include="ComparatorMenuEnabledConverter.cs" />
+    <Compile Include="TreeRootHeaderConverter.cs" />
+    <Compile Include="POP25BatchSchedulerMenuEnabledConverter.cs" />
+    <Compile Include="BBFCreatorMenuEnabledConverter.cs" />
+    <Compile Include="BluetoothPANIPAddressRule.cs" />
+    <Compile Include="PageCustomViewWelcome.cs" />
+    <Compile Include="PageAvailableDevice.cs" />
+    <Compile Include="PageDeviceInfo.cs" />
+    <Compile Include="PageDeviceInfoTableView.cs" />
+    <Compile Include="PageDeviceMenagerTableView.cs" />
+    <Compile Include="PageDeviceMgtOptions.cs" />
+    <Compile Include="PageFilterView.cs" />
+    <Compile Include="DragDropVersionManagerImp.cs" />
+    <Compile Include="RegistrySettings.cs" />
+    <Compile Include="AcpPbtSrec.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="eAcpColorScheme.cs" />
+    <Compile Include="CommandLineCPS\CruncherOperation.cs" />
+    <Compile Include="CommandLineCPS\Cruncher.cs" />
+    <Compile Include="CommandLineCPS\ObjectSerializer.cs" />
+    <Compile Include="CommandLineCPS\MyMessageBox.cs" />
+    <Compile Include="InitializationScreen\GradientPanel.cs" />
+    <Compile Include="InitializationScreen\SplashWindowStates.cs" />
+    <Compile Include="InitializationScreen\SplashScreen.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="UndoRedo\NavigatePageTask.cs" />
+    <Compile Include="CodeplugConfigurationPageCodeplugNotOpened.xaml.cs">
+      <DependentUpon>codeplugconfigurationpagecodeplugnotopened.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WindowMain.xaml.cs">
+      <DependentUpon>windowmain.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesAcpFiremanSkin.xaml.cs">
+      <DependentUpon>themesacpfiremanskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesAcpFullColorSkin.xaml.cs">
+      <DependentUpon>themesacpfullcolorskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HomeBasePageWelcome.xaml.cs">
+      <DependentUpon>homebasepagewelcome.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PageTreeView.xaml.cs">
+      <DependentUpon>pagetreeview.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HomeBasePageWelcomeTreeView.xaml.cs">
+      <DependentUpon>homebasepagewelcometreeview.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WriteProtect.xaml.cs">
+      <DependentUpon>writeprotect.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesAcpPoliceSkin.xaml.cs">
+      <DependentUpon>themesacppoliceskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesPCRSkin.xaml.cs">
+      <DependentUpon>themespcrskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesAcpSilverSkin.xaml.cs">
+      <DependentUpon>themesacpsilverskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportsDialog.xaml.cs">
+      <DependentUpon>reportsdialog.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesAcpBlackSkin.xaml.cs">
+      <DependentUpon>themesacpblackskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Options.xaml.cs">
+      <DependentUpon>options.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PageStatusBar.xaml.cs">
+      <DependentUpon>pagestatusbar.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesAcpMilitarySkin.xaml.cs">
+      <DependentUpon>themesacpmilitaryskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomViewExitingCustomView.xaml.cs">
+      <DependentUpon>customviewexitingcustomview.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PageNavPaneButtons.xaml.cs">
+      <DependentUpon>pagenavpanebuttons.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomViewNewCustomView.xaml.cs">
+      <DependentUpon>customviewnewcustomview.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RMCWnd.xaml.cs">
+      <DependentUpon>rmcwnd.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="themesAcpClassicSkin.xaml.cs">
+      <DependentUpon>themesacpclassicskin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>app.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HelpAboutCPSWnd.xaml.cs">
+      <DependentUpon>helpaboutcpswnd.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomViewModifyCustomView.xaml.cs">
+      <DependentUpon>customviewmodifycustomview.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="homebase\homebasetipoftheday.xml" />
+    <Resource Include="icons\backgroundfullcolor.jpg" />
+    <Resource Include="icons\batchproglist.png" />
+    <Resource Include="icons\batchprogsch.png" />
+    <Resource Include="icons\blacktheme.png" />
+    <Resource Include="icons\classictheme.png" />
+    <Resource Include="icons\clonedevice.png" />
+    <Resource Include="icons\clonexpress.png" />
+    <Resource Include="icons\closeicon.png" />
+    <Resource Include="icons\cpgnavtoolbar.png" />
+    <Resource Include="icons\cps-icon_002520copy.png" />
+    <Resource Include="icons\cps-icon-3f.ico" />
+    <Resource Include="icons\customapp.png" />
+    <Resource Include="icons\customprodchoices.png" />
+    <Resource Include="icons\error.ico" />
+    <Resource Include="icons\exporticon.png" />
+    <Resource Include="icons\firemantheme.png" />
+    <Resource Include="icons\flashdevice.png" />
+    <Resource Include="icons\flashradio.png" />
+    <Resource Include="icons\fullcolortheme.png" />
+    <Resource Include="icons\greencheckicon.png" />
+    <Resource Include="icons\headerfireman.png" />
+    <Resource Include="icons\headerfullcolor.jpg" />
+    <Resource Include="icons\homebasebackgndpolice.jpg" />
+    <Resource Include="icons\homebasebackgndpolice1.jpg" />
+    <Resource Include="icons\homebasebackgndretromilitary.jpg" />
+    <Resource Include="icons\homebasebackground2.jpg" />
+    <Resource Include="icons\homebasebanner.jpg" />
+    <Resource Include="icons\homebasebannerpolice.jpg" />
+    <Resource Include="icons\homebasebannerretromilitary.jpg" />
+    <Resource Include="icons\homebasefireman.png" />
+    <Resource Include="icons\homebasefireman1.png" />
+    <Resource Include="icons\homebasestripfireman.png" />
+    <Resource Include="icons\homebasestripfullcolor.jpg" />
+    <Resource Include="icons\homebasestrippolice.jpg" />
+    <Resource Include="icons\homebasestripretromilitary.jpg" />
+    <Resource Include="icons\ibutton.png" />
+    <Resource Include="icons\importicon.png" />
+    <Resource Include="icons\info.ico" />
+    <Resource Include="icons\invalid.ico" />
+    <Resource Include="icons\loadsystemkey.png" />
+    <Resource Include="icons\motobatwings.png" />
+    <Resource Include="icons\motobatwingsadmin.png" />
+    <Resource Include="icons\o2.png" />
+    <Resource Include="icons\o3.png" />
+    <Resource Include="icons\o5.png" />
+    <Resource Include="icons\o7.png" />
+    <Resource Include="icons\o9.png" />
+    <Resource Include="icons\options.png" />
+    <Resource Include="icons\policemantheme.png" />
+    <Resource Include="icons\printicon.png" />
+    <Resource Include="icons\radiohandout.png" />
+    <Resource Include="icons\radioinfo.png" />
+    <Resource Include="icons\readdevice.png" />
+    <Resource Include="icons\readflashkey.png" />
+    <Resource Include="icons\readradioconfig.png" />
+    <Resource Include="icons\readwritepassword.png" />
+    <Resource Include="icons\refresh.png" />
+    <Resource Include="icons\reportloadedsystemkeys.png" />
+    <Resource Include="icons\restoreappbackgroundtodefault.png" />
+    <Resource Include="icons\restoreinvalids.png" />
+    <Resource Include="icons\retromilitarytheme.png" />
+    <Resource Include="icons\reusableprofiles.png" />
+    <Resource Include="icons\rm.ico" />
+    <Resource Include="icons\rm_large_shadow.png" />
+    <Resource Include="icons\rm_reflection.png" />
+    <Resource Include="icons\saveicon.png" />
+    <Resource Include="icons\security.png" />
+    <Resource Include="icons\showfeatureset.png" />
+    <Resource Include="icons\showhiderestorebuttons.png" />
+    <Resource Include="icons\silvertheme.png" />
+    <Resource Include="icons\softwarekey.png" />
+    <Resource Include="icons\specialfeaturesicon.png" />
+    <Resource Include="icons\spinnerarrowdown.png" />
+    <Resource Include="icons\spinnerarrowup.png" />
+    <Resource Include="icons\starticon.png" />
+    <Resource Include="icons\stopicon.png" />
+    <Resource Include="icons\sychronizelisthsrotated.png" />
+    <Resource Include="icons\test.png" />
+    <Resource Include="icons\theme.png" />
+    <Resource Include="icons\upgradecodeplug.png" />
+    <Resource Include="icons\userdefinedreport.png" />
+    <Resource Include="icons\userinterface.png" />
+    <Resource Include="icons\voiceannicon.png" />
+    <Resource Include="icons\voicecodeplugusageicon.png" />
+    <Resource Include="icons\voicecoverterutilityicon.png" />
+    <Resource Include="icons\voicedownloadicon.png" />
+    <Resource Include="icons\warning.ico" />
+    <Resource Include="icons\writedevice.png" />
+    <Resource Include="images\appwindow.bmp" />
+    <Resource Include="images\book_stackofreports.png" />
+    <Resource Include="images\closepreviewhs.bmp" />
+    <Resource Include="images\content.png" />
+    <Resource Include="images\copyicon.png" />
+    <Resource Include="images\edit_undo.png" />
+    <Resource Include="images\exiticon.png" />
+    <Resource Include="images\fileopenicon.png" />
+    <Resource Include="images\find.png" />
+    <Resource Include="images\greencheckclipboard.png" />
+    <Resource Include="images\help.png" />
+    <Resource Include="images\helpabout.png" />
+    <Resource Include="images\homeapxfamily.png" />
+    <Resource Include="images\mix3.jpg" />
+    <Resource Include="images\newdocument.png" />
+    <Resource Include="images\newreport.png" />
+    <Resource Include="images\optionicon.png" />
+    <Resource Include="images\redxclipboard.png" />
+    <Resource Include="images\tutorials_icon.png" />
+    <Resource Include="images\windows.png" />
+    <Resource Include="initializationscreen\images\splashscreenbackgroundapx_new.jpg" />
+    <Resource Include="initializationscreen\images\splashscreenbackgroundapx2011.png" />
+    <Resource Include="log\this_002520folder_002520is_002520used_002520to_002520save_002520codeplug_002520modification_002520log.txt" />
+    <Resource Include="reports\data\radchoirptexample.xml" />
+    <Resource Include="reports\data\radhandrptexample.xml" />
+    <Resource Include="reports\data\radinforptexample.xml" />
+    <Resource Include="reports\image\bottom.jpg" />
+    <Resource Include="reports\image\custom.jpg" />
+    <Resource Include="reports\image\dynamic.jpg" />
+    <Resource Include="reports\image\handout.jpg" />
+    <Resource Include="reports\image\header.jpg" />
+    <Resource Include="reports\image\o3_controlheadlabeled.jpg" />
+    <Resource Include="reports\image\o5_kpm1_kpm2_03_labeled.jpg" />
+    <Resource Include="reports\image\o5_kpm1_labeled.jpg" />
+    <Resource Include="reports\image\o9_ctrlheadlabeled.jpg" />
+    <Resource Include="reports\image\radioinfo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InitializationScreen\SplashScreen.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="app.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="codeplugconfiguration\pagecodeplugnotopened.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="customview\exitingcustomview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="customview\modifycustomview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="customview\newcustomview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="customview\pagecustomviewwelcome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="devicemanager\pageavailabledevice.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="devicemanager\pagedeviceinfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="devicemanager\pagedeviceinfotableview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="devicemanager\pagedevicemenagertableview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="devicemanager\pagedevicemgtoptions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="devicemanager\pagefilterview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="helpaboutcpswnd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="homebase\pagewelcome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="homebase\pagewelcometreeview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="options.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pagenavpanebuttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pagestatusbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pagetreeview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="reportsdialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="rmcwnd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpbuttonstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpcheckboxstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpcomboboxstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpcommonstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpcopybuttonstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpcustomviewcheckboxstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpexpanderstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpflyinbuttonstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpgroupboxstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acphomepagestyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acplabelstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acplistboxitemexpstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acplistboxstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpmenuitemsstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acppasswordboxstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acprecnavtoolbarstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acprtdbuttonstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acptextboxfilebrowserstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acptextboxspinnerstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acptextboxstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acptreeviewitemstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpviewonlyctrlstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\acpxamdatapresenterstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\framestyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\hyperlinkstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\listviewitemstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\progressbarstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\radiobuttonstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="styles\scrollbarstyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\acpblackskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\acpclassicskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\acpfiremanskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\acpfullcolorskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\acpmilitaryskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\acppoliceskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\acpsilverskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\pcrskin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="windowmain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="writeprotect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,20 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:igEditors="http://infragistics.com/Editors"
+                    xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI">
+  <Style TargetType="{x:Type Hyperlink}">
+    <Style.Triggers>
+      <Trigger Property="ContentElement.IsMouseOver" Value="true">
+        <Setter Property="TextElement.Foreground"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=Hyperlink, ResourceId={x:Static AcpUINS:AcpColorKeys.HyperlinkForegroundHover}}}"/>
+      </Trigger>
+      <Trigger Property="ContentElement.IsEnabled" Value="false">
+        <Setter Property="TextElement.Foreground"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=Hyperlink, ResourceId={x:Static AcpUINS:AcpColorKeys.HyperlinkForegroundDisabled}}}"/>
+      </Trigger>
+    </Style.Triggers>
+    <Setter Property="TextElement.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=Hyperlink, ResourceId={x:Static AcpUINS:AcpColorKeys.HyperlinkForeground}}}"/>
+    <Setter Property="TextBlock.TextDecorations" Value="{x:Null}"/>
+  </Style>
+</ResourceDictionary>

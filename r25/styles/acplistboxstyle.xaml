@@ -1,0 +1,112 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI">
+  <Style TargetType="{x:Type ListBox}">
+    <Setter Property="Control.Background" Value="Transparent"/>
+  </Style>
+  <Style TargetType="{x:Type AcpUINS:AcpListBox}">
+    <Setter Property="Control.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpTextBox, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpTextBoxBackground}}}"/>
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpTextBox, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpTextBoxForeground}}}"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpValid}" Value="false">
+        <Setter Property="Control.Foreground"
+                Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=AcpUINS:AcpListBox, ResourceId={x:Static AcpUINS:AcpColorKeys.AcpListBoxInValidForeground}}}"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpApplicable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="false"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpEditable}" Value="false">
+        <Setter Property="UIElement.IsEnabled" Value="false"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsAcpVisible}" Value="false">
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="AcpListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+    <Style.Triggers>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
+          <Condition Binding="{Binding Path=ItemValidity}" Value="True"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Control.Foreground" Value="Black"/>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="False"/>
+          <Condition Binding="{Binding Path=ItemValidity}" Value="False"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Control.Foreground" Value="Red"/>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
+          <Condition Binding="{Binding Path=ItemValidity}" Value="False"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Control.Foreground" Value="Red"/>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
+          <Condition Binding="{Binding Path=ItemValidity}" Value="True"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Control.Foreground" Value="White"/>
+      </MultiDataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True"/>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsFocused}" Value="False"/>
+          <Condition Binding="{Binding Path=ItemValidity}" Value="True"/>
+        </MultiDataTrigger.Conditions>
+        <Setter Property="Control.Foreground" Value="Black"/>
+      </MultiDataTrigger>
+      <DataTrigger Binding="{Binding Path=ItemVisibility}" Value="False">
+        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
+      </DataTrigger>
+      <DataTrigger Binding="{Binding Path=ItemVisibility}" Value="True">
+        <Setter Property="UIElement.Visibility" Value="Visible"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
+  <Style TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Control.Background"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=ListViewItem, ResourceId={x:Static AcpUINS:AcpColorKeys.ListViewItemNormalBackground}}}"/>
+    <Setter Property="Control.Foreground"
+            Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=ListViewItem, ResourceId={x:Static AcpUINS:AcpColorKeys.ListViewItemNormalForeground}}}"/>
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <Border Background="{TemplateBinding Control.Background}"
+                  BorderBrush="{TemplateBinding Control.BorderBrush}"
+                  BorderThickness="{TemplateBinding Control.BorderThickness}"
+                  Padding="{TemplateBinding Control.Padding}">
+            <StackPanel>
+              <ContentPresenter/>
+            </StackPanel>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="ListBoxItem.IsSelected" Value="true">
+              <Trigger.Setters>
+              </Trigger.Setters>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="ListBoxItem.IsSelected" Value="true">
+        <Trigger.Setters>
+          <Setter Property="Control.Background"
+                  Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=ListViewItem, ResourceId={x:Static AcpUINS:AcpColorKeys.ListViewItemIsSelectedBackground}}}"/>
+          <Setter Property="Control.Foreground"
+                  Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=ListViewItem, ResourceId={x:Static AcpUINS:AcpColorKeys.ListViewItemIsSelectedForeground}}}"/>
+        </Trigger.Setters>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <Style TargetType="{x:Type AcpUINS:AcpOrderableListBox}"
+         BasedOn="{StaticResource {x:Type AcpUINS:AcpListBox}}"/>
+</ResourceDictionary>

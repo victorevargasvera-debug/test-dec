@@ -1,0 +1,1737 @@
+<dc:RibbonWindow x:Class="MackinawCPS.WindowMain"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:igEditors="http://infragistics.com/Editors"
+                 xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+                 xmlns:AcpUICustVwNS="clr-namespace:AcpUI.CustomView;assembly=AcpUI"
+                 xmlns:AcpBLConverterNS="clr-namespace:AcpBusinessLayer.ValueConverters;assembly=AcpBusinessLayer"
+                 xmlns:MackinawCPSNS="clr-namespace:MackinawCPS"
+                 xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+                 xmlns:AcpCommonLibNS="clr-namespace:AcpCommonLib;assembly=AcpCommonLib"
+                 xmlns:AcpSecurityLibNS="clr-namespace:AcpSecurityLib;assembly=AcpSecurityLib"
+                 xmlns:LocalConverterNS="clr-namespace:ConstraintHelper;assembly=AllFeatures"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:dc="clr-namespace:DevComponents.WpfRibbon;assembly=AcpWpfRibbon"
+                 xmlns:labtool="LabTool"
+                 xmlns:depot="Depot"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2006"
+                 xml:lang="en-US" Loaded="OnLoad" Closing="onExitApp" Drop="WindowMain_Drop"
+                 MouseEnter="WindowMain_AllowDrop" MouseLeave="WindowMain_AllowDrop"
+                 Title="{x:Static CommonResxNS:AppResources.APX_CPS}" ResizeMode="CanResizeWithGrip" Width="1050"
+                 Height="780">
+  <FrameworkElement.Resources>
+    <MackinawCPSNS:CodeplugCfgMenuVisibilityConverter x:Key="CpCfgMenuVisibilityConverter"/>
+    <MackinawCPSNS:CustomViewMenuVisibilityConverter x:Key="CustomVwMenuVisibilityConverter"/>
+    <MackinawCPSNS:MainMenuEnabledConverter x:Key="MainMenuEnabledConverter"/>
+    <MackinawCPSNS:RTDMenuEnabledConverter x:Key="RTDMenuEnabledConverter"/>
+    <MackinawCPSNS:ComparatorMenuItemsEnabledConverter x:Key="ComparatorMenuItemsEnabledConverter"/>
+    <MackinawCPSNS:RadioHandOutEnabledConverter x:Key="RadioHandOutEnabledConverter"/>
+    <MackinawCPSNS:ReportsMenuItemsEnabledConverter x:Key="ReportsMenuItemsEnabledConverter"/>
+    <MackinawCPSNS:RibbonRadioHandOutO9EnabledConverter x:Key="RibbonRadioHandOutO9EnabledConverter"/>
+    <MackinawCPSNS:RibbonDVRSXMLVisibilityConverter x:Key="RibbonDVRSXMLVisibilityConverter"/>
+    <MackinawCPSNS:RibbonDVRSXMLEnabledConverter x:Key="RibbonDVRSXMLEnabledConverter"/>
+    <MackinawCPSNS:RibbonUpdataCallListVisibilityConverter x:Key="RibbonUpdataCallListVisibilityConverter"/>
+    <MackinawCPSNS:RibbonUpdataCallListEnabledConverter x:Key="RibbonUpdataCallListEnabledConverter"/>
+    <MackinawCPSNS:RibbonRadioUserDefinedEnabledConverter x:Key="RibbonRadioUserDefinedEnabledConverter"/>
+    <MackinawCPSNS:ComparatorMenuEnabledConverter x:Key="ComparatorMenuEnabledConverter"/>
+    <MackinawCPSNS:BBFCreatorMenuEnabledConverter x:Key="BBFCreatorMenuEnabledConverter"/>
+    <AcpBLConverterNS:InvertBoolConverter x:Key="InvertBoolConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    <LocalConverterNS:InvertBoolToVisibleConverter x:Key="InvertBooleanToVisibility"/>
+    <MackinawCPSNS:POP25BatchSchedulerMenuEnabledConverter x:Key="POP25BatchSchedulerMenuEnabledConverter"/>
+    <RoutedCommand x:Key="F1Help"/>
+    <Style x:Key="ValidateBTPANIPAddressTextBoxStyle" TargetType="{x:Type TextBox}">
+      <Style.Triggers>
+        <Trigger Property="Validation.HasError" Value="true">
+          <Setter Property="Control.Foreground" Value="Red"/>
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+    <ControlTemplate x:Key="ValidationErrorBlankTemplate">
+      <DockPanel Visibility="Collapsed"/>
+    </ControlTemplate>
+  </FrameworkElement.Resources>
+  <UIElement.CommandBindings>
+    <CommandBinding Executed="OnClickRibbonBarCPSHelp" CanExecute="F1HelpCommandCanExcute"
+                    Command="{StaticResource F1Help}"/>
+  </UIElement.CommandBindings>
+  <UIElement.InputBindings>
+    <KeyBinding Command="{StaticResource F1Help}" Key="F1"/>
+  </UIElement.InputBindings>
+  <DockPanel Name="WindowMainDockPanel" LastChildFill="true">
+    <dc:Ribbon Name="WindowMainRibbonControl" DockPanel.Dock="Top" AutoHideRibbonContent="false"
+               IsMinimized="true" LicenseKey="DAD80300DA22">
+      <dc:Ribbon.ApplicationMenu>
+        <dc:ApplicationMenu IsEnabled="{Binding Path=BlockFlashReadRadio}">
+          <dc:ButtonDropDown.Image>
+            <Image x:Name="imgRibbonAppMenu" Source="icons/motoBatwings.png" Width="24" Height="24"/>
+          </dc:ButtonDropDown.Image>
+          <dc:ApplicationMenu.AppItems>
+            <dc:ButtonDropDown Name="AppMenuItemExitRibbonPad" Header="{x:Static CommonResxNS:AppResources.Exit_RibbonPad}"
+                               ColorClass="ButtonWithBackground" Margin="6,0,0,0">
+              <dc:ButtonDropDown.Image>
+                <Image Source="images/ExitIcon.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+            </dc:ButtonDropDown>
+          </dc:ApplicationMenu.AppItems>
+          <dc:ApplicationMenu.MruItems>
+            <TextBlock MinWidth="200" Foreground="Black" FontWeight="Bold"
+                       Text="{x:Static CommonResxNS:AppResources.Recent_Codeplugs}"/>
+            <Separator/>
+            <AcpUINS:AcpListBoxMruFiles FileClick="OnAppMruFileOpen" Name="AppMruList"
+                                        IsEnabled="{Binding ElementName=AppMenuOpen, Path=IsEnabled}"/>
+          </dc:ApplicationMenu.MruItems>
+          <dc:ButtonDropDown Click="OnAppMenuOpen" Name="AppMenuOpen" Header="{x:Static CommonResxNS:AppResources.Open_Id}">
+            <UIElement.IsEnabled>
+              <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding>
+                  <Binding.Source>
+                    <sys:Boolean>True</sys:Boolean>
+                  </Binding.Source>
+                </Binding>
+              </MultiBinding>
+            </UIElement.IsEnabled>
+            <dc:ButtonDropDown.Image>
+              <Image Source="images/FileOpenIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <dc:ButtonDropDown Click="OnAppMenuSave" Name="AppMenuSave" Header="{x:Static CommonResxNS:AppResources.Save_ID_}">
+            <UIElement.IsEnabled>
+              <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+              </MultiBinding>
+            </UIElement.IsEnabled>
+            <dc:ButtonDropDown.Image>
+              <Image Source="icons/SaveIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <dc:ButtonDropDown Click="OnAppMenuSaveAs" Name="AppMenuSaveAs" Header="{x:Static CommonResxNS:AppResources.Save_As_}">
+            <UIElement.IsEnabled>
+              <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+              </MultiBinding>
+            </UIElement.IsEnabled>
+            <dc:ButtonDropDown.Image>
+              <Image Source="icons/SaveIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <Separator Style="{DynamicResource AppMenuSeparator}"/>
+          <dc:ButtonDropDown Click="OnAppMenuImport" Name="AppMenuImport"
+                             Header="{x:Static CommonResxNS:AppResources.Import_Id}">
+            <UIElement.IsEnabled>
+              <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+              </MultiBinding>
+            </UIElement.IsEnabled>
+            <dc:ButtonDropDown.Image>
+              <Image Source="icons/ImportIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <dc:ButtonDropDown Click="OnAppMenuExport" Name="AppMenuExport"
+                             Header="{x:Static CommonResxNS:AppResources.Export_Suspension}">
+            <UIElement.IsEnabled>
+              <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+              </MultiBinding>
+            </UIElement.IsEnabled>
+            <dc:ButtonDropDown.Image>
+              <Image Source="icons/ExportIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <Separator Style="{DynamicResource AppMenuSeparator}"/>
+          <dc:ButtonDropDown Click="OnAppMenuRadioManagement" Name="AppMenuRMC"
+                             Header="{x:Static CommonResxNS:AppResources.Radio_Management}">
+            <dc:ButtonDropDown.Image>
+              <Image Source="icons/RM_Large_Shadow.png" Width="40" Height="40"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <Separator Name="AppMenuRMCSep" Style="{DynamicResource AppMenuSeparator}"/>
+          <dc:ButtonDropDown Name="AppMenuPrint" Header="{x:Static CommonResxNS:AppResources.Print_Suspension_Points}"
+                             Role="DropDown" IsNestedMenu="true">
+            <UIElement.IsEnabled>
+              <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+              </MultiBinding>
+            </UIElement.IsEnabled>
+            <dc:ButtonDropDown.Image>
+              <Image Source="icons/PrintIcon.png"/>
+            </dc:ButtonDropDown.Image>
+            <dc:ButtonDropDown Click="OnPrtRadioInfoReports" Name="RadioInfo"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Information}" Role="MenuItem"
+                               IsEnabled="{Binding ElementName=AppMenuPrint, Path=IsEnabled}"/>
+            <dc:ButtonDropDown Click="OnPrtHandOutReports" Name="RadioHandOut"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout}" Role="MenuItem"
+                               IsEnabled="{Binding ElementName=AppMenuPrint, Path=IsEnabled}"
+                               Visibility="{Binding Path=IsMobileModel, Converter={StaticResource InvertBooleanToVisibility}}"/>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO2" Name="RadioHandOutO2"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O2}" Role="MenuItem"
+                               Visibility="{Binding Path=IsMobileModel, Converter={StaticResource BooleanToVisibility}}">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource ReportsMenuItemsEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO2"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO3" Name="RadioHandOutO3"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O3}" Role="MenuItem"
+                               Visibility="{Binding Path=IsMobileModel, Converter={StaticResource BooleanToVisibility}}">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource ReportsMenuItemsEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO3"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO5" Name="RadioHandOutO5"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O5}" Role="MenuItem"
+                               Visibility="{Binding Path=IsMobileModel, Converter={StaticResource BooleanToVisibility}}">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource ReportsMenuItemsEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO5"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO7" Name="RadioHandOutO7"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O7}" Role="MenuItem"
+                               Visibility="{Binding Path=IsMobileModel, Converter={StaticResource BooleanToVisibility}}">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource ReportsMenuItemsEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO7"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO9" Name="RadioHandOutO9"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O9}" Role="MenuItem"
+                               Visibility="{Binding Path=IsMobileModel, Converter={StaticResource BooleanToVisibility}}">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RibbonRadioHandOutO9EnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO9"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtCustomTplReports" Name="RadioUserDefined"
+                               Header="{x:Static CommonResxNS:AppResources.User_Defined_Report}" Role="MenuItem">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RibbonRadioUserDefinedEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtChoicesReports" Name="RadioPrintChoices"
+                               Header="{x:Static CommonResxNS:AppResources.Print_Choices}" Role="MenuItem"
+                               IsEnabled="{Binding ElementName=AppMenuPrint, Path=IsEnabled}"/>
+          </dc:ButtonDropDown>
+          <Separator Style="{DynamicResource AppMenuSeparator}"/>
+          <dc:ButtonDropDown Click="OnAppMenuClose" Name="AppMenuClose" Header="{x:Static CommonResxNS:AppResources.Close_Id}">
+            <UIElement.IsEnabled>
+              <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+              </MultiBinding>
+            </UIElement.IsEnabled>
+            <dc:ButtonDropDown.Image>
+              <Image Source="icons/CloseIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <Separator Style="{DynamicResource AppMenuSeparator}"/>
+          <dc:ButtonDropDown Click="OnAppMenuOptions" Name="AppMenuOptions"
+                             Header="{x:Static CommonResxNS:AppResources.Options_Id}">
+            <dc:ButtonDropDown.Image>
+              <Image Source="images/OptionIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <Separator Style="{DynamicResource AppMenuSeparator}"/>
+          <dc:ButtonDropDown Click="OnAppMenuExit" Name="AppMenuExit" Header="{x:Static CommonResxNS:AppResources.Exit_Id}">
+            <dc:ButtonDropDown.Image>
+              <Image Source="images/ExitIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+        </dc:ApplicationMenu>
+      </dc:Ribbon.ApplicationMenu>
+      <dc:Ribbon.QuickAccessToolbar>
+        <dc:Qat>
+          <dc:ButtonDropDown Name="QATDummy" Header="{x:Static CommonResxNS:AppResources.Dummy_Id}" Visibility="Collapsed"/>
+          <dc:ButtonDropDown Click="OnQATOpen" Name="QATOpen" Header="{x:Static CommonResxNS:AppResources.Open_Id}"
+                             PartVisibility="ImageOnly" ToolTip="{x:Static CommonResxNS:AppResources.Open_Id}"
+                             IsEnabled="{Binding Path=BlockFlashReadRadio}">
+            <dc:ButtonDropDown.Image>
+              <Image Source="images/FileOpenIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <dc:ButtonDropDown Click="OnAppMenuSave" Name="QATSave" Header="{x:Static CommonResxNS:AppResources.Save_ID_}"
+                             PartVisibility="ImageOnly" ToolTip="{x:Static CommonResxNS:AppResources.Saves_Codeplug}">
+            <UIElement.IsEnabled>
+              <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+              </MultiBinding>
+            </UIElement.IsEnabled>
+            <dc:ButtonDropDown.Image>
+              <Image Source="icons/SaveIcon.png"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <dc:ButtonDropDown Click="OnAppMenuRadioManagement" Name="QATRMC"
+                             Header="{x:Static CommonResxNS:AppResources.Radio_Management}" PartVisibility="ImageOnly"
+                             ToolTip="{x:Static CommonResxNS:AppResources.Radio_Management}">
+            <dc:ButtonDropDown.Image>
+              <Image Source="icons/RM.ico"/>
+            </dc:ButtonDropDown.Image>
+          </dc:ButtonDropDown>
+          <dc:QatCustomizeButton/>
+        </dc:Qat>
+      </dc:Ribbon.QuickAccessToolbar>
+      <dc:RibbonTab Name="ribbonTabCodeplug" Header="{x:Static CommonResxNS:AppResources.Codeplug_Id}"
+                    Visibility="{Binding Path=CurrentAppMode, Converter={StaticResource CpCfgMenuVisibilityConverter}, Mode=OneWay}">
+        <dc:RibbonBarPanel Name="ribbonBarPanelCodeplug" Height="70">
+          <dc:RibbonBar Header="{x:Static CommonResxNS:AppResources.Archive_Id}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Archive_Id}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="1" HorizontalContentAlignment="Stretch">
+            <StackPanel Orientation="Vertical">
+              <dc:ButtonDropDown Click="OnRibbonBarSaveCodeplug" Name="RibbonBarSave"
+                                 Header="{x:Static CommonResxNS:AppResources.Save_ID}" dc:RibbonBar.MinAutoSizeHint="Medium"
+                                 ExpandPosition="Bottom" PopupType="Menu" ContentExpands="true" VerticalContentAlignment="Center">
+                <UIElement.IsEnabled>
+                  <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                    <Binding Path="CurrentAppMode"/>
+                    <Binding Path="CpgOpenFlag"/>
+                  </MultiBinding>
+                </UIElement.IsEnabled>
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/SaveIcon.png"/>
+                </dc:ButtonDropDown.Image>
+                <FrameworkElement.ToolTip>
+                  <dc:SuperToolTip>
+                    <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.Saves_Codeplug}"/>
+                  </dc:SuperToolTip>
+                </FrameworkElement.ToolTip>
+              </dc:ButtonDropDown>
+            </StackPanel>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarEdit" Header="{x:Static CommonResxNS:AppResources.Edit_Id}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Edit_Id}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="2">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="images/Edit_Undo.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <StackPanel Orientation="Vertical">
+              <dc:ButtonDropDown Click="OnQATUndo" Name="QATUndo" Header="{x:Static CommonResxNS:AppResources.Undo_Id}"
+                                 IsEnabled="{Binding Path=CanUndo}">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/Edit_Undo.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnQATRedo" Name="QATRedo" Header="{x:Static CommonResxNS:AppResources.Redo_Id}"
+                                 IsEnabled="{Binding Path=CanRedo}">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" RenderTransformOrigin="0.5,0.5"
+                         Source="images/Edit_Undo.png">
+                    <UIElement.RenderTransform>
+                      <ScaleTransform ScaleX="-1"/>
+                    </UIElement.RenderTransform>
+                  </Image>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+            </StackPanel>
+          </dc:RibbonBar>
+          <dc:RibbonBar GotFocus="OnRibbonBarRestoreButtonsGotFoucs" LostFocus="OnRibbonBarRestoreButtonsLostFocus"
+                        Name="ribbonBarRestore" Header="{x:Static CommonResxNS:AppResources.Restore_ID}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Restore_ID}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="3" HorizontalContentAlignment="Stretch">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Style="{StaticResource Image32x32Style}" Source="{StaticResource RtdDrawingImage}"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Name="RibbonBarRtd" Header="{x:Static CommonResxNS:AppResources.Restore_To_Default}"
+                               ExpandPosition="Bottom" Role="DropDown" ContentExpands="true" HorizontalAlignment="Left"
+                               VerticalContentAlignment="Center">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RTDMenuEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="{StaticResource RtdDrawingImage}"/>
+              </dc:ButtonDropDown.Image>
+              <dc:ButtonDropDown Click="OnRibbonBarShowRtdButtons" Name="ribbonBarShowRtdButtons"
+                                 Header="{x:Static CommonResxNS:AppResources.Show_Hide_Restore_To_Default_Buttons}" Tag="Opened"
+                                 Role="MenuItem">
+                <UIElement.IsEnabled>
+                  <MultiBinding Converter="{StaticResource ComparatorMenuItemsEnabledConverter}">
+                    <Binding Path="CurrentAppMode"/>
+                    <Binding Path="CpgOpenFlag"/>
+                  </MultiBinding>
+                </UIElement.IsEnabled>
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/ShowHideRestoreButtons.png"/>
+                </dc:ButtonDropDown.Image>
+                <FrameworkElement.ToolTip>
+                  <dc:SuperToolTip>
+                    <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.Restore_To_Default}"/>
+                  </dc:SuperToolTip>
+                </FrameworkElement.ToolTip>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarPageRestoreAll" Name="RibbonBarRtdPageRestoreAll"
+                                 Header="{x:Static CommonResxNS:AppResources.Restore_All_Fields}" Tag="Opened" Role="MenuItem">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/refresh.png"/>
+                </dc:ButtonDropDown.Image>
+                <FrameworkElement.ToolTip>
+                  <dc:SuperToolTip>
+                    <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.Restore_To_Default}"/>
+                  </dc:SuperToolTip>
+                </FrameworkElement.ToolTip>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarPageRestoreAllInvalids" Name="RibbonBarRtdInvalidsRestoreAll"
+                                 Header="{x:Static CommonResxNS:AppResources.Restore_All_Invalid_Fields}" Tag="Opened"
+                                 Role="MenuItem">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/RestoreInvalids.png"/>
+                </dc:ButtonDropDown.Image>
+                <FrameworkElement.ToolTip>
+                  <dc:SuperToolTip>
+                    <TextBlock TextWrapping="Wrap" Width="180"
+                               Text="{x:Static CommonResxNS:AppResources.Restore_All_Invalid_Fields_To_Default}"/>
+                  </dc:SuperToolTip>
+                </FrameworkElement.ToolTip>
+              </dc:ButtonDropDown>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="RibbonBarSearch" Header="{x:Static CommonResxNS:AppResources.Search_ID}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Search_ID}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="4" HorizontalContentAlignment="Stretch">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="images/Find.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:RibbonBarPanel>
+              <TextBox KeyDown="OnFindTokenKeyDown" Name="FindToken" Width="120" Height="20" Margin="2"/>
+              <dc:ButtonDropDown Name="RibbonBarEditingFind" Header="{x:Static CommonResxNS:AppResources.Find_Id}"
+                                 ExpandPosition="Bottom" ContentExpands="true" VerticalContentAlignment="Center" Role="DropDown"
+                                 IsEnabled="{Binding Path=CpgOpenFlag}">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/Find.png"/>
+                </dc:ButtonDropDown.Image>
+                <dc:ButtonDropDown Click="OnFindFieldName" Name="RibbonBarEditingFindFieldName"
+                                   Header="{x:Static CommonResxNS:AppResources.Field_Name}" Tag="Opened" Role="MenuItem"
+                                   IsEnabled="{Binding Path=CpgOpenFlag}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="images/Find.png"/>
+                  </dc:ButtonDropDown.Image>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Click="OnFindFieldNameAndValue" Name="RibbonBarEditingFindFieldNameAndValue"
+                                   Header="{x:Static CommonResxNS:AppResources.Field_Name_and_Value}" Tag="Opened" Role="MenuItem"
+                                   IsEnabled="{Binding Path=CpgOpenFlag}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="images/Find.png"/>
+                  </dc:ButtonDropDown.Image>
+                </dc:ButtonDropDown>
+              </dc:ButtonDropDown>
+            </dc:RibbonBarPanel>
+          </dc:RibbonBar>
+          <dc:RibbonBar Header="{x:Static CommonResxNS:AppResources.Codeplug_Comparison}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Codeplug_Comparison}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="6" HorizontalContentAlignment="Stretch">
+            <StackPanel Orientation="Vertical">
+              <dc:ButtonDropDown Click="OnRibbonBarCompCodeplug" Name="RibbonBarCompCodeplugStartEnd"
+                                 Header="{x:Static CommonResxNS:AppResources.Start_Comparator}"
+                                 dc:RibbonBar.MinAutoSizeHint="Medium" ExpandPosition="Bottom" PopupType="Menu"
+                                 ContentExpands="true" VerticalContentAlignment="Center">
+                <UIElement.IsEnabled>
+                  <MultiBinding Converter="{StaticResource ComparatorMenuEnabledConverter}">
+                    <Binding Path="SelectedNavigationMode"/>
+                    <Binding Path="CpgOpenFlag"/>
+                  </MultiBinding>
+                </UIElement.IsEnabled>
+                <dc:ButtonDropDown.Image>
+                  <Image Name="RibbonBarCompCodeplugStartEndImage" Style="{StaticResource Image16x16Style}"
+                         Source="../../icons/media_play.png"/>
+                </dc:ButtonDropDown.Image>
+                <FrameworkElement.ToolTip>
+                  <dc:SuperToolTip>
+                    <TextBlock TextWrapping="Wrap" Width="180"
+                               Text="{x:Static CommonResxNS:AppResources.Start_End_the_Codeplug_Comparator}"/>
+                  </dc:SuperToolTip>
+                </FrameworkElement.ToolTip>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="RibbonBarCompOptions" Header="{x:Static CommonResxNS:AppResources.Options_Id}"
+                                 dc:RibbonBar.MinAutoSizeHint="Medium" ExpandPosition="Bottom" Role="DropDown" ContentExpands="true"
+                                 VerticalContentAlignment="Center">
+                <UIElement.IsEnabled>
+                  <MultiBinding Converter="{StaticResource ComparatorMenuEnabledConverter}">
+                    <Binding Path="SelectedNavigationMode"/>
+                    <Binding Path="CpgOpenFlag"/>
+                  </MultiBinding>
+                </UIElement.IsEnabled>
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/options.png"/>
+                </dc:ButtonDropDown.Image>
+                <FrameworkElement.ToolTip>
+                  <dc:SuperToolTip>
+                    <TextBlock TextWrapping="Wrap" Width="110" Text="{x:Static CommonResxNS:AppResources.Comparator_Options}"/>
+                  </dc:SuperToolTip>
+                </FrameworkElement.ToolTip>
+                <dc:ButtonDropDown Click="OnRibbonBarHideMatches" Name="RibbonBarCompCodeplugHideUnideFlds"
+                                   Header="{x:Static CommonResxNS:AppResources.Hide_Matches}" Role="MenuItem" IsEnabled="false">
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="../../icons/greencheck.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180"
+                                 Text="{x:Static CommonResxNS:AppResources.Hide_UnHide_fields_that_Match}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Click="OnRibbonBarPageCopyAll" Name="RibbonBarCompCodeplugPageCopyAll"
+                                   Header="{x:Static CommonResxNS:AppResources.Copy_All_Fields_Current_Page}" Role="MenuItem"
+                                   IsEnabled="false">
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="../../images/Copy.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180"
+                                 Text="{x:Static CommonResxNS:AppResources.Copy_all_fields_on_the_current_page}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+              </dc:ButtonDropDown>
+            </StackPanel>
+          </dc:RibbonBar>
+          <dc:RibbonBar Header="{x:Static CommonResxNS:AppResources.Feature_Set}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Feature_Set}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="1" HorizontalContentAlignment="Stretch">
+            <StackPanel Orientation="Vertical">
+              <dc:ButtonDropDown Click="RibbonBarShowFS_Click" Name="RibbonBarShowFS"
+                                 Header="{x:Static CommonResxNS:AppResources.Show_Feature_Set}"
+                                 dc:RibbonBar.MinAutoSizeHint="Medium" ExpandPosition="Bottom" PopupType="Menu"
+                                 ContentExpands="true" VerticalContentAlignment="Center" IsEnabled="{Binding Path=CpgOpenFlag}">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="../../icons/ShowFeatureSet.png"/>
+                </dc:ButtonDropDown.Image>
+                <FrameworkElement.ToolTip>
+                  <dc:SuperToolTip>
+                    <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.Show_Feature_Set}"/>
+                  </dc:SuperToolTip>
+                </FrameworkElement.ToolTip>
+              </dc:ButtonDropDown>
+            </StackPanel>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarToolsPassword" Header="{x:Static CommonResxNS:AppResources.Password_Id}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Password_Id}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="3">
+            <UIElement.IsEnabled>
+              <MultiBinding Converter="{StaticResource ComparatorMenuItemsEnabledConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+              </MultiBinding>
+            </UIElement.IsEnabled>
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="images/Component.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnRibbonBarPassword" Name="ReadWritePassword"
+                               Header="{x:Static CommonResxNS:AppResources.Read_Write_Password}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/ReadWritePassword.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Read_Write_Password}">
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Optional_Security_Protection_Note}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar LaunchDialog="OnAppMenuOptions" Name="ribbonBarDVRS"
+                        Header="{x:Static CommonResxNS:AppResources.DVRS_MSU}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.DVRS_MSU}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="3">
+            <UIElement.Visibility>
+              <MultiBinding Converter="{StaticResource RibbonDVRSXMLVisibilityConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+                <Binding Path="IsDVRSHoptionEnabled"/>
+              </MultiBinding>
+            </UIElement.Visibility>
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="../../icons/ExportIcon.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnRibbonBarDVRSExport" Name="DVRSExport"
+                               Header="{x:Static CommonResxNS:AppResources.DVRS_Export}" dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RibbonDVRSXMLEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsDVRSHwEnabled"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="../../icons/ExportIcon.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Export_DVRS}">
+                  <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.Export_DVRS_Xml_File}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarUpdateUCL" Header="{x:Static CommonResxNS:AppResources.Call_List_Import}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Call_List_Import}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="2">
+            <UIElement.Visibility>
+              <MultiBinding Converter="{StaticResource RibbonUpdataCallListVisibilityConverter}">
+                <Binding Path="CurrentAppMode"/>
+                <Binding Path="CpgOpenFlag"/>
+                <Binding Path="IsCpgConvOnly"/>
+              </MultiBinding>
+            </UIElement.Visibility>
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="../../icons/ImportIcon.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnRibbonBarOpenUpdateUCL" Name="UpdateCallList"
+                               Header="{x:Static CommonResxNS:AppResources.Import_From_Console}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RibbonUpdataCallListEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsCpgConvOnly"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="../../icons/ImportIcon.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Import_From_Console}">
+                  <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.Import_From_Console}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+        </dc:RibbonBarPanel>
+      </dc:RibbonTab>
+      <dc:RibbonTab Name="ribbonTabCustomViewCfgMode" Header="{x:Static CommonResxNS:AppResources.Custom_View}"
+                    Visibility="{Binding Path=CurrentAppMode, Converter={StaticResource CustomVwMenuVisibilityConverter}, Mode=OneWay}">
+        <dc:RibbonBarPanel Name="ribbonBarCustomViewPanel" Height="70">
+          <dc:RibbonBar Name="ribbonBarCustomView" Header="{x:Static CommonResxNS:AppResources.Custom_View}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Custom_View}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="3" HorizontalContentAlignment="Stretch">
+            <dc:RibbonBarPanel>
+              <dc:ButtonDropDown Click="OnRibbonBarOpenCustomView" Name="ribbonBarCustomViewOpen"
+                                 Header="{x:Static CommonResxNS:AppResources.Open_Custom_View_File}"
+                                 dc:RibbonBar.MinAutoSizeHint="Medium" ExpandPosition="Bottom" PopupType="Menu"
+                                 ContentExpands="true" VerticalContentAlignment="Center"
+                                 IsEnabled="{Binding Path=CustomViewOpenFlag, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/NewDocument.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarNewCustomView" Name="ribbonBarCustomViewNew"
+                                 Header="{x:Static CommonResxNS:AppResources.Create_New_Custom_View_File}"
+                                 dc:RibbonBar.MinAutoSizeHint="Medium" ExpandPosition="Bottom" PopupType="Menu"
+                                 ContentExpands="true" VerticalContentAlignment="Center"
+                                 IsEnabled="{Binding Path=CustomViewOpenFlag, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/NewDocument.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarSaveAsCustomView" Name="ribbonBarCustomViewSaveAs"
+                                 Header="{x:Static CommonResxNS:AppResources.Save_As_}"
+                                 IsEnabled="{Binding Path=CustomViewOpenFlag, Mode=OneWay}">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/SaveIcon.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarCloseCustomView" Name="ribbonBarCustomViewClose"
+                                 Header="{x:Static CommonResxNS:AppResources.Exit_custom_view_mode}"
+                                 IsEnabled="{Binding Path=CustomViewOpenFlag, Mode=OneWay}">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/ExitIcon.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarCustomViewHelp" Name="ribbonBarCustomHowTo"
+                                 Header="{x:Static CommonResxNS:AppResources.Help_Id}">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/Help.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+            </dc:RibbonBarPanel>
+          </dc:RibbonBar>
+        </dc:RibbonBarPanel>
+      </dc:RibbonTab>
+      <dc:RibbonTab Name="ribbonTabAppSettings" Header="{x:Static CommonResxNS:AppResources.View_ID}"
+                    Visibility="{Binding Path=CurrentAppMode, Converter={StaticResource CpCfgMenuVisibilityConverter}, Mode=OneWay}">
+        <dc:RibbonBarPanel Height="70">
+          <dc:RibbonBar Name="ribbonBarThemes" Header="{x:Static CommonResxNS:AppResources.Themes_ID}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Themes_ID}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="8" HorizontalContentAlignment="Stretch">
+            <dc:ButtonDropDown Name="RibbonBarBarThemes" Header="{x:Static CommonResxNS:AppResources.Themes_ID}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium" ExpandPosition="Bottom" Role="DropDown" ContentExpands="true"
+                               VerticalContentAlignment="Center">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="icons/theme.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="130" Text="{x:Static CommonResxNS:AppResources.Shows_the_Color_Themes}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+              <dc:ButtonDropDown Click="OnRibbonBarThemeItemClick" Name="ClassicTheme"
+                                 Header="{x:Static CommonResxNS:AppResources.Classic_ID}" Role="MenuItem">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/Classictheme.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarThemeItemClick" Name="SilverTheme"
+                                 Header="{x:Static CommonResxNS:AppResources.Silver_ID}" Role="MenuItem">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/silvertheme.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarThemeItemClick" Name="BlackTheme"
+                                 Header="{x:Static CommonResxNS:AppResources.Black_Id}" Role="MenuItem">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/blacktheme.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarThemeItemClick" Name="PoliceTheme"
+                                 Header="{x:Static CommonResxNS:AppResources.Police_Id}" Role="MenuItem">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/PolicemanTheme.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarThemeItemClick" Name="FiremanTheme"
+                                 Header="{x:Static CommonResxNS:AppResources.Fire_Id}" Role="MenuItem">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/FiremanTheme.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarThemeItemClick" Name="MilitaryTheme"
+                                 Header="{x:Static CommonResxNS:AppResources.Military_Id}" Role="MenuItem">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/RetroMilitaryTheme.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Click="OnRibbonBarThemeItemClick" Name="FullColorTheme"
+                                 Header="{x:Static CommonResxNS:AppResources.Full_Color}" Role="MenuItem">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/FullColorTheme.png"/>
+                </dc:ButtonDropDown.Image>
+              </dc:ButtonDropDown>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarWindows" Header="{x:Static CommonResxNS:AppResources.Windows_ID}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Windows_ID}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="7" HorizontalContentAlignment="Stretch">
+            <dc:ButtonDropDown Name="RibbonBarBarWindows" Header="{x:Static CommonResxNS:AppResources.Windows_ID}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium" ExpandPosition="Bottom" Role="DropDown" ContentExpands="true"
+                               VerticalContentAlignment="Center">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="images/Windows.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Shows_the_Event_Window_display_options}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+              <dc:ButtonDropDown Name="wndNavigation" Header="{x:Static CommonResxNS:AppResources.Navigation_Id}" Role="MenuItem"
+                                 IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/AppWindow.bmp"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndNavigationHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="wndErrorList" Header="{x:Static CommonResxNS:AppResources.Output_Id}" Role="MenuItem"
+                                 IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/RedXClipboard.png"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndErrorListHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndAutoRiseClick" Name="wndErrorListAutoRiseCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Auto_Rise}" Value="false" IsChecked="True"
+                                     Margin="5,3,0,0" Width="Auto" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"
+                                     IsEnabled="{Binding ElementName=wndErrorListHideCB, Path=IsChecked, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"/>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="wndInvalidFieldsReport" Header="{x:Static CommonResxNS:AppResources.Invalid_Fields_Report}"
+                                 Role="MenuItem" IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/invalid.ico"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndInvalidFieldsHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndAutoRiseClick" Name="wndInvalidFieldsAutoRiseCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Auto_Rise}" Value="false" IsChecked="False"
+                                     Margin="5,3,0,0" Width="Auto" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"
+                                     IsEnabled="{Binding ElementName=wndInvalidFieldsHideCB, Path=IsChecked, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"/>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="wndDnDReport" Header="{x:Static CommonResxNS:AppResources.Drag_And_Drop_Report}"
+                                 Role="MenuItem" IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/CopyIcon.png"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndDnDReportHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndAutoRiseClick" Name="wndDnDReportAutoRiseCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Auto_Rise}" Value="false" IsChecked="True"
+                                     Margin="5,3,0,0" Width="Auto" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"
+                                     IsEnabled="{Binding ElementName=wndDnDReportHideCB, Path=IsChecked, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"/>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="wndImpExpReport" Header="{x:Static CommonResxNS:AppResources.Import_Export_Report}"
+                                 Role="MenuItem" IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/NewReport.png"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndImpExpReportHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndAutoRiseClick" Name="wndImpExpReportAutoRiseCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Auto_Rise}" Value="false" IsChecked="True"
+                                     Margin="5,3,0,0" Width="Auto" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"
+                                     IsEnabled="{Binding ElementName=wndImpExpReportHideCB, Path=IsChecked, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"/>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="wndComparatorReport" Header="{x:Static CommonResxNS:AppResources.Comparator_Report}"
+                                 Role="MenuItem" IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/GreenCheckClipboard.png"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndComparatorReportHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndAutoRiseClick" Name="wndComparatorReportAutoRiseCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Auto_Rise}" Value="false" IsChecked="True"
+                                     Margin="5,3,0,0" Width="Auto" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"
+                                     IsEnabled="{Binding ElementName=wndComparatorReportHideCB, Path=IsChecked, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"/>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="wndFillUpFillDownReport"
+                                 Header="{x:Static CommonResxNS:AppResources.Fill_Up_Fill_Down_Report}" Role="MenuItem"
+                                 IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/SychronizeListHSRotated.png"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndFillUpFillDownReportHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndAutoRiseClick" Name="wndFillUpFillDownReportAutoRiseCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Auto_Rise}" Value="false" IsChecked="True"
+                                     Margin="5,3,0,0" Width="Auto" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"
+                                     IsEnabled="{Binding ElementName=wndFillUpFillDownReportHideCB, Path=IsChecked, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"/>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="wndFindResults" Header="{x:Static CommonResxNS:AppResources.Find_Results}" Role="MenuItem"
+                                 IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/Find.png"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndFindResultsHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndAutoRiseClick" Name="wndFindResultsAutoRiseCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Auto_Rise}" Value="false" IsChecked="True"
+                                     Margin="5,3,0,0" Width="Auto" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"
+                                     IsEnabled="{Binding ElementName=wndFindResultsHideCB, Path=IsChecked, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"/>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="wndFieldInfo" Header="{x:Static CommonResxNS:AppResources.Field_Information}" Role="MenuItem"
+                                 IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="images/help.png"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndFieldInfoHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+              </dc:ButtonDropDown>
+              <dc:ButtonDropDown Name="wndSysKeyRpt" Header="{x:Static CommonResxNS:AppResources.System_Key_Report}" Role="MenuItem"
+                                 IsNestedMenu="true">
+                <dc:ButtonDropDown.Image>
+                  <Image Style="{StaticResource Image16x16Style}" Source="icons/ReportLoadedSystemKeys.png"/>
+                </dc:ButtonDropDown.Image>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndHideClick" Name="wndSysKeyRptHideCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Hide_Id}" Value="false" Margin="5,3,0,0" Width="Auto"
+                                     Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"/>
+                <AcpUINS:AcpCheckBox Click="OnRibbonBarWndAutoRiseClick" Name="wndSysKeyRptAutoRiseCB"
+                                     Content="{x:Static CommonResxNS:AppResources.Auto_Rise}" Value="false" IsChecked="True"
+                                     Margin="5,3,0,0" Width="Auto" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                     ContentTemplate="{StaticResource AcpCheckBoxContentStyle}"
+                                     IsEnabled="{Binding ElementName=wndSysKeyRptHideCB, Path=IsChecked, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"/>
+              </dc:ButtonDropDown>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarView" Header="{x:Static CommonResxNS:AppResources.Codeplug_View}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Codeplug_View}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="5" HorizontalContentAlignment="Stretch"
+                        ToolTip="{x:Static CommonResxNS:AppResources.Controls_which_fields_are_visible_in_Codeplug_Configuration_Mode}"
+                        IsEnabled="{Binding Path=CpgOpenFlag}">
+            <dc:RibbonBarPanel>
+              <ComboBox SelectionChanged="OnRibbonBarUserViewSelChg" Name="DiffViewType" Width="120" Height="20" Margin="2"
+                        VerticalAlignment="Center">
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.Basic_View}"
+                              ToolTip="{x:Static CommonResxNS:AppResources.Shows_fields_used_for_basic_radio_rx_tx}" Tag="0"/>
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.Intermediate_View}"
+                              ToolTip="{x:Static CommonResxNS:AppResources.Shows_fields_used_for_the_radio_most}" Tag="1"/>
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.Full_View}"
+                              ToolTip="{x:Static CommonResxNS:AppResources.Shows_all_codeplug_fields}" Tag="2"/>
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.Expert_View}"
+                              ToolTip="{x:Static CommonResxNS:AppResources.Should_only_be_selected_under_guidance}" Tag="3"/>
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.Depot_View}" Tag="4"/>
+                <ComboBoxItem Content="{x:Static CommonResxNS:AppResources.Custom_View_Suspension}"
+                              ToolTip="{x:Static CommonResxNS:AppResources.Selects_a_user_view_created_in_the_Custom_View_Configuration_Mode}"
+                              Tag="6"/>
+              </ComboBox>
+            </dc:RibbonBarPanel>
+          </dc:RibbonBar>
+        </dc:RibbonBarPanel>
+      </dc:RibbonTab>
+      <dc:RibbonTab Name="ribbonTabDeviceMgmtMode" Header="{x:Static CommonResxNS:AppResources.Device_Id}"
+                    Visibility="{Binding Path=CurrentAppMode, Converter={StaticResource CpCfgMenuVisibilityConverter}, Mode=OneWay}">
+        <dc:RibbonBarPanel Name="ribbonBarDevicePanel" Height="70">
+          <dc:RibbonBar Name="ribbonBarDeviceReadWrite" Header="{x:Static CommonResxNS:AppResources.Read_Write}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Read_Write}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="1">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="icons/ReadRadioConfig.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <StackPanel Orientation="Vertical">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="50*"/>
+                  <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <dc:ButtonDropDown Click="OnRibbonBarReadRadio" Name="ribbonBarDeviceRead" HorizontalAlignment="Left" Grid.Column="0"
+                                   Grid.Row="0" Margin="0,0,0,5" Header="{x:Static CommonResxNS:AppResources.Read_Device}"
+                                   IsEnabled="{Binding Path=BlockFlashIO}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="/icons/ReadDevice.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="130"
+                                 Text="{x:Static CommonResxNS:AppResources.Read_the_attached_device}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Click="OnRibbonBarWriteRadio" Name="ribbonBarDeviceWrite" HorizontalAlignment="Left"
+                                   Grid.Column="1" Grid.Row="0" Margin="0,0,0,5"
+                                   Header="{x:Static CommonResxNS:AppResources.Write_Device}">
+                  <UIElement.IsEnabled>
+                    <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                      <Binding Path="CurrentAppMode"/>
+                      <Binding Path="BlockRadioIO"/>
+                      <Binding Path="DeviceFromServer"/>
+                      <Binding Path="TemplateFromServer"/>
+                    </MultiBinding>
+                  </UIElement.IsEnabled>
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="/icons/WriteDevice.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="130"
+                                 Text="{x:Static CommonResxNS:AppResources.Write_to_an_attached_device}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <AcpUINS:AcpLabel HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Margin="0,0,7,0"
+                                  Content="{x:Static CommonResxNS:AppResources.Communication_Method}"/>
+                <ComboBox SelectionChanged="Device_TransportComboBox_SelectionChanged" Name="DeviceTransportComboBox"
+                          Grid.Column="1" Grid.Row="1" Width="120" Height="20" HorizontalAlignment="Left"
+                          VerticalAlignment="Center" SelectedIndex="0" IsEnabled="{Binding Path=BlockFlashReadRadio}">
+                  <ComboBoxItem Tag="0" Content="{x:Static CommonResxNS:AppResources.USB_Cable}"/>
+                  <ComboBoxItem Tag="1" Content="{x:Static CommonResxNS:AppResources.POP25_Id}"
+                                IsEnabled="{Binding Path=Pop25Enabled, Mode=OneWay}"/>
+                  <ComboBoxItem Tag="2" Content="{x:Static CommonResxNS:AppResources.Bluetooth_Id}"/>
+                </ComboBox>
+                <AcpUINS:AcpLabel Name="labBTIPAddressForWR" HorizontalAlignment="Left" Visibility="Collapsed" Grid.Column="0"
+                                  Grid.Row="2" Margin="6,0,7,0" Content="{x:Static CommonResxNS:AppResources.IP_Address}"/>
+                <TextBox PreviewKeyDown="OnPreviewKeyDown_BTIPAddressForWR" Name="txtBTIPAddressForWR"
+                         HorizontalAlignment="Left" Visibility="Collapsed" Grid.Column="1" Grid.Row="2" Width="120"
+                         Height="20" MaxLength="13" Style="{StaticResource ValidateBTPANIPAddressTextBoxStyle}"
+                         Validation.ErrorTemplate="{StaticResource ValidationErrorBlankTemplate}"
+                         IsEnabled="{Binding Path=BlockFlashReadRadio}">
+                  <FrameworkElement.ContextMenu>
+                    <ContextMenu Visibility="Collapsed"/>
+                  </FrameworkElement.ContextMenu>
+                  <TextBox.Text>
+                    <Binding Path="MyBluetoothPANIPForWR" UpdateSourceTrigger="PropertyChanged">
+                      <Binding.ValidationRules>
+                        <MackinawCPSNS:BluetoothPANIPAddressRule/>
+                      </Binding.ValidationRules>
+                    </Binding>
+                  </TextBox.Text>
+                </TextBox>
+              </Grid>
+            </StackPanel>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarDeviceCloning" Header="{x:Static CommonResxNS:AppResources.Cloning_Id}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Cloning_Id}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="2">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="icons/CloneDevice.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <StackPanel Orientation="Vertical">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="50*"/>
+                  <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <dc:ButtonDropDown Click="OnRibbonBarCloneWizard" Name="ribbonBarCloneWizard" HorizontalAlignment="Left"
+                                   Grid.Column="0" Grid.Row="0" Margin="0,0,0,5"
+                                   Header="{x:Static CommonResxNS:AppResources.Clone_Radio}">
+                  <UIElement.IsEnabled>
+                    <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                      <Binding Path="CurrentAppMode"/>
+                      <Binding Path="BlockRadioIO"/>
+                      <Binding Path="DeviceFromServer"/>
+                      <Binding Path="TemplateFromServer"/>
+                    </MultiBinding>
+                  </UIElement.IsEnabled>
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="icons/CloneDevice.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180"
+                                 Text="{x:Static CommonResxNS:AppResources.Clone_attached_device_using_Clone_Wizard}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Click="OnRibbonBarCloneExpress" Name="ribbonBarCloneExpress" HorizontalAlignment="Left"
+                                   Grid.Column="1" Grid.Row="0" Margin="0,0,0,5"
+                                   Header="{x:Static CommonResxNS:AppResources.Clone_Express}">
+                  <UIElement.IsEnabled>
+                    <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+                      <Binding Path="CurrentAppMode"/>
+                      <Binding Path="BlockRadioIO"/>
+                      <Binding Path="DeviceFromServer"/>
+                      <Binding Path="TemplateFromServer"/>
+                    </MultiBinding>
+                  </UIElement.IsEnabled>
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="icons/cloneXpress.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180"
+                                 Text="{x:Static CommonResxNS:AppResources.Clone_attached_device_using_Clone_Express}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <AcpUINS:AcpLabel HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Margin="0,0,7,0"
+                                  Content="{x:Static CommonResxNS:AppResources.Communication_Method}"/>
+                <ComboBox SelectionChanged="Device_CloneTransport_SelectionChanged" Name="CloneransportComboBox"
+                          Grid.Column="1" Grid.Row="1" Width="120" Height="20" HorizontalAlignment="Left"
+                          VerticalAlignment="Center" SelectedIndex="0">
+                  <ComboBoxItem Tag="0" Content="{x:Static CommonResxNS:AppResources.USB_Cable}"/>
+                  <ComboBoxItem Tag="1" Content="{x:Static CommonResxNS:AppResources.POP25_Id}"
+                                IsEnabled="{Binding Path=Pop25Enabled, Mode=OneWay}"/>
+                  <ComboBoxItem Tag="2" Content="{x:Static CommonResxNS:AppResources.Bluetooth_Id}"/>
+                </ComboBox>
+                <AcpUINS:AcpLabel Name="labBTIPAddressForClone" HorizontalAlignment="Left" Visibility="Collapsed" Grid.Column="0"
+                                  Grid.Row="2" Content="{x:Static CommonResxNS:AppResources.IP_Address}"/>
+                <TextBox PreviewKeyDown="OnPreviewKeyDown_BTIPAddressForClone" Name="txtBTIPAddressForClone"
+                         HorizontalAlignment="Left" Visibility="Collapsed" Grid.Column="1" Grid.Row="2" Width="120"
+                         Height="20" MaxLength="13" Style="{StaticResource ValidateBTPANIPAddressTextBoxStyle}"
+                         Validation.ErrorTemplate="{StaticResource ValidationErrorBlankTemplate}">
+                  <FrameworkElement.ContextMenu>
+                    <ContextMenu Visibility="Collapsed"/>
+                  </FrameworkElement.ContextMenu>
+                  <TextBox.Text>
+                    <Binding Path="MyBluetoothPANIPForClone" UpdateSourceTrigger="PropertyChanged">
+                      <Binding.ValidationRules>
+                        <MackinawCPSNS:BluetoothPANIPAddressRule/>
+                      </Binding.ValidationRules>
+                    </Binding>
+                  </TextBox.Text>
+                </TextBox>
+              </Grid>
+            </StackPanel>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarDeviceFlashport" Header="{x:Static CommonResxNS:AppResources.FLASHport_Id}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.FLASHport_Id}" Padding="3"
+                        HorizontalContentAlignment="Stretch" ContextMenuService.IsEnabled="false" ResizeOrderIndex="3">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="icons/FlashRadio.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:RibbonBarPanel>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                </Grid.RowDefinitions>
+                <dc:ButtonDropDown Click="OnRibbonBarReadRadCfg" Name="ribbonBarReadRadCfg" Grid.Column="0" Grid.Row="0"
+                                   Header="{x:Static CommonResxNS:AppResources.Read_Radio_Configuration}"
+                                   IsEnabled="{Binding Path=BlockFlashReadRadioFromRMC}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="icons/ReadRadioConfig.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180"
+                                 Text="{x:Static CommonResxNS:AppResources.Read_configuration_parameters_from_connected_radio}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Click="OnRibbonBarFlashRadio" Name="ribbonBarFlashRadio" Grid.Column="0" Grid.Row="1"
+                                   Header="{x:Static CommonResxNS:AppResources.FLASHport_Upgrade}"
+                                   IsEnabled="{Binding Path=BlockFlashIO}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="icons/FlashDevice.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180"
+                                 Text="{x:Static CommonResxNS:AppResources.Perform_FLASHport_Upgrade_Feature_Radio}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Name="ribbonBarReadFlashKeyCfg" Grid.Column="1" Grid.Row="0"
+                                   Header="{x:Static CommonResxNS:AppResources.Read_FLASHKey_Configuration}"
+                                   IsEnabled="{Binding Path=BlockReadFlashKeyCfgFromRMC}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="icons/ReadFlashKey.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180"
+                                 Text="{x:Static CommonResxNS:AppResources.Read_configuration_parameters_from_connected_FLASHkey}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Click="OnRibbonBarFlashRadio" Name="ribbonBarRefreshRadio" Grid.Column="1" Grid.Row="1"
+                                   Header="{x:Static CommonResxNS:AppResources.Radio_Software_Refresh}"
+                                   IsEnabled="{Binding Path=BlockFlashIO}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Style="{StaticResource Image16x16Style}" Source="icons/FlashDevice.png"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180"
+                                 Text="{x:Static CommonResxNS:AppResources.Perform_Refresh_Of_Radio_Software}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+              </Grid>
+            </dc:RibbonBarPanel>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarDisableWP"
+                        Header="{x:Static CommonResxNS:AppResources.Update_Key_Type_Owner_System_ID_Write_Protect}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Update_Key_Type_Owner_System_ID_Write_Protect}"
+                        Padding="3" ContextMenuService.IsEnabled="false" ResizeOrderIndex="1">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="images/security.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnAppMenuQuerySetRadio" Name="AppMenuWriteProtect"
+                               Header="{x:Static CommonResxNS:AppResources.Query_Set_Radio}" dc:RibbonBar.MinAutoSizeHint="Medium">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="icons/LoadSystemKey.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Query_Set_Radio}">
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Pops_Up_Query_Set_Window_Tip}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+        </dc:RibbonBarPanel>
+      </dc:RibbonTab>
+      <dc:RibbonTab Name="ribbonTabSecurity" Header="{x:Static CommonResxNS:AppResources.Security_ID}"
+                    Visibility="Collapsed">
+        <dc:RibbonBarPanel Height="70"/>
+      </dc:RibbonTab>
+      <dc:RibbonTab Name="ribbonTabTools" Header="{x:Static CommonResxNS:AppResources.Tools_ID}"
+                    Visibility="{Binding Path=CurrentAppMode, Converter={StaticResource CpCfgMenuVisibilityConverter}, Mode=OneWay}">
+        <dc:RibbonBarPanel Height="70">
+          <dc:RibbonBar LaunchDialog="OnAppMenuOptions" Name="ribbonBarSysKey"
+                        Header="{x:Static CommonResxNS:AppResources.System_Key}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.System_Key}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="3">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="icons/security.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnRibbonBarLoadASK" Name="ribbonBarLoadASK"
+                               Header="{x:Static CommonResxNS:AppResources.Load_Advanced_Keys}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="icons/LoadSystemKey.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Load_Advanced_Keys_From_Att_Ibtn}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnRibbonBarLoadSWKey" Name="ribbonBarLoadSWKey"
+                               Header="{x:Static CommonResxNS:AppResources.Load_Software_Keys}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="icons/LoadSystemKey.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Load_Selected_Software_System_Key_Files}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarToolsReports" Header="{x:Static CommonResxNS:AppResources.Reports_ID}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Reports_ID}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="6">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="icons/UserDefinedReport.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnPrtRadioInfoReports" Name="RibbonRadioInformation"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Information}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource ComparatorMenuItemsEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/RadioInfo.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.Radio_Information}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReports" Name="RibbonRadioHandOut"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout}" dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RadioHandOutEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModel"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/RadioHandout.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Radio_Handout_for_Portable_Radio}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO2" Name="RibbonRadioHandOutO2"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O2}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RibbonRadioHandOutO9EnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO2"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/O2.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Radio_Handout_O2_Control_Head}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO3" Name="RibbonRadioHandOutO3"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O3}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource ReportsMenuItemsEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO3"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/O3.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Radio_Handout_O3_Control_Head}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO5" Name="RibbonRadioHandOutO5"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O5}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource ReportsMenuItemsEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO5"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/O5.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Radio_Handout_O5_Control_Head}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO7" Name="RibbonRadioHandOutO7"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O7}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RibbonRadioHandOutO9EnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO7"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/O7.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Radio_Handout_O7_Control_Head}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtHandOutReportsO9" Name="RibbonRadioHandOutO9"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Handout_O9}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RibbonRadioHandOutO9EnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="IsMobileModelAndSupportedO9"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/O9.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Radio_Handout_O9_Control_Head}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtCustomTplReports" Name="RibbonRadioUserDefined"
+                               Header="{x:Static CommonResxNS:AppResources.User_Defined_Report}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource RibbonRadioUserDefinedEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/UserDefinedReport.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.User_Defined_Report}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnPrtChoicesReports" Name="RibbonRadioPrintChoices"
+                               Header="{x:Static CommonResxNS:AppResources.Print_Choices}" dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource ComparatorMenuItemsEnabledConverter}">
+                  <Binding Path="CurrentAppMode"/>
+                  <Binding Path="CpgOpenFlag"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/PrintIcon.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.Print_Choices}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarToolsVoiceAnnouncement"
+                        Header="{x:Static CommonResxNS:AppResources.Voice_Announcement}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Voice_Announcement}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="4">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="icons/VoiceAnnIcon.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnRibbonBarConvertVoiceAnnouncementFiles" Name="VAConvertUtil"
+                               Header="{x:Static CommonResxNS:AppResources.VA_Converter_Utility}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/VoiceCoverterUtilityIcon.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Voice_Announcement_Converter_Utility}">
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.This_utility_will_convert}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnRibbonBarCalculateVoiceAnnouncementSize" Name="VACpgUsage"
+                               Header="{x:Static CommonResxNS:AppResources.VA_Codeplug_Usage}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium" IsEnabled="{Binding Path=CpgOpenFlag}">
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/VoiceCodeplugUsageIcon.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Voice_Announcement_Codeplug_Usage}">
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.This_utility_will_calculate}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnRibbonBarDownLoadVoiceFile" Name="VADownldUtil"
+                               Header="{x:Static CommonResxNS:AppResources.VA_Download_Utility}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium" IsEnabled="{Binding Path=CpgOpenFlag}">
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/VoiceDownloadIcon.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Voice_Announcement_Download_Utility}">
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.This_utility_will_download}">
+                    <LineBreak/>
+                    <LineBreak/>
+                  </TextBlock>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarToolsPOP25Scheduler"
+                        Header="{x:Static CommonResxNS:AppResources.POP25_Batch_Programming}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.POP25_Batch_Programming}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="5">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="icons/CloneDevice.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnRibbonBarCreateRadioList" Name="POP25RadioList"
+                               Header="{x:Static CommonResxNS:AppResources.Create_Batch_Radio_List}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/BatchProgList.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Batch_Programming_Radio_List}">
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.This_Utility_Will_Facilitate_The_Creation_List_Radios_For_POP25}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnRibbonBarOpenPOP25BatchScheduler" Name="POP25BatchScheduler"
+                               Header="{x:Static CommonResxNS:AppResources.Open_Batch_Scheduler}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <UIElement.IsEnabled>
+                <MultiBinding Converter="{StaticResource POP25BatchSchedulerMenuEnabledConverter}">
+                  <Binding Path="CpgOpenFlag"/>
+                  <Binding Path="Pop25Enabled"/>
+                  <Binding Path="OtapEnabledCodeplug"/>
+                  <Binding Path="DeviceFromServer"/>
+                </MultiBinding>
+              </UIElement.IsEnabled>
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/BatchProgSch.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Batch_Programming_Scheduler}">
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.This_Utility_Will_Facilitate_Setting_Up_POP25_Batch_Program_Schedules}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarRadioManagement" Header="{x:Static CommonResxNS:AppResources.Radio_Management}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Radio_Management}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="2">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="icons/RM.ico"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnAppMenuRadioManagement" Name="RadioManagement"
+                               Header="{x:Static CommonResxNS:AppResources.Radio_Management}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <dc:ButtonDropDown.Image>
+                <Image Source="icons/RM.ico" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.Radio_Management}">
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Pops_Up_Radio_Management_Window_Tip}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarToolsOptions" Header="{x:Static CommonResxNS:AppResources.CPS_Options}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.CPS_Options}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="1">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="images/OptionIcon.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnAppMenuOptions" Name="Options" Header="{x:Static CommonResxNS:AppResources.Options_Id}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium">
+              <dc:ButtonDropDown.Image>
+                <Image Source="images/OptionIcon.png" Width="16" Height="16"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip Header="{x:Static CommonResxNS:AppResources.CPS_Options}">
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Pops_Up_Cps_Option_Window_Tip}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+          <dc:RibbonBar Name="ribbonBarToolsDepot" Header="{x:Static CommonResxNS:AppResources.Depot_ID}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Depot_ID}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="1" dc:Ribbon.KeyTip="FO">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="images/Component.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:ButtonDropDown Click="OnAppMenuDepotCreateCodeplug" Name="ribbonBarToolsCreateCp"
+                               Header="{x:Static CommonResxNS:AppResources.Create_Codeplug}" dc:RibbonBar.MinAutoSizeHint="Medium"
+                               dc:Ribbon.KeyTip="C" Role="MenuItem">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="images/NewDocument.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="130" Text="{x:Static CommonResxNS:AppResources.Create_Codeplug}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnAppMenuDepotUpgradeCodeplug" Name="ribbonBarToolsUpgradeCodeplug"
+                               Header="{x:Static CommonResxNS:AppResources.Upgrade_Codeplug}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium" dc:Ribbon.KeyTip="C" Role="MenuItem"
+                               IsEnabled="{Binding Path=CpgOpenFlag}">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="/icons/UpgradeCodeplug.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="130" Text="{x:Static CommonResxNS:AppResources.Upgrade_Codeplug}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnAppMenuDepotForceWriteRadio" Name="ribbonBarToolsForceWriteRadio"
+                               Header="{x:Static CommonResxNS:AppResources.Force_Write_Radio}"
+                               dc:RibbonBar.MinAutoSizeHint="Medium" dc:Ribbon.KeyTip="W" Role="MenuItem"
+                               IsEnabled="{Binding Path=CpgOpenFlag}">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="/icons/WriteDevice.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="130"
+                             Text="{x:Static CommonResxNS:AppResources.Force_Write_to_a_attached_device}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnAppMenuDepotUpgradeRadio" Name="ribbonBarToolsUpgradeRadio"
+                               Header="{x:Static CommonResxNS:AppResources.Upgrade_Radio}" dc:RibbonBar.MinAutoSizeHint="Medium"
+                               dc:Ribbon.KeyTip="U" Role="MenuItem">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="icons/FlashDevice.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="180"
+                             Text="{x:Static CommonResxNS:AppResources.Perform_Upgrade_Of_Feature_Set_Radio_Software}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+            <dc:ButtonDropDown Click="OnAppMenuDepotCBIProgram" Name="ribbonBarToolsCbiProgram"
+                               Header="{x:Static CommonResxNS:AppResources.CBI_Program}" dc:RibbonBar.MinAutoSizeHint="Medium"
+                               dc:Ribbon.KeyTip="P" Role="MenuItem">
+              <dc:ButtonDropDown.Image>
+                <Image Style="{StaticResource Image16x16Style}" Source="/icons/silvertheme.png"/>
+              </dc:ButtonDropDown.Image>
+              <FrameworkElement.ToolTip>
+                <dc:SuperToolTip>
+                  <TextBlock TextWrapping="Wrap" Width="130" Text="{x:Static CommonResxNS:AppResources.CBI_Program}"/>
+                </dc:SuperToolTip>
+              </FrameworkElement.ToolTip>
+            </dc:ButtonDropDown>
+          </dc:RibbonBar>
+        </dc:RibbonBarPanel>
+      </dc:RibbonTab>
+      <dc:RibbonTab Name="ribbonTabHelp" Header="{x:Static CommonResxNS:AppResources.Help_Id}">
+        <dc:RibbonBarPanel Height="70">
+          <dc:RibbonBar Name="ribbonBarHelpContent" Header="{x:Static CommonResxNS:AppResources.Content_Id}"
+                        CollapsedHeader="{x:Static CommonResxNS:AppResources.Content_Id}" Padding="3"
+                        ContextMenuService.IsEnabled="false" ResizeOrderIndex="1">
+            <dc:RibbonBar.CollapsedImage>
+              <Image Source="images/Help.png"/>
+            </dc:RibbonBar.CollapsedImage>
+            <dc:RibbonBarPanel>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                </Grid.RowDefinitions>
+                <dc:ButtonDropDown Click="OnClickRibbonBarCPSHelp" Name="ribbonBarCPSHelp" Grid.Column="0" Grid.Row="0"
+                                   Header="{x:Static CommonResxNS:AppResources.CPS_Help}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Source="images/Content.png" Style="{StaticResource Image16x16Style}"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.CPS_Help_Topics}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Click="OnClickRibbonBarAboutCPS" Name="ribbonBarAboutCPS" Grid.Column="1" Grid.Row="0"
+                                   Header="{x:Static CommonResxNS:AppResources.About_CPS}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Source="images/HelpAbout.png" Style="{StaticResource Image16x16Style}"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.About_CPS_Application}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Click="OnClickRibbonBarWhatsNew" Name="ribbonBarWhatsNew" Grid.Column="0" Grid.Row="1"
+                                   Header="{x:Static CommonResxNS:AppResources.What_New}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Source="images/Content.png" Style="{StaticResource Image16x16Style}"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.What_New_Topics}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+                <dc:ButtonDropDown Click="OnClickRibbonBarAboutTutorials" Name="ribbonBarTutorials" Grid.Column="1" Grid.Row="1"
+                                   Header="{x:Static CommonResxNS:AppResources.Tutorials_ID}">
+                  <dc:ButtonDropDown.Image>
+                    <Image Source="images/Tutorials_Icon.png" Style="{StaticResource Image16x16Style}"/>
+                  </dc:ButtonDropDown.Image>
+                  <FrameworkElement.ToolTip>
+                    <dc:SuperToolTip>
+                      <TextBlock TextWrapping="Wrap" Width="180" Text="{x:Static CommonResxNS:AppResources.The_Tutorials_Menu}"/>
+                    </dc:SuperToolTip>
+                  </FrameworkElement.ToolTip>
+                </dc:ButtonDropDown>
+              </Grid>
+            </dc:RibbonBarPanel>
+          </dc:RibbonBar>
+        </dc:RibbonBarPanel>
+      </dc:RibbonTab>
+      <dc:RibbonBarPanel dc:RibbonTabPanel.PanelAlignment="Right">
+        <dc:ButtonDropDown Name="ribbonBarSpecKeyReport" Header="{x:Static CommonResxNS:AppResources.SpecKeyReport_ID}"
+                           PartVisibility="ImageOnly"
+                           Visibility="{Binding Path=SpecialKeyLoaded, Converter={StaticResource BooleanToVisibility}, Mode=OneWay}">
+          <dc:ButtonDropDown.Image>
+            <Image Width="16" Height="16" Source="icons/security.png"/>
+          </dc:ButtonDropDown.Image>
+          <FrameworkElement.ToolTip>
+            <dc:SuperToolTip>
+              <StackPanel DataContext="{x:Static AcpSecurityLibNS:SecurityManager.LoadedSpecialKeys}">
+                <TextBlock Text="{x:Static CommonResxNS:AppResources.Special_Key_Loaded}"/>
+                <ListView Name="specKeyListView" DockPanel.Dock="Top" ScrollViewer.CanContentScroll="true"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          IsSynchronizedWithCurrentItem="true" Width="Auto" Background="Transparent" ItemsSource="{Binding}">
+                  <ListView.View>
+                    <GridView x:Name="SpecKeyReport">
+                      <GridView.Columns>
+                        <GridViewColumn x:Name="specKeyType" Header="{x:Static CommonResxNS:AppResources.Type_ID}" Width="100"
+                                        DisplayMemberBinding="{Binding Type, Mode=OneWay}"/>
+                        <GridViewColumn x:Name="SerialNum" Header="{x:Static CommonResxNS:AppResources.IButton_Serial_Number}" Width="200"
+                                        DisplayMemberBinding="{Binding iBtnSerialNum, Mode=OneWay}"/>
+                      </GridView.Columns>
+                    </GridView>
+                  </ListView.View>
+                </ListView>
+              </StackPanel>
+            </dc:SuperToolTip>
+          </FrameworkElement.ToolTip>
+        </dc:ButtonDropDown>
+        <dc:ButtonDropDown Click="OnClickRibbonBarCPSHelp" Name="ribbonBarHelpButton"
+                           Header="{x:Static CommonResxNS:AppResources.Help_Id}" PartVisibility="ImageOnly">
+          <dc:ButtonDropDown.Image>
+            <Image Source="images/Help.png"/>
+          </dc:ButtonDropDown.Image>
+        </dc:ButtonDropDown>
+        <dc:ButtonDropDown Click="OnAppMenuClose" Name="AppClose" Header="{x:Static CommonResxNS:AppResources.Close_Id}"
+                           PartVisibility="ImageOnly">
+          <UIElement.IsEnabled>
+            <MultiBinding Converter="{StaticResource MainMenuEnabledConverter}">
+              <Binding Path="CurrentAppMode"/>
+              <Binding Path="CpgOpenFlag"/>
+            </MultiBinding>
+          </UIElement.IsEnabled>
+          <dc:ButtonDropDown.Image>
+            <Image Source="images/ClosePreviewHS.bmp"/>
+          </dc:ButtonDropDown.Image>
+          <FrameworkElement.ToolTip>
+            <dc:SuperToolTip>
+              <TextBlock TextWrapping="Wrap" Width="70" Text="{x:Static CommonResxNS:AppResources.Close_Codeplug}"/>
+            </dc:SuperToolTip>
+          </FrameworkElement.ToolTip>
+        </dc:ButtonDropDown>
+      </dc:RibbonBarPanel>
+    </dc:Ribbon>
+    <Frame Name="WindowMainFrame" NavigationUIVisibility="Hidden"/>
+  </DockPanel>
+</dc:RibbonWindow>
