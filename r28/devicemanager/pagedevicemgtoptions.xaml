@@ -1,0 +1,50 @@
+<Page x:Class="MackinawCPS.PageDeviceMgtOptions"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+      xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+      Title="{x:Static CommonResxNS:AppResources.Page_Device_Mgt_Options}">
+  <FrameworkElement.Resources>
+    <LinearGradientBrush x:Key="ButtonSilverGradBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+      <GradientStop Color="White" Offset="0.3"/>
+      <GradientStop Color="#C6C6C6" Offset="0.9"/>
+    </LinearGradientBrush>
+    <Style TargetType="{x:Type Button}">
+      <Setter Property="Control.Background" Value="{StaticResource ButtonSilverGradBrush}"/>
+    </Style>
+  </FrameworkElement.Resources>
+  <DockPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+      <StackPanel>
+        <Button Name="ButtonReadRadio" Margin="2,0,2,5" Height="65">
+          <StackPanel Orientation="Horizontal" Width="225">
+            <Image Source="../icons/ReadDevice.png" Height="55"/>
+            <Label VerticalAlignment="Center" Foreground="#003399" FontSize="16"
+                   Content="{x:Static CommonResxNS:AppResources.Read_A_Radio}"/>
+          </StackPanel>
+        </Button>
+        <Button Name="ButtonWriteRadio" Margin="2,0,2,5" Height="65">
+          <StackPanel Orientation="Horizontal" Width="225">
+            <Image Source="../icons/WriteDevice.png" Height="55"/>
+            <Label VerticalAlignment="Center" Foreground="#003399" FontSize="16"
+                   Content="{x:Static CommonResxNS:AppResources.Write_A_Radio}"/>
+          </StackPanel>
+        </Button>
+        <Button Name="ButtonCloneradio" Margin="2,0,2,5" Height="65">
+          <StackPanel Orientation="Horizontal" Width="225">
+            <Image Source="../icons/CloneDevice.png" Height="55"/>
+            <Label VerticalAlignment="Center" Foreground="#003399" FontSize="16"
+                   Content="{x:Static CommonResxNS:AppResources.Clone_A_Radio}"/>
+          </StackPanel>
+        </Button>
+        <Button Name="ButtonFlashradio" Margin="2,0,2,5" Height="65">
+          <StackPanel Orientation="Horizontal" Width="225">
+            <Image Source="../icons/FlashDevice.png" Height="55"/>
+            <Label VerticalAlignment="Center" Foreground="#003399" FontSize="16"
+                   Content="{x:Static CommonResxNS:AppResources.Flash_A_Radio}"/>
+          </StackPanel>
+        </Button>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</Page>

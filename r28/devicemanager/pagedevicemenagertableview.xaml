@@ -1,0 +1,22 @@
+<Page x:Class="MackinawCPS.PageDeviceMenagerTableView"
+      xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:Infragistics.Windows.DataPresenter;assembly=InfragisticsWPF4.DataPresenter.v12.1"
+      xmlns:igw="clr-namespace:Infragistics.Windows.Controls;assembly=InfragisticsWPF4.v12.1"
+      xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:igDP="http://infragistics.com/DataPresenter"
+      xmlns:igWindows="clr-namespace:Infragistics.Windows.Controls;assembly=InfragisticsWPF4.v12.1"
+      xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+      Title="{x:Static CommonResxNS:AppResources.Available_Device_Info_Table_View}">
+  <DockPanel>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+      <StackPanel Width="Auto" Height="Auto">
+        <Grid>
+          <local:XamDataGrid Name="DGContactTypes" Grid.Row="1" VerticalAlignment="Top"/>
+        </Grid>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</Page>
