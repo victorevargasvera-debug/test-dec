@@ -1,0 +1,87 @@
+<custom:ReportViewer xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:dc="clr-namespace:DevComponents.WpfRibbon;assembly=AcpWpfRibbon"
+                     xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+                     xmlns:custom="clr-namespace:SpecialFeatures.AcpReportManagerLib"
+                     xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+                     Title="{x:Static CommonResxNS:AppResources.Report_Viewer}" Height="623" Width="814"
+                     Foreground="#FF000000" WindowStyle="ThreeDBorderWindow" ToolTipService.HasDropShadow="True"
+                     WindowStartupLocation="CenterScreen"
+                     Background="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=Frame, ResourceId={x:Static AcpUINS:AcpColorKeys.FrameContentAreaPopupDialogueBackground}}}">
+  <FrameworkElement.Resources>
+    <RoutedCommand x:Key="F1Help"/>
+  </FrameworkElement.Resources>
+  <UIElement.CommandBindings>
+    <CommandBinding Command="{StaticResource F1Help}"/>
+  </UIElement.CommandBindings>
+  <UIElement.InputBindings>
+    <KeyBinding Command="{StaticResource F1Help}" Key="F1"/>
+  </UIElement.InputBindings>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.971186440677966*"/>
+      <RowDefinition Height="0.0288135593220339*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="146*"/>
+      <ColumnDefinition Width="106*"/>
+      <ColumnDefinition Width="540*"/>
+    </Grid.ColumnDefinitions>
+    <DocumentViewer Name="RptViewer" Margin="-5,19,3,7" Grid.ColumnSpan="3" OverridesDefaultStyle="False"
+                    Foreground="#FF000000"/>
+    <Menu Name="mnuMenu" Height="20" Margin="-0.19186991869924,-1,382.191869918699,0" VerticalAlignment="Top"
+          Grid.Column="0" Grid.ColumnSpan="3">
+      <MenuItem Name="MenuItemFile" Height="17.2766666666667" HorizontalAlignment="Left" VerticalAlignment="Top"
+                Width="Auto" Header="{x:Static CommonResxNS:AppResources.File_Id}">
+        <MenuItem Name="MenuItemFileOpen" Header="{x:Static CommonResxNS:AppResources.Open_Id}"/>
+        <MenuItem Name="MenuItemFileSave" Header="{x:Static CommonResxNS:AppResources.Save_ID}"/>
+        <MenuItem Name="MenuItemFilePrint" Header="{x:Static CommonResxNS:AppResources.Print_Id}"/>
+        <MenuItem Name="MenuItemFileExit" Header="{x:Static CommonResxNS:AppResources.Exit_Id}"/>
+      </MenuItem>
+      <MenuItem Name="MenuItemView" Height="17.2766666666667" HorizontalAlignment="Left" VerticalAlignment="Top"
+                Width="Auto" Header="{x:Static CommonResxNS:AppResources.View_ID}">
+        <MenuItem Name="menuViewIncreaseZoom" Command="NavigationCommands.IncreaseZoom" IsEnabled="True"
+                  Header="{x:Static CommonResxNS:AppResources.Increase_Zoom}"/>
+        <MenuItem Name="menuViewDecreaseZoom" Command="NavigationCommands.DecreaseZoom" IsEnabled="True"
+                  Header="{x:Static CommonResxNS:AppResources.Decrease_Zoom}"/>
+        <Separator/>
+        <MenuItem Command="NavigationCommands.PreviousPage"
+                  Header="{x:Static CommonResxNS:AppResources.Previous_Page}"/>
+        <MenuItem Command="{x:Static custom:ReportViewer.CustomNextPage}"
+                  Header="{x:Static CommonResxNS:AppResources.Next_Page}">
+          <UIElement.CommandBindings>
+            <CommandBinding Command="{x:Static custom:ReportViewer.CustomNextPage}"/>
+          </UIElement.CommandBindings>
+        </MenuItem>
+        <MenuItem Command="NavigationCommands.FirstPage" Header="{x:Static CommonResxNS:AppResources.First_Page}"/>
+        <MenuItem Command="{x:Static custom:ReportViewer.CustomLastPage}"
+                  Header="{x:Static CommonResxNS:AppResources.Last_Page}">
+          <UIElement.CommandBindings>
+            <CommandBinding Command="{x:Static custom:ReportViewer.CustomLastPage}"/>
+          </UIElement.CommandBindings>
+        </MenuItem>
+        <MenuItem Command="NavigationCommands.GoToPage" Header="{x:Static CommonResxNS:AppResources.Go_To_Page}"/>
+        <Separator/>
+        <MenuItem Command="ApplicationCommands.Copy" Header="{x:Static CommonResxNS:AppResources.Copy_Id}"/>
+      </MenuItem>
+    </Menu>
+    <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Width="20" Grid.Column="2">
+      <dc:ButtonDropDown FrameworkElement.Name="ribbonBarHelpButton"
+                         HeaderedItemsControl.Header="{x:Static CommonResxNS:AppResources.Help_Id}"
+                         PartVisibility="ImageOnly">
+        <dc:ButtonDropDown.Image>
+          <Image Width="16" Height="16" Source="/SpecialFeatures;component/images/Help.png"/>
+        </dc:ButtonDropDown.Image>
+      </dc:ButtonDropDown>
+    </StackPanel>
+    <StatusBar Name="stsbtmBar" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Height="26" Grid.RowSpan="2">
+      <StatusBarItem Background="Coral">
+        <TextBlock RenderOptions.EdgeMode="Aliased" Text="{x:Static CommonResxNS:AppResources.READY_ID}"/>
+      </StatusBarItem>
+      <StatusBarItem RenderOptions.EdgeMode="Aliased" ToolTipService.HasDropShadow="False"
+                     ToolTipService.IsEnabled="True" SnapsToDevicePixels="True" BorderThickness="1,1,1,1">
+        <Rectangle Width="1" Height="20"/>
+      </StatusBarItem>
+    </StatusBar>
+  </Grid>
+</custom:ReportViewer>
