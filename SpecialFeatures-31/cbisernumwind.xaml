@@ -1,0 +1,122 @@
+<local:CbiSerNumWind xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:local="clr-namespace:SpecialFeatures.CBISerialNum"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+                     x:Name="myCbiWindow" Title="{x:Static CommonResxNS:AppResources.CBI_Serial_Number}" Height="267"
+                     Width="462" MinWidth="462" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner"
+                     WindowStyle="SingleBorderWindow" SizeToContent="WidthAndHeight" BorderBrush="#FF5D636C"
+                     BorderThickness="1">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Styles/ResourceSpecialFeatures.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <LinearGradientBrush x:Key="MyBrush1234" StartPoint="0.0338026,-0.0020342" EndPoint="0.0338026,0.998692">
+        <GradientStop Color="#FFE3F5FD" Offset="0.07"/>
+        <GradientStop Color="#FFC1D9F3" Offset="0.096"/>
+        <GradientStop Color="#FF85AAC4" Offset="0.448"/>
+        <GradientStop Color="#FF648DAE" Offset="0.468"/>
+        <GradientStop Color="#FF07090B" Offset="0.984"/>
+        <GradientStop Color="#FFB2D4F0" Offset="0.004"/>
+        <GradientStop Color="#FF4288BA" Offset="0.828"/>
+      </LinearGradientBrush>
+      <local:MyDataSource x:Key="cbi"/>
+      <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+        <Style.Triggers>
+          <Trigger Property="Validation.HasError" Value="true">
+            <Setter Property="FrameworkElement.ToolTip"
+                    Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+          </Trigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="stackVisibility" TargetType="{x:Type StackPanel}">
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding ElementName=CbiSerEntry, Path=(Validation.HasError)}" Value="False">
+            <Setter Property="UIElement.Visibility" Value="Hidden"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <RoutedCommand x:Key="F1Help"/>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <UIElement.CommandBindings>
+    <CommandBinding Command="{StaticResource F1Help}"/>
+  </UIElement.CommandBindings>
+  <UIElement.InputBindings>
+    <KeyBinding Command="{StaticResource F1Help}" Key="F1"/>
+  </UIElement.InputBindings>
+  <Control.Background>
+    <LinearGradientBrush EndPoint="0.5,0.99" StartPoint="0.5,0.105">
+      <GradientStop Color="#FFA6A9AF" Offset="0.545"/>
+      <GradientStop Color="#FFC2C5CC" Offset="1"/>
+      <GradientStop Color="#FF8F939B" Offset="0"/>
+    </LinearGradientBrush>
+  </Control.Background>
+  <DockPanel Background="{DynamicResource BrushBackgroundBlue}" HorizontalAlignment="Stretch">
+    <Label x:Name="operationLabel" DockPanel.Dock="Top" FontSize="16" HorizontalAlignment="Stretch"
+           HorizontalContentAlignment="Center" BorderThickness="0,0,0,0"
+           Background="{DynamicResource MyBrush1234}" Foreground="#FFD0D0D0" Content="" BorderBrush="{x:Null}">
+      <UIElement.OpacityMask>
+        <RadialGradientBrush>
+          <Brush.RelativeTransform>
+            <TransformGroup>
+              <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.557" ScaleY="1.557"/>
+              <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+              <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+              <TranslateTransform X="0" Y="0"/>
+            </TransformGroup>
+          </Brush.RelativeTransform>
+          <GradientStop Color="#FF000000" Offset="0.529"/>
+          <GradientStop Color="#FF000000" Offset="0.959"/>
+        </RadialGradientBrush>
+      </UIElement.OpacityMask>
+    </Label>
+    <Grid x:Name="Main" DockPanel.Dock="Top" Height="128">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="50*"/>
+        <ColumnDefinition Width="50*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="97*" MinHeight="18"/>
+        <RowDefinition Height="60.966*" MinHeight="18"/>
+      </Grid.RowDefinitions>
+      <Label FontSize="12" Foreground="#FF2D2D2D" FontFamily="Verdana" Margin="46,35,10.635,11"
+             Content="{x:Static CommonResxNS:AppResources.Enter_Serial_Number}" TabIndex="1"/>
+      <TextBox x:Name="CbiSerEntry" FontSize="14" MaxLength="10" CharacterCasing="Upper" Margin="38,35,25,11"
+               IsEnabled="True" Grid.Column="1" Style="{StaticResource textBoxInError}" TabIndex="2">
+        <TextBox.Text>
+          <Binding Path="SerNum" Source="{StaticResource cbi}" ValidatesOnDataErrors="True">
+            <Binding.ValidationRules>
+              <local:SerialNumberRule/>
+            </Binding.ValidationRules>
+          </Binding>
+        </TextBox.Text>
+      </TextBox>
+      <StackPanel Name="stackPanelError" Margin="38,0,17,16.4" Orientation="Horizontal" IsEnabled="True"
+                  Style="{StaticResource stackVisibility}" Grid.Column="1" Grid.Row="1">
+        <Image Name="imageError" Height="16" Stretch="Fill" Width="16" Source="./error.ico"/>
+        <TextBox Name="textBoxError" Height="33"
+                 Text="{x:Static CommonResxNS:AppResources.The_serial_number_has_an_incorrect_format}" Width="136"
+                 TextWrapping="WrapWithOverflow" IsReadOnly="True" Foreground="Red" BorderThickness="0"
+                 Background="Transparent">
+        </TextBox>
+      </StackPanel>
+    </Grid>
+    <Button Style="{StaticResource AnotherB}" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="75"
+            Height="23" Margin="10,10,10,20" VerticalAlignment="Bottom"
+            Background="{DynamicResource Brush1234}" Foreground="White" FontFamily="Verdana" FontSize="11"
+            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+            Content="{x:Static CommonResxNS:AppResources.Help_Id}" TabIndex="5"/>
+    <Button Style="{StaticResource AnotherB}" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="75"
+            Height="23" Margin="10,10,25,20" VerticalAlignment="Bottom"
+            Background="{DynamicResource SilverButton}" Foreground="White" FontFamily="Verdana" FontSize="11"
+            Content="{x:Static CommonResxNS:AppResources.Cancel_Id}" TabIndex="4"/>
+    <Button Style="{StaticResource AnotherB}" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="Auto"
+            Height="23" Margin="10,10,35,20" VerticalAlignment="Bottom"
+            Background="{DynamicResource Brush1234}" Foreground="White" FontFamily="Verdana" FontSize="11"
+            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+            Content="{x:Static CommonResxNS:AppResources.Update_radio}" TabIndex="3"/>
+  </DockPanel>
+</local:CbiSerNumWind>
