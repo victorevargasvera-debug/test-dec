@@ -1,0 +1,44 @@
+<SystemCertificatesList:CustomSelectWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                           xmlns:SystemCertificatesList="clr-namespace:SpecialFeatures.SystemCertificates.List"
+                                           Width="376" Height="402" WindowStartupLocation="CenterOwner">
+  <FrameworkElement.Resources>
+    <SystemCertificatesList:DownloadStatusesConverter x:Key="downloadStatusesConverter"/>
+    <CollectionViewSource x:Key="listingDataView"
+                          Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=CertFileItems}"/>
+    <DataTemplate DataType="{x:Type SystemCertificatesList:CertFileItem}">
+      <Grid Name="grid1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="1,1,1,0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="29*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Name="textBlockFileName" Margin="1,0,0,0" Grid.Column="0" VerticalAlignment="Center"
+                   HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Path=FileName}"/>
+        <Label Name="DownloadingStatusLabel" Margin="0,0,1,0" Grid.Column="1" VerticalAlignment="Center"
+               HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+               Content="{Binding Path=DownloadStatus, Converter={StaticResource downloadStatusesConverter}}"/>
+      </Grid>
+      <DataTemplate.Triggers>
+        <DataTrigger Binding="{Binding Path=DownloadStatus}" Value="Downloaded">
+          <DataTrigger.Setters>
+            <Setter TargetName="textBlockFileName" Property="TextBlock.Foreground" Value="Green"/>
+            <Setter TargetName="DownloadingStatusLabel" Property="Control.Foreground" Value="Green"/>
+          </DataTrigger.Setters>
+        </DataTrigger>
+      </DataTemplate.Triggers>
+    </DataTemplate>
+  </FrameworkElement.Resources>
+  <Grid>
+    <ListBox Name="CertFileListBox" Margin="12,12,12,47" HorizontalContentAlignment="Stretch"
+             ItemsSource="{Binding Source={StaticResource listingDataView}}"/>
+    <Button Name="OKButton" Content="OK" Margin="0,0,107,11" Height="30" VerticalAlignment="Bottom"
+            HorizontalAlignment="Right" Width="75"/>
+    <Button Name="CancelButton" Content="Cancel" Height="29" HorizontalAlignment="Right" Margin="0,0,12,12"
+            VerticalAlignment="Bottom" Width="75"/>
+  </Grid>
+</SystemCertificatesList:CustomSelectWindow>

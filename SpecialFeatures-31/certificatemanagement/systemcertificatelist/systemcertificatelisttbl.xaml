@@ -1,0 +1,142 @@
+<ACPUCLContactFeatureNS:SystemCertificateListPageTbl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                                     xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+                                                     xmlns:ACPUCLContactFeatureNS="clr-namespace:SpecialFeatures.SystemCertificates.List"
+                                                     xmlns:AcpBLConverterNS="clr-namespace:AcpBusinessLayer.ValueConverters;assembly=AcpBusinessLayer"
+                                                     xmlns:AcpUIDragDropNS="clr-namespace:AcpUI.DragDrop;assembly=AcpUI"
+                                                     xmlns:AcpCommonLibNS="clr-namespace:AcpCommonLib;assembly=AcpCommonLib"
+                                                     xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common;assembly=AcpUI"
+                                                     xmlns:igcontrols="http://infragistics.com/DataPresenter"
+                                                     xmlns:igEditors="http://infragistics.com/Editors"
+                                                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                                                     xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+                                                     Page.Title="{x:Static CommonResxNS:AppResources.System_Certificate_List_Table_View_ID}">
+  <AcpUINS:AcpPageFeature.PageRecNavToolbar>
+    <AcpUINS:AcpVoiceAnnRecNavToolBar FrameworkElement.Name="RecNavToolbarPageSystemCertificateTbl" Grid.Row="0" TableMode="True"
+                                      MyRecordsetDataSource="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}"/>
+  </AcpUINS:AcpPageFeature.PageRecNavToolbar>
+  <FrameworkElement.Resources>
+    <AcpUICommonNS:AcpRtdButtonVisibilityConverter x:Key="acpRtdButtonVisibilityConverter"/>
+    <AcpUICommonNS:AcpCopyButtonVisibilityConverter x:Key="acpCopyButtonVisibilityConverter"/>
+    <AcpUICommonNS:AcpCustomViewCheckBoxVisibilityConverter x:Key="acpCustomViewCheckBoxVisibilityConverter"/>
+    <AcpUICommonNS:AcpXamDataPresenterVisibilityConverter x:Key="acpXamDataPresenterVisibityConverter"/>
+    <AcpUICommonNS:AcpXamDataPresenterVisibilityConverterForEmptyTbl x:Key="acpXamDataPresenterVisibilityConverterForEmptyTbl"/>
+    <AcpUICommonNS:EditabilityConverter x:Key="editabilityConverter"/>
+    <AcpUICommonNS:ParentControlVisibilityConverter x:Key="parentControlVisibilityConverter"/>
+    <AcpUICommonNS:ComparatorControlVisibilityConverter x:Key="comparatorControlVisibilityConverter"/>
+    <AcpUICommonNS:AcpRecNavToolbarTableModeConverter x:Key="acpRecNavToolbarTableModeConverter"/>
+    <AcpUICommonNS:CellVisibilityStausConverter x:Key="CellVisibilityStatus"/>
+    <AcpBLConverterNS:InvertBoolConverter x:Key="InvertBoolConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    <ObjectDataProvider x:Key="GetSystemCertificateListRecSet" MethodName="GetRecordset"
+                        ObjectType="{x:Type AcpUINS:AcpObjectDataProvider}">
+      <ObjectDataProvider.MethodParameters>
+        <sys:Int32>4228</sys:Int32>
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <Style x:Key="SystemCertificateNameCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableTextBox TextBox.Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=Record.DataItem.General.SecSysCertGeneralKeyofSystemCertificates_A43633Value, Mode=TwoWay}"
+                                     MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=Record.DataItem.General.SecSysCertGeneralKeyofSystemCertificates_A43633Object, Mode=OneWay}"
+                                     IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=Record.DataItem.General.SecSysCertGeneralKeyofSystemCertificates_A43633_Valid, Mode=TwoWay}">
+              <AcpUINS:AcpTextBox.IsAcpEditable>
+                <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                  <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                  <Binding Path="Record.DataItem.General.SecSysCertGeneralKeyofSystemCertificates_A43633_Editable"
+                           RelativeSource="{RelativeSource AncestorType={x:Type CellValuePresenter}}"/>
+                  <Binding Path="Record.DataItem.General.SecSysCertGeneralKeyofSystemCertificates_A43633Object"
+                           RelativeSource="{RelativeSource AncestorType={x:Type CellValuePresenter}}"/>
+                </MultiBinding>
+              </AcpUINS:AcpTextBox.IsAcpEditable>
+              <AcpUINS:AcpTextBox.IsAcpApplicable>
+                <MultiBinding Converter="{StaticResource CellVisibilityStatus}">
+                  <MultiBinding.Bindings>
+                    <Binding Path="Record.DataItem.General.SecSysCertGeneralKeyofSystemCertificates_A43633_Visible"
+                             RelativeSource="{RelativeSource AncestorType={x:Type CellValuePresenter}}"/>
+                    <Binding Path="Record.DataItem.General.SecSysCertGeneralKeyofSystemCertificates_A43633_Applicable"
+                             RelativeSource="{RelativeSource AncestorType={x:Type CellValuePresenter}}"/>
+                  </MultiBinding.Bindings>
+                </MultiBinding>
+              </AcpUINS:AcpTextBox.IsAcpApplicable>
+            </AcpUINS:AcpTableTextBox>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="SystemCertificateFileName_A43634CellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTextBoxFileBrowser FrameworkElement.Name="systemCertificateFileBrowser"
+                                           Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=Record.DataItem.General.SecSysCertGeneralCertificateFilename_A43634Value, Mode=TwoWay}"
+                                           MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=Record.DataItem.General.SecSysCertGeneralCertificateFilename_A43634Object, Mode=OneWay}"
+                                           IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=Record.DataItem.General.SecSysCertGeneralCertificateFilename_A43634_Valid, Mode=TwoWay}">
+              <AcpUINS:AcpTextBoxFileBrowser.IsAcpEditable>
+                <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                  <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                  <Binding Path="Record.DataItem.General.SecSysCertGeneralCertificateFilename_A43634_Editable"
+                           RelativeSource="{RelativeSource AncestorType={x:Type CellValuePresenter}}"/>
+                  <Binding Path="Record.DataItem.General.SecSysCertGeneralCertificateFilename_A43634Object"
+                           RelativeSource="{RelativeSource AncestorType={x:Type CellValuePresenter}}"/>
+                </MultiBinding>
+              </AcpUINS:AcpTextBoxFileBrowser.IsAcpEditable>
+            </AcpUINS:AcpTextBoxFileBrowser>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </FrameworkElement.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <AcpUINS:AcpXamDataPresenter x:Name="SystemCertificateListDataPresenter" KeyboardNavigation.AcceptsReturn="True" Grid.Row="1"
+                                 Header="{x:Static CommonResxNS:AppResources.System_Cerfiticate_List_ID}">
+      <AcpUINS:AcpXamDataPresenter.IsAcpVisible>
+        <MultiBinding Converter="{StaticResource acpXamDataPresenterVisibilityConverterForEmptyTbl}"
+                      ConverterParameter="1" Mode="OneWay">
+          <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+          <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+          <Binding Path="DataContext.HasDiffs" RelativeSource="{RelativeSource Self}"/>
+          <Binding Path="IsAcpVisible" RelativeSource="{RelativeSource Self}"/>
+          <Binding Source="{StaticResource GetSystemCertificateListRecSet}" Path="IsEmpty"/>
+          <Binding Source="{StaticResource GetSystemCertificateListRecSet}"
+                   Path="TemplateNode.General.SecSysCertGeneralCertificateFilename_A43634_Visible"/>
+          <Binding ElementName="System_Certificate_FileName_A43634_col" Path="Visibility"/>
+        </MultiBinding>
+      </AcpUINS:AcpXamDataPresenter.IsAcpVisible>
+      <DataPresenterBase.FieldLayouts>
+        <FieldLayout>
+          <FieldLayout.Fields>
+            <UnboundField x:Name="System_Certificate_Name_col"
+                          Label="{x:Static CommonResxNS:AppResources.System_Certificate_Name_ID}"
+                          BindingPath="General.SecSysCertGeneralKeyofSystemCertificates_A43633Object" BindingMode="OneWay"
+                          Visibility="{Binding Source={StaticResource GetSystemCertificateListRecSet}, Path=General.SecSysCertGeneralKeyofSystemCertificates_A43633_Visible, Converter={StaticResource BooleanToVisibility}}">
+              <Field.Settings>
+                <FieldSettings CellValuePresenterStyle="{StaticResource SystemCertificateNameCellStyle}" CellWidth="300"
+                               CellMinWidth="300"/>
+              </Field.Settings>
+            </UnboundField>
+            <UnboundField x:Name="System_Certificate_FileName_A43634_col"
+                          Label="{x:Static CommonResxNS:AppResources.System_Certificate_Filename_ID}"
+                          BindingPath="General.SecSysCertGeneralCertificateFilename_A43634Object" BindingMode="OneWay"
+                          Visibility="{Binding Source={StaticResource GetSystemCertificateListRecSet}, Path=General.SecSysCertGeneralCertificateFilename_A43634_Visible, Converter={StaticResource BooleanToVisibility}}">
+              <Field.Settings>
+                <FieldSettings CellValuePresenterStyle="{StaticResource SystemCertificateFileName_A43634CellStyle}"
+                               CellWidth="300" CellMinWidth="300"/>
+              </Field.Settings>
+            </UnboundField>
+          </FieldLayout.Fields>
+        </FieldLayout>
+      </DataPresenterBase.FieldLayouts>
+    </AcpUINS:AcpXamDataPresenter>
+  </Grid>
+</ACPUCLContactFeatureNS:SystemCertificateListPageTbl>
