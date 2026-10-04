@@ -1,0 +1,115 @@
+<UclQCIICallHotListPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+                        xmlns:igcontrols="http://infragistics.com/DataPresenter"
+                        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                        xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+                        Page.Title="{x:Static CommonResxNS:AppResources.QCII_Call_Hot_Lists}">
+  <FrameworkElement.Resources>
+    <Style x:Key="ContactAliasCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableComboBox FrameworkElement.Height="23.2766666666667" ItemsControl.DisplayMemberPath="ItemName"
+                                      Selector.SelectedValuePath="ItemName"
+                                      MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).ContactAliasObject, Mode=OneWay}"
+                                      ItemsControl.ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).ContactAliasObject.Items, Mode=OneWay}"
+                                      Selector.SelectedValue="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).ContactAlias_UIValue, Mode=TwoWay}"
+                                      IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).ContactAlias_Valid, Mode=TwoWay}"
+                                      IsAcpApplicable="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).ContactAlias_Applicable, Mode=TwoWay}"
+                                      IsAcpEditable="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).ContactAlias_Editable, Mode=TwoWay}"
+                                      IsAcpVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).ContactAlias_Visible, Mode=TwoWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="CallIDCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableComboBox FrameworkElement.Height="23.2766666666667" ItemsControl.DisplayMemberPath="ItemName"
+                                      Selector.SelectedValuePath="ItemName"
+                                      MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CallIDObject, Mode=OneWay}"
+                                      ItemsControl.ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CallIDObject.Items, Mode=OneWay}"
+                                      Selector.SelectedValue="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CallID_UIValue, Mode=OneWay}"
+                                      IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CallID_Valid, Mode=OneWay}"
+                                      IsAcpApplicable="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CallID_Applicable, Mode=OneWay}"
+                                      IsAcpEditable="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CallID_Editable, Mode=OneWay}"
+                                      IsAcpVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CallID_Visible, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </FrameworkElement.Resources>
+  <DockPanel>
+    <AcpUINS:AcpRecNavToolbar FrameworkElement.Name="RecNavToolbarUclQCIICallHotList" DockPanel.Dock="Top"
+                              Control.Background="{DynamicResource LightBrush}"
+                              MyRecordsetDataSource="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}"/>
+    <AcpUINS:AcpListBox FrameworkElement.Name="LstBoxUclContact" DockPanel.Dock="Left" ListBox.SelectionMode="Multiple"
+                        FrameworkElement.HorizontalAlignment="Left" FrameworkElement.Margin="-1,1,0,2"
+                        FrameworkElement.Width="Auto" Control.BorderThickness="0,0,0,0" Control.Background="{x:Null}">
+      <AcpUINS:AcpListBoxItemExp MyExpander="{Binding ElementName=ExpQCIICallHotList}"
+                                 ContentControl.Content="{Binding RelativeSource={RelativeSource Self}, Path=MyExpander.Header}"/>
+    </AcpUINS:AcpListBox>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+      <StackPanel Width="Auto" Height="Auto">
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpQCIICallHotList" UIElement.Visibility="Collapsed"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.QCII_Call_Hot_List}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="200"/>
+              <ColumnDefinition Width="200"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <AcpUINS:AcpTextBox FrameworkElement.Name="TxtBoxHotListAlias" Grid.Row="0" Grid.Column="1"
+                                FrameworkElement.Height="23.2766666666667"
+                                MyBLObject="{Binding Path=QCIICallHotList.HotListAliasObject}"
+                                MyLabelCtrl="{Binding ElementName=LblHotListAlias}"
+                                TextBox.Text="{Binding Path=QCIICallHotList.HotListAlias}"
+                                IsAcpValid="{Binding Path=QCIICallHotList.HotListAlias_Valid}"
+                                IsAcpApplicable="{Binding Path=QCIICallHotList.HotListAlias_Applicable}"
+                                IsAcpEditable="{Binding Path=QCIICallHotList.HotListAlias_Editable}"
+                                IsAcpVisible="{Binding Path=QCIICallHotList.HotListAlias_Visible}"/>
+            <AcpUINS:AcpLabel FrameworkElement.Name="LblHotListAlias" Grid.Row="0" Grid.Column="0"
+                              FrameworkElement.Height="23.2766666666667" MyParentCtrl="{Binding ElementName=TxtBoxHotListAlias}"
+                              IsAcpValid="{Binding ElementName=TxtBoxHotListAlias, Path=IsAcpValid}"
+                              IsAcpApplicable="{Binding ElementName=TxtBoxHotListAlias, Path=IsAcpApplicable}">Hot List Alias</AcpUINS:AcpLabel>
+            <AcpUINS:AcpChildRecNavToolbar FrameworkElement.Name="RecNavToolbarQCIICallHotListHotList"
+                                           Control.Background="{DynamicResource LightBrush}" Grid.Row="1" Grid.ColumnSpan="3"
+                                           MyRecordsetDataSource="{Binding ElementName=QCIICallHotListDataPresenter, Path=DataSource}"/>
+            <AcpUINS:AcpXamDataPresenter x:Name="QCIICallHotListDataPresenter" Grid.Row="2" Grid.ColumnSpan="3"
+                                         Header="{x:Static CommonResxNS:AppResources.QCII_Conventional_Hot_List}"
+                                         DataSource="{Binding QCIICallHotList.QCIICallHotListRecset}">
+              <DataPresenterBase.FieldLayouts>
+                <FieldLayout>
+                  <FieldLayout.Fields>
+                    <UnboundField Label="{x:Static CommonResxNS:AppResources.Contact_Alias}" BindingPath="HotListQCII"
+                                  BindingMode="OneWay">
+                      <Field.Settings>
+                        <FieldSettings CellValuePresenterStyle="{StaticResource ContactAliasCellStyle}"/>
+                      </Field.Settings>
+                    </UnboundField>
+                    <UnboundField Label="{x:Static CommonResxNS:AppResources.Call_ID}" BindingPath="HotListQCII" BindingMode="OneWay">
+                      <Field.Settings>
+                        <FieldSettings CellValuePresenterStyle="{StaticResource CallIDCellStyle}"/>
+                      </Field.Settings>
+                    </UnboundField>
+                  </FieldLayout.Fields>
+                </FieldLayout>
+              </DataPresenterBase.FieldLayouts>
+            </AcpUINS:AcpXamDataPresenter>
+          </Grid>
+        </AcpUINS:AcpExpander>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</UclQCIICallHotListPage>

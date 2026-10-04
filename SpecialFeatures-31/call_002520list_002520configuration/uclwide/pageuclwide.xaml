@@ -1,0 +1,805 @@
+<PageUclWide xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+             xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common;assembly=AcpUI"
+             xmlns:igEditors="http://infragistics.com/Editors"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:src="clr-namespace:ConstraintHelper;assembly=AllFeatures"
+             xmlns:AcpCommonLibNS="clr-namespace:AcpCommonLib;assembly=AcpCommonLib"
+             xmlns:AcpBLConverterNS="clr-namespace:AcpBusinessLayer.ValueConverters;assembly=AcpBusinessLayer"
+             xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+             Page.Title="{x:Static CommonResxNS:AppResources.Call_List_Wide}">
+  <FrameworkElement.Resources>
+    <AcpUICommonNS:AcpRtdButtonVisibilityConverter x:Key="acpRtdButtonVisibilityConverter"/>
+    <AcpUICommonNS:AcpCopyButtonVisibilityConverter x:Key="acpCopyButtonVisibilityConverter"/>
+    <AcpUICommonNS:AcpCustomViewCheckBoxVisibilityConverter x:Key="acpCustomViewCheckBoxVisibilityConverter"/>
+    <AcpUICommonNS:AcpXamDataPresenterVisibilityConverter x:Key="acpXamDataPresenterVisibityConverter"/>
+    <AcpUICommonNS:EditabilityConverter x:Key="editabilityConverter"/>
+    <AcpUICommonNS:ParentControlVisibilityConverter x:Key="parentControlVisibilityConverter"/>
+    <AcpUICommonNS:ComparatorControlVisibilityConverter x:Key="comparatorControlVisibilityConverter"/>
+    <AcpUICommonNS:AcpRecNavToolbarTableModeConverter x:Key="acpRecNavToolbarTableModeConverter"/>
+    <AcpUICommonNS:AcpRecNavToolbarVisibilityConverter x:Key="acpRecNavToolbarVisibityConverter"/>
+    <AcpUICommonNS:TableViewVisibilityConverter x:Key="tableViewVisibityConverter"/>
+    <AcpUICommonNS:SRecViewVisibilityConverter x:Key="sRecViewVisibityConverter"/>
+    <AcpUICommonNS:AcpFlyInButtonVisibilityConverter x:Key="flyInVisibilityConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    <AcpBLConverterNS:InvertBoolConverter x:Key="InvertBoolConverter"/>
+    <AcpUICommonNS:ClmVisibilityStausConverter x:Key="ClmVisibilityStatus"/>
+    <AcpUICommonNS:CellVisibilityStausConverter x:Key="CellVisibilityStatus"/>
+    <AcpUICommonNS:DateTimeFormatConverter x:Key="dateTimeFormatter"/>
+    <AcpUICommonNS:ParentContainerVisibilityConverter x:Key="groupboxVisibilityConverter"/>
+    <AcpUICommonNS:BooleanToColorConverter x:Key="BooleanToColor"/>
+    <AcpUICommonNS:MultiValueToColorConverter x:Key="MultiValueToColor"/>
+    <ObjectDataProvider x:Key="GetComparatorParentFeature" MethodName="GetComparatorRecordset"
+                        ObjectType="{x:Type AcpUINS:AcpObjectDataProvider}">
+      <ObjectDataProvider.MethodParameters>
+        <sys:Int32>2222</sys:Int32>
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+  </FrameworkElement.Resources>
+  <DockPanel>
+    <WrapPanel DockPanel.Dock="Top">
+      <AcpUICommonNS:AcpThemeBase FrameworkElement.Name="ThemeBaseObj"/>
+      <TextBlock Margin="25 3 0 0"
+                 Visibility="{Binding ElementName=ExpUclWideGen, Path=IsAcpVisible, Converter={StaticResource BooleanToVisibility}}">
+        <Hyperlink x:Name="HLinkUclWideGen" Tag="ExpUclWideGen">
+          <TextBlock TextDecorations="Underline" Text="{Binding Path=General.UIName}">
+            <TextBlock.Foreground>
+              <MultiBinding Converter="{StaticResource MultiValueToColor}">
+                <Binding Path="General.HasDiffs"/>
+                <Binding Path="ThemeName" ElementName="ThemeBaseObj"/>
+              </MultiBinding>
+            </TextBlock.Foreground>
+          </TextBlock>
+        </Hyperlink>
+      </TextBlock>
+      <TextBlock Margin="25 3 0 0"
+                 Visibility="{Binding ElementName=ExpUCLWideLabtool, Path=IsAcpVisible, Converter={StaticResource BooleanToVisibility}}">
+        <Hyperlink x:Name="HLinkUCLWideLabtool" Tag="ExpUCLWideLabtool">
+          <TextBlock TextDecorations="Underline" Text="{Binding Path=Labtool.UIName}">
+            <TextBlock.Foreground>
+              <MultiBinding Converter="{StaticResource MultiValueToColor}">
+                <Binding Path="Labtool.HasDiffs"/>
+                <Binding Path="ThemeName" ElementName="ThemeBaseObj"/>
+              </MultiBinding>
+            </TextBlock.Foreground>
+          </TextBlock>
+        </Hyperlink>
+      </TextBlock>
+    </WrapPanel>
+    <DockPanel Height="20" Background="Transparent" Dock="Top">
+      <Rectangle Height="2" RadiusX="20" RadiusY="20" Stroke="Black" Fill="Gray" VerticalAlignment="Center"/>
+    </DockPanel>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+      <StackPanel Name="MyStackPanel" Width="Auto" Height="Auto">
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpUclWideGen" FrameworkElement.Width="Auto"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.General_Id}"
+                             ShowDiffIcon="{Binding Path=General.HasDiffs, Mode=OneWay}">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <AcpUINS:AcpGroupBox FrameworkElement.Name="GrpBoxGeneral" Control.BorderBrush="Black" Control.BorderThickness="0"
+                                 Grid.Row="0" FrameworkElement.Margin="0,5,0,0">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid Name="StdGridGeneralGrp" Column="0">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <AcpUINS:AcpCustomViewCheckBox FrameworkElement.Name="CVBtnUclEdit" FrameworkElement.Margin="0,5,0,0" Grid.Row="0" Grid.Column="0"
+                                                 MyParentCtrl="{Binding ElementName=ChkBoxUclEdit}"
+                                                 ToggleButton.IsChecked="{Binding ElementName=ChkBoxUclEdit, Path=MyBLObject.CustomViewVisibility}">
+                    <AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCustomViewCheckBoxVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxUclEdit" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCustomViewCheckBox>
+                  <AcpUINS:AcpLabel FrameworkElement.Name="LblUclEdit" Grid.Row="0" Grid.Column="1"
+                                    FrameworkElement.VerticalAlignment="Center"
+                                    HelpText="{x:Static CommonResxNS:AppResources.Edit_Contacts}"
+                                    ContentControl.Content="{Binding Path=General.UclWideGen_UCLEdit_A00001_UILabel}"
+                                    MyParentCtrl="{Binding ElementName=ChkBoxUclEdit}"
+                                    IsAcpValid="{Binding ElementName=ChkBoxUclEdit, Path=IsAcpValid}"
+                                    IsAcpApplicable="{Binding ElementName=ChkBoxUclEdit, Path=IsAcpApplicable}"
+                                    IsAcpVisible="{Binding ElementName=ChkBoxUclEdit, Path=IsAcpVisible}"/>
+                  <AcpUINS:AcpCheckBox FrameworkElement.Name="ChkBoxUclEdit" Grid.Row="0" Grid.Column="2"
+                                       FrameworkElement.VerticalAlignment="Center" MyExpander="{Binding ElementName=ExpUclWideGen}"
+                                       MyBLObject="{Binding Path=General.UclWideGen_UCLEdit_A00001Object}"
+                                       MyLabelCtrl="{Binding ElementName=LblUclEdit}"
+                                       ToggleButton.IsChecked="{Binding Path=General.UclWideGen_UCLEdit_A00001Value}"
+                                       IsAcpValid="{Binding Path=General.UclWideGen_UCLEdit_A00001_Valid}"
+                                       IsAcpApplicable="{Binding Path=General.UclWideGen_UCLEdit_A00001_Applicable}"
+                                       AreValuesEqual="{Binding Path=General.UclWideGen_UCLEdit_A00001_HasDiffs, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                    <AcpUINS:AcpCheckBox.IsAcpEditable>
+                      <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Path="General.UclWideGen_UCLEdit_A00001_Editable"/>
+                        <Binding Path="General.UclWideGen_UCLEdit_A00001Object"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpEditable>
+                    <AcpUINS:AcpCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource parentControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                        <Binding Path="AreValuesEqual" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="General.UclWideGen_UCLEdit_A00001_Visible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCheckBox>
+                  <AcpUINS:AcpRtdButton FrameworkElement.Name="RTDBtnUclEdit" Grid.Row="0" Grid.Column="3"
+                                        MyParentCtrl="{Binding ElementName=ChkBoxUclEdit}">
+                    <AcpUINS:AcpRtdButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpRtdButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="ShowRtdButtons"/>
+                        <Binding ElementName="ChkBoxUclEdit" Path="MyBLObject"/>
+                        <Binding ElementName="ChkBoxUclEdit" Path="IsAcpVisible"/>
+                        <Binding ElementName="ChkBoxUclEdit" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpRtdButton.IsAcpVisible>
+                  </AcpUINS:AcpRtdButton>
+                  <AcpUINS:AcpCustomViewCheckBox FrameworkElement.Name="CVBtnHotListEdit" FrameworkElement.Margin="0,5,0,0" Grid.Row="1"
+                                                 Grid.Column="0" MyParentCtrl="{Binding ElementName=ChkBoxHotListEdit}"
+                                                 ToggleButton.IsChecked="{Binding ElementName=ChkBoxHotListEdit, Path=MyBLObject.CustomViewVisibility}">
+                    <AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCustomViewCheckBoxVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxHotListEdit" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCustomViewCheckBox>
+                  <AcpUINS:AcpLabel FrameworkElement.Name="LblHotListEdit" Grid.Row="1" Grid.Column="1"
+                                    FrameworkElement.VerticalAlignment="Center"
+                                    HelpText="{x:Static CommonResxNS:AppResources.Edit_Hot_List}"
+                                    ContentControl.Content="{Binding Path=General.UclWideGen_HotListEdit_A00002_UILabel}"
+                                    MyParentCtrl="{Binding ElementName=ChkBoxHotListEdit}"
+                                    IsAcpValid="{Binding ElementName=ChkBoxHotListEdit, Path=IsAcpValid}"
+                                    IsAcpApplicable="{Binding ElementName=ChkBoxHotListEdit, Path=IsAcpApplicable}"
+                                    IsAcpVisible="{Binding ElementName=ChkBoxHotListEdit, Path=IsAcpVisible}"/>
+                  <AcpUINS:AcpCheckBox FrameworkElement.Name="ChkBoxHotListEdit" Grid.Row="1" Grid.Column="2"
+                                       FrameworkElement.VerticalAlignment="Center" MyExpander="{Binding ElementName=ExpUclWideGen}"
+                                       MyBLObject="{Binding Path=General.UclWideGen_HotListEdit_A00002Object}"
+                                       MyLabelCtrl="{Binding ElementName=LblHotListEdit}"
+                                       ToggleButton.IsChecked="{Binding Path=General.UclWideGen_HotListEdit_A00002Value}"
+                                       IsAcpValid="{Binding Path=General.UclWideGen_HotListEdit_A00002_Valid}"
+                                       IsAcpApplicable="{Binding Path=General.UclWideGen_HotListEdit_A00002_Applicable}"
+                                       AreValuesEqual="{Binding Path=General.UclWideGen_HotListEdit_A00002_HasDiffs, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                    <AcpUINS:AcpCheckBox.IsAcpEditable>
+                      <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Path="General.UclWideGen_HotListEdit_A00002_Editable"/>
+                        <Binding Path="General.UclWideGen_HotListEdit_A00002Object"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpEditable>
+                    <AcpUINS:AcpCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource parentControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                        <Binding Path="AreValuesEqual" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="General.UclWideGen_HotListEdit_A00002_Visible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCheckBox>
+                  <AcpUINS:AcpRtdButton FrameworkElement.Name="RTDBtnHotListEdit" Grid.Row="1" Grid.Column="3"
+                                        MyParentCtrl="{Binding ElementName=ChkBoxHotListEdit}">
+                    <AcpUINS:AcpRtdButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpRtdButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="ShowRtdButtons"/>
+                        <Binding ElementName="ChkBoxHotListEdit" Path="MyBLObject"/>
+                        <Binding ElementName="ChkBoxHotListEdit" Path="IsAcpVisible"/>
+                        <Binding ElementName="ChkBoxHotListEdit" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpRtdButton.IsAcpVisible>
+                  </AcpUINS:AcpRtdButton>
+                  <AcpUINS:AcpCustomViewCheckBox FrameworkElement.Name="CVBtnPhoneNumEdit" FrameworkElement.Margin="0,5,0,0" Grid.Row="2"
+                                                 Grid.Column="0" MyParentCtrl="{Binding ElementName=ChkBoxPhoneNumEdit}"
+                                                 ToggleButton.IsChecked="{Binding ElementName=ChkBoxPhoneNumEdit, Path=MyBLObject.CustomViewVisibility}">
+                    <AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCustomViewCheckBoxVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxPhoneNumEdit" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCustomViewCheckBox>
+                  <AcpUINS:AcpLabel FrameworkElement.Name="LblPhoneNumEdit" Grid.Row="2" Grid.Column="1"
+                                    FrameworkElement.VerticalAlignment="Center"
+                                    HelpText="{x:Static CommonResxNS:AppResources.Edit_Phone_Number}"
+                                    ContentControl.Content="{Binding Path=General.UclWideGen_PhoneNumEdit_A00004_UILabel}"
+                                    MyParentCtrl="{Binding ElementName=ChkBoxPhoneNumEdit}"
+                                    IsAcpValid="{Binding ElementName=ChkBoxPhoneNumEdit, Path=IsAcpValid}"
+                                    IsAcpApplicable="{Binding ElementName=ChkBoxPhoneNumEdit, Path=IsAcpApplicable}"
+                                    IsAcpVisible="{Binding ElementName=ChkBoxPhoneNumEdit, Path=IsAcpVisible}"/>
+                  <AcpUINS:AcpCheckBox FrameworkElement.Name="ChkBoxPhoneNumEdit" Grid.Row="2" Grid.Column="2"
+                                       FrameworkElement.VerticalAlignment="Center" MyExpander="{Binding ElementName=ExpUclWideGen}"
+                                       MyBLObject="{Binding Path=General.UclWideGen_PhoneNumEdit_A00004Object}"
+                                       MyLabelCtrl="{Binding ElementName=LblPhoneNumEdit}"
+                                       ToggleButton.IsChecked="{Binding Path=General.UclWideGen_PhoneNumEdit_A00004Value}"
+                                       IsAcpValid="{Binding Path=General.UclWideGen_PhoneNumEdit_A00004_Valid}"
+                                       IsAcpApplicable="{Binding Path=General.UclWideGen_PhoneNumEdit_A00004_Applicable}"
+                                       AreValuesEqual="{Binding Path=General.UclWideGen_PhoneNumEdit_A00004_HasDiffs, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                    <AcpUINS:AcpCheckBox.IsAcpEditable>
+                      <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Path="General.UclWideGen_PhoneNumEdit_A00004_Editable"/>
+                        <Binding Path="General.UclWideGen_PhoneNumEdit_A00004Object"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpEditable>
+                    <AcpUINS:AcpCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource parentControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                        <Binding Path="AreValuesEqual" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="General.UclWideGen_PhoneNumEdit_A00004_Visible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCheckBox>
+                  <AcpUINS:AcpRtdButton FrameworkElement.Name="RTDBtnPhoneNumEdit" Grid.Row="2" Grid.Column="3"
+                                        MyParentCtrl="{Binding ElementName=ChkBoxPhoneNumEdit}">
+                    <AcpUINS:AcpRtdButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpRtdButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="ShowRtdButtons"/>
+                        <Binding ElementName="ChkBoxPhoneNumEdit" Path="MyBLObject"/>
+                        <Binding ElementName="ChkBoxPhoneNumEdit" Path="IsAcpVisible"/>
+                        <Binding ElementName="ChkBoxPhoneNumEdit" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpRtdButton.IsAcpVisible>
+                  </AcpUINS:AcpRtdButton>
+                  <AcpUINS:AcpCustomViewCheckBox FrameworkElement.Name="CVBtnRadioIdEdit" FrameworkElement.Margin="0,5,0,0" Grid.Row="3"
+                                                 Grid.Column="0" MyParentCtrl="{Binding ElementName=ChkBoxRadioIdEdit}"
+                                                 ToggleButton.IsChecked="{Binding ElementName=ChkBoxRadioIdEdit, Path=MyBLObject.CustomViewVisibility}">
+                    <AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCustomViewCheckBoxVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxRadioIdEdit" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCustomViewCheckBox>
+                  <AcpUINS:AcpLabel FrameworkElement.Name="LblRadioIdEdit" Grid.Row="3" Grid.Column="1"
+                                    FrameworkElement.VerticalAlignment="Center"
+                                    HelpText="{x:Static CommonResxNS:AppResources.Edit_Radio_Id}"
+                                    ContentControl.Content="{Binding Path=General.UclWideGen_RadioIdEdit_A00003_UILabel}"
+                                    MyParentCtrl="{Binding ElementName=ChkBoxRadioIdEdit}"
+                                    IsAcpValid="{Binding ElementName=ChkBoxRadioIdEdit, Path=IsAcpValid}"
+                                    IsAcpApplicable="{Binding ElementName=ChkBoxRadioIdEdit, Path=IsAcpApplicable}"
+                                    IsAcpVisible="{Binding ElementName=ChkBoxRadioIdEdit, Path=IsAcpVisible}"/>
+                  <AcpUINS:AcpCheckBox FrameworkElement.Name="ChkBoxRadioIdEdit" Grid.Row="3" Grid.Column="2"
+                                       FrameworkElement.VerticalAlignment="Center" MyExpander="{Binding ElementName=ExpUclWideGen}"
+                                       MyBLObject="{Binding Path=General.UclWideGen_RadioIdEdit_A00003Object}"
+                                       MyLabelCtrl="{Binding ElementName=LblRadioIdEdit}"
+                                       ToggleButton.IsChecked="{Binding Path=General.UclWideGen_RadioIdEdit_A00003Value}"
+                                       IsAcpValid="{Binding Path=General.UclWideGen_RadioIdEdit_A00003_Valid}"
+                                       IsAcpApplicable="{Binding Path=General.UclWideGen_RadioIdEdit_A00003_Applicable}"
+                                       AreValuesEqual="{Binding Path=General.UclWideGen_RadioIdEdit_A00003_HasDiffs, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                    <AcpUINS:AcpCheckBox.IsAcpEditable>
+                      <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Path="General.UclWideGen_RadioIdEdit_A00003_Editable"/>
+                        <Binding Path="General.UclWideGen_RadioIdEdit_A00003Object"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpEditable>
+                    <AcpUINS:AcpCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource parentControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                        <Binding Path="AreValuesEqual" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="General.UclWideGen_RadioIdEdit_A00003_Visible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCheckBox>
+                  <AcpUINS:AcpRtdButton FrameworkElement.Name="RTDBtnRadioIdEdit" Grid.Row="3" Grid.Column="3"
+                                        MyParentCtrl="{Binding ElementName=ChkBoxRadioIdEdit}">
+                    <AcpUINS:AcpRtdButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpRtdButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="ShowRtdButtons"/>
+                        <Binding ElementName="ChkBoxRadioIdEdit" Path="MyBLObject"/>
+                        <Binding ElementName="ChkBoxRadioIdEdit" Path="IsAcpVisible"/>
+                        <Binding ElementName="ChkBoxRadioIdEdit" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpRtdButton.IsAcpVisible>
+                  </AcpUINS:AcpRtdButton>
+                  <AcpUINS:AcpCustomViewCheckBox FrameworkElement.Name="CVBtnOrderableItem" FrameworkElement.Margin="0,5,0,0" Grid.Row="4"
+                                                 Grid.Column="0" MyParentCtrl="{Binding ElementName=OrderableItemTest}"
+                                                 ToggleButton.IsChecked="{Binding ElementName=OrderableItemTest, Path=MyBLObject.CustomViewVisibility}">
+                    <AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCustomViewCheckBoxVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="OrderableItemTest" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCustomViewCheckBox>
+                  <AcpUINS:AcpLabel FrameworkElement.Name="LblOrderableItemTest" Grid.Row="4" Grid.Column="1"
+                                    FrameworkElement.VerticalAlignment="Center"
+                                    ContentControl.Content="{x:Static CommonResxNS:AppResources.Contact_Data_Order_Indicator}"
+                                    HelpText="{x:Static CommonResxNS:AppResources.TBD_ID}"
+                                    MyParentCtrl="{Binding ElementName=OrderableItemTest}"
+                                    IsAcpValid="{Binding ElementName=OrderableItemTest, Path=IsAcpValid}"
+                                    IsAcpApplicable="{Binding ElementName=OrderableItemTest, Path=IsAcpApplicable}"
+                                    IsAcpVisible="{Binding ElementName=OrderableItemTest, Path=IsAcpVisible}"/>
+                  <AcpUINS:AcpOrderableListBox FrameworkElement.Name="OrderableItemTest" Grid.Row="4" Grid.Column="2"
+                                               MyExpander="{Binding ElementName=ExpUclWideGen}"
+                                               MyBLObject="{Binding Path=General.UclWideGen_ContactDataOrder_A00005Object}"
+                                               MyLabelCtrl="{Binding ElementName=LblOrderableItemTest}"
+                                               ItemsControl.ItemsSource="{Binding Path=General.UclWideGen_ContactDataOrder_A00005Object.Items}"
+                                               IsAcpValid="{Binding Path=General.UclWideGen_ContactDataOrder_A00005_Valid}"
+                                               IsAcpApplicable="{Binding Path=General.UclWideGen_ContactDataOrder_A00005_Applicable}"
+                                               AreValuesEqual="{Binding Path=General.UclWideGen_ContactDataOrder_A00005_HasDiffs, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                    <AcpUINS:AcpListBox.IsAcpEditable>
+                      <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Path="General.UclWideGen_ContactDataOrder_A00005_Editable"/>
+                        <Binding Path="General.UclWideGen_ContactDataOrder_A00005Object"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpListBox.IsAcpEditable>
+                    <AcpUINS:AcpListBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource parentControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                        <Binding Path="AreValuesEqual" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="General.UclWideGen_ContactDataOrder_A00005_Visible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpListBox.IsAcpVisible>
+                  </AcpUINS:AcpOrderableListBox>
+                </Grid>
+                <Grid Name="CompGrpBoxGeneral" Column="1"
+                      DataContext="{Binding Source={StaticResource GetComparatorParentFeature}}">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="200"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <AcpUINS:AcpCopyButton FrameworkElement.Name="CpyBtnUclEdit" Grid.Row="0" Grid.Column="0"
+                                         MyParentCtrl="{Binding ElementName=ChkBoxUclEdit}" MyCompCtrl="{Binding ElementName=UclEditComp}"
+                                         AreValuesEqual="{Binding ElementName=ChkBoxUclEdit, Path=AreValuesEqual}">
+                    <AcpUINS:AcpCopyButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCopyButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxUclEdit" Path="MyBLObject"/>
+                        <Binding ElementName="ChkBoxUclEdit" Path="IsAcpVisible"/>
+                        <Binding ElementName="ChkBoxUclEdit" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCopyButton.IsAcpVisible>
+                  </AcpUINS:AcpCopyButton>
+                  <AcpUINS:AcpCheckBox FrameworkElement.Name="UclEditComp" Grid.Row="0" Grid.Column="1" IsAcpEditable="false"
+                                       ToggleButton.IsChecked="{Binding Path=General.UclWideGen_UCLEdit_A00001Value}"
+                                       MyBLObject="{Binding Path=General.UclWideGen_UCLEdit_A00001Object}"
+                                       MyParentCtrl="{Binding ElementName=ChkBoxUclEdit}"
+                                       MyCopyButtonCtrl="{Binding ElementName=CpyBtnUclEdit}">
+                    <AcpUINS:AcpCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource comparatorControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxUclEdit" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCheckBox>
+                  <AcpUINS:AcpCopyButton FrameworkElement.Name="CpyBtnHotListEdit" Grid.Row="1" Grid.Column="0"
+                                         MyParentCtrl="{Binding ElementName=ChkBoxHotListEdit}"
+                                         MyCompCtrl="{Binding ElementName=HotListEditComp}"
+                                         AreValuesEqual="{Binding ElementName=ChkBoxHotListEdit, Path=AreValuesEqual}">
+                    <AcpUINS:AcpCopyButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCopyButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxHotListEdit" Path="MyBLObject"/>
+                        <Binding ElementName="ChkBoxHotListEdit" Path="IsAcpVisible"/>
+                        <Binding ElementName="ChkBoxHotListEdit" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCopyButton.IsAcpVisible>
+                  </AcpUINS:AcpCopyButton>
+                  <AcpUINS:AcpCheckBox FrameworkElement.Name="HotListEditComp" Grid.Row="1" Grid.Column="1" IsAcpEditable="false"
+                                       ToggleButton.IsChecked="{Binding Path=General.UclWideGen_HotListEdit_A00002Value}"
+                                       MyBLObject="{Binding Path=General.UclWideGen_HotListEdit_A00002Object}"
+                                       MyParentCtrl="{Binding ElementName=ChkBoxHotListEdit}"
+                                       MyCopyButtonCtrl="{Binding ElementName=CpyBtnHotListEdit}">
+                    <AcpUINS:AcpCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource comparatorControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxHotListEdit" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCheckBox>
+                  <AcpUINS:AcpCopyButton FrameworkElement.Name="CpyBtnPhoneNumEdit" Grid.Row="2" Grid.Column="0"
+                                         MyParentCtrl="{Binding ElementName=ChkBoxPhoneNumEdit}"
+                                         MyCompCtrl="{Binding ElementName=PhoneNumEditComp}"
+                                         AreValuesEqual="{Binding ElementName=ChkBoxPhoneNumEdit, Path=AreValuesEqual}">
+                    <AcpUINS:AcpCopyButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCopyButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxPhoneNumEdit" Path="MyBLObject"/>
+                        <Binding ElementName="ChkBoxPhoneNumEdit" Path="IsAcpVisible"/>
+                        <Binding ElementName="ChkBoxPhoneNumEdit" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCopyButton.IsAcpVisible>
+                  </AcpUINS:AcpCopyButton>
+                  <AcpUINS:AcpCheckBox FrameworkElement.Name="PhoneNumEditComp" Grid.Row="2" Grid.Column="1" IsAcpEditable="False"
+                                       ToggleButton.IsChecked="{Binding Path=General.UclWideGen_PhoneNumEdit_A00004Value}"
+                                       MyBLObject="{Binding Path=General.UclWideGen_PhoneNumEdit_A00004Object}"
+                                       MyParentCtrl="{Binding ElementName=ChkBoxPhoneNumEdit}"
+                                       MyCopyButtonCtrl="{Binding ElementName=CpyBtnPhoneNumEdit}">
+                    <AcpUINS:AcpCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource comparatorControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxPhoneNumEdit" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCheckBox>
+                  <AcpUINS:AcpCopyButton FrameworkElement.Name="CpyBtnRadioIdEdit" Grid.Row="3" Grid.Column="0"
+                                         MyParentCtrl="{Binding ElementName=ChkBoxRadioIdEdit}"
+                                         MyCompCtrl="{Binding ElementName=RadioIdEditComp}"
+                                         AreValuesEqual="{Binding ElementName=ChkBoxRadioIdEdit, Path=AreValuesEqual}">
+                    <AcpUINS:AcpCopyButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCopyButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxRadioIdEdit" Path="MyBLObject"/>
+                        <Binding ElementName="ChkBoxRadioIdEdit" Path="IsAcpVisible"/>
+                        <Binding ElementName="ChkBoxRadioIdEdit" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCopyButton.IsAcpVisible>
+                  </AcpUINS:AcpCopyButton>
+                  <AcpUINS:AcpCheckBox FrameworkElement.Name="RadioIdEditComp" Grid.Row="3" Grid.Column="1" IsAcpEditable="False"
+                                       ToggleButton.IsChecked="{Binding Path=General.UclWideGen_RadioIdEdit_A00003Value}"
+                                       MyBLObject="{Binding Path=General.UclWideGen_RadioIdEdit_A00003Object}"
+                                       MyParentCtrl="{Binding ElementName=ChkBoxRadioIdEdit}"
+                                       MyCopyButtonCtrl="{Binding ElementName=CpyBtnRadioIdEdit}">
+                    <AcpUINS:AcpCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource comparatorControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="ChkBoxRadioIdEdit" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCheckBox>
+                  <AcpUINS:AcpCopyButton FrameworkElement.Name="CpyBtnDataOderItem" Grid.Row="4" Grid.Column="0" IsAcpVisible="False"
+                                         MyParentCtrl="{Binding ElementName=OrderableItemTest}"
+                                         MyCompCtrl="{Binding ElementName=DataOderItemComp}"
+                                         AreValuesEqual="{Binding ElementName=OrderableItemTest, Path=AreValuesEqual}"/>
+                  <AcpUINS:AcpOrderableListBox FrameworkElement.Name="DataOderItemComp" Grid.Row="4" Grid.Column="1" IsAcpEditable="False"
+                                               MyBLObject="{Binding Path=General.UclWideGen_ContactDataOrder_A00005Object}"
+                                               ItemsControl.ItemsSource="{Binding Path=General.UclWideGen_ContactDataOrder_A00005Object.Items}"
+                                               MyParentCtrl="{Binding ElementName=OrderableItemTest}"
+                                               MyCopyButtonCtrl="{Binding ElementName=CpyBtnDataOderItem}"
+                                               FrameworkElement.Height="{Binding ElementName=OrderableItemTest, Path=Height}">
+                    <AcpUINS:AcpListBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource comparatorControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="OrderableItemTest" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpListBox.IsAcpVisible>
+                  </AcpUINS:AcpOrderableListBox>
+                </Grid>
+              </Grid>
+              <AcpUINS:AcpGroupBox.IsAcpVisible>
+                <MultiBinding Converter="{StaticResource groupboxVisibilityConverter}">
+                  <Binding ElementName="ChkBoxUclEdit" Path="IsAcpVisible"/>
+                  <Binding ElementName="ChkBoxHotListEdit" Path="IsAcpVisible"/>
+                  <Binding ElementName="ChkBoxPhoneNumEdit" Path="IsAcpVisible"/>
+                  <Binding ElementName="ChkBoxRadioIdEdit" Path="IsAcpVisible"/>
+                  <Binding ElementName="OrderableItemTest" Path="IsAcpVisible"/>
+                </MultiBinding>
+              </AcpUINS:AcpGroupBox.IsAcpVisible>
+            </AcpUINS:AcpGroupBox>
+          </Grid>
+          <AcpUINS:AcpExpander.IsAcpVisible>
+            <MultiBinding Converter="{StaticResource groupboxVisibilityConverter}">
+              <Binding ElementName="GrpBoxGeneral" Path="IsAcpVisible"/>
+            </MultiBinding>
+          </AcpUINS:AcpExpander.IsAcpVisible>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpUCLWideLabtool" FrameworkElement.Width="Auto"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.Labtool_Id}"
+                             ShowDiffIcon="{Binding Path=Labtool.HasDiffs, Mode=OneWay}">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <AcpUINS:AcpGroupBox FrameworkElement.Name="GrpBoxLabtool" Control.BorderBrush="Black" Control.BorderThickness="0"
+                                 Grid.Row="0" FrameworkElement.Margin="0,5,0,0">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid Name="StdGridLabtoolGrp" Column="0">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <AcpUINS:AcpCustomViewCheckBox FrameworkElement.Name="CVBtnMaxContacts" FrameworkElement.Margin="0,5,0,0" Grid.Row="0"
+                                                 Grid.Column="0" MyParentCtrl="{Binding ElementName=TxtBoxMaxContactNumbers}"
+                                                 ToggleButton.IsChecked="{Binding ElementName=TxtBoxMaxContactNumbers, Path=MyBLObject.CustomViewVisibility}">
+                    <AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCustomViewCheckBoxVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="TxtBoxMaxContactNumbers" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCustomViewCheckBox>
+                  <AcpUINS:AcpLabel FrameworkElement.Name="LblMaxContacts" Grid.Row="0" Grid.Column="1"
+                                    HelpText="{x:Static CommonResxNS:AppResources.Max_Contact_Instances}"
+                                    ContentControl.Content="{Binding Path=Labtool.UclWideLab_MaxContacts_A00006_UILabel}"
+                                    MyParentCtrl="{Binding ElementName=TxtBoxMaxContactNumbers}"
+                                    IsAcpValid="{Binding ElementName=TxtBoxMaxContactNumbers, Path=IsAcpValid}"
+                                    IsAcpApplicable="{Binding ElementName=TxtBoxMaxContactNumbers, Path=IsAcpApplicable}"
+                                    IsAcpVisible="{Binding ElementName=TxtBoxMaxContactNumbers, Path=IsAcpVisible}"/>
+                  <AcpUINS:AcpTextBox FrameworkElement.Name="TxtBoxMaxContactNumbers" FrameworkElement.VerticalAlignment="Center"
+                                      Grid.Row="0" Grid.Column="2"
+                                      TextBox.Text="{Binding Path=Labtool.UclWideLab_MaxContacts_A00006Value}"
+                                      MyExpander="{Binding ElementName=ExpUCLWideLabtool}"
+                                      MyBLObject="{Binding Path=Labtool.UclWideLab_MaxContacts_A00006Object}"
+                                      MyLabelCtrl="{Binding ElementName=LblMaxContacts}"
+                                      IsAcpValid="{Binding Path=Labtool.UclWideLab_MaxContacts_A00006_Valid}"
+                                      IsAcpApplicable="{Binding Path=Labtool.UclWideLab_MaxContacts_A00006_Applicable}"
+                                      AreValuesEqual="{Binding Path=Labtool.UclWideLab_MaxContacts_A00006_HasDiffs, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                    <AcpUINS:AcpTextBox.IsAcpEditable>
+                      <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Path="Labtool.UclWideLab_MaxContacts_A00006_Editable"/>
+                        <Binding Path="Labtool.UclWideLab_MaxContacts_A00006Object"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpTextBox.IsAcpEditable>
+                    <AcpUINS:AcpTextBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource parentControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                        <Binding Path="AreValuesEqual" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="Labtool.UclWideLab_MaxContacts_A00006_Visible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpTextBox.IsAcpVisible>
+                  </AcpUINS:AcpTextBox>
+                  <AcpUINS:AcpRtdButton FrameworkElement.Name="RTDBtnMaxContacts" Grid.Row="0" Grid.Column="3"
+                                        MyParentCtrl="{Binding ElementName=TxtBoxMaxContactNumbers}">
+                    <AcpUINS:AcpRtdButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpRtdButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="ShowRtdButtons"/>
+                        <Binding ElementName="TxtBoxMaxContactNumbers" Path="MyBLObject"/>
+                        <Binding ElementName="TxtBoxMaxContactNumbers" Path="IsAcpVisible"/>
+                        <Binding ElementName="TxtBoxMaxContactNumbers" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpRtdButton.IsAcpVisible>
+                  </AcpUINS:AcpRtdButton>
+                  <AcpUINS:AcpCustomViewCheckBox FrameworkElement.Name="CVBtnContactsCombDataMax" FrameworkElement.Margin="0,5,0,0" Grid.Row="1"
+                                                 Grid.Column="0" MyParentCtrl="{Binding ElementName=TxtBoxContactsCombDataMax}"
+                                                 ToggleButton.IsChecked="{Binding ElementName=TxtBoxContactsCombDataMax, Path=MyBLObject.CustomViewVisibility}">
+                    <AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCustomViewCheckBoxVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="TxtBoxContactsCombDataMax" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCustomViewCheckBox>
+                  <AcpUINS:AcpLabel FrameworkElement.Name="LblContactsCombinedDataMax" Grid.Row="1" Grid.Column="1"
+                                    HelpText="{x:Static CommonResxNS:AppResources.Contact_Combined_Data_Max}"
+                                    ContentControl.Content="{Binding Path=Labtool.UclWideLab_ContactsCombinedDataMax_A00007_UILabel}"
+                                    MyParentCtrl="{Binding ElementName=TxtBoxContactsCombDataMax}"
+                                    IsAcpValid="{Binding ElementName=TxtBoxContactsCombDataMax, Path=IsAcpValid}"
+                                    IsAcpApplicable="{Binding ElementName=TxtBoxContactsCombDataMax, Path=IsAcpApplicable}"
+                                    IsAcpVisible="{Binding ElementName=TxtBoxContactsCombDataMax, Path=IsAcpVisible}"/>
+                  <AcpUINS:AcpTextBox FrameworkElement.Name="TxtBoxContactsCombDataMax" FrameworkElement.VerticalAlignment="Center"
+                                      Grid.Row="1" Grid.Column="2"
+                                      TextBox.Text="{Binding Path=Labtool.UclWideLab_ContactsCombinedDataMax_A00007Value}"
+                                      MyExpander="{Binding ElementName=ExpUCLWideLabtool}"
+                                      MyBLObject="{Binding Path=Labtool.UclWideLab_ContactsCombinedDataMax_A00007Object}"
+                                      MyLabelCtrl="{Binding ElementName=LblContactsCombinedDataMax}"
+                                      IsAcpValid="{Binding Path=Labtool.UclWideLab_ContactsCombinedDataMax_A00007_Valid}"
+                                      IsAcpApplicable="{Binding Path=Labtool.UclWideLab_ContactsCombinedDataMax_A00007_Applicable}"
+                                      AreValuesEqual="{Binding Path=Labtool.UclWideLab_ContactsCombinedDataMax_A00007_HasDiffs, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                    <AcpUINS:AcpTextBox.IsAcpEditable>
+                      <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Path="Labtool.UclWideLab_ContactsCombinedDataMax_A00007_Editable"/>
+                        <Binding Path="Labtool.UclWideLab_ContactsCombinedDataMax_A00007Object"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpTextBox.IsAcpEditable>
+                    <AcpUINS:AcpTextBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource parentControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                        <Binding Path="AreValuesEqual" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="Labtool.UclWideLab_ContactsCombinedDataMax_A00007_Visible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpTextBox.IsAcpVisible>
+                  </AcpUINS:AcpTextBox>
+                  <AcpUINS:AcpRtdButton FrameworkElement.Name="RTDBtnContactsCombDataMax" Grid.Row="1" Grid.Column="3"
+                                        MyParentCtrl="{Binding ElementName=TxtBoxContactsCombDataMax}">
+                    <AcpUINS:AcpRtdButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpRtdButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="ShowRtdButtons"/>
+                        <Binding ElementName="TxtBoxContactsCombDataMax" Path="MyBLObject"/>
+                        <Binding ElementName="TxtBoxContactsCombDataMax" Path="IsAcpVisible"/>
+                        <Binding ElementName="TxtBoxContactsCombDataMax" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpRtdButton.IsAcpVisible>
+                  </AcpUINS:AcpRtdButton>
+                  <AcpUINS:AcpCustomViewCheckBox FrameworkElement.Name="CVBtnMaxHotlistContacts" FrameworkElement.Margin="0,5,0,0" Grid.Row="2"
+                                                 Grid.Column="0" MyParentCtrl="{Binding ElementName=TxtBoxMaxHotlistContacts}"
+                                                 ToggleButton.IsChecked="{Binding ElementName=TxtBoxMaxHotlistContacts, Path=MyBLObject.CustomViewVisibility}">
+                    <AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCustomViewCheckBoxVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="TxtBoxMaxHotlistContacts" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCustomViewCheckBox.IsAcpVisible>
+                  </AcpUINS:AcpCustomViewCheckBox>
+                  <AcpUINS:AcpLabel FrameworkElement.Name="LblMaxHotlistContacts" Grid.Row="2" Grid.Column="1"
+                                    HelpText="{x:Static CommonResxNS:AppResources.Max_Hotlisted_Contacts}"
+                                    ContentControl.Content="{Binding Path=Labtool.UclWideLab_MaxHotlistContacts_A00008_UILabel}"
+                                    MyParentCtrl="{Binding ElementName=TxtBoxMaxHotlistContacts}"
+                                    IsAcpValid="{Binding ElementName=TxtBoxMaxHotlistContacts, Path=IsAcpValid}"
+                                    IsAcpApplicable="{Binding ElementName=TxtBoxMaxHotlistContacts, Path=IsAcpApplicable}"
+                                    IsAcpVisible="{Binding ElementName=TxtBoxMaxHotlistContacts, Path=IsAcpVisible}"/>
+                  <AcpUINS:AcpTextBox FrameworkElement.Name="TxtBoxMaxHotlistContacts" FrameworkElement.VerticalAlignment="Center"
+                                      Grid.Row="2" Grid.Column="2"
+                                      TextBox.Text="{Binding Path=Labtool.UclWideLab_MaxHotlistContacts_A00008Value}"
+                                      MyExpander="{Binding ElementName=ExpUCLWideLabtool}"
+                                      MyBLObject="{Binding Path=Labtool.UclWideLab_MaxHotlistContacts_A00008Object}"
+                                      MyLabelCtrl="{Binding ElementName=LblMaxHotlistContacts}"
+                                      IsAcpValid="{Binding Path=Labtool.UclWideLab_MaxHotlistContacts_A00008_Valid}"
+                                      IsAcpApplicable="{Binding Path=Labtool.UclWideLab_MaxHotlistContacts_A00008_Applicable}"
+                                      AreValuesEqual="{Binding Path=Labtool.UclWideLab_MaxHotlistContacts_A00008_HasDiffs, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                    <AcpUINS:AcpTextBox.IsAcpEditable>
+                      <MultiBinding Converter="{StaticResource editabilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Path="Labtool.UclWideLab_MaxHotlistContacts_A00008_Editable"/>
+                        <Binding Path="Labtool.UclWideLab_MaxHotlistContacts_A00008Object"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpTextBox.IsAcpEditable>
+                    <AcpUINS:AcpTextBox.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource parentControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                        <Binding Path="AreValuesEqual" RelativeSource="{RelativeSource Self}"/>
+                        <Binding Path="Labtool.UclWideLab_MaxHotlistContacts_A00008_Visible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpTextBox.IsAcpVisible>
+                  </AcpUINS:AcpTextBox>
+                  <AcpUINS:AcpRtdButton FrameworkElement.Name="RTDBtnMaxHotlistContacts" Grid.Row="2" Grid.Column="3"
+                                        MyParentCtrl="{Binding ElementName=TxtBoxMaxHotlistContacts}">
+                    <AcpUINS:AcpRtdButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpRtdButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="ShowRtdButtons"/>
+                        <Binding ElementName="TxtBoxMaxHotlistContacts" Path="MyBLObject"/>
+                        <Binding ElementName="TxtBoxMaxHotlistContacts" Path="IsAcpVisible"/>
+                        <Binding ElementName="TxtBoxMaxHotlistContacts" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpRtdButton.IsAcpVisible>
+                  </AcpUINS:AcpRtdButton>
+                </Grid>
+                <Grid Name="CompGrpBoxLabtool" Column="1"
+                      DataContext="{Binding Source={StaticResource GetComparatorParentFeature}}">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <AcpUINS:AcpCopyButton FrameworkElement.Name="CpyBtnMaxContacts" Grid.Row="0" Grid.Column="0"
+                                         MyParentCtrl="{Binding ElementName=TxtBoxMaxContactNumbers}"
+                                         MyCompCtrl="{Binding ElementName=MaxContactsComp}"
+                                         AreValuesEqual="{Binding ElementName=TxtBoxMaxContactNumbers, Path=AreValuesEqual}">
+                    <AcpUINS:AcpCopyButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCopyButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="TxtBoxMaxContactNumbers" Path="MyBLObject"/>
+                        <Binding ElementName="TxtBoxMaxContactNumbers" Path="IsAcpVisible"/>
+                        <Binding ElementName="TxtBoxMaxContactNumbers" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCopyButton.IsAcpVisible>
+                  </AcpUINS:AcpCopyButton>
+                  <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="MaxContactsComp" Grid.Row="0" Grid.Column="1"
+                                           ContentControl.Content="{Binding Path=Labtool.UclWideLab_MaxContacts_A00006Value}"
+                                           MyBLObject="{Binding Path=Labtool.UclWideLab_MaxContacts_A00006Object}"
+                                           MyParentCtrl="{Binding ElementName=TxtBoxMaxContactNumbers}"
+                                           MyCopyButtonCtrl="{Binding ElementName=CpyBtnMaxContacts}">
+                    <AcpUINS:AcpViewOnlyCtrl.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource comparatorControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="TxtBoxMaxContactNumbers" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpViewOnlyCtrl.IsAcpVisible>
+                  </AcpUINS:AcpViewOnlyCtrl>
+                  <AcpUINS:AcpCopyButton FrameworkElement.Name="CpyBtnContactsCombDataMax" Grid.Row="1" Grid.Column="0"
+                                         MyParentCtrl="{Binding ElementName=TxtBoxContactsCombDataMax}"
+                                         MyCompCtrl="{Binding ElementName=ContactsCombDataMaxComp}"
+                                         AreValuesEqual="{Binding ElementName=TxtBoxContactsCombDataMax, Path=AreValuesEqual}">
+                    <AcpUINS:AcpCopyButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCopyButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="TxtBoxContactsCombDataMax" Path="MyBLObject"/>
+                        <Binding ElementName="TxtBoxContactsCombDataMax" Path="IsAcpVisible"/>
+                        <Binding ElementName="TxtBoxContactsCombDataMax" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCopyButton.IsAcpVisible>
+                  </AcpUINS:AcpCopyButton>
+                  <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="ContactsCombDataMaxComp" Grid.Row="1" Grid.Column="1"
+                                           ContentControl.Content="{Binding Path=Labtool.UclWideLab_ContactsCombinedDataMax_A00007Value}"
+                                           MyBLObject="{Binding Path=Labtool.UclWideLab_ContactsCombinedDataMax_A00007Object}"
+                                           MyParentCtrl="{Binding ElementName=TxtBoxContactsCombDataMax}"
+                                           MyCopyButtonCtrl="{Binding ElementName=CpyBtnContactsCombDataMax}">
+                    <AcpUINS:AcpViewOnlyCtrl.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource comparatorControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="TxtBoxContactsCombDataMax" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpViewOnlyCtrl.IsAcpVisible>
+                  </AcpUINS:AcpViewOnlyCtrl>
+                  <AcpUINS:AcpCopyButton FrameworkElement.Name="CpyBtnMaxHotlistContacts" Grid.Row="2" Grid.Column="0"
+                                         MyParentCtrl="{Binding ElementName=TxtBoxMaxHotlistContacts}"
+                                         MyCompCtrl="{Binding ElementName=MaxHotlistContactsComp}"
+                                         AreValuesEqual="{Binding ElementName=TxtBoxMaxHotlistContacts, Path=AreValuesEqual}">
+                    <AcpUINS:AcpCopyButton.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource acpCopyButtonVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="TxtBoxMaxHotlistContacts" Path="MyBLObject"/>
+                        <Binding ElementName="TxtBoxMaxHotlistContacts" Path="IsAcpVisible"/>
+                        <Binding ElementName="TxtBoxMaxHotlistContacts" Path="IsAcpEditable"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpCopyButton.IsAcpVisible>
+                  </AcpUINS:AcpCopyButton>
+                  <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="MaxHotlistContactsComp" Grid.Row="2" Grid.Column="1"
+                                           ContentControl.Content="{Binding Path=Labtool.UclWideLab_MaxHotlistContacts_A00008Value}"
+                                           MyBLObject="{Binding Path=Labtool.UclWideLab_MaxHotlistContacts_A00008Object}"
+                                           MyParentCtrl="{Binding ElementName=TxtBoxMaxHotlistContacts}"
+                                           MyCopyButtonCtrl="{Binding ElementName=CpyBtnMaxHotlistContacts}">
+                    <AcpUINS:AcpViewOnlyCtrl.IsAcpVisible>
+                      <MultiBinding Converter="{StaticResource comparatorControlVisibilityConverter}" Mode="OneWay">
+                        <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                        <Binding ElementName="TxtBoxMaxHotlistContacts" Path="IsAcpVisible"/>
+                      </MultiBinding>
+                    </AcpUINS:AcpViewOnlyCtrl.IsAcpVisible>
+                  </AcpUINS:AcpViewOnlyCtrl>
+                </Grid>
+              </Grid>
+              <AcpUINS:AcpGroupBox.IsAcpVisible>
+                <MultiBinding Converter="{StaticResource groupboxVisibilityConverter}">
+                  <Binding ElementName="TxtBoxMaxContactNumbers" Path="IsAcpVisible"/>
+                  <Binding ElementName="TxtBoxContactsCombDataMax" Path="IsAcpVisible"/>
+                  <Binding ElementName="TxtBoxMaxHotlistContacts" Path="IsAcpVisible"/>
+                </MultiBinding>
+              </AcpUINS:AcpGroupBox.IsAcpVisible>
+            </AcpUINS:AcpGroupBox>
+          </Grid>
+          <AcpUINS:AcpExpander.IsAcpVisible>
+            <MultiBinding Converter="{StaticResource groupboxVisibilityConverter}">
+              <Binding ElementName="GrpBoxLabtool" Path="IsAcpVisible"/>
+            </MultiBinding>
+          </AcpUINS:AcpExpander.IsAcpVisible>
+        </AcpUINS:AcpExpander>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</PageUclWide>
