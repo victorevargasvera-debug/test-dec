@@ -1,0 +1,109 @@
+<SpecialFeatureNS:PageCloneWiFiView xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                    xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+                                    xmlns:igcontrols="http://infragistics.com/DataPresenter"
+                                    xmlns:igEditors="http://infragistics.com/Editors"
+                                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                                    xmlns:AcpBLNS="clr-namespace:AcpBusinessLayer;assembly=AcpBusinessLayer"
+                                    xmlns:AcpBLConverterNS="clr-namespace:AcpBusinessLayer.ValueConverters;assembly=AcpBusinessLayer"
+                                    xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common;assembly=AcpUI"
+                                    xmlns:AcpCommonLibNS="clr-namespace:AcpCommonLib;assembly=AcpCommonLib"
+                                    xmlns:src="clr-namespace:ConstraintHelper"
+                                    xmlns:SpecialFeatureNS="clr-namespace:SpecialFeatures.CloneWiFi;assembly=SpecialFeatures"
+                                    xmlns:ResourceNS="clr-namespace:CommonResources;assembly=CommonResources"
+                                    xmlns:DataWideRecsetNS="clr-namespace:Motorola.MackinawCPS.CoreFeatures.DataWide"
+                                    xmlns:ConfiguredNetworksListInnerNS="clr-namespace:Motorola.MackinawCPS.CoreFeatures.DataWide"
+                                    xmlns:NATListInnerNS="clr-namespace:Motorola.MackinawCPS.CoreFeatures.DataWide"
+                                    xmlns:DataUserListInnerNS="clr-namespace:Motorola.MackinawCPS.CoreFeatures.DataWide"
+                                    xmlns:QuickTextMessageListInnerNS="clr-namespace:Motorola.MackinawCPS.CoreFeatures.DataWide"
+                                    xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+                                    Page.Title="{x:Static CommonResxNS:AppResources.WiFi_Password_Validation}"
+                                    UIElement.Focusable="True">
+  <FrameworkElement.Resources>
+    <Style x:Key="DataWideWiFiNetworkSSID_42519CellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=Value}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="DataWideWiFiNetworkEncryptedNetworkPassword_42517CellStyle"
+           TargetType="{x:Type CellValuePresenter}" BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpPasswordEyeBox MaxPasswordLength="63" IsDigitOnly="False"
+                                       PIN="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).Content}"
+                                       IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).IsValid, Mode=TwoWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <RoutedCommand x:Key="F1Help"/>
+    <RoutedCommand x:Key="Cancel"/>
+    <RoutedCommand x:Key="OK"/>
+  </FrameworkElement.Resources>
+  <UIElement.InputBindings>
+    <KeyBinding Key="F1" Command="{Binding HelpCommand}"/>
+  </UIElement.InputBindings>
+  <StackPanel>
+    <Label Name="LblCloneWiFiDescription"
+           Content="{x:Static CommonResxNS:AppResources.WiFi_Password_Validation_Description}"
+           VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Margin="30,10,5,10"/>
+    <AcpUINS:AcpXamDataPresenter x:Name="ExpanderWifiConfiguredNetworksList" FrameworkElement.HorizontalAlignment="Center"
+                                 FrameworkElement.VerticalAlignment="Top" KeyboardNavigation.AcceptsReturn="True"
+                                 Header="{x:Static CommonResxNS:AcgResources.ID_CONFIGUREDNETWORKSLIST}"
+                                 DataSource="{Binding ItemSource}">
+      <DataPresenterBase.FieldLayouts>
+        <FieldLayout>
+          <FieldLayout.Fields>
+            <UnboundField x:Name="DataWideFeatureName_Col" Label="{x:Static CommonResxNS:AcgResources.ID_FEATURENAME}"
+                          BindingPath="FeatureName" BindingMode="OneWay" Width="150">
+              <Field.Settings>
+                <FieldSettings CellValuePresenterStyle="{StaticResource DataWideWiFiNetworkSSID_42519CellStyle}"/>
+              </Field.Settings>
+            </UnboundField>
+            <UnboundField x:Name="DataWideWiFiNetworkSSID_42519_Col"
+                          Label="{x:Static CommonResxNS:AcgResources.ID_NETWORKSSID}" BindingPath="SSID" BindingMode="OneWay"
+                          Width="200">
+              <Field.Settings>
+                <FieldSettings CellValuePresenterStyle="{StaticResource DataWideWiFiNetworkSSID_42519CellStyle}"/>
+              </Field.Settings>
+            </UnboundField>
+            <UnboundField x:Name="DataWideWiFiNetworkEncryptedNetworkPassword_42517_Col"
+                          Label="{x:Static CommonResxNS:AcgResources.ID_ENCRYPTEDNETWORKPASSWORD}" BindingPath="PWD"
+                          BindingMode="OneWay" Width="200">
+              <Field.Settings>
+                <FieldSettings CellValuePresenterStyle="{StaticResource DataWideWiFiNetworkEncryptedNetworkPassword_42517CellStyle}"/>
+              </Field.Settings>
+            </UnboundField>
+          </FieldLayout.Fields>
+        </FieldLayout>
+      </DataPresenterBase.FieldLayouts>
+    </AcpUINS:AcpXamDataPresenter>
+    <Label Name="LblCloneWiFiWarning" Content="{x:Static CommonResxNS:AppResources.Clone_WiFi_Warning}"
+           VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" Margin="30,10,5,10"
+           Visibility="Hidden"/>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Button Name="buttonOK" Content="{x:Static CommonResxNS:AppResources.OK_Id}" Grid.Column="0" Grid.Row="0"
+              HorizontalAlignment="Right" Width="95" Margin="50,15,5,10" Command="{Binding OKCommand}"/>
+      <Button Name="buttonCancel" Content="{x:Static CommonResxNS:AppResources.Cancel_Id}" Grid.Column="1"
+              Grid.Row="0" HorizontalAlignment="Center" Width="95" Margin="50,15,5,10"
+              Command="{Binding CancelCommand}"/>
+      <Button Name="buttonHelp" Content="{x:Static CommonResxNS:AppResources.Help_Id}" Grid.Column="2"
+              Grid.Row="0" HorizontalAlignment="Left" Width="95" Margin="50,15,5,10"
+              Command="{Binding HelpCommand}"/>
+    </Grid>
+  </StackPanel>
+</SpecialFeatureNS:PageCloneWiFiView>

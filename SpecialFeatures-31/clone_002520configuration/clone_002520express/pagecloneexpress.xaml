@@ -1,0 +1,931 @@
+<PageCloneExpress xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:AcpUINS="clr-namespace:AcpUI;assembly=AcpUI"
+                  xmlns:igcontrols="http://infragistics.com/DataPresenter"
+                  xmlns:igEditors="http://infragistics.com/Editors"
+                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                  xmlns:TrunkingSystemNS="clr-namespace:Motorola.MackinawCPS.CoreFeatures.TrunkingSystem;assembly=AllFeatures"
+                  xmlns:ConventionalSystemNS="clr-namespace:Motorola.MackinawCPS.CoreFeatures.ConventionalSystem;assembly=AllFeatures"
+                  xmlns:SecureKMFProfileNS="clr-namespace:Motorola.MackinawCPS.CoreFeatures.SecureKMFProfile;assembly=AllFeatures"
+                  xmlns:DataProfilesNS="clr-namespace:Motorola.MackinawCPS.CoreFeatures.DataProfiles;assembly=AllFeatures"
+                  xmlns:AcpUICommonNS="clr-namespace:AcpUI.Common;assembly=AcpUI"
+                  xmlns:AcpCommonLibNS="clr-namespace:AcpCommonLib;assembly=AcpCommonLib"
+                  xmlns:LocalConverterNS="clr-namespace:ConstraintHelper;assembly=AllFeatures"
+                  xmlns:AcpBLConverterNS="clr-namespace:AcpBusinessLayer.ValueConverters;assembly=AcpBusinessLayer"
+                  xmlns:CommonResxNS="clr-namespace:CommonResources;assembly=CommonResources"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  Page.Title="{x:Static CommonResxNS:AppResources.Clone_Express}" UIElement.Focusable="True">
+  <FrameworkElement.Resources>
+    <LinearGradientBrush x:Key="fgdsd" EndPoint="0.641,1.196" StartPoint="0.641,-0.095">
+      <GradientStop Color="#FFBDC2C9" Offset="0"/>
+      <GradientStop Color="#FFDEE0E4" Offset="0.0859826"/>
+      <GradientStop Color="#FFFFFFFF" Offset="0.0863636"/>
+      <GradientStop Color="#FFD9E1EE" Offset="0.462964"/>
+      <GradientStop Color="#FFB3C3DE" Offset="0.463636"/>
+      <GradientStop Color="#FFFFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Brush1 is mouse over" EndPoint="0.641,1.196" StartPoint="0.641,-0.095">
+      <GradientStop Color="#FFBDC2C9" Offset="0"/>
+      <GradientStop Color="#FFDEE0E4" Offset="0.0859826"/>
+      <GradientStop Color="#FFB5B5B5" Offset="0.0863636"/>
+      <GradientStop Color="#FFB7C1D3" Offset="0.396"/>
+      <GradientStop Color="#FF8390A8" Offset="0.859"/>
+      <GradientStop Color="#FFFFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="click gdent" StartPoint="0.640625,-0.0270241" EndPoint="0.640625,1.08108">
+      <GradientStop Color="#FF57411E" Offset="0"/>
+      <GradientStop Color="#FF886D42" Offset="0.0859826"/>
+      <GradientStop Color="#FFB99A67" Offset="0.0863636"/>
+      <GradientStop Color="#FFAC8142" Offset="0.462964"/>
+      <GradientStop Color="#FFA0681E" Offset="0.463636"/>
+      <GradientStop Color="#FFF7931E" Offset="0.868182"/>
+      <GradientStop Color="#FF474747" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Grey" StartPoint="0.527778,-0.0153843" EndPoint="0.527778,1">
+      <GradientStop Color="#FF1C2027" Offset="0"/>
+      <GradientStop Color="#FF5C626B" Offset="0.0859826"/>
+      <GradientStop Color="#FF9CA4B0" Offset="0.0863636"/>
+      <GradientStop Color="#FF5D636C" Offset="0.462964"/>
+      <GradientStop Color="#FF1E2228" Offset="0.463636"/>
+      <GradientStop Color="#FF4C4C4C" Offset="1"/>
+    </LinearGradientBrush>
+    <Style x:Key="Button&quot;OK&quot;" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid Width="84.583" Height="21.167">
+              <Rectangle x:Name="rectangle" OpacityMask="#FF000000" HorizontalAlignment="Right" Margin="0,-0.001,0,0"
+                         Width="84.583" StrokeThickness="1" RadiusX="2.252" RadiusY="2.252" Fill="{DynamicResource Grey}"
+                         Stroke="{x:Null}">
+                <UIElement.BitmapEffect>
+                  <DropShadowBitmapEffect Opacity="0.515"/>
+                </UIElement.BitmapEffect>
+              </Rectangle>
+              <Rectangle OpacityMask="#FF000000" RenderTransformOrigin="0.5,0.5" Margin="0,2.332,2.923,1.5"
+                         Stroke="#FF555555" StrokeThickness="1" RadiusX="2.252" RadiusY="2.252" HorizontalAlignment="Right"
+                         Width="78.916" Fill="{x:Null}">
+                <UIElement.RenderTransform>
+                  <TransformGroup>
+                    <ScaleTransform ScaleX="-1" ScaleY="1"/>
+                    <SkewTransform AngleX="0" AngleY="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform X="0" Y="0"/>
+                  </TransformGroup>
+                </UIElement.RenderTransform>
+              </Rectangle>
+              <Label FontSize="11" Foreground="#FFFFFFFF" HorizontalAlignment="Center" Margin="0,-1.835,0,0"
+                     Content="{x:Static CommonResxNS:AppResources.Help_Id}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="UIElement.IsFocused" Value="True"/>
+              <Trigger Property="Button.IsDefaulted" Value="True"/>
+              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter TargetName="rectangle" Value="{DynamicResource 'Brush1 is mouse over'}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter TargetName="rectangle" Value="{DynamicResource 'click gdent'}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="False"/>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="ProgressBarStyle19867" TargetType="{x:Type ProgressBar}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ProgressBar}">
+            <Grid>
+              <Border x:Name="PART_Track" BorderThickness="1" CornerRadius="1,1,1,1">
+                <Border.Background>
+                  <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF000000" Offset="0"/>
+                    <GradientStop Color="#FF292929" Offset="0.405"/>
+                  </LinearGradientBrush>
+                </Border.Background>
+                <Border.BorderBrush>
+                  <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF000000" Offset="0"/>
+                    <GradientStop Color="#FF797979" Offset="1"/>
+                  </LinearGradientBrush>
+                </Border.BorderBrush>
+              </Border>
+              <Border x:Name="PART_Indicator" HorizontalAlignment="Left" BorderThickness="1" CornerRadius="2"
+                      BorderBrush="{x:Null}">
+                <UIElement.OpacityMask>
+                  <LinearGradientBrush EndPoint="0.017,0.333" StartPoint="0.544,1.333">
+                    <GradientStop Color="#FF000000" Offset="0"/>
+                    <GradientStop Color="#22000000" Offset="1"/>
+                  </LinearGradientBrush>
+                </UIElement.OpacityMask>
+                <Border.Background>
+                  <LinearGradientBrush EndPoint="0.993,0.244" StartPoint="0,0">
+                    <GradientStop Color="#FFFF9632" Offset="0.758"/>
+                    <GradientStop Color="#FFFECA24" Offset="0.907"/>
+                    <GradientStop Color="#FFD7771A" Offset="0.37"/>
+                    <GradientStop Color="#FFFCE7A5" Offset="0.991"/>
+                  </LinearGradientBrush>
+                </Border.Background>
+              </Border>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="Clone" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid Width="84.583" Height="21.167">
+              <Rectangle x:Name="rectangle" OpacityMask="#FF000000" HorizontalAlignment="Right" Margin="0,-0.001,0,0"
+                         Width="84.583" StrokeThickness="1" RadiusX="2.252" RadiusY="2.252" Fill="{DynamicResource Grey}"
+                         Stroke="{x:Null}">
+                <UIElement.BitmapEffect>
+                  <DropShadowBitmapEffect Opacity="0.515"/>
+                </UIElement.BitmapEffect>
+              </Rectangle>
+              <Rectangle OpacityMask="#FF000000" RenderTransformOrigin="0.5,0.5" Margin="0,2.332,2.923,1.5"
+                         Stroke="#FF555555" StrokeThickness="1" RadiusX="2.252" RadiusY="2.252" HorizontalAlignment="Right"
+                         Width="78.916" Fill="{x:Null}">
+                <UIElement.RenderTransform>
+                  <TransformGroup>
+                    <ScaleTransform ScaleX="-1" ScaleY="1"/>
+                    <SkewTransform AngleX="0" AngleY="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform X="0" Y="0"/>
+                  </TransformGroup>
+                </UIElement.RenderTransform>
+              </Rectangle>
+              <Label FontSize="11" Foreground="#FFFFFFFF" HorizontalAlignment="Center" Margin="0,-1.835,0,0"
+                     Content="{x:Static CommonResxNS:AppResources.Clone_Id}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="UIElement.IsFocused" Value="True"/>
+              <Trigger Property="Button.IsDefaulted" Value="True"/>
+              <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter TargetName="rectangle" Value="{DynamicResource 'Brush1 is mouse over'}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="ButtonBase.IsPressed" Value="True">
+                <Setter TargetName="rectangle" Value="{DynamicResource 'click gdent'}" Property="Shape.Fill"/>
+              </Trigger>
+              <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter TargetName="rectangle" Property="Shape.Fill"
+                        Value="{DynamicResource ResourceKey={x:Static JetSystemColors.GrayTextBrushKey}}"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    <LocalConverterNS:InvertBoolToVisibleConverter x:Key="InvertBooleanToVisibility"/>
+    <AcpBLConverterNS:InvertBoolConverter x:Key="InvertBoolConverter"/>
+    <AcpUICommonNS:CellVisibilityStausConverter x:Key="CellVisibilityStatus"/>
+    <AcpUICommonNS:ClmVisibilityStausConverter x:Key="ClmVisibilityStatus"/>
+    <AcpUICommonNS:AcpXamDataPresenterVisibilityConverter x:Key="acpXamDataPresenterVisibilityConverter"/>
+    <AcpUICommonNS:ParentContainerVisibilityConverter x:Key="groupboxVisibilityConverter"/>
+    <ObjectDataProvider x:Key="GetTrkParentRecset" MethodName="GetRecordset"
+                        ObjectType="{x:Type AcpUINS:AcpObjectDataProvider}">
+      <ObjectDataProvider.MethodParameters>
+        <sys:Int32>2064</sys:Int32>
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="GetCnvParentRecset" MethodName="GetRecordset"
+                        ObjectType="{x:Type AcpUINS:AcpObjectDataProvider}">
+      <ObjectDataProvider.MethodParameters>
+        <sys:Int32>2053</sys:Int32>
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="GetSecKMFParentRecset" MethodName="GetRecordset"
+                        ObjectType="{x:Type AcpUINS:AcpObjectDataProvider}">
+      <ObjectDataProvider.MethodParameters>
+        <sys:Int32>2055</sys:Int32>
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="GetDatProfParentRecset" MethodName="GetRecordset"
+                        ObjectType="{x:Type AcpUINS:AcpObjectDataProvider}">
+      <ObjectDataProvider.MethodParameters>
+        <sys:Int32>2054</sys:Int32>
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <Style x:Key="TrkSysIDCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableTextBoxSpinnerDecHex IsAcpApplicable="False" IsAcpEditable="False"
+                                                  Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralSystemID_A9239_UIValue, Mode=TwoWay}"
+                                                  HexText="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralSystemID_A9239_HexUIValue, Mode=TwoWay}"
+                                                  MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralSystemID_A9239, Mode=OneWay}"
+                                                  IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralSystemID_A9239_Valid, Mode=TwoWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="TrkSysNameCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralKeyofTrunkingSystem_A12658Value, Mode=OneWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralKeyofTrunkingSystem_A12658, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralKeyofTrunkingSystem_A12658Value_Valid, Mode=OneWay}"
+                                          IsAcpVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralKeyofTrunkingSystem_A12658Value_Visible, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="TrkSysUnitIDCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableTextBoxSpinnerDecHex IsAcpEditable="False" IsAcpApplicable="False"
+                                                  Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralUnitID_A12651_UIValue, Mode=TwoWay}"
+                                                  HexText="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralUnitID_A12651_HexUIValue, Mode=TwoWay}"
+                                                  MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralUnitID_A12651, Mode=OneWay}"
+                                                  IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).TrkSysGeneralUnitID_A12651_Valid, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="CnvSysNameCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralKeyofConventionalSystem_A20482Value, Mode=OneWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralKeyofConventionalSystem_A20482, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralKeyofConventionalSystem_A20482Value_Valid, Mode=OneWay}"
+                                          IsAcpVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralKeyofConventionalSystem_A20482Value_Visible, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="CnvSysTypeCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralSystemType_A13262_UIValue, Mode=OneWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralSystemType_A13262, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralSystemType_A13262_Valid, Mode=OneWay}"
+                                          IsAcpVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralSystemType_A13262_Visible, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="CnvSysINDIDCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralIndividualID_A8287_UIValue, Mode=OneWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralIndividualID_A8287, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralIndividualID_A8287_Valid, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="CnvSysMDCIDCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralMDCPrimaryID_A8744_UIValue, Mode=OneWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralMDCPrimaryID_A8744, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).CnvSysGeneralMDCPrimaryID_A8744_Valid, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="SecKMFProfileCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).SecKmfProfASTROOTARInformationKeyofSecureKMFProfile_A12663Value, Mode=OneWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).SecKmfProfASTROOTARInformationKeyofSecureKMFProfile_A12663, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).SecKmfProfASTROOTARInformationKeyofSecureKMFProfile_A12663_Valid, Mode=OneWay}"
+                                          IsAcpVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).SecKmfProfASTROOTARInformationKeyofSecureKMFProfile_A12663_Visible, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="IndAstroOtarRadioIDCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).SecKmfProfASTROOTARInformationIndividualASTROOTARRadioID_A8285Value, Mode=OneWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).SecKmfProfASTROOTARInformationIndividualASTROOTARRadioID_A8285, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).SecKmfProfASTROOTARInformationIndividualASTROOTARRadioID_A8285_Valid, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="DataProfileNameCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralkeyofDataProfiles_A19446Value, Mode=OneWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralkeyofDataProfiles_A19446, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralkeyofDataProfiles_A19446_Valid, Mode=OneWay}"
+                                          IsAcpVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralkeyofDataProfiles_A19446_Visible, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="SubIPAddressCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralSubscriberIPAddress_A21157_UIValue, Mode=OneWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralSubscriberIPAddress_A21157, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralSubscriberIPAddress_A21157_Valid, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="PeerIPAddressCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralMobileComputerIPAddress_A8523_UIValue, Mode=TwoWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralMobileComputerIPAddress_A8523, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralMobileComputerIPAddress_A8523_Valid, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="BTSUIPAddressCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfilesGeneralBTDUNSUIPAddress_A41126_UIValue, Mode=TwoWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfilesGeneralBTDUNSUIPAddress_A41126, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfilesGeneralBTDUNSUIPAddress_A41126_Valid, Mode=OneWay}"
+                                          IsAcpVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfilesGeneralBTDUNSUIPAddress_A41126.HiddenStatic, Mode=OneWay, Converter={StaticResource InvertBoolConverter}}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="BTPeerIPAddressCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfilesGeneralBTDUNPeerIPAddress_A41127_UIValue, Mode=TwoWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfilesGeneralBTDUNPeerIPAddress_A41127, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfilesGeneralBTDUNPeerIPAddress_A41127_Valid, Mode=OneWay}"
+                                          IsAcpVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfilesGeneralBTDUNPeerIPAddress_A41127.HiddenStatic, Mode=OneWay, Converter={StaticResource InvertBoolConverter}}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="SubAirInterfaceIPAddressCellStyle" TargetType="{x:Type CellValuePresenter}"
+           BasedOn="{StaticResource MyCellValuePresenter}">
+      <Setter Property="ContentControl.ContentTemplate">
+        <Setter.Value>
+          <DataTemplate>
+            <AcpUINS:AcpTableViewOnlyCtrl ContentControl.Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralSubscriberAirInterfaceIPAddress_A9220_UIValue, Mode=TwoWay}"
+                                          MyBLObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralSubscriberAirInterfaceIPAddress_A9220, Mode=OneWay}"
+                                          IsAcpValid="{Binding RelativeSource={RelativeSource AncestorType={x:Type CellValuePresenter}}, Path=(Value).DataProfGeneralSubscriberAirInterfaceIPAddress_A9220_Valid, Mode=OneWay}"/>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <RoutedCommand x:Key="F1Help"/>
+  </FrameworkElement.Resources>
+  <UIElement.CommandBindings>
+    <CommandBinding Command="{StaticResource F1Help}"/>
+  </UIElement.CommandBindings>
+  <UIElement.InputBindings>
+    <KeyBinding Command="{StaticResource F1Help}" Key="F1"/>
+  </UIElement.InputBindings>
+  <DockPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+      <StackPanel Width="Auto" Height="Auto">
+        <AcpUINS:AcpLabel FrameworkElement.Name="ProgText" FrameworkElement.HorizontalAlignment="Center"
+                          Control.FontSize="12" Control.FontStyle="Italic" Control.FontFamily="Verdana"
+                          Control.FontWeight="Bold"
+                          ContentControl.Content="{x:Static CommonResxNS:AppResources.Clone_Express_Status}"
+                          UIElement.ClipToBounds="False" FrameworkElement.VerticalAlignment="Center"
+                          FrameworkElement.Height="42" FrameworkElement.Width="Auto" FrameworkElement.Margin="0,0,0,0"/>
+        <ProgressBar x:Name="progressBar2" Style="{DynamicResource ProgressBarStyle19867}" Height="7.947"
+                     Background="#FFEAA10D" Value="45" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5"
+                     Width="357">
+          <UIElement.BitmapEffect>
+            <DropShadowBitmapEffect Direction="311" Opacity="0.4"/>
+          </UIElement.BitmapEffect>
+          <UIElement.RenderTransform>
+            <TransformGroup>
+              <ScaleTransform ScaleX="1" ScaleY="1"/>
+              <SkewTransform AngleX="0" AngleY="0"/>
+              <RotateTransform Angle="0"/>
+              <TranslateTransform X="0" Y="0"/>
+            </TransformGroup>
+          </UIElement.RenderTransform>
+        </ProgressBar>
+        <Grid Margin="0,13,0,0" Width="248.833" Height="27.5"/>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpCloneExp" FrameworkElement.Width="Auto" Expander.IsExpanded="True"
+                             UIElement.Visibility="Visible"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.Clone_Express}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <AcpUINS:AcpLabel Grid.Row="0" Grid.Column="0"
+                              ContentControl.Content="{x:Static CommonResxNS:AppResources.Press_the_Clone_Express_button_to_program_the_attached_radio}"/>
+            <AcpUINS:AcpLabel Grid.Row="1" Grid.Column="0"
+                              ContentControl.Content="{x:Static CommonResxNS:AppResources.with_the_currently_open_codeplug_template}"/>
+            <AcpUINS:AcpLabel Grid.Row="2" Grid.Column="0"
+                              ContentControl.Content="{x:Static CommonResxNS:AppResources.The_radios_serial_number_and_previously_programmed_radio_IDs}"/>
+            <AcpUINS:AcpLabel Grid.Row="3" Grid.Column="0"
+                              ContentControl.Content="{x:Static CommonResxNS:AppResources.and_the_valid_subscriber_air_interface_IPs_will_be_preserved}"/>
+            <AcpUINS:AcpLabel Grid.Row="4"/>
+            <AcpUINS:AcpLabel Grid.Row="5" Grid.Column="0"
+                              ContentControl.Content="{x:Static CommonResxNS:AppResources.To_manually_change_radio_IDs_use_the_Clone_Radio_feature}"/>
+            <AcpUINS:AcpLabel Grid.Row="6"/>
+            <AcpUINS:AcpLabel Grid.Row="7"/>
+            <Button Name="CloneButton" Grid.Row="8" Grid.Column="0"
+                    Content="{x:Static CommonResxNS:AppResources.Clone_Express}" HorizontalAlignment="Left"
+                    Width="91.833"/>
+            <Button Name="HelpButton" Grid.Row="8" Grid.Column="0"
+                    Content="{x:Static CommonResxNS:AppResources.Help_Id}" HorizontalAlignment="Left" Width="91.833"
+                    Margin="120,0,0,0"/>
+          </Grid>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpSerialNumber" FrameworkElement.Width="Auto" Expander.IsExpanded="False"
+                             UIElement.Visibility="Collapsed"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.Radio_Information}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top"
+                             IsAcpVisible="{Binding RelativeSource={RelativeSource Self}, Path=MyExpander.IsAcpVisible}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="200"/>
+              <ColumnDefinition Width="150"/>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="SerialNumberName"
+                                     ContentControl.Content="{x:Static CommonResxNS:AppResources.FileClone_Serial_Number}" Grid.Row="0"
+                                     Grid.Column="0" FrameworkElement.VerticalAlignment="Top"
+                                     IsAcpVisible="{Binding ElementName=ExpSerialNumber, Path=Visibility}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="RadInfoGeneralSerialNumber" Grid.Row="0" Grid.Column="1"
+                                     ContentControl.Content="{Binding Path=SerNum}"
+                                     IsAcpVisible="{Binding ElementName=ExpSerialNumber, Path=Visibility}"/>
+          </Grid>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpTrkSysIDList" FrameworkElement.Width="Auto" UIElement.Visibility="Hidden"
+                             Expander.IsExpanded="False"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.TrkStatus_ID}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top">
+          <AcpUINS:AcpXamDataPresenter FrameworkElement.Name="TrunkingIDDataPresenter"
+                                       Header="{x:Static CommonResxNS:AppResources.Trunking_Sys_ID_List_Status}"
+                                       GroupByAreaLocation="None">
+            <AcpUINS:AcpXamDataPresenter.IsAcpVisible>
+              <MultiBinding Converter="{StaticResource acpXamDataPresenterVisibilityConverter}" Mode="OneWay">
+                <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                <Binding Path="DataSource.HasDiffs" RelativeSource="{RelativeSource Self}"/>
+                <Binding Path="IsAcpVisible" RelativeSource="{RelativeSource Self}"/>
+                <Binding ElementName="TrkSysName_Col" Path="Visibility"/>
+                <Binding ElementName="TrkSysID_Col" Path="Visibility"/>
+                <Binding ElementName="UnitID_Col" Path="Visibility"/>
+              </MultiBinding>
+            </AcpUINS:AcpXamDataPresenter.IsAcpVisible>
+            <DataPresenterBase.FieldLayouts>
+              <FieldLayout>
+                <FieldLayout.Fields>
+                  <UnboundField x:Name="TrkSysName_Col" Name="{x:Static CommonResxNS:AppResources.Trk_Sys_Name}"
+                                BindingPath="General" BindingMode="OneWay"
+                                Visibility="{Binding Source={StaticResource GetTrkParentRecset}, Path=General.TrkSysGeneralKeyofTrunkingSystem_A12658_Visible, Converter={StaticResource BooleanToVisibility}}">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource TrkSysNameCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField x:Name="TrkSysID_Col" Name="{x:Static CommonResxNS:AppResources.Trk_Sys_ID}" BindingPath="General"
+                                BindingMode="OneWay"
+                                Visibility="{Binding Source={StaticResource GetTrkParentRecset}, Path=General.TrkSysGeneralSystemID_A9239_Visible, Converter={StaticResource BooleanToVisibility}}">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource TrkSysIDCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField x:Name="UnitID_Col" Name="{x:Static CommonResxNS:AppResources.Unit_ID}" BindingPath="General"
+                                BindingMode="OneWay"
+                                Visibility="{Binding Source={StaticResource GetTrkParentRecset}, Path=General.TrkSysGeneralUnitID_A12651_Visible, Converter={StaticResource BooleanToVisibility}}">
+                    <Field.Settings>
+                      <FieldSettings CellMinWidth="200" CellWidth="200" CellValuePresenterStyle="{StaticResource TrkSysUnitIDCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                </FieldLayout.Fields>
+              </FieldLayout>
+            </DataPresenterBase.FieldLayouts>
+          </AcpUINS:AcpXamDataPresenter>
+          <AcpUINS:AcpExpander.IsAcpVisible>
+            <MultiBinding Converter="{StaticResource groupboxVisibilityConverter}">
+              <Binding ElementName="TrunkingIDDataPresenter" Path="IsAcpVisible"/>
+            </MultiBinding>
+          </AcpUINS:AcpExpander.IsAcpVisible>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpCnvSysIDList" FrameworkElement.Width="Auto" Expander.IsExpanded="False"
+                             UIElement.Visibility="Hidden"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.Cnv_Status}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top">
+          <AcpUINS:AcpXamDataPresenter FrameworkElement.Name="CnvSysIDDataPresenter"
+                                       Header="{x:Static CommonResxNS:AppResources.Cnv_Sys_ID_List_Status}" GroupByAreaLocation="None">
+            <DataPresenterBase.FieldLayouts>
+              <FieldLayout>
+                <FieldLayout.Fields>
+                  <UnboundField Name="{x:Static CommonResxNS:AppResources.Cnv_Sys_Name}" BindingPath="General" BindingMode="OneWay"
+                                Visibility="{Binding Source={StaticResource GetCnvParentRecset}, Path=General.CnvSysGeneralKeyofConventionalSystem_A20482_Visible, Converter={StaticResource BooleanToVisibility}}">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource CnvSysNameCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField Name="{x:Static CommonResxNS:AppResources.Cnv_Sys_Type}" BindingPath="General" BindingMode="OneWay"
+                                Visibility="{Binding Source={StaticResource GetCnvParentRecset}, Path=General.CnvSysGeneralSystemType_A13262_Visible, Converter={StaticResource BooleanToVisibility}}">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource CnvSysTypeCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField Name="{x:Static CommonResxNS:AppResources.Individual_ID_Id}" BindingPath="General"
+                                BindingMode="OneWay">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource CnvSysINDIDCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField Name="{x:Static CommonResxNS:AppResources.MDC_Primary_ID_hex_}" BindingPath="General"
+                                BindingMode="OneWay">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource CnvSysMDCIDCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                </FieldLayout.Fields>
+              </FieldLayout>
+            </DataPresenterBase.FieldLayouts>
+          </AcpUINS:AcpXamDataPresenter>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpIndAstroOtarRadioIDList" FrameworkElement.Width="Auto"
+                             Expander.IsExpanded="False" UIElement.Visibility="Collapsed"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.Astro_Status}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top">
+          <StackPanel>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="LblSecWideASTROOTARIndividualASTROOTARRadioID"
+                                       ContentControl.Content="{x:Static CommonResxNS:AppResources.Individual_ASTRO_OTAR_Radio_ID}"
+                                       Grid.Row="0" Grid.Column="0"
+                                       MyParentCtrl="{Binding ElementName=SecWideASTROOTARIndividualASTROOTARRadioID}"
+                                       IsAcpValid="{Binding ElementName=SecWideASTROOTARIndividualASTROOTARRadioID, Path=IsAcpValid}"
+                                       IsAcpApplicable="{Binding ElementName=SecWideASTROOTARIndividualASTROOTARRadioID, Path=IsAcpApplicable}"
+                                       IsAcpVisible="{Binding ElementName=SecWideASTROOTARIndividualASTROOTARRadioID, Path=IsAcpVisible}"/>
+              <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="SecWideASTROOTARIndividualASTROOTARRadioID" Grid.Row="0" Grid.Column="1"
+                                       ContentControl.Content="{Binding Path=ASTROOTAR.SecWideASTROOTARIndividualASTROOTARRadioID_A8284_UIValue}"
+                                       MyBLObject="{Binding Path=ASTROOTAR.SecWideASTROOTARIndividualASTROOTARRadioID_A8284}"
+                                       MyLabelCtrl="{Binding ElementName=LblSecWideASTROOTARIndividualASTROOTARRadioID}"
+                                       IsAcpValid="{Binding Path=ASTROOTAR.SecWideASTROOTARIndividualASTROOTARRadioID_A8284_Valid}"
+                                       IsAcpApplicable="{Binding Path=ASTROOTAR.SecWideASTROOTARIndividualASTROOTARRadioID_A8284_Applicable}"
+                                       IsAcpEditable="{Binding Path=ASTROOTAR.SecWideASTROOTARIndividualASTROOTARRadioID_A8284_Editable}"
+                                       IsAcpVisible="{Binding Path=ASTROOTAR.SecWideASTROOTARIndividualASTROOTARRadioID_A8284_Visible}"/>
+            </Grid>
+            <AcpUINS:AcpXamDataPresenter FrameworkElement.Name="IndAstroOtardRadioIDDataPresenter"
+                                         Header="{x:Static CommonResxNS:AppResources.Ind_Astro_Otar_Radio_ID_List_Status}"
+                                         GroupByAreaLocation="None">
+              <AcpUINS:AcpXamDataPresenter.IsAcpVisible>
+                <MultiBinding Converter="{StaticResource acpXamDataPresenterVisibilityConverter}" Mode="OneWay">
+                  <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                  <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                  <Binding Path="DataSource.HasDiffs" RelativeSource="{RelativeSource Self}"/>
+                  <Binding Path="IsAcpVisible" RelativeSource="{RelativeSource Self}"/>
+                  <Binding ElementName="SecureKMFProfile_Col" Path="Visibility"/>
+                  <Binding ElementName="IndAstroOtarRadioID_Col" Path="Visibility"/>
+                </MultiBinding>
+              </AcpUINS:AcpXamDataPresenter.IsAcpVisible>
+              <DataPresenterBase.FieldLayouts>
+                <FieldLayout>
+                  <FieldLayout.Fields>
+                    <UnboundField x:Name="SecureKMFProfile_Col" Name="{x:Static CommonResxNS:AppResources.Secure_KMF_Profile}"
+                                  BindingPath="ASTROOTARInformation" BindingMode="OneWay"
+                                  Visibility="{Binding Source={StaticResource GetSecKMFParentRecset}, Path=ASTROOTARInformation.SecKmfProfASTROOTARInformationKeyofSecureKMFProfile_A12663_Visible, Converter={StaticResource BooleanToVisibility}}">
+                      <Field.Settings>
+                        <FieldSettings CellValuePresenterStyle="{StaticResource SecKMFProfileCellStyle}"/>
+                      </Field.Settings>
+                    </UnboundField>
+                    <UnboundField x:Name="IndAstroOtarRadioID_Col"
+                                  Name="{x:Static CommonResxNS:AppResources.Ind_Astro_Otar_Radio_ID}"
+                                  BindingPath="ASTROOTARInformation" BindingMode="OneWay"
+                                  Visibility="{Binding Source={StaticResource GetSecKMFParentRecset}, Path=ASTROOTARInformation.SecKmfProfASTROOTARInformationIndividualASTROOTARRadioID_A8285_Visible, Converter={StaticResource BooleanToVisibility}}">
+                      <Field.Settings>
+                        <FieldSettings CellValuePresenterStyle="{StaticResource IndAstroOtarRadioIDCellStyle}"/>
+                      </Field.Settings>
+                    </UnboundField>
+                  </FieldLayout.Fields>
+                </FieldLayout>
+              </DataPresenterBase.FieldLayouts>
+            </AcpUINS:AcpXamDataPresenter>
+          </StackPanel>
+          <AcpUINS:AcpExpander.IsAcpVisible>
+            <MultiBinding Converter="{StaticResource groupboxVisibilityConverter}">
+              <Binding ElementName="IndAstroOtardRadioIDDataPresenter" Path="IsAcpVisible"/>
+              <Binding ElementName="SecWideASTROOTARIndividualASTROOTARRadioID" Path="IsAcpVisible"/>
+            </MultiBinding>
+          </AcpUINS:AcpExpander.IsAcpVisible>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpDataWide" FrameworkElement.Width="Auto" Expander.IsExpanded="False"
+                             UIElement.Visibility="Collapsed"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.Data_Wide_Status}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="220"/>
+              <ColumnDefinition Width="150"/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="SubscriberIPAddress1"
+                                     ContentControl.Content="{x:Static CommonResxNS:AppResources.Subscriber_IP_Address_1}" Grid.Row="0"
+                                     Grid.Column="0" FrameworkElement.VerticalAlignment="Top"
+                                     IsAcpValid="{Binding ElementName=DataWideGeneralSubscriberIPAddress1, Path=IsAcpValid}"
+                                     IsAcpApplicable="{Binding ElementName=DataWideGeneralSubscriberIPAddress1, Path=IsAcpApplicable}"
+                                     IsAcpVisible="{Binding ElementName=DataWideGeneralSubscriberIPAddress1, Path=IsAcpVisible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="DataWideGeneralSubscriberIPAddress1" Grid.Row="0" Grid.Column="1"
+                                     ContentControl.Content="{Binding Path=DataWideGeneralSubscriberIPAddress1_A9222_UIValue}"
+                                     MyBLObject="{Binding Path=DataWideGeneralSubscriberIPAddress1_A9222}"
+                                     MyLabelCtrl="{Binding ElementName=SubscriberIPAddress1}"
+                                     IsAcpValid="{Binding Path=DataWideGeneralSubscriberIPAddress1_A9222_Valid}"
+                                     IsAcpApplicable="{Binding Path=DataWideGeneralSubscriberIPAddress1_A9222_Applicable}"
+                                     IsAcpEditable="{Binding Path=DataWideGeneralSubscriberIPAddress1_A9222_Editable}"
+                                     IsAcpVisible="{Binding Path=DataWideGeneralSubscriberIPAddress1_A9222_Visible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="PeerIPAddress1"
+                                     ContentControl.Content="{x:Static CommonResxNS:AppResources.Peer_IP_Address_1}" Grid.Row="1"
+                                     Grid.Column="0" IsAcpValid="{Binding ElementName=DataWideGeneralPeerIPAddress1, Path=IsAcpValid}"
+                                     IsAcpApplicable="{Binding ElementName=DataWideGeneralPeerIPAddress1, Path=IsAcpApplicable}"
+                                     IsAcpVisible="{Binding ElementName=DataWideGeneralPeerIPAddress1, Path=IsAcpVisible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="DataWideGeneralPeerIPAddress1" Grid.Row="1" Grid.Column="1"
+                                     ContentControl.Content="{Binding Path=DataWideGeneralPeerIPAddress1_A8524_UIValue}"
+                                     MyBLObject="{Binding Path=DataWideGeneralPeerIPAddress1_A8524}"
+                                     MyLabelCtrl="{Binding ElementName=PeerIPAddress1}"
+                                     IsAcpValid="{Binding Path=DataWideGeneralPeerIPAddress1_A8524_Valid}"
+                                     IsAcpApplicable="{Binding Path=DataWideGeneralPeerIPAddress1_A8524_Applicable}"
+                                     IsAcpEditable="{Binding Path=DataWideGeneralPeerIPAddress1_A8524_Editable}"
+                                     IsAcpVisible="{Binding Path=DataWideGeneralPeerIPAddress1_A8524_Visible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="BTSubscriberIPAddress"
+                                     ContentControl.Content="{x:Static CommonResxNS:AppResources.Bluetooth_DUN_Subscriber_IP_Address}"
+                                     Grid.Row="2" Grid.Column="0"
+                                     IsAcpValid="{Binding ElementName=DataWideGeneralBTSubscriberIPAddress, Path=IsAcpValid}"
+                                     IsAcpApplicable="{Binding ElementName=DataWideGeneralBTSubscriberIPAddress, Path=IsAcpApplicable}"
+                                     IsAcpVisible="{Binding ElementName=DataWideGeneralBTSubscriberIPAddress, Path=IsAcpVisible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="DataWideGeneralBTSubscriberIPAddress" Grid.Row="2" Grid.Column="1"
+                                     ContentControl.Content="{Binding Path=DataWideGeneralBTDUNSUIPAddress_A41120_UIValue}"
+                                     MyBLObject="{Binding Path=DataWideGeneralBTDUNSUIPAddress_A41120}"
+                                     MyLabelCtrl="{Binding ElementName=BTSubscriberIPAddress}"
+                                     IsAcpValid="{Binding Path=DataWideGeneralBTDUNSUIPAddress_A41120_Valid}"
+                                     IsAcpApplicable="{Binding Path=DataWideGeneralBTDUNSUIPAddress_A41120_Applicable}"
+                                     IsAcpEditable="{Binding Path=DataWideGeneralBTDUNSUIPAddress_A41120_Editable}"
+                                     IsAcpVisible="{Binding Path=DataWideGeneralBTDUNSUIPAddress_A41120_Visible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="BTPeerIPAddress"
+                                     ContentControl.Content="{x:Static CommonResxNS:AppResources.Bluetooth_DUN_Peer_IP_Address}"
+                                     Grid.Row="3" Grid.Column="0"
+                                     IsAcpValid="{Binding ElementName=DataWideGeneralBTPeerIPAddress, Path=IsAcpValid}"
+                                     IsAcpApplicable="{Binding ElementName=DataWideGeneralBTPeerIPAddress, Path=IsAcpApplicable}"
+                                     IsAcpVisible="{Binding ElementName=DataWideGeneralBTPeerIPAddress, Path=IsAcpVisible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="DataWideGeneralBTPeerIPAddress" Grid.Row="3" Grid.Column="1"
+                                     ContentControl.Content="{Binding Path=DataWideGeneralBTDUNPeerIPAddress_A41123_UIValue}"
+                                     MyBLObject="{Binding Path=DataWideGeneralBTDUNPeerIPAddress_A41123}"
+                                     MyLabelCtrl="{Binding ElementName=BTPeerIPAddress}"
+                                     IsAcpValid="{Binding Path=DataWideGeneralBTDUNPeerIPAddress_A41123_Valid}"
+                                     IsAcpApplicable="{Binding Path=DataWideGeneralBTDUNPeerIPAddress_A41123_Applicable}"
+                                     IsAcpEditable="{Binding Path=DataWideGeneralBTDUNPeerIPAddress_A41123_Editable}"
+                                     IsAcpVisible="{Binding Path=DataWideGeneralBTDUNPeerIPAddress_A41123_Visible}"/>
+          </Grid>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpDataProfileList" FrameworkElement.Width="Auto"
+                             UIElement.Visibility="Collapsed" Expander.IsExpanded="False"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.Data_Prof_Status}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top">
+          <AcpUINS:AcpXamDataPresenter FrameworkElement.Name="DataProfilesDataPresenter"
+                                       Header="{x:Static CommonResxNS:AppResources.Data_Profiles_List_Status}" GroupByAreaLocation="None">
+            <AcpUINS:AcpXamDataPresenter.IsAcpVisible>
+              <MultiBinding Converter="{StaticResource acpXamDataPresenterVisibilityConverter}" Mode="OneWay">
+                <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppMode"/>
+                <Binding Source="{x:Static AcpCommonLibNS:AppInfoManager.AppInfoHelper}" Path="AppHideMatches"/>
+                <Binding Path="DataSource.HasDiffs" RelativeSource="{RelativeSource Self}"/>
+                <Binding Path="IsAcpVisible" RelativeSource="{RelativeSource Self}"/>
+                <Binding ElementName="DataProfileName_Col" Path="Visibility"/>
+              </MultiBinding>
+            </AcpUINS:AcpXamDataPresenter.IsAcpVisible>
+            <DataPresenterBase.FieldLayouts>
+              <FieldLayout>
+                <FieldLayout.Fields>
+                  <UnboundField x:Name="DataProfileName_Col" Name="{x:Static CommonResxNS:AppResources.Data_Profile_Name}"
+                                BindingPath="General" BindingMode="OneWay"
+                                Visibility="{Binding Source={StaticResource GetDatProfParentRecset}, Path=General.DataProfGeneralkeyofDataProfiles_A19446_Visible, Converter={StaticResource BooleanToVisibility}}">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource DataProfileNameCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField Name="{x:Static CommonResxNS:AppResources.Subscriber_IP_Address}" BindingPath="General"
+                                BindingMode="OneWay">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource SubIPAddressCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField Name="{x:Static CommonResxNS:AppResources.Peer_IP_Address}" BindingPath="General"
+                                BindingMode="OneWay">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource PeerIPAddressCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField Name="{x:Static CommonResxNS:AppResources.Bluetooth_DUN_Subscriber_IP_Address}"
+                                BindingPath="General" BindingMode="OneWay"
+                                Visibility="{Binding Source={StaticResource GetDatProfParentRecset}, Path=General.DataProfilesGeneralBTDUNSUIPAddress_A41126.HiddenStatic, Converter={StaticResource InvertBooleanToVisibility}}">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource BTSUIPAddressCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField Name="{x:Static CommonResxNS:AppResources.Bluetooth_DUN_Peer_IP_Address}" BindingPath="General"
+                                BindingMode="OneWay"
+                                Visibility="{Binding Source={StaticResource GetDatProfParentRecset}, Path=General.DataProfilesGeneralBTDUNPeerIPAddress_A41127.HiddenStatic, Converter={StaticResource InvertBooleanToVisibility}}">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource BTPeerIPAddressCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                  <UnboundField Name="{x:Static CommonResxNS:AppResources.Subscriber_Air_Interface_IP_Address}"
+                                BindingPath="General" BindingMode="OneWay">
+                    <Field.Settings>
+                      <FieldSettings CellValuePresenterStyle="{StaticResource SubAirInterfaceIPAddressCellStyle}"/>
+                    </Field.Settings>
+                  </UnboundField>
+                </FieldLayout.Fields>
+              </FieldLayout>
+            </DataPresenterBase.FieldLayouts>
+          </AcpUINS:AcpXamDataPresenter>
+          <AcpUINS:AcpExpander.IsAcpVisible>
+            <MultiBinding Converter="{StaticResource groupboxVisibilityConverter}">
+              <Binding Source="{StaticResource GetDatProfParentRecset}"
+                       Path="General.DataProfGeneralkeyofDataProfiles_A19446_Visible"/>
+            </MultiBinding>
+          </AcpUINS:AcpExpander.IsAcpVisible>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpUserInfo" FrameworkElement.Width="Auto" Expander.IsExpanded="False"
+                             UIElement.Visibility="Collapsed"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.User_Info}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="200"/>
+              <ColumnDefinition Width="150"/>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="SoftIDUsername"
+                                     ContentControl.Content="{x:Static CommonResxNS:AppResources.Soft_ID_Username}" Grid.Row="0"
+                                     Grid.Column="0" FrameworkElement.VerticalAlignment="Top"
+                                     IsAcpValid="{Binding ElementName=RadWideUserInformationandPasswordsSoftIDUsername, Path=IsAcpValid}"
+                                     IsAcpApplicable="{Binding ElementName=RadWideUserInformationandPasswordsSoftIDUsername, Path=IsAcpApplicable}"
+                                     IsAcpVisible="{Binding ElementName=RadWideUserInformationandPasswordsSoftIDUsername, Path=IsAcpVisible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="RadWideUserInformationandPasswordsSoftIDUsername" Grid.Row="0"
+                                     Grid.Column="1"
+                                     ContentControl.Content="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsSoftIDUsername_A9169_UIValue}"
+                                     MyBLObject="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsSoftIDUsername_A9169}"
+                                     MyLabelCtrl="{Binding ElementName=SoftIDUsername}"
+                                     IsAcpValid="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsSoftIDUsername_A9169_Valid}"
+                                     IsAcpApplicable="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsSoftIDUsername_A9169_Applicable}"
+                                     IsAcpEditable="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsSoftIDUsername_A9169_Editable}"
+                                     IsAcpVisible="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsSoftIDUsername_A9169_Visible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="LblUserInfoPINPassword"
+                                     ContentControl.Content="{x:Static CommonResxNS:AcgResources.ID_PINPASSWORD}" Grid.Row="1"
+                                     Grid.Column="0"
+                                     IsAcpValid="{Binding ElementName=RadWideUserInformationandPasswordsPINPassword, Path=IsAcpValid}"
+                                     IsAcpApplicable="{Binding ElementName=RadWideUserInformationandPasswordsPINPassword, Path=IsAcpApplicable}"
+                                     IsAcpVisible="{Binding ElementName=RadWideUserInformationandPasswordsPINPassword, Path=IsAcpVisible}"/>
+            <AcpUINS:AcpPasswordEyeBox FrameworkElement.Name="RadWideUserInformationandPasswordsPINPassword" Grid.Row="1" Grid.Column="1"
+                                       IsAcpApplicable="false" IsAcpEditable="false"
+                                       PIN="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPINPassword_41303_UIValue}"
+                                       MyBLObject="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPINPassword_41303}"
+                                       MyLabelCtrl="{Binding ElementName=LblUserInfoPINPassword}"
+                                       IsAcpValid="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPINPassword_41303_Valid}"
+                                       IsAcpVisible="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPINPassword_41303_Visible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="LblUserInfoUserLoginUnitID"
+                                     ContentControl.Content="{x:Static CommonResxNS:AcgResources.ID_USERLOGINUNITID}" Grid.Row="2"
+                                     Grid.Column="0"
+                                     IsAcpValid="{Binding ElementName=RadWideUserInformationandPasswordsUserLoginUnitID, Path=IsAcpValid}"
+                                     IsAcpApplicable="{Binding ElementName=RadWideUserInformationandPasswordsUserLoginUnitID, Path=IsAcpApplicable}"
+                                     IsAcpVisible="{Binding ElementName=RadWideUserInformationandPasswordsUserLoginUnitID, Path=IsAcpVisible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="RadWideUserInformationandPasswordsUserLoginUnitID" Grid.Row="2"
+                                     Grid.Column="1"
+                                     ContentControl.Content="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandUserLoginUnitID_41306Value}"
+                                     MyBLObject="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandUserLoginUnitID_41306}"
+                                     MyLabelCtrl="{Binding ElementName=LblUserInfoUserLoginUnitID}"
+                                     IsAcpValid="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandUserLoginUnitID_41306_Valid}"
+                                     IsAcpApplicable="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandUserLoginUnitID_41306_Applicable}"
+                                     IsAcpEditable="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandUserLoginUnitID_41306_Editable}"
+                                     IsAcpVisible="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandUserLoginUnitID_41306_Visible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="LblRadioAlias"
+                                     ContentControl.Content="{x:Static CommonResxNS:AppResources.Radio_Alias}" Grid.Row="3"
+                                     Grid.Column="0"
+                                     IsAcpValid="{Binding ElementName=RadWideUserInformationandPasswordsRadioAlias, Path=IsAcpValid}"
+                                     IsAcpApplicable="{Binding ElementName=RadWideUserInformationandPasswordsRadioAlias, Path=IsAcpApplicable}"
+                                     IsAcpVisible="{Binding ElementName=RadWideUserInformationandPasswordsRadioAlias, Path=IsAcpVisible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="RadWideUserInformationandPasswordsRadioAlias" Grid.Row="3" Grid.Column="1"
+                                     ContentControl.Content="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsRadioAlias_A8829Value}"
+                                     MyBLObject="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsRadioAlias_A8829}"
+                                     MyLabelCtrl="{Binding ElementName=LblRadioAlias}"
+                                     IsAcpValid="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsRadioAlias_A8829_Valid}"
+                                     IsAcpApplicable="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsRadioAlias_A8829_Applicable}"
+                                     IsAcpEditable="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsRadioAlias_A8829_Editable}"
+                                     IsAcpVisible="{Binding Path=UserInformationAndPasswords.RadWideUserInformationandPasswordsRadioAlias_A8829_Visible}"/>
+          </Grid>
+        </AcpUINS:AcpExpander>
+        <AcpUINS:AcpExpander FrameworkElement.Name="ExpBluetooth" FrameworkElement.Width="Auto" Expander.IsExpanded="False"
+                             UIElement.Visibility="Collapsed"
+                             HeaderedContentControl.Header="{x:Static CommonResxNS:AppResources.Bluetooth_Id}"
+                             Expander.ExpandDirection="Down" FrameworkElement.Margin="0,0,0,0"
+                             FrameworkElement.VerticalAlignment="Top"
+                             IsAcpVisible="{Binding Path=RadWideBluetoothFriendlyName_A41181_Visible}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="200"/>
+              <ColumnDefinition Width="150"/>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="BluetoothFriendlyName"
+                                     ContentControl.Content="{x:Static CommonResxNS:AppResources.Bluetooth_Friendly_Name}" Grid.Row="0"
+                                     Grid.Column="0" FrameworkElement.VerticalAlignment="Top"
+                                     IsAcpValid="{Binding ElementName=RadWideBluetoothFriendlyName, Path=IsAcpValid}"
+                                     IsAcpApplicable="{Binding ElementName=RadWideBluetoothFriendlyName, Path=IsAcpApplicable}"
+                                     IsAcpVisible="{Binding ElementName=RadWideBluetoothFriendlyName, Path=IsAcpVisible}"/>
+            <AcpUINS:AcpViewOnlyCtrl FrameworkElement.Name="RadWideBluetoothFriendlyName" Grid.Row="0" Grid.Column="1"
+                                     ContentControl.Content="{Binding Path=RadWideBluetoothFriendlyName_A41181Value}"
+                                     MyBLObject="{Binding Path=RadWideBluetoothFriendlyName_A41181}"
+                                     MyLabelCtrl="{Binding ElementName=BluetoothFriendlyName}"
+                                     IsAcpValid="{Binding Path=RadWideBluetoothFriendlyName_A41181_Valid}"
+                                     IsAcpApplicable="{Binding Path=RadWideBluetoothFriendlyName_A41181_Applicable}"
+                                     IsAcpEditable="{Binding Path=RadWideBluetoothFriendlyName_A41181_Editable}"
+                                     IsAcpVisible="{Binding Path=RadWideBluetoothFriendlyName_A41181_Visible}"/>
+          </Grid>
+        </AcpUINS:AcpExpander>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</PageCloneExpress>
